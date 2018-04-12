@@ -104,4 +104,9 @@ public class RegistryConfigFactory {
 
         return registryConfig;
     }
+
+    public static void removeAllRegistryConfig() {
+        loaclRegistryConfig = null;
+        zookeeperRegistryConfig = null;
+    }
 }

@@ -267,14 +267,17 @@ public class ServerConfigFactory {
     public static void closeAllServer() {
         if (boltServerConfig != null) {
             boltServerConfig.destroy();
+            boltServerConfig = null;
         }
 
         if (restServerConfig != null) {
             restServerConfig.destroy();
+            restServerConfig = null;
         }
 
         if (dubboServerConfig != null) {
             dubboServerConfig.destroy();
+            dubboServerConfig = null;
         }
 
     }

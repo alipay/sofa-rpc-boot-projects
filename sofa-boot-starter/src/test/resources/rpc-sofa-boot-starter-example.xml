@@ -6,27 +6,51 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
             http://sofastack.io/schema/sofaboot   http://sofastack.io/schema/sofaboot.xsd"
        default-autowire="byName">
-
-    <bean id="sampleFacadeImpl" class="com.alipay.sofa.rpc.bean.SampleFacadeImpl"/>
-
+    <!-- service -->
+    <bean id="sampleFacadeImpl" class="com.alipay.sofa.rpc.bean.impl.SampleFacadeImpl"/>
     <sofa:service ref="sampleFacadeImpl" interface="com.alipay.sofa.rpc.bean.SampleFacade">
-
         <sofa:binding.bolt/>
         <sofa:binding.rest/>
-        <sofa:binding.dubbo/>
     </sofa:service>
 
-
-    <sofa:reference id="sampleFacadeReferenceBolt" interface="com.alipay.sofa.rpc.bean.SampleFacade" local-first="false">
+    <!-- reference -->
+    <sofa:reference id="sampleFacadeReferenceBolt" interface="com.alipay.sofa.rpc.bean.SampleFacade">
         <sofa:binding.bolt/>
     </sofa:reference>
 
-    <sofa:reference id="sampleFacadeReferenceRest" interface="com.alipay.sofa.rpc.bean.SampleFacade" local-first="false">
+    <sofa:reference id="sampleFacadeReferenceRest" interface="com.alipay.sofa.rpc.bean.SampleFacade">
         <sofa:binding.rest/>
     </sofa:reference>
 
-    <sofa:reference id="sampleFacadeReferenceDubbo" interface="com.alipay.sofa.rpc.bean.SampleFacade" local-first="false">
-        <sofa:binding.dubbo/>
+    <!-- thread pool -->
+    <bean id="countServiceThreadPool" class="com.alipay.sofa.rpc.server.UserThreadPool" init-method="init">
+        <property name="corePoolSize" value="10"/>
+        <property name="maximumPoolSize" value="10"/>
+        <property name="queueSize" value="5"/>
+        <property name="threadPoolName" value="countServiceThreadPool_name"/>
+    </bean>
+
+    <bean id="countService" class="com.alipay.sofa.rpc.bean.impl.CountServiceImpl"/>
+    <sofa:service ref="countService" interface="com.alipay.sofa.rpc.bean.CountService">
+        <sofa:binding.bolt>
+            <sofa:global-attrs thread-pool-ref="countServiceThreadPool"/>
+        </sofa:binding.bolt>
+    </sofa:service>
+
+    <sofa:reference id="countServiceReference" interface="com.alipay.sofa.rpc.bean.CountService">
+        <sofa:binding.bolt/>
+    </sofa:reference>
+
+    <!-- generic -->
+    <bean id="bookServiceImpl" class="com.alipay.sofa.rpc.bean.impl.BookServiceImpl"/>
+    <sofa:service ref="bookServiceImpl" interface="com.alipay.sofa.rpc.bean.BookService">
+        <sofa:binding.bolt/>
+    </sofa:service>
+
+    <sofa:reference id="bookServiceGenericReference" interface="com.alipay.sofa.rpc.api.GenericService">
+        <sofa:binding.bolt>
+            <sofa:global-attrs generic-interface="com.alipay.sofa.rpc.bean.BookService"/>
+        </sofa:binding.bolt>
     </sofa:reference>
 
 
