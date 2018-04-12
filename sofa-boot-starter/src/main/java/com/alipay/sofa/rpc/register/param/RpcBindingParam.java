@@ -54,6 +54,8 @@ public abstract class RpcBindingParam implements BindingParam {
 
     protected UserThreadPool             userThreadPool;
 
+    protected String                     genericInterface;
+
     /** other */
     protected List<Filter>               filters;
 
@@ -331,6 +333,24 @@ public abstract class RpcBindingParam implements BindingParam {
         this.userThreadPool = userThreadPool;
     }
 
+    /**
+     * Getter method for property <tt>genericInterface</tt>.
+     *
+     * @return property value of genericInterface
+     */
+    public String getGenericInterface() {
+        return genericInterface;
+    }
+
+    /**
+     * Setter method for property <tt>genericInterface</tt>.
+     *
+     * @param genericInterface  value to be assigned to property genericInterface
+     */
+    public void setGenericInterface(String genericInterface) {
+        this.genericInterface = genericInterface;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -378,6 +398,9 @@ public abstract class RpcBindingParam implements BindingParam {
         if (userThreadPool != null ? !userThreadPool.equals(that.userThreadPool) : that.userThreadPool != null) {
             return false;
         }
+        if (genericInterface != null ? !genericInterface.equals(that.genericInterface) : that.genericInterface != null) {
+            return false;
+        }
         if (filters != null ? !filters.equals(that.filters) : that.filters != null) {
             return false;
         }
@@ -401,6 +424,7 @@ public abstract class RpcBindingParam implements BindingParam {
         result = 31 * result + (warmUpTime != null ? warmUpTime.hashCode() : 0);
         result = 31 * result + (warmUpWeight != null ? warmUpWeight.hashCode() : 0);
         result = 31 * result + (userThreadPool != null ? userThreadPool.hashCode() : 0);
+        result = 31 * result + (genericInterface != null ? genericInterface.hashCode() : 0);
         result = 31 * result + (filters != null ? filters.hashCode() : 0);
         result = 31 * result + (methodInfos != null ? methodInfos.hashCode() : 0);
         result = 31 * result + (targetUrl != null ? targetUrl.hashCode() : 0);

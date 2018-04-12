@@ -39,6 +39,7 @@ public class RpcBindingXmlConstants {
     public static final String TAG_WARMUP_TIME       = "warm-up-time";
     public static final String TAG_WARMUP_WEIGHT     = "warm-up-weight";
     public static final String TAG_THREAD_POOL_REF   = "thread-pool-ref";
+    public static final String TAG_GENERIC_INTERFACE = "generic-interface";
     public static final String TAG_TARGET_URL        = "target-url";
 
     public static final String TAG_NAME              = "name";

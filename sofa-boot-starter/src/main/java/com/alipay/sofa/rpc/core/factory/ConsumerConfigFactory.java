@@ -55,6 +55,7 @@ public class ConsumerConfigFactory {
         String type = param.getType();
         Integer addressWaitTime = param.getAddressWaitTime();
         Object callbackHandler = param.getCallbackHandler();
+        String genericInterface = param.getGenericInterface();
 
         List<Filter> filters = param.getFilters();
         List<MethodConfig> methodConfigs = convertToMethodConfig(param.getMethodInfos());
@@ -69,7 +70,10 @@ public class ConsumerConfigFactory {
         if (StringUtils.hasText(id)) {
             consumerConfig.setId(id);
         }
-        if (StringUtils.hasText(interfaceId)) {
+        if (StringUtils.hasText(genericInterface)) {
+            consumerConfig.setGeneric(true);
+            consumerConfig.setInterfaceId(genericInterface);
+        } else if (StringUtils.hasText(interfaceId)) {
             consumerConfig.setInterfaceId(interfaceId);
         }
         if (StringUtils.hasText(uniqueId)) {

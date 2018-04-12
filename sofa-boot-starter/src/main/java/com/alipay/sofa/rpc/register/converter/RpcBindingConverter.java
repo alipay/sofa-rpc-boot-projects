@@ -157,6 +157,7 @@ public abstract class RpcBindingConverter implements BindingConverter<RpcBinding
             element.getAttribute(RpcBindingXmlConstants.TAG_THREAD_POOL_REF),
             bindingConverterContext.getApplicationContext(), bindingConverterContext.getAppClassLoader(),
             bindingConverterContext.getAppName());
+        String genericInterface = element.getAttribute(RpcBindingXmlConstants.TAG_GENERIC_INTERFACE);
 
         if (timeout != null) {
             param.setTimeout(timeout);
@@ -190,6 +191,9 @@ public abstract class RpcBindingConverter implements BindingConverter<RpcBinding
         }
         if (treadPoolRef != null) {
             param.setUserThreadPool((UserThreadPool) treadPoolRef);
+        }
+        if (StringUtils.hasText(genericInterface)) {
+            param.setGenericInterface(genericInterface);
         }
 
     }

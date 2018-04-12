@@ -14,15 +14,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alipay.sofa.rpc.bean;
+package com.alipay.sofa.rpc.bean.impl;
+
+import com.alipay.sofa.rpc.bean.BookService;
+import com.alipay.sofa.rpc.bean.model.BookMarkModel;
+import com.alipay.sofa.rpc.bean.model.BookModel;
 
 /**
  *
- * @author <a href="mailto:lw111072@antfin.com">liangen</a>
+ * @author liangen
+ * @version $Id: BookService.java, v 0.1 2018年04月12日 下午1:37 liangen Exp $
  */
-public class SampleFacadeImpl implements SampleFacade {
+public class BookServiceImpl implements BookService {
+
     @Override
-    public String sayHi(String string) {
-        return "hi " + string + "!";
+    public BookModel getBook(BookMarkModel bookMark) {
+
+        BookModel book = new BookModel();
+        book.setName(bookMark.getName());
+        book.setAuthor("lw");
+
+        return book;
     }
 }
