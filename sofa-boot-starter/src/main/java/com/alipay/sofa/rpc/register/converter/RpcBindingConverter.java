@@ -150,7 +150,8 @@ public abstract class RpcBindingConverter implements BindingConverter<RpcBinding
         String callbackClass = element.getAttribute(RpcBindingXmlConstants.TAG_CALLBACK_CLASS);
         String callbackRef = element.getAttribute(RpcBindingXmlConstants.TAG_CALLBACK_REF);
         Integer weight = SofaBootRpcParserUtil.parseInteger(element.getAttribute(RpcBindingXmlConstants.TAG_WEIGHT));
-        Integer warmUpTime = SofaBootRpcParserUtil.parseInteger(element.getAttribute(RpcBindingXmlConstants.TAG_WARMUP_TIME));
+        Integer warmUpTime = SofaBootRpcParserUtil.parseInteger(element
+            .getAttribute(RpcBindingXmlConstants.TAG_WARMUP_TIME));
         Integer warmUpWeight = SofaBootRpcParserUtil
             .parseInteger(element.getAttribute(RpcBindingXmlConstants.TAG_WARMUP_WEIGHT));
         Object treadPoolRef = SofaBootRpcSpringUtil.getSpringBean(

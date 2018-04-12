@@ -54,6 +54,5 @@ public class SofaBootRpcStartListener implements ApplicationListener<SofaBootRpc
         //export dubbo
         ProviderConfigContainer.exportAllDubboProvideConfig();
 
-
     }
 }
