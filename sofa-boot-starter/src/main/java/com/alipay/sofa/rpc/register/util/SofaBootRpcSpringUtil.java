@@ -27,9 +27,9 @@ import org.springframework.util.StringUtils;
  * @author <a href="mailto:lw111072@antfin.com">liangen</a>
  * @author <a href="mailto:caojie.cj@antfin.com">CaoJie</a>
  */
-public class RpcSpringUtil {
+public class SofaBootRpcSpringUtil {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(RpcSpringUtil.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(SofaBootRpcSpringUtil.class);
 
     /**
      * 根据配置的ref以及class字符串，获得真正的spring bean

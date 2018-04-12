@@ -16,16 +16,12 @@
  */
 package com.alipay.sofa.rpc.register.listener;
 
-import com.alipay.sofa.rpc.config.SofaBootRpcConfig;
-import com.alipay.sofa.rpc.config.SofaBootRpcConfigConstants;
 import com.alipay.sofa.rpc.core.container.ProviderConfigContainer;
 import com.alipay.sofa.rpc.core.factory.RegistryConfigFactory;
 import com.alipay.sofa.rpc.core.factory.ServerConfigFactory;
-import com.alipay.sofa.rpc.core.transmit.RpcTransmitLauncherCreator;
+import com.alipay.sofa.rpc.extension.fault.tolerance.FaultToleranceLauncher;
 import com.alipay.sofa.rpc.register.event.SofaBootRpcStartEvent;
 import com.alipay.sofa.rpc.registry.Registry;
-import com.alipay.sofa.rpc.transmit.TransmitLauncher;
-import com.alipay.sofa.rpc.transmit.registry.TransmitRegistryFactory;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 
@@ -40,6 +36,9 @@ public class SofaBootRpcStartListener implements ApplicationListener<SofaBootRpc
     @Override
     public void onApplicationEvent(SofaBootRpcStartEvent event) {
 
+        //start fault tolerance
+        new FaultToleranceLauncher().startFaultTolerance();
+
         //start server
         ServerConfigFactory.startServers();
 
@@ -49,20 +48,12 @@ public class SofaBootRpcStartListener implements ApplicationListener<SofaBootRpc
         //set allow all publish
         ProviderConfigContainer.setAllowPublish(true);
 
-        //transmit
-        TransmitLauncher transmitLauncher = new RpcTransmitLauncherCreator().createTransmitLauncher();
-        if (transmitLauncher != null) {
-            transmitLauncher.setRegistry(TransmitRegistryFactory.getIpTransmitRegistry(RegistryConfigFactory
-                .getRegistryConfig()));
-            transmitLauncher.startTransmit(SofaBootRpcConfig
-                .getPropertyAllCircumstances(SofaBootRpcConfigConstants.APP_NAME));
-        }
-
         //register registry
         ProviderConfigContainer.publishAllProviderConfig(registry);
 
         //export dubbo
         ProviderConfigContainer.exportAllDubboProvideConfig();
+
 
     }
 }

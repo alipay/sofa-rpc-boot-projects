@@ -22,12 +22,36 @@ import org.springframework.util.StringUtils;
  *
  * @author <a href="mailto:lw111072@antfin.com">liangen</a>
  */
-public class RpcXmlParserUtil {
+public class SofaBootRpcParserUtil {
 
-    public static Integer parseInt(String string) {
+    public static Integer parseInteger(String string) {
 
         if (StringUtils.hasText(string)) {
             return Integer.valueOf(string);
+        }
+
+        return null;
+    }
+
+    public static Boolean parseBoolean(String string) {
+        if (StringUtils.hasText(string)) {
+            return Boolean.valueOf(string);
+        }
+
+        return null;
+    }
+
+    public static Long parseLong(String string) {
+        if (StringUtils.hasText(string)) {
+            return Long.valueOf(string);
+        }
+
+        return null;
+    }
+
+    public static Double parseDuoble(String string) {
+        if (StringUtils.hasText(string)) {
+            return Double.valueOf(string);
         }
 
         return null;
