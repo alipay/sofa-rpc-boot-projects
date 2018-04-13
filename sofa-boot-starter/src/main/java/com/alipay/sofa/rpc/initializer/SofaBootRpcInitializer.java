@@ -28,7 +28,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.util.StringUtils;
 
 /**
- * Initialize for SOFABoot RPC
+ * SOFABoot RPC 初始化
  * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
 public class SofaBootRpcInitializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
@@ -51,7 +51,6 @@ public class SofaBootRpcInitializer implements ApplicationContextInitializer<Con
             throw new SofaBootRpcRuntimeException("Please add '" + SofaBootRpcConfigConstants.APP_NAME +
                 "' in application.properties");
         }
-
     }
 
     private void initLog(Environment environment) {

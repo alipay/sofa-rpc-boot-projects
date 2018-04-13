@@ -26,7 +26,7 @@ import org.springframework.stereotype.Component;
 
 /**
  *
- * The spring context listener. Responsible for closing the SOFABoot RPC resources.
+ * Spring上下文监听器.负责关闭SOFABoot RPC 的资源。
  *
  * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */

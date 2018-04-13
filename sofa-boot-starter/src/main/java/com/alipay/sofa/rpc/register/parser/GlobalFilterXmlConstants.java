@@ -18,6 +18,7 @@ package com.alipay.sofa.rpc.register.parser;
 
 /**
  *
+ * 全局 Filter 的元素和属性。
  * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
 public class GlobalFilterXmlConstants {

@@ -25,7 +25,7 @@ import org.springframework.context.ApplicationContext;
 import org.w3c.dom.Element;
 
 /**
- *
+ * rpc binding implementation
  * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
 public abstract class RpcBinding extends AbstractBinding {
@@ -36,10 +36,19 @@ public abstract class RpcBinding extends AbstractBinding {
 
     protected RpcBindingParam    rpcBindingParam;
 
+    /**
+     * Spring 上下文
+     */
     protected ApplicationContext applicationContext;
 
+    /**
+     * 是否是服务引用方
+     */
     protected boolean            inBinding;
 
+    /**
+     * the ConsumerConfig 。在服务引用方才有值。
+     */
     protected ConsumerConfig     consumerConfig;
 
     public RpcBinding(RpcBindingParam bindingParam, ApplicationContext applicationContext, boolean inBinding) {
@@ -73,6 +82,10 @@ public abstract class RpcBinding extends AbstractBinding {
         return rpcBindingParam.hashCode();
     }
 
+    /**
+     * 健康检查
+     * @return 健康检查结果
+     */
     @Override
     public HealthResult healthCheck() {
         HealthResult result = new HealthResult(getName());

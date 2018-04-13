@@ -37,12 +37,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Factory of consumer config . Encapsulates consumer related RPC API programming.
  *
+ * ConsumerConfig 工厂。
  * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
 public class ConsumerConfigFactory {
 
+    /**
+     * 获取 ConsumerConfig
+     * @param contract the Contract
+     * @param binding the RpcBinding
+     * @return the ConsumerConfig
+     */
     public static ConsumerConfig getConsumerConfig(Contract contract, RpcBinding binding) {
         RpcBindingParam param = binding.getRpcBindingParam();
 

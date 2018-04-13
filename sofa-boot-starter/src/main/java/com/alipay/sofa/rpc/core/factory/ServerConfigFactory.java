@@ -32,23 +32,36 @@ import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  *
- * Factory of registry config . Encapsulates registry related RPC API programming and maintain corresponding singleton.
+ * ServiceConfig 工厂
  *
  * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
 public class ServerConfigFactory {
 
-    private static final Logger          logger    = LoggerFactory.getLogger(ServerConfigFactory.class);
+    private static final Logger          LOGGER     = LoggerFactory.getLogger(ServerConfigFactory.class);
 
+    /**
+     * bolt ServerConfig
+     */
     private volatile static ServerConfig boltServerConfig;
-    private final static Object          boltLock  = new Object();
+    private static final Object          BOLT_LOCK  = new Object();
 
+    /**
+     * rest ServerConfig
+     */
     private volatile static ServerConfig restServerConfig;
-    private final static Object          restLock  = new Object();
+    private static final Object          REST_LOCK  = new Object();
 
+    /**
+     * dubbo ServerConfig
+     */
     private volatile static ServerConfig dubboServerConfig;
-    private final static Object          dubboLock = new Object();
+    private static final Object          DUBBO_LOCK = new Object();
 
+    /**
+     * 是否需要开启Server
+     * @return 是否需要开启
+     */
     public static boolean isNeedStart() {
         if (boltServerConfig != null || restServerConfig != null || dubboServerConfig != null) {
             return true;
@@ -57,6 +70,9 @@ public class ServerConfigFactory {
         }
     }
 
+    /**
+     * 开启所有 ServerConfig 对应的 Server
+     */
     public static void startServers() {
         if (boltServerConfig != null) {
             boltServerConfig.buildIfAbsent().start();
@@ -67,7 +83,7 @@ public class ServerConfigFactory {
             if (threadPoolExecutor != null) {
                 new RpcThreadPoolMonitor(threadPoolExecutor).start();
             } else {
-                logger.warn("the business threadpool can not be get");
+                LOGGER.warn("the business threadpool can not be get");
             }
         }
 
@@ -77,11 +93,16 @@ public class ServerConfigFactory {
 
     }
 
+    /**
+     * 获取 ServerConfig
+     * @param protocol 协议
+     * @return the ServerConfig
+     */
     public static ServerConfig getServerConfig(String protocol) {
 
         if (protocol.equalsIgnoreCase(SofaBootRpcConfigConstants.RPC_PROTOCOL_BOLT)) {
             if (boltServerConfig == null) {
-                synchronized (boltLock) {
+                synchronized (BOLT_LOCK) {
                     if (boltServerConfig == null) {
                         boltServerConfig = createBoltServerConfig();
                     }
@@ -91,7 +112,7 @@ public class ServerConfigFactory {
             return boltServerConfig;
         } else if (protocol.equalsIgnoreCase(SofaBootRpcConfigConstants.RPC_PROTOCOL_REST)) {
             if (restServerConfig == null) {
-                synchronized (restLock) {
+                synchronized (REST_LOCK) {
                     if (restServerConfig == null) {
                         restServerConfig = createRestServerConfig();
                     }
@@ -102,7 +123,7 @@ public class ServerConfigFactory {
         } else if (protocol.equalsIgnoreCase(SofaBootRpcConfigConstants.RPC_PROTOCOL_DUBBO)) {
 
             if (dubboServerConfig == null) {
-                synchronized (dubboLock) {
+                synchronized (DUBBO_LOCK) {
                     if (dubboServerConfig == null) {
                         dubboServerConfig = createDubboServerConfig();
                     }
@@ -116,6 +137,11 @@ public class ServerConfigFactory {
 
     }
 
+    /**
+     * 获取 Server
+     * @param protocol 协议
+     * @return the Server
+     */
     public static Server getServer(String protocol) {
         return ServerFactory.getServer(getServerConfig(protocol));
     }
@@ -152,8 +178,8 @@ public class ServerConfigFactory {
     }
 
     /**
-     * Rest requires starter to set default values.
-     * @return
+     * 创建 rest ServerConfig。rest 的 配置需要外层 starter设置默认值。
+     * @return ServerConfig
      */
     private static ServerConfig createRestServerConfig() {
         String hostName = SofaBootRpcConfig.getPropertyAllCircumstances(SofaBootRpcConfigConstants.REST_HOSTNAME);
@@ -228,7 +254,7 @@ public class ServerConfigFactory {
     }
 
     /**
-     * Dubbo requires starter to set default values. At the moment, all but the ports are bolt defaults.
+     * 创建 dubbo ServerConfig。会设置 Dubbo 的默认端口，其余配置不会由外层 Starter设置默认值。
      * @return
      */
     private static ServerConfig createDubboServerConfig() {
@@ -266,6 +292,9 @@ public class ServerConfigFactory {
 
     }
 
+    /**
+     * 释放所有 ServerConfig 对应的资源，并移除所有的 ServerConfig。
+     */
     public static void closeAllServer() {
         if (boltServerConfig != null) {
             boltServerConfig.destroy();
@@ -281,6 +310,5 @@ public class ServerConfigFactory {
             dubboServerConfig.destroy();
             dubboServerConfig = null;
         }
-
     }
 }

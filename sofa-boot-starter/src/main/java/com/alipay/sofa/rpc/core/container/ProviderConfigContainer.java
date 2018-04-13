@@ -31,45 +31,69 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 /**
- * Provider configuration holder. Responsible for programming interface cache.
+ * ProviderConfig持有者.维护编程界面级别的RPC组件。
  *
  * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
 public class ProviderConfigContainer {
-    private static final Logger                                logger              = LoggerFactory
-                                                                                       .getLogger(ProviderConfigContainer.class);
+    private static final Logger                                LOGGER                = LoggerFactory
+                                                                                         .getLogger(ProviderConfigContainer.class);
 
-    private static boolean                                     allowPublish        = false;
-
-    /***
-     * RPC Service 缓存,用于根据这个元数据信息回溯 RPC ,如移除服务等
+    /**
+     * 是否允许发布ProviderConfig
      */
-    private static final ConcurrentMap<String, ProviderConfig> rpcServiceContainer = new ConcurrentHashMap<String, ProviderConfig>(
-                                                                                       256);
+    private static boolean                                     allowPublish          = false;
 
+    /**
+     * ProviderConfig 缓存
+     */
+    private static final ConcurrentMap<String, ProviderConfig> RPC_SERVICE_CONTAINER = new ConcurrentHashMap<String, ProviderConfig>(
+                                                                                         256);
+
+    /**
+     * 增加 ProviderConfig
+     * @param key 唯一id
+     * @param providerConfig the ProviderConfig
+     */
     public static void addProviderConfig(String key, ProviderConfig providerConfig) {
         if (providerConfig != null) {
-            if (rpcServiceContainer.containsKey(key)) {
-                logger.warn("已经存在相同的服务及协议,key[" + key + "];protocol[" + providerConfig.getServer().get(0) + "]");
+            if (RPC_SERVICE_CONTAINER.containsKey(key)) {
+                LOGGER.warn("已经存在相同的服务及协议,key[" + key + "];protocol[" + providerConfig.getServer().get(0) + "]");
             } else {
-                rpcServiceContainer.put(key, providerConfig);
-
+                RPC_SERVICE_CONTAINER.put(key, providerConfig);
             }
         }
     }
 
+    /**
+     * 获取 ProviderConfig
+     * @param key 唯一id
+     * @return the ProviderConfig
+     */
     public static ProviderConfig getProviderConfig(String key) {
-        return rpcServiceContainer.get(key);
+        return RPC_SERVICE_CONTAINER.get(key);
     }
 
+    /**
+     * 移除 ProviderConfig
+     * @param key 唯一id
+     */
     public static void removeProviderConfig(String key) {
-        rpcServiceContainer.remove(key);
+        RPC_SERVICE_CONTAINER.remove(key);
     }
 
+    /**
+     * 获取缓存的所有 ProviderConfig
+     * @return 所有 ProviderConfig
+     */
     public static Collection<ProviderConfig> getAllProviderConfig() {
-        return rpcServiceContainer.values();
+        return RPC_SERVICE_CONTAINER.values();
     }
 
+    /**
+     * 发布所有 ProviderConfig 元数据信息到注册中心
+     * @param registry 注册中心
+     */
     public static void publishAllProviderConfig(Registry registry) {
         for (ProviderConfig providerConfig : ProviderConfigContainer.getAllProviderConfig()) {
 
@@ -78,10 +102,12 @@ public class ProviderConfigContainer {
                 providerConfig.setRegister(true);
                 registry.register(providerConfig);
             }
-
         }
     }
 
+    /**
+     * export所有 Dubbo 类型的 ProviderConfig
+     */
     public static void exportAllDubboProvideConfig() {
         for (ProviderConfig providerConfig : ProviderConfigContainer.getAllProviderConfig()) {
 
@@ -93,6 +119,9 @@ public class ProviderConfigContainer {
         }
     }
 
+    /**
+     * unExport所有的 ProviderConfig
+     */
     public static void unExportAllProviderConfig() {
         for (ProviderConfig providerConfig : ProviderConfigContainer.getAllProviderConfig()) {
             providerConfig.unExport();
@@ -100,14 +129,28 @@ public class ProviderConfigContainer {
 
     }
 
+    /**
+     * 是否允许发布 ProviderConfig 元数据信息
+     * @return
+     */
     public static boolean isAllowPublish() {
         return allowPublish;
     }
 
+    /**
+     * 设置是否允许发布 ProviderConfig 元数据信息
+     * @param allowPublish 是否允许发布 ProviderConfig 元数据信息
+     */
     public static void setAllowPublish(boolean allowPublish) {
         ProviderConfigContainer.allowPublish = allowPublish;
     }
 
+    /**
+     * 创建唯一Id
+     * @param contract the Contract
+     * @param binding the RpcBinding
+     * @return 唯一id
+     */
     public static String createUniqueName(Contract contract, RpcBinding binding) {
         String uniqueId = "";
         String version = ":1.0";

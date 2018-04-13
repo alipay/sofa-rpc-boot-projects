@@ -16,8 +16,6 @@
  */
 package com.alipay.sofa.rpc.config;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.core.env.Environment;
 import org.springframework.util.StringUtils;
 
@@ -26,10 +24,14 @@ import org.springframework.util.StringUtils;
  * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
 public class SofaBootRpcConfig {
-    private static final Logger logger      = LoggerFactory.getLogger(SofaBootRpcConfig.class);
 
-    private static Environment  environment = null;
+    private static Environment environment = null;
 
+    /**
+     * 根据key读取配置value
+     * @param key 配置key
+     * @return value。如果不存在则返回null。
+     */
     public static String getProperty(String key) {
 
         if (environment != null) {
@@ -37,40 +39,50 @@ public class SofaBootRpcConfig {
         } else {
             return null;
         }
-
     }
 
+    /**
+     * 获取{@link Environment}
+     * @return Environment the {@link Environment}
+     */
     public static Environment getEnvironment() {
         return environment;
     }
 
+    /**
+     * 设置{@link Environment}
+     * @param environment the {@link Environment}
+     */
     public static void setEnvironment(Environment environment) {
         SofaBootRpcConfig.environment = environment;
     }
 
     /**
-     * Reads the value of the specified key from the system properties and configuration files.
-     * If this value exists in the system property, the value of the system attribute is preferred.
-     * It will try to read the value in the key naming mode of XXX.XXX.XXX
-     * If I do not try xxx_xxx_xxx, It will read it.
-     * The mapping of the two naming methods is defined {@link SofaBootRpcConfigMapping}
-     * @param key
-     * @return
+     * 从System和SOFABoot配置文件中根据key读取value。
+     * 读取优先级：
+     * 1）从System中读取XXX.XXX形式的key
+     * 2）从System中读取XXX_XXX形式的key
+     * 3）从System中读取XXX.XXX形式的key
+     * 4）从System中读取XXX_XXX形式的key
+     * @param key 配置key
+     * @return 配置value
      */
     public static String getPropertyAllCircumstances(String key) {
         if (!StringUtils.hasText(key)) {
             return null;
         }
 
+        String lineKey = key.replaceAll("\\.", "_");
+
         String value = System.getProperty(key);
         if (!StringUtils.hasText(value)) {
-            value = System.getProperty(SofaBootRpcConfigMapping.getUnderlineKey(key));
+            value = System.getProperty(lineKey);
         }
         if (!StringUtils.hasText(value)) {
             value = SofaBootRpcConfig.getProperty(key);
         }
         if (!StringUtils.hasText(value)) {
-            value = SofaBootRpcConfig.getProperty(SofaBootRpcConfigMapping.getUnderlineKey(key));
+            value = SofaBootRpcConfig.getProperty(lineKey);
         }
 
         return value;

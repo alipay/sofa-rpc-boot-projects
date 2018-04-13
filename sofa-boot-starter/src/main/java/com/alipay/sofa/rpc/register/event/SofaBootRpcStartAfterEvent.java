@@ -21,7 +21,7 @@ import org.springframework.context.event.ApplicationContextEvent;
 
 /**
  *
- * This event is published before SOFABoot starts the server and publishes the service.
+ * SOFABoot启动服务器和发布服务之前的事件
  *
  * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */

@@ -22,32 +22,53 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * zookeeper configuration of parsing abstractions.
+ * zookeeper 配置
  *
- * configuration format: rpc.registry.protocol=zookeeper://xxx:2181?k1=v1
+ * 配置格式: rpc.registry.protocol=zookeeper://xxx:2181?k1=v1
  *
  * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
-public class ZookeeperConfiger {
+public class ZookeeperConfigurator {
 
-    private static final String              FILE        = "file";
+    /**
+     * 缓存文件地址
+     */
+    private static final String              FILE         = "file";
 
+    /**
+     * 注册中心地址
+     */
     private static String                    address;
 
-    private static final Map<String, String> paramMap    = new HashMap<String, String>();
+    /**
+     * 参数
+     */
+    private static final Map<String, String> PARAM_MAP    = new HashMap<String, String>();
 
-    private static boolean                   alreayParse = false;
+    /**
+     * 是否已经解析配置
+     */
+    private static boolean                   alreadyParse = false;
 
+    /**
+     * 根据参数 key 读取 value
+     * @param key 参数 key
+     * @return 参数valule
+     */
     public static String getParamValue(String key) {
         if (StringUtils.hasText(key)) {
-            return paramMap.get(key);
+            return PARAM_MAP.get(key);
         } else {
             return null;
         }
     }
 
+    /**
+     * 获取缓存文件地址
+     * @return 缓存文件地址
+     */
     public static String getFile() {
-        String file = paramMap.get(FILE);
+        String file = PARAM_MAP.get(FILE);
 
         if (!StringUtils.hasText(file)) {
             file = SofaBootRpcConfigConstants.REGISTRY_FILE_PATH_DEFAULT;
@@ -57,6 +78,10 @@ public class ZookeeperConfiger {
 
     }
 
+    /**
+     * 解析配置 value
+     * @param config 配置 value
+     */
     public static void parseConfig(String config) {
         if (StringUtils.hasText(config) && config.startsWith("zookeeper")) {
 
@@ -73,12 +98,15 @@ public class ZookeeperConfiger {
         }
     }
 
+    /**
+     * 读取配置 key ,获取其 value 进行解析。
+     */
     public static void parseConfig() {
-        if (alreayParse == false) {
+        if (alreadyParse == false) {
             String config = SofaBootRpcConfig.getPropertyAllCircumstances(SofaBootRpcConfigConstants.REGISTRY_PROTOCOL);
             parseConfig(config);
 
-            alreayParse = true;
+            alreadyParse = true;
         }
 
     }
@@ -98,7 +126,7 @@ public class ZookeeperConfiger {
         String[] kvSplit = kv.split("=");
         String key = kvSplit[0];
         String value = kvSplit[1];
-        paramMap.put(key, value);
+        PARAM_MAP.put(key, value);
     }
 
     /**
@@ -116,6 +144,6 @@ public class ZookeeperConfiger {
      * @param address  value to be assigned to property address
      */
     public static void setAddress(String address) {
-        ZookeeperConfiger.address = address;
+        ZookeeperConfigurator.address = address;
     }
 }

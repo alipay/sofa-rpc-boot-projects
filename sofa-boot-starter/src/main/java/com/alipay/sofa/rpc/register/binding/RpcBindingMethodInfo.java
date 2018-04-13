@@ -18,6 +18,7 @@ package com.alipay.sofa.rpc.register.binding;
 
 /**
  *
+ * Rpc 方法级别参数
  * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
 public class RpcBindingMethodInfo {

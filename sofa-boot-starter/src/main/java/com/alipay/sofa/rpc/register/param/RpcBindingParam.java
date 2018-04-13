@@ -24,7 +24,7 @@ import com.alipay.sofa.runtime.api.client.param.BindingParam;
 import java.util.List;
 
 /**
- * The XML tags and attributes of SOFARPC are resolved to RpcBindingParam.
+ * XML 元素和属性会被解析为 RpcBindingParam 。
  *
  * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */

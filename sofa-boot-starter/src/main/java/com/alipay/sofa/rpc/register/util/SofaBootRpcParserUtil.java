@@ -19,11 +19,16 @@ package com.alipay.sofa.rpc.register.util;
 import org.springframework.util.StringUtils;
 
 /**
- *
+ * 解析字符串工具。
  * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
 public class SofaBootRpcParserUtil {
 
+    /**
+     * 解析字符串为 Integer
+     * @param string 解析的字符串
+     * @return 解析结果。如果解析的字符串没有实际值则为null。
+     */
     public static Integer parseInteger(String string) {
 
         if (StringUtils.hasText(string)) {
@@ -33,6 +38,11 @@ public class SofaBootRpcParserUtil {
         return null;
     }
 
+    /**
+     * 解析字符串为 Boolean
+     * @param string 解析的字符串
+     * @return 解析结果。如果解析的字符串没有实际值则为null。
+     */
     public static Boolean parseBoolean(String string) {
         if (StringUtils.hasText(string)) {
             return Boolean.valueOf(string);
@@ -41,6 +51,11 @@ public class SofaBootRpcParserUtil {
         return null;
     }
 
+    /**
+     * 解析字符串为 Long
+     * @param string 解析的字符串
+     * @return 解析结果。如果解析的字符串没有实际值则为null。
+     */
     public static Long parseLong(String string) {
         if (StringUtils.hasText(string)) {
             return Long.valueOf(string);
@@ -49,7 +64,12 @@ public class SofaBootRpcParserUtil {
         return null;
     }
 
-    public static Double parseDuoble(String string) {
+    /**
+     * 解析字符串为 Double
+     * @param string 解析的字符串
+     * @return 解析结果。如果解析的字符串没有实际值则为null。
+     */
+    public static Double parseDouble(String string) {
         if (StringUtils.hasText(string)) {
             return Double.valueOf(string);
         }

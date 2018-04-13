@@ -40,12 +40,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Factory of provider config . Encapsulates provider related RPC API programming.
+ * ProviderConfig 工厂。
  *
  * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
 public class ProviderConfigFactory {
 
+    /**
+     * 获取 ProviderConfig
+     * @param contract the Contract
+     * @param binding the RpcBinding
+     * @param target 服务实例
+     * @return the ProviderConfig
+     * @throws SofaBootRpcRuntimeException
+     */
     public static ProviderConfig getProviderConfig(Contract contract, RpcBinding binding, Object target)
         throws SofaBootRpcRuntimeException {
         RpcBindingParam param = binding.getRpcBindingParam();

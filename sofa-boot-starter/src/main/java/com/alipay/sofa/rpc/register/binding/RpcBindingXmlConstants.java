@@ -18,7 +18,7 @@ package com.alipay.sofa.rpc.register.binding;
 
 /**
  *
- * RPC related XML tags.
+ * SOFABoot RPC 相关的 XML 元素和属性
  *
  * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */

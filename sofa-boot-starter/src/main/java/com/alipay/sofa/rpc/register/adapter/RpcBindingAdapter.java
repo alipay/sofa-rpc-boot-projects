@@ -36,13 +36,21 @@ import com.alipay.sofa.runtime.spi.component.SofaRuntimeContext;
 import java.util.List;
 
 /**
- * Responsible for the effective upper configuration to the RPC component according to {@link RpcBindingParam}
+ * 根据 {@link RpcBindingParam} 生效上层配置到 SOFARPC 组件中。
  *
  * @author <a href="mailto:caojie.cj@antfin.com">CaoJie</a>
  * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
 public abstract class RpcBindingAdapter implements BindingAdapter<RpcBinding> {
 
+    /**
+     * pre out binding
+     *
+     * @param contract binding contract
+     * @param binding binding object
+     * @param target  binding target
+     * @param sofaRuntimeContext sofa runtime context
+     */
     @Override
     public void preOutBinding(Object contract, RpcBinding binding, Object target, SofaRuntimeContext sofaRuntimeContext) {
         String uniqueName = ProviderConfigContainer.createUniqueName((Contract) contract, binding);
@@ -54,6 +62,15 @@ public abstract class RpcBindingAdapter implements BindingAdapter<RpcBinding> {
         }
     }
 
+    /**
+     * out binding, out binding means provide service
+     *
+     * @param contract binding contract
+     * @param binding binding object
+     * @param target  binding target
+     * @param sofaRuntimeContext sofa runtime context
+     * @return binding result
+     */
     @Override
     public Object outBinding(Object contract, RpcBinding binding, Object target, SofaRuntimeContext sofaRuntimeContext) {
 
@@ -78,6 +95,14 @@ public abstract class RpcBindingAdapter implements BindingAdapter<RpcBinding> {
         return Boolean.TRUE;
     }
 
+    /**
+     * pre unout binding
+     *
+     * @param contract binding contract
+     * @param binding binding object
+     * @param target  binding target
+     * @param sofaRuntimeContext sofa runtime context
+     */
     @Override
     public void preUnoutBinding(Object contract, RpcBinding binding, Object target,
                                 SofaRuntimeContext sofaRuntimeContext) {
@@ -91,6 +116,14 @@ public abstract class RpcBindingAdapter implements BindingAdapter<RpcBinding> {
         }
     }
 
+    /**
+     * post unout binding
+     *
+     * @param contract binding contract
+     * @param binding binding object
+     * @param target  binding target
+     * @param sofaRuntimeContext sofa runtime context
+     */
     @Override
     public void postUnoutBinding(Object contract, RpcBinding binding, Object target,
                                  SofaRuntimeContext sofaRuntimeContext) {
@@ -108,6 +141,13 @@ public abstract class RpcBindingAdapter implements BindingAdapter<RpcBinding> {
         }
     }
 
+    /**
+     * in binding, in binding means reference service
+     *
+     * @param contract binding contract
+     * @param binding binding object
+     * @param sofaRuntimeContext sofa runtime context
+     */
     @Override
     public Object inBinding(Object contract, RpcBinding binding, SofaRuntimeContext sofaRuntimeContext) {
         ConsumerConfig consumerConfig = ConsumerConfigFactory.getConsumerConfig((Contract) contract, binding);
@@ -122,11 +162,18 @@ public abstract class RpcBindingAdapter implements BindingAdapter<RpcBinding> {
         }
     }
 
+    /**
+     * undo in binding
+     *
+     * @param contract
+     * @param binding
+     * @param sofaRuntimeContext
+     */
     @Override
     public void unInBinding(Object contract, RpcBinding binding, SofaRuntimeContext sofaRuntimeContext) {
 
         try {
-            ConsumerConfigContainer.removeAndUnReferCounsumerConfig(binding);
+            ConsumerConfigContainer.removeAndUnReferConsumerConfig(binding);
 
         } catch (Exception e) {
             throw new ServiceRuntimeException(
@@ -134,6 +181,11 @@ public abstract class RpcBindingAdapter implements BindingAdapter<RpcBinding> {
         }
     }
 
+    /**
+     * get binding class
+     *
+     * @return binding class
+     */
     @Override
     public Class<RpcBinding> getBindingClass() {
         return RpcBinding.class;

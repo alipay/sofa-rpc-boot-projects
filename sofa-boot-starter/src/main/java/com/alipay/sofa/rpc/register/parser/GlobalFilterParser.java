@@ -27,14 +27,20 @@ import org.springframework.util.StringUtils;
 import org.w3c.dom.Element;
 
 /**
- * Parse the global Filter tag.Tag value view{@link GlobalFilterXmlConstants}.
+ * 解析全局 Filter 。 Filter的 XML 元素见 {@link GlobalFilterXmlConstants}.
  *
  * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
 public class GlobalFilterParser extends AbstractSimpleBeanDefinitionParser implements SofaBootTagNameSupport {
 
-    private static final Logger logger = LoggerFactory.getLogger(GlobalFilterParser.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(GlobalFilterParser.class);
 
+    /**
+     * 从 XML 解析全局 Filter。
+     * @param element
+     * @param parserContext
+     * @param builder
+     */
     @Override
     protected void doParse(Element element, ParserContext parserContext, BeanDefinitionBuilder builder) {
 
@@ -43,19 +49,23 @@ public class GlobalFilterParser extends AbstractSimpleBeanDefinitionParser imple
 
         if (StringUtils.hasText(filterId)) {
             RpcFilterHolder.addFilterId(filterId);
-            logger.info("global filter take effect[" + filterId + "]");
+            LOGGER.info("global filter take effect[" + filterId + "]");
             return;
         }
         if (StringUtils.hasText(filterClass)) {
             RpcFilterHolder.addFilterClass(filterClass);
-            logger.info("global filter take effect[" + filterClass + "]");
+            LOGGER.info("global filter take effect[" + filterClass + "]");
             return;
         }
 
-        logger.warn("both the ref attr and class attr is blank, this rpc global filter is invalid");
+        LOGGER.warn("both the ref attr and class attr is blank, this rpc global filter is invalid");
 
     }
 
+    /**
+     * 支持的 tag 名字
+     * @return
+     */
     @Override
     public String supportTagName() {
         return GlobalFilterXmlConstants.TAG_GLOBAL_FILTER;

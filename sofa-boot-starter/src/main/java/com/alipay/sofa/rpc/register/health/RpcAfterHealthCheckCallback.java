@@ -28,16 +28,21 @@ import org.springframework.stereotype.Component;
 
 /**
  *
- * SOFABoot health check callback.SOFABoot health check callback. Will be responsible for starting the server and publishing services.
+ * SOFABoot RPC 健康检查回调.会启动服务器并发布服务
  *
  * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
 @Component
 public class RpcAfterHealthCheckCallback implements SofaBootMiddlewareAfterReadinessCheckCallback {
 
-    private static final Logger logger = LoggerFactory
+    private static final Logger LOGGER = LoggerFactory
                                            .getLogger(RpcAfterHealthCheckCallback.class);
 
+    /**
+     * 健康检查
+     * @param applicationContext Spring 上下文
+     * @return 健康检查结果
+     */
     @Override
     public Health onHealthy(ApplicationContext applicationContext) {
 
@@ -55,7 +60,7 @@ public class RpcAfterHealthCheckCallback implements SofaBootMiddlewareAfterReadi
 
         } catch (Exception e) {
 
-            logger.error("health check callback errr", e);
+            LOGGER.error("health check callback errr", e);
             builder.status(Status.DOWN).withDetail("Exception", e.getMessage());
 
             return builder.build();

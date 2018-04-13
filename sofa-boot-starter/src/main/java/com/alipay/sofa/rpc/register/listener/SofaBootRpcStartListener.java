@@ -27,8 +27,9 @@ import org.springframework.stereotype.Component;
 
 /**
  *
- * Responsible for loading the functional configuration required by the SOFARPC,
- * starting the server and publishing the service.
+ * {@link SofaBootRpcStartEvent) 事件t监听器.
+ * 加载并初始化 SOFABoot RPC 需要的配置。
+ * 开启服务器并发布服务元数据信息。
  * 
  * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */

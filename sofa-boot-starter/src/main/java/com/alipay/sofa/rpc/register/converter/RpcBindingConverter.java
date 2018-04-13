@@ -27,6 +27,8 @@ import com.alipay.sofa.rpc.register.param.RpcBindingParam;
 import com.alipay.sofa.rpc.register.util.SofaBootRpcParserUtil;
 import com.alipay.sofa.rpc.register.util.SofaBootRpcSpringUtil;
 import com.alipay.sofa.rpc.server.UserThreadPool;
+import com.alipay.sofa.runtime.api.client.param.BindingParam;
+import com.alipay.sofa.runtime.spi.binding.Binding;
 import com.alipay.sofa.runtime.spi.service.BindingConverter;
 import com.alipay.sofa.runtime.spi.service.BindingConverterContext;
 import org.springframework.context.ApplicationContext;
@@ -41,7 +43,7 @@ import java.util.List;
 
 /**
  *
- * Responsible for parsing the XML configuration or {@link RpcBindingParam} to {@link RpcBinding}
+ * 解析 XML配置或者 {@link RpcBindingParam} 为 {@link RpcBinding}
  *
  * @author <a href="mailto:caojie.cj@antfin.com">CaoJie</a>
  * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
@@ -51,6 +53,13 @@ public abstract class RpcBindingConverter implements BindingConverter<RpcBinding
     private static final String FILTER_SEPERATOR_SYMBOL     = ",";
     private static final char   EXCLUDE_FILTER_BEGIN_SYMBOL = '!';
 
+    /**
+     * convert {@link RpcBindingParam} to concrete {@link RpcBinding}
+     *
+     * @param bindingParam binding parameter
+     * @param bindingConverterContext binding converter context
+     * @return RpcBinding Object
+     */
     @Override
     public RpcBinding convert(RpcBindingParam bindingParam, BindingConverterContext bindingConverterContext) {
         RpcBinding binding = createRpcBinding(bindingParam, bindingConverterContext.getApplicationContext(),
@@ -63,6 +72,13 @@ public abstract class RpcBindingConverter implements BindingConverter<RpcBinding
         return binding;
     }
 
+    /**
+     * convert xml Element to concrete {@link RpcBinding}
+     *
+     * @param element xml Element
+     * @param bindingConverterContext binding converter context
+     * @return RpcBinding Object
+     */
     @Override
     public RpcBinding convert(Element element, BindingConverterContext bindingConverterContext) {
         RpcBindingParam param = createRpcBindingParam();
@@ -198,7 +214,6 @@ public abstract class RpcBindingConverter implements BindingConverter<RpcBinding
         if (StringUtils.hasText(genericInterface)) {
             param.setGenericInterface(genericInterface);
         }
-
     }
 
     private void parseFilter(Element element, RpcBindingParam param, BindingConverterContext bindingConverterContext) {
@@ -286,7 +301,6 @@ public abstract class RpcBindingConverter implements BindingConverter<RpcBinding
                 }
             }
         }
-
     }
 
 }

@@ -27,13 +27,13 @@ public class ZookeeperConfigTest {
 
     @Test
     public void test() {
-        String config = "zookeeper://11.166.1.35:2181?aaa=111&rrr=666&file=/host/zk";
+        String config = "zookeeper://127.0.0.1:2181?aaa=111&rrr=666&file=/host/zk";
 
-        ZookeeperConfiger.parseConfig(config);
+        ZookeeperConfigurator.parseConfig(config);
 
-        Assert.assertEquals("111", ZookeeperConfiger.getParamValue("aaa"));
-        Assert.assertEquals("666", ZookeeperConfiger.getParamValue("rrr"));
-        Assert.assertEquals("11.166.1.35:2181", ZookeeperConfiger.getAddress());
-        Assert.assertEquals("/host/zk", ZookeeperConfiger.getFile());
+        Assert.assertEquals("111", ZookeeperConfigurator.getParamValue("aaa"));
+        Assert.assertEquals("666", ZookeeperConfigurator.getParamValue("rrr"));
+        Assert.assertEquals("127.0.0.1:2181", ZookeeperConfigurator.getAddress());
+        Assert.assertEquals("/host/zk", ZookeeperConfigurator.getFile());
     }
 }

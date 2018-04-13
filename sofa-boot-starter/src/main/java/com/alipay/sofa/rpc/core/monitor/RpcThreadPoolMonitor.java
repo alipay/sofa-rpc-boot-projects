@@ -25,22 +25,31 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  *
- * Responsible for thread pool monitoring.
+ * 线程池监测器
  *
  * @author <a href="mailto:caojie.cj@antfin.com">CaoJie</a>
  */
 public class RpcThreadPoolMonitor {
 
-    private static final Logger logger     = RpcLoggerFactory.getLogger("RPC-TR-THREADPOOL");
+    private static final Logger LOGGER     = RpcLoggerFactory.getLogger("RPC-TR-THREADPOOL");
 
+    /**
+     * 线程池
+     */
     private ThreadPoolExecutor  threadPoolExecutor;
 
+    /**
+     * 开启标志
+     */
     private AtomicInteger       startTimes = new AtomicInteger(0);
 
     public RpcThreadPoolMonitor(final ThreadPoolExecutor threadPoolExecutor) {
         this.threadPoolExecutor = threadPoolExecutor;
     }
 
+    /**
+     * 开启线程池监测
+     */
     public void start() {
         if (threadPoolExecutor != null) {
             if (startTimes.intValue() == 0) {
@@ -49,28 +58,34 @@ public class RpcThreadPoolMonitor {
                     sb.append("coreSize:" + threadPoolExecutor.getCorePoolSize() + ",");
                     sb.append("maxPoolSize:" + threadPoolExecutor.getMaximumPoolSize() + ",");
                     sb.append("keepAliveTime:" + threadPoolExecutor.getKeepAliveTime(TimeUnit.MILLISECONDS) + "\n");
-                    if (logger.isInfoEnabled()) {
-                        logger.info(sb.toString());
+                    if (LOGGER.isInfoEnabled()) {
+                        LOGGER.info(sb.toString());
                     }
                     Thread monitor = new Thread() {
                         public void run() {
                             while (true) {
-                                if (logger.isInfoEnabled()) {
-                                    StringBuilder sb = new StringBuilder();
-                                    int blockQueueSize = threadPoolExecutor.getQueue().size();
-                                    int activeSize = threadPoolExecutor.getActiveCount();
-                                    int poolSize = threadPoolExecutor.getPoolSize();
-                                    sb.append("blockQueue:" + blockQueueSize + ", ");
-                                    sb.append("active:" + activeSize + ", ");
-                                    sb.append("idle:" + (poolSize - activeSize) + ", ");
-                                    sb.append("poolSize:" + poolSize);
-                                    logger.info(sb.toString());
+
+                                try {
+                                    if (LOGGER.isInfoEnabled()) {
+                                        StringBuilder sb = new StringBuilder();
+                                        int blockQueueSize = threadPoolExecutor.getQueue().size();
+                                        int activeSize = threadPoolExecutor.getActiveCount();
+                                        int poolSize = threadPoolExecutor.getPoolSize();
+                                        sb.append("blockQueue:" + blockQueueSize + ", ");
+                                        sb.append("active:" + activeSize + ", ");
+                                        sb.append("idle:" + (poolSize - activeSize) + ", ");
+                                        sb.append("poolSize:" + poolSize);
+                                        LOGGER.info(sb.toString());
+                                    }
+                                } catch (Throwable throwable) {
+                                    LOGGER.error("thread pool monitor error", throwable);
                                 }
+
                                 try {
                                     sleep(30000);
                                 } catch (InterruptedException e) {
-                                    if (logger.isInfoEnabled()) {
-                                        logger.error("error happen the thread pool watch sleep ");
+                                    if (LOGGER.isInfoEnabled()) {
+                                        LOGGER.error("error happen the thread pool watch sleep ");
                                     }
                                 }
                             }

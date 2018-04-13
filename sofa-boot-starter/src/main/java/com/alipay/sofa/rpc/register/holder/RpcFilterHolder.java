@@ -26,7 +26,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  *
- * Holds the filter class or filter id that parses the XML.
+ * 持有从 XML 解析的 Filter 实例或者 id。
  *
  * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
@@ -37,27 +37,40 @@ public class RpcFilterHolder {
     private static List<String> filterClasses = new CopyOnWriteArrayList<String>();
 
     private static boolean      alreadyLoad   = false;
-    private static final Object locdLock      = new Object();
+    private static final Object LOAD_LOCK     = new Object();
 
     private static List<Filter> filters       = new CopyOnWriteArrayList<Filter>();
 
+    /**
+     * 增加 Filter id
+     * @param filterId id
+     */
     public static void addFilterId(String filterId) {
         if (StringUtils.hasText(filterId)) {
             filterIds.add(filterId);
         }
     }
 
+    /**
+     * 增加 Filter 实例
+     * @param filterClass 实例
+     */
     public static void addFilterClass(String filterClass) {
         if (StringUtils.hasText(filterClass)) {
             filterClasses.add(filterClass);
         }
     }
 
+    /**
+     * 获取所有的 Filter 实例
+     * @param applicationContext Spring 上下文
+     * @return 所有的 Filter 实例
+     */
     public static List<Filter> getFilters(ApplicationContext applicationContext) {
 
         if (applicationContext != null) {
             if (alreadyLoad == false) {
-                synchronized (locdLock) {
+                synchronized (LOAD_LOCK) {
                     if (alreadyLoad == false) {
                         loadFilters(applicationContext);
                         alreadyLoad = true;
@@ -74,6 +87,10 @@ public class RpcFilterHolder {
         }
     }
 
+    /**
+     * 加载并持有所有的 Filter id 或实例
+     * @param applicationContext Spring 上下文
+     */
     public static void loadFilters(ApplicationContext applicationContext) {
         for (String filterId : filterIds) {
             filters.add((applicationContext.getBean(filterId, Filter.class)));
