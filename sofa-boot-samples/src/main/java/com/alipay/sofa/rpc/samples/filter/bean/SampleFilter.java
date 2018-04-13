@@ -14,24 +14,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alipay.sofa.rpc;
+package com.alipay.sofa.rpc.samples.filter.bean;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.context.annotation.ImportResource;
+import com.alipay.sofa.rpc.core.exception.SofaRpcException;
+import com.alipay.sofa.rpc.core.request.SofaRequest;
+import com.alipay.sofa.rpc.core.response.SofaResponse;
+import com.alipay.sofa.rpc.filter.Filter;
+import com.alipay.sofa.rpc.filter.FilterInvoker;
 
 /**
  *
- * 
- * @author <a href="mailto:lw111072@antfin.com">liangen</a>
+ * @author liangen
+ * @version $Id: SampleFilter.java, v 0.1 2018年04月13日 下午12:31 liangen Exp $
  */
-@ImportResource({ "classpath*:rpc-sofa-boot-starter-test.xml" })
-@org.springframework.boot.autoconfigure.SpringBootApplication
-public class SofaBootSpringApplication {
+public class SampleFilter extends Filter {
+    @Override
+    public SofaResponse invoke(FilterInvoker invoker, SofaRequest request) throws SofaRpcException {
 
-    public static void main(String[] args) throws InterruptedException {
+        System.out.println("SampleFilter before");
 
-        SpringApplication springApplication = new SpringApplication(SofaBootSpringApplication.class);
-        springApplication.run(args);
-
+        try {
+            return invoker.invoke(request);
+        } finally {
+            System.out.println("SampleFilter after");
+        }
     }
 }

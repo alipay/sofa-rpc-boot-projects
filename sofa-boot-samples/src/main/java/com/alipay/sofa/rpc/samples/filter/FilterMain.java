@@ -14,24 +14,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alipay.sofa.rpc;
+package com.alipay.sofa.rpc.samples.filter;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.context.annotation.ImportResource;
+import com.alipay.sofa.rpc.samples.filter.bean.FilterService;
+import org.springframework.context.ApplicationContext;
 
 /**
  *
- * 
- * @author <a href="mailto:lw111072@antfin.com">liangen</a>
+ * @author liangen
+ * @version $Id: FilterMain.java, v 0.1 2018年04月13日 下午12:28 liangen Exp $
  */
-@ImportResource({ "classpath*:rpc-sofa-boot-starter-test.xml" })
-@org.springframework.boot.autoconfigure.SpringBootApplication
-public class SofaBootSpringApplication {
+public class FilterMain {
 
-    public static void main(String[] args) throws InterruptedException {
+    public void start(ApplicationContext applicationContext) {
+        FilterService filterServiceReference = (FilterService) applicationContext.getBean("filterServiceReference");
 
-        SpringApplication springApplication = new SpringApplication(SofaBootSpringApplication.class);
-        springApplication.run(args);
-
+        System.out.println(filterServiceReference.sayFilter("filter"));
     }
+
 }

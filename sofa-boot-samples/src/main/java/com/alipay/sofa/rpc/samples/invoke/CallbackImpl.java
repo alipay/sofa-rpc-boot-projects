@@ -14,24 +14,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alipay.sofa.rpc;
+package com.alipay.sofa.rpc.samples.invoke;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.context.annotation.ImportResource;
+import com.alipay.sofa.rpc.core.exception.SofaRpcException;
+import com.alipay.sofa.rpc.core.invoke.SofaResponseCallback;
+import com.alipay.sofa.rpc.core.request.RequestBase;
 
 /**
  *
- * 
- * @author <a href="mailto:lw111072@antfin.com">liangen</a>
+ * @author liangen
+ * @version $Id: CallbackImpl.java, v 0.1 2018年04月13日 上午10:51 liangen Exp $
  */
-@ImportResource({ "classpath*:rpc-sofa-boot-starter-test.xml" })
-@org.springframework.boot.autoconfigure.SpringBootApplication
-public class SofaBootSpringApplication {
+public class CallbackImpl implements SofaResponseCallback {
+    @Override
+    public void onAppResponse(Object appResponse, String methodName, RequestBase request) {
+        System.out.println(appResponse);
+    }
 
-    public static void main(String[] args) throws InterruptedException {
+    @Override
+    public void onAppException(Throwable throwable, String methodName, RequestBase request) {
 
-        SpringApplication springApplication = new SpringApplication(SofaBootSpringApplication.class);
-        springApplication.run(args);
+    }
+
+    @Override
+    public void onSofaException(SofaRpcException sofaException, String methodName, RequestBase request) {
 
     }
 }

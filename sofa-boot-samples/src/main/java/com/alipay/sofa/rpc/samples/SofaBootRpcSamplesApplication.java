@@ -14,9 +14,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alipay.sofa.rpc;
+package com.alipay.sofa.rpc.samples;
 
+import com.alipay.sofa.rpc.samples.direct.DirectMain;
+import com.alipay.sofa.rpc.samples.filter.FilterMain;
+import com.alipay.sofa.rpc.samples.generic.bean.GenericMain;
+import com.alipay.sofa.rpc.samples.invoke.InvokeMain;
+import com.alipay.sofa.rpc.samples.threadpool.ThreadPoolMain;
 import org.springframework.boot.SpringApplication;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ImportResource;
 
 /**
@@ -24,14 +30,20 @@ import org.springframework.context.annotation.ImportResource;
  * 
  * @author <a href="mailto:lw111072@antfin.com">liangen</a>
  */
-@ImportResource({ "classpath*:rpc-sofa-boot-starter-test.xml" })
+@ImportResource({ "classpath*:rpc-sofa-boot-starter-samples.xml" })
 @org.springframework.boot.autoconfigure.SpringBootApplication
-public class SofaBootSpringApplication {
+public class SofaBootRpcSamplesApplication {
 
     public static void main(String[] args) throws InterruptedException {
 
-        SpringApplication springApplication = new SpringApplication(SofaBootSpringApplication.class);
-        springApplication.run(args);
+        SpringApplication springApplication = new SpringApplication(SofaBootRpcSamplesApplication.class);
+        ApplicationContext applicationContext = springApplication.run(args);
+
+        new InvokeMain().start(applicationContext);
+        new DirectMain().start(applicationContext);
+        new GenericMain().start(applicationContext);
+        new FilterMain().start(applicationContext);
+        new ThreadPoolMain().start(applicationContext);
 
     }
 }

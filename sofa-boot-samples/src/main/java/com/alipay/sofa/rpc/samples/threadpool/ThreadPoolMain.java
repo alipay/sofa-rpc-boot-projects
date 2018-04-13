@@ -14,24 +14,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alipay.sofa.rpc;
+package com.alipay.sofa.rpc.samples.threadpool;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.context.annotation.ImportResource;
+import com.alipay.sofa.rpc.samples.threadpool.bean.ThreadPoolService;
+import org.springframework.context.ApplicationContext;
 
 /**
  *
- * 
- * @author <a href="mailto:lw111072@antfin.com">liangen</a>
+ * @author liangen
+ * @version $Id: ThreadPoolMain.java, v 0.1 2018年04月13日 下午2:09 liangen Exp $
  */
-@ImportResource({ "classpath*:rpc-sofa-boot-starter-test.xml" })
-@org.springframework.boot.autoconfigure.SpringBootApplication
-public class SofaBootSpringApplication {
+public class ThreadPoolMain {
 
-    public static void main(String[] args) throws InterruptedException {
+    public void start(ApplicationContext applicationContext) {
+        ThreadPoolService threadPoolService = (ThreadPoolService) applicationContext
+            .getBean("threadPoolServiceReference");
 
-        SpringApplication springApplication = new SpringApplication(SofaBootSpringApplication.class);
-        springApplication.run(args);
+        System.out.println(threadPoolService.sayThreadPool("threadPool"));
 
     }
 }
