@@ -25,6 +25,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  *
+ * Responsible for thread pool monitoring.
+ *
  * @author <a href="mailto:caojie.cj@antfin.com">CaoJie</a>
  */
 public class RpcThreadPoolMonitor {

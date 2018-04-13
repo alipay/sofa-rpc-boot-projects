@@ -22,8 +22,7 @@ import com.alipay.sofa.rpc.core.request.RequestBase;
 
 /**
  *
- * @author liangen
- * @version $Id: CallbackImpl.java, v 0.1 2018年04月13日 上午10:51 liangen Exp $
+ * @author <a href="mailto:lw111072@antfin.com">liangen</a>
  */
 public class CallbackImpl implements SofaResponseCallback {
     @Override

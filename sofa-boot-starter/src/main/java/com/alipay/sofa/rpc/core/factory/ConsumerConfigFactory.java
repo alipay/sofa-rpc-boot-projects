@@ -37,6 +37,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Factory of consumer config . Encapsulates consumer related RPC API programming.
  *
  * @author <a href="mailto:lw111072@antfin.com">liangen</a>
  */

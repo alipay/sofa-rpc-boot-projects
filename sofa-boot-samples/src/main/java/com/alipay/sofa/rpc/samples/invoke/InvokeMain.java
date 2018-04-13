@@ -24,8 +24,7 @@ import org.springframework.context.ApplicationContext;
 
 /**
  *
- * @author liangen
- * @version $Id: InvokeMain.java, v 0.1 2018年04月13日 上午10:56 liangen Exp $
+ * @author <a href="mailto:lw111072@antfin.com">liangen</a>
  */
 public class InvokeMain {
 

@@ -27,7 +27,6 @@ import org.springframework.context.annotation.ImportResource;
 
 /**
  *
- * 
  * @author <a href="mailto:lw111072@antfin.com">liangen</a>
  */
 @ImportResource({ "classpath*:rpc-sofa-boot-starter-samples.xml" })

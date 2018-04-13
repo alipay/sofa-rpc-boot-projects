@@ -26,6 +26,7 @@ import com.alipay.sofa.rpc.core.factory.ProviderConfigFactory;
 import com.alipay.sofa.rpc.core.factory.RegistryConfigFactory;
 import com.alipay.sofa.rpc.log.LogCodes;
 import com.alipay.sofa.rpc.register.binding.RpcBinding;
+import com.alipay.sofa.rpc.register.param.RpcBindingParam;
 import com.alipay.sofa.rpc.registry.Registry;
 import com.alipay.sofa.runtime.api.ServiceRuntimeException;
 import com.alipay.sofa.runtime.spi.binding.BindingAdapter;
@@ -35,7 +36,8 @@ import com.alipay.sofa.runtime.spi.component.SofaRuntimeContext;
 import java.util.List;
 
 /**
- * 
+ * Responsible for the effective upper configuration to the RPC component according to {@link RpcBindingParam}
+ *
  * @author <a href="mailto:caojie.cj@antfin.com">CaoJie</a>
  * @author <a href="mailto:lw111072@antfin.com">liangen</a>
  */

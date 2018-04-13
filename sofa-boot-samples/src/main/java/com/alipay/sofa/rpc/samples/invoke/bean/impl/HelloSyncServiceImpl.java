@@ -20,8 +20,7 @@ import com.alipay.sofa.rpc.samples.invoke.bean.HelloSyncService;
 
 /**
  *
- * @author liangen
- * @version $Id: HelloServiceImpl.java, v 0.1 2018年04月13日 上午10:40 liangen Exp $
+ * @author <a href="mailto:lw111072@antfin.com">liangen</a>
  */
 public class HelloSyncServiceImpl implements HelloSyncService {
 

@@ -18,8 +18,7 @@ package com.alipay.sofa.rpc.samples.invoke.bean;
 
 /**
  *
- * @author liangen
- * @version $Id: HelloService.java, v 0.1 2018年04月13日 上午10:40 liangen Exp $
+ * @author <a href="mailto:lw111072@antfin.com">liangen</a>
  */
 public interface HelloSyncService {
 

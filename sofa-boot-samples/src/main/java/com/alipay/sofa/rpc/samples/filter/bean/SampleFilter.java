@@ -24,8 +24,7 @@ import com.alipay.sofa.rpc.filter.FilterInvoker;
 
 /**
  *
- * @author liangen
- * @version $Id: SampleFilter.java, v 0.1 2018年04月13日 下午12:31 liangen Exp $
+ * @author <a href="mailto:lw111072@antfin.com">liangen</a>
  */
 public class SampleFilter extends Filter {
     @Override

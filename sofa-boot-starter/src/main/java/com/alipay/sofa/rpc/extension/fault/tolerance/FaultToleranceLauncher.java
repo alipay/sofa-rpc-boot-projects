@@ -24,8 +24,9 @@ import com.alipay.sofa.rpc.register.util.SofaBootRpcParserUtil;
 
 /**
  *
- * @author liangen
- * @version $Id: FaultToleranceLauncher.java, v 0.1 2018年04月13日 上午1:25 liangen Exp $
+ * Responsible for loading config of adaptive fault tolerance
+ *
+ * @author <a href="mailto:lw111072@antfin.com">liangen</a>
  */
 public class FaultToleranceLauncher {
 

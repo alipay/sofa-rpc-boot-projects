@@ -21,8 +21,7 @@ import org.springframework.context.ApplicationContext;
 
 /**
  *
- * @author liangen
- * @version $Id: DirectMain.java, v 0.1 2018年04月13日 上午11:47 liangen Exp $
+ * @author <a href="mailto:lw111072@antfin.com">liangen</a>
  */
 public class DirectMain {
 

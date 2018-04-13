@@ -23,7 +23,9 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 /**
- * 
+ *
+ * Consumer configuration holder. Responsible for programming interface cache.
+ *
  * @author <a href="mailto:lw111072@antfin.com">liangen</a>
  */
 public class ConsumerConfigContainer {

@@ -28,7 +28,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.util.StringUtils;
 
 /**
- *
+ * Initialize for SOFABoot RPC
  * @author <a href="mailto:lw111072@antfin.com">liangen</a>
  */
 public class SofaBootRpcInitializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {

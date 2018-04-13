@@ -18,8 +18,7 @@ package com.alipay.sofa.rpc.samples.generic.bean.model;
 
 /**
  *
- * @author liangen
- * @version $Id: SampleGenericParamModel.java, v 0.1 2018年04月13日 下午12:06 liangen Exp $
+ * @author <a href="mailto:lw111072@antfin.com">liangen</a>
  */
 public class SampleGenericParamModel {
 

@@ -21,8 +21,7 @@ import com.alipay.sofa.rpc.samples.generic.bean.model.SampleGenericResultModel;
 
 /**
  *
- * @author liangen
- * @version $Id: genericService.java, v 0.1 2018年04月13日 下午12:00 liangen Exp $
+ * @author <a href="mailto:lw111072@antfin.com">liangen</a>
  */
 public interface SampleGenericService {
 

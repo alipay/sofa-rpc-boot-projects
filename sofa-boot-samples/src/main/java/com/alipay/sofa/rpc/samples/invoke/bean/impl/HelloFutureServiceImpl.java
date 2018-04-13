@@ -20,8 +20,7 @@ import com.alipay.sofa.rpc.samples.invoke.bean.HelloFutureService;
 
 /**
  *
- * @author liangen
- * @version $Id: HelloServiceFutureImpl.java, v 0.1 2018年04月13日 上午11:12 liangen Exp $
+ * @author <a href="mailto:lw111072@antfin.com">liangen</a>
  */
 public class HelloFutureServiceImpl implements HelloFutureService {
     @Override

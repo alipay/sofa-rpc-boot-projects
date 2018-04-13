@@ -18,8 +18,7 @@ package com.alipay.sofa.rpc.samples.direct.bean;
 
 /**
  *
- * @author liangen
- * @version $Id: DirectService.java, v 0.1 2018年04月13日 上午11:45 liangen Exp $
+ * @author <a href="mailto:lw111072@antfin.com">liangen</a>
  */
 public interface DirectService {
 

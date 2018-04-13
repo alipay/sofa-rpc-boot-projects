@@ -26,7 +26,9 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 
 /**
- * 用户监听RPC server export完成。准备启动server和注册服务
+ *
+ * Responsible for loading the functional configuration required by the SOFARPC,
+ * starting the server and publishing the service.
  * 
  * @author <a href="mailto:lw111072@antfin.com">liangen</a>
  */

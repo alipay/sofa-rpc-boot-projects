@@ -25,8 +25,9 @@ import org.springframework.context.event.ContextStoppedEvent;
 import org.springframework.stereotype.Component;
 
 /**
- * spring 上下文销毁事件:主要用于关闭 RPC 服务提供能力
- * <p/>
+ *
+ * The spring context listener. Responsible for closing the SOFABoot RPC resources.
+ *
  * @author <a href="mailto:lw111072@antfin.com">liangen</a>
  */
 @Component

@@ -24,8 +24,8 @@ import com.alipay.sofa.rpc.register.binding.RpcBindingMethodInfo;
 import com.alipay.sofa.rpc.register.binding.RpcBindingXmlConstants;
 import com.alipay.sofa.rpc.register.holder.RpcFilterHolder;
 import com.alipay.sofa.rpc.register.param.RpcBindingParam;
-import com.alipay.sofa.rpc.register.util.SofaBootRpcSpringUtil;
 import com.alipay.sofa.rpc.register.util.SofaBootRpcParserUtil;
+import com.alipay.sofa.rpc.register.util.SofaBootRpcSpringUtil;
 import com.alipay.sofa.rpc.server.UserThreadPool;
 import com.alipay.sofa.runtime.spi.service.BindingConverter;
 import com.alipay.sofa.runtime.spi.service.BindingConverterContext;
@@ -40,6 +40,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ *
+ * Responsible for parsing the XML configuration or {@link RpcBindingParam} to {@link RpcBinding}
  *
  * @author <a href="mailto:caojie.cj@antfin.com">CaoJie</a>
  * @author <a href="mailto:lw111072@antfin.com">liangen</a>
