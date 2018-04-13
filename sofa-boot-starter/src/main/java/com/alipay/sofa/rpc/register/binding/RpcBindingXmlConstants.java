@@ -18,7 +18,9 @@ package com.alipay.sofa.rpc.register.binding;
 
 /**
  *
- * @author <a href="mailto:lw111072@antfin.com">liangen</a>
+ * RPC related XML tags.
+ *
+ * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
 public class RpcBindingXmlConstants {
 

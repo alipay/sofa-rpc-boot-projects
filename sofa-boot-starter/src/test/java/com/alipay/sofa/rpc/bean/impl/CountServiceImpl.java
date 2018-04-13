@@ -20,8 +20,7 @@ import com.alipay.sofa.rpc.bean.CountService;
 
 /**
  *
- * @author liangen
- * @version $Id: ThreadServiceImpl.java, v 0.1 2018年04月12日 下午12:24 liangen Exp $
+ * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
 public class CountServiceImpl implements CountService {
     @Override

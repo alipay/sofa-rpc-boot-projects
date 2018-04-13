@@ -32,7 +32,9 @@ import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  *
- * @author <a href="mailto:lw111072@antfin.com">liangen</a>
+ * Factory of registry config . Encapsulates registry related RPC API programming and maintain corresponding singleton.
+ *
+ * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
 public class ServerConfigFactory {
 
@@ -267,14 +269,17 @@ public class ServerConfigFactory {
     public static void closeAllServer() {
         if (boltServerConfig != null) {
             boltServerConfig.destroy();
+            boltServerConfig = null;
         }
 
         if (restServerConfig != null) {
             restServerConfig.destroy();
+            restServerConfig = null;
         }
 
         if (dubboServerConfig != null) {
             dubboServerConfig.destroy();
+            dubboServerConfig = null;
         }
 
     }

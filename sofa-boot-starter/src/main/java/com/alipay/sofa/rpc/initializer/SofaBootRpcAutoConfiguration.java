@@ -20,9 +20,9 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * SOFARest 自动配置
- * <p/>
- * @author <a href="mailto:lw111072@antfin.com">liangen</a>
+ *
+ *
+ * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
 @Configuration
 @ComponentScan(value = { "com.alipay.sofa.rpc.register" })

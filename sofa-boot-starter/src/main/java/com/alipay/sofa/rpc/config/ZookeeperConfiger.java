@@ -22,10 +22,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * zookeeper configuration of parsing abstractions.
  *
- * rpc.registry.protocol=zookeeper://xxx:2181?k1=v1
+ * configuration format: rpc.registry.protocol=zookeeper://xxx:2181?k1=v1
  *
- * @author <a href="mailto:lw111072@antfin.com">liangen</a>
+ * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
 public class ZookeeperConfiger {
 

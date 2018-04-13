@@ -23,13 +23,10 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 /**
- * rest service interface
- * <p>
+ * rest service interface<br>
  * the get, post, delete, put method each deal with the function of query info, add info, delete info and update info
- * <p>
- * <p>
- * <p/>
- * @author <a href="mailto:lw111072@antfin.com">liangen</a>
+ * 
+ * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
 @Path(URLConstants.REST_API_PEFFIX + "/users")
 @Consumes(RestConstants.DEFAULT_CONTENT_TYPE)

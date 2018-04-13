@@ -24,8 +24,8 @@ import com.alipay.sofa.rpc.register.binding.RpcBindingMethodInfo;
 import com.alipay.sofa.rpc.register.binding.RpcBindingXmlConstants;
 import com.alipay.sofa.rpc.register.holder.RpcFilterHolder;
 import com.alipay.sofa.rpc.register.param.RpcBindingParam;
-import com.alipay.sofa.rpc.register.util.RpcSpringUtil;
-import com.alipay.sofa.rpc.register.util.RpcXmlParserUtil;
+import com.alipay.sofa.rpc.register.util.SofaBootRpcParserUtil;
+import com.alipay.sofa.rpc.register.util.SofaBootRpcSpringUtil;
 import com.alipay.sofa.rpc.server.UserThreadPool;
 import com.alipay.sofa.runtime.spi.service.BindingConverter;
 import com.alipay.sofa.runtime.spi.service.BindingConverterContext;
@@ -41,8 +41,10 @@ import java.util.List;
 
 /**
  *
+ * Responsible for parsing the XML configuration or {@link RpcBindingParam} to {@link RpcBinding}
+ *
  * @author <a href="mailto:caojie.cj@antfin.com">CaoJie</a>
- * @author <a href="mailto:lw111072@antfin.com">liangen</a>
+ * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
 public abstract class RpcBindingConverter implements BindingConverter<RpcBindingParam, RpcBinding> {
 
@@ -98,9 +100,9 @@ public abstract class RpcBindingConverter implements BindingConverter<RpcBinding
                 element.getLocalName().equals(RpcBindingXmlConstants.TAG_METHOD)) {
 
                 String name = element.getAttribute(RpcBindingXmlConstants.TAG_NAME);
-                Integer timeout = RpcXmlParserUtil.parseInt(element
+                Integer timeout = SofaBootRpcParserUtil.parseInteger(element
                     .getAttribute(RpcBindingXmlConstants.TAG_TIMEOUT));
-                Integer retries = RpcXmlParserUtil.parseInt(element
+                Integer retries = SofaBootRpcParserUtil.parseInteger(element
                     .getAttribute(RpcBindingXmlConstants.TAG_RETRIES));
                 String type = element.getAttribute(RpcBindingXmlConstants.TAG_TYPE);
 
@@ -140,20 +142,21 @@ public abstract class RpcBindingConverter implements BindingConverter<RpcBinding
             return;
         }
 
-        Integer timeout = RpcXmlParserUtil.parseInt(element.getAttribute(RpcBindingXmlConstants.TAG_TIMEOUT));
-        Integer addressWaitTime = RpcXmlParserUtil.parseInt(element
+        Integer timeout = SofaBootRpcParserUtil.parseInteger(element.getAttribute(RpcBindingXmlConstants.TAG_TIMEOUT));
+        Integer addressWaitTime = SofaBootRpcParserUtil.parseInteger(element
             .getAttribute(RpcBindingXmlConstants.TAG_ADDRESS_WAIT_TIME));
-        Integer connectTimeout = RpcXmlParserUtil.parseInt(element
+        Integer connectTimeout = SofaBootRpcParserUtil.parseInteger(element
             .getAttribute(RpcBindingXmlConstants.TAG_CONNECT_TIMEOUT));
-        Integer retries = RpcXmlParserUtil.parseInt(element.getAttribute(RpcBindingXmlConstants.TAG_RETRIES));
+        Integer retries = SofaBootRpcParserUtil.parseInteger(element.getAttribute(RpcBindingXmlConstants.TAG_RETRIES));
         String type = element.getAttribute(RpcBindingXmlConstants.TAG_TYPE);
         String callbackClass = element.getAttribute(RpcBindingXmlConstants.TAG_CALLBACK_CLASS);
         String callbackRef = element.getAttribute(RpcBindingXmlConstants.TAG_CALLBACK_REF);
-        Integer weight = RpcXmlParserUtil.parseInt(element.getAttribute(RpcBindingXmlConstants.TAG_WEIGHT));
-        Integer warmUpTime = RpcXmlParserUtil.parseInt(element.getAttribute(RpcBindingXmlConstants.TAG_WARMUP_TIME));
-        Integer warmUpWeight = RpcXmlParserUtil
-            .parseInt(element.getAttribute(RpcBindingXmlConstants.TAG_WARMUP_WEIGHT));
-        Object treadPoolRef = RpcSpringUtil.getSpringBean(
+        Integer weight = SofaBootRpcParserUtil.parseInteger(element.getAttribute(RpcBindingXmlConstants.TAG_WEIGHT));
+        Integer warmUpTime = SofaBootRpcParserUtil.parseInteger(element
+            .getAttribute(RpcBindingXmlConstants.TAG_WARMUP_TIME));
+        Integer warmUpWeight = SofaBootRpcParserUtil
+            .parseInteger(element.getAttribute(RpcBindingXmlConstants.TAG_WARMUP_WEIGHT));
+        Object treadPoolRef = SofaBootRpcSpringUtil.getSpringBean(
             element.getAttribute(RpcBindingXmlConstants.TAG_THREAD_POOL_REF),
             bindingConverterContext.getApplicationContext(), bindingConverterContext.getAppClassLoader(),
             bindingConverterContext.getAppName());
@@ -260,7 +263,7 @@ public abstract class RpcBindingConverter implements BindingConverter<RpcBinding
     private void setCallback(RpcBindingParam bindingParam, BindingConverterContext bindingConverterContext) {
         //global
         if (bindingParam.getCallbackHandler() == null) {
-            Object globalCallbackHandler = RpcSpringUtil.getSpringBean(bindingParam.getCallbackRef(),
+            Object globalCallbackHandler = SofaBootRpcSpringUtil.getSpringBean(bindingParam.getCallbackRef(),
                 bindingParam.getCallbackClass(),
                 bindingConverterContext.getApplicationContext(), bindingConverterContext.getAppClassLoader(),
                 bindingConverterContext.getAppName());
@@ -275,7 +278,7 @@ public abstract class RpcBindingConverter implements BindingConverter<RpcBinding
             for (RpcBindingMethodInfo methodInfo : bindingParam.getMethodInfos()) {
                 Object methodCallbackHandler = methodInfo.getCallbackHandler();
                 if (methodCallbackHandler == null) {
-                    methodCallbackHandler = RpcSpringUtil.getSpringBean(methodInfo.getCallbackRef(),
+                    methodCallbackHandler = SofaBootRpcSpringUtil.getSpringBean(methodInfo.getCallbackRef(),
                         methodInfo.getCallbackClass(), bindingConverterContext.getApplicationContext(),
                         bindingConverterContext.getAppClassLoader(),
                         bindingConverterContext.getAppName());

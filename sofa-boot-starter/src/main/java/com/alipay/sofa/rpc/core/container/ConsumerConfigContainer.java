@@ -23,8 +23,10 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 /**
- * 
- * @author <a href="mailto:lw111072@antfin.com">liangen</a>
+ *
+ * Consumer configuration holder. Responsible for programming interface cache.
+ *
+ * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
 public class ConsumerConfigContainer {
 

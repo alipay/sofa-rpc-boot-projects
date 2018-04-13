@@ -28,8 +28,8 @@ import org.springframework.core.env.Environment;
 import org.springframework.util.StringUtils;
 
 /**
- *
- * @author <a href="mailto:lw111072@antfin.com">liangen</a>
+ * Initialize for SOFABoot RPC
+ * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
 public class SofaBootRpcInitializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
 

@@ -31,9 +31,9 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 /**
- * RPC Service 缓存,用于根据这个元数据信息回溯 RPC ,如移除服务等
- * <p/>
- * @author <a href="mailto:lw111072@antfin.com">liangen</a>
+ * Provider configuration holder. Responsible for programming interface cache.
+ *
+ * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
 public class ProviderConfigContainer {
     private static final Logger                                logger              = LoggerFactory

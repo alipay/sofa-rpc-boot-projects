@@ -22,7 +22,7 @@ import java.util.Set;
 
 /**
  *
- * @author <a href="mailto:lw111072@antfin.com">liangen</a>
+ * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
 public class SofaBootRpcConfigMapping {
 
@@ -34,6 +34,26 @@ public class SofaBootRpcConfigMapping {
         configMap.put(SofaBootRpcConfigConstants.APP_NAME, SofaBootRpcConfigConstants.APP_NAME_LINE);
         configMap.put(SofaBootRpcConfigConstants.LOG_PATH, SofaBootRpcConfigConstants.LOG_PATH_LINE);
         configMap.put(SofaBootRpcConfigConstants.CORE_PROXY_URL, SofaBootRpcConfigConstants.CORE_PROXY_URL_LINE);
+
+        /** fault-tolerance */
+        configMap.put(SofaBootRpcConfigConstants.RPC_AFT_REGULATION_EFFECTIVE,
+            SofaBootRpcConfigConstants.RPC_AFT_REGULATION_EFFECTIVE_LINE);
+        configMap.put(SofaBootRpcConfigConstants.RPC_AFT_DEGRADE_EFFECTIVE,
+            SofaBootRpcConfigConstants.RPC_AFT_DEGRADE_EFFECTIVE_LINE);
+        configMap.put(SofaBootRpcConfigConstants.RPC_AFT_TIME_WINDOW,
+            SofaBootRpcConfigConstants.RPC_AFT_TIME_WINDOW_LINE);
+        configMap.put(SofaBootRpcConfigConstants.RPC_AFT_LEAST_CALL_COUNT,
+            SofaBootRpcConfigConstants.RPC_AFT_LEAST_CALL_COUNT_LINE);
+        configMap.put(SofaBootRpcConfigConstants.RPC_AFT_LEAST_WINDOW_EXCEPTION_RATE_MULTIPLE,
+            SofaBootRpcConfigConstants.RPC_AFT_LEAST_WINDOW_EXCEPTION_RATE_MULTIPLE_LINE);
+        configMap.put(SofaBootRpcConfigConstants.RPC_AFT_WEIGHT_DEGRADE_RATE,
+            SofaBootRpcConfigConstants.RPC_AFT_WEIGHT_DEGRADE_RATE_LINE);
+        configMap.put(SofaBootRpcConfigConstants.RPC_AFT_WEIGHT_RECOVER_RATE,
+            SofaBootRpcConfigConstants.RPC_AFT_WEIGHT_RECOVER_RATE_LINE);
+        configMap.put(SofaBootRpcConfigConstants.RPC_AFT_DEGRADE_LEAST_WEIGHT,
+            SofaBootRpcConfigConstants.RPC_AFT_DEGRADE_LEAST_WEIGHT_LINE);
+        configMap.put(SofaBootRpcConfigConstants.RPC_AFT_DEGRADE_MAX_IP_COUNT,
+            SofaBootRpcConfigConstants.RPC_AFT_DEGRADE_MAX_IP_COUNT_LINE);
 
         /** bolt */
         configMap.put(SofaBootRpcConfigConstants.BOLT_PORT, SofaBootRpcConfigConstants.BOLT_PORT_LINE);

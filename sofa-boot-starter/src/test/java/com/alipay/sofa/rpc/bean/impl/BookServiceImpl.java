@@ -22,8 +22,7 @@ import com.alipay.sofa.rpc.bean.model.BookModel;
 
 /**
  *
- * @author liangen
- * @version $Id: BookService.java, v 0.1 2018年04月12日 下午1:37 liangen Exp $
+ * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
 public class BookServiceImpl implements BookService {
 

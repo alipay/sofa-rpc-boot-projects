@@ -26,7 +26,9 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  *
- * @author <a href="mailto:lw111072@antfin.com">liangen</a>
+ * Holds the filter class or filter id that parses the XML.
+ *
+ * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
 public class RpcFilterHolder {
 

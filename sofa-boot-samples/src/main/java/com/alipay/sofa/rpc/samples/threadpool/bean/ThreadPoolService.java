@@ -14,22 +14,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alipay.sofa.rpc.register.util;
-
-import org.springframework.util.StringUtils;
+package com.alipay.sofa.rpc.samples.threadpool.bean;
 
 /**
  *
- * @author <a href="mailto:lw111072@antfin.com">liangen</a>
+ * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
-public class RpcXmlParserUtil {
+public interface ThreadPoolService {
 
-    public static Integer parseInt(String string) {
-
-        if (StringUtils.hasText(string)) {
-            return Integer.valueOf(string);
-        }
-
-        return null;
-    }
+    String sayThreadPool(String string);
 }

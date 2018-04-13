@@ -21,7 +21,9 @@ import org.springframework.context.event.ApplicationContextEvent;
 
 /**
  *
- * @author <a href="mailto:lw111072@antfin.com">liangen</a>
+ * This event is published after SOFABoot starts the server and publishes the service.
+ *
+ * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
 public class SofaBootRpcStartEvent extends ApplicationContextEvent {
 

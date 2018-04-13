@@ -27,7 +27,7 @@ import org.springframework.context.ApplicationContext;
 
 /**
  *
- * @author <a href="mailto:lw111072@antfin.com">liangen</a>
+ * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
 public class DubboBindingConverter extends RpcBindingConverter {
 
