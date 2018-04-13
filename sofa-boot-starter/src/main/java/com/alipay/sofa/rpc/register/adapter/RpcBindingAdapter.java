@@ -39,7 +39,7 @@ import java.util.List;
  * Responsible for the effective upper configuration to the RPC component according to {@link RpcBindingParam}
  *
  * @author <a href="mailto:caojie.cj@antfin.com">CaoJie</a>
- * @author <a href="mailto:lw111072@antfin.com">liangen</a>
+ * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
 public abstract class RpcBindingAdapter implements BindingAdapter<RpcBinding> {
 

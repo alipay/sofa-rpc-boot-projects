@@ -29,7 +29,7 @@ import org.w3c.dom.Element;
 /**
  * Parse the global Filter tag.Tag value view{@link GlobalFilterXmlConstants}.
  *
- * @author <a href="mailto:lw111072@antfin.com">liangen</a>
+ * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
 public class GlobalFilterParser extends AbstractSimpleBeanDefinitionParser implements SofaBootTagNameSupport {
 

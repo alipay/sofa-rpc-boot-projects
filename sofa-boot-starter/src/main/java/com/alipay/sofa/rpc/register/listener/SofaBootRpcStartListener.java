@@ -30,7 +30,7 @@ import org.springframework.stereotype.Component;
  * Responsible for loading the functional configuration required by the SOFARPC,
  * starting the server and publishing the service.
  * 
- * @author <a href="mailto:lw111072@antfin.com">liangen</a>
+ * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
 @Component
 public class SofaBootRpcStartListener implements ApplicationListener<SofaBootRpcStartEvent> {

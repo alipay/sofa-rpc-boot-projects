@@ -20,7 +20,7 @@ import com.alipay.sofa.rpc.common.SystemInfo;
 
 /**
  *
- * @author <a href="mailto:lw111072@antfin.com">liangen</a>
+ * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
 public class SofaBootRpcConfigConstants {
 
@@ -65,7 +65,6 @@ public class SofaBootRpcConfigConstants {
     public static final String  RPC_AFT_DEGRADE_MAX_IP_COUNT_LINE                 = "rpc_aft_degrade_max_ip_count";
 
     /** bolt */
-
     public static final String  BOLT_PORT                                         = "bolt.port";
     public static final String  BOLT_PORT_LINE                                    = "bolt_port";
 
@@ -101,7 +100,6 @@ public class SofaBootRpcConfigConstants {
     public static final String  REST_DAEMON_LINE                                  = "rest_daemon";
 
     /** dubbo */
-
     public static final String  DUBBO_PORT                                        = "dubbo.port";
     public static final String  DUBBO_PORT_LINE                                   = "dubbo_port";
 
@@ -115,7 +113,6 @@ public class SofaBootRpcConfigConstants {
     public static final String  DUBBO_ACCEPTS_COUNT_LINE                          = "dubbo_accepts_count";
 
     /** registry */
-
     public static final String  REGISTRY_PROTOCOL                                 = "rpc.registry.protocol";
     public static final String  REGISTRY_PROTOCOL_LINE                            = "rpc_registry_protocol";
 

@@ -24,8 +24,7 @@ import org.junit.Test;
 
 /**
  *
- * @author liangen
- * @version $Id: ServerConfigFactoryTEst.java, v 0.1 2018年04月11日 下午3:35 liangen Exp $
+ * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
 public class ServerConfigFactoryTest {
 

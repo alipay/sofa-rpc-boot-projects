@@ -28,7 +28,7 @@ import org.springframework.stereotype.Component;
  *
  * The spring context listener. Responsible for closing the SOFABoot RPC resources.
  *
- * @author <a href="mailto:lw111072@antfin.com">liangen</a>
+ * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
 @Component
 public class ApplicationContextClosedListener implements ApplicationListener {

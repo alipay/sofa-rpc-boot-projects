@@ -4,7 +4,7 @@
        xmlns:sofa="http://sofastack.io/schema/sofaboot"
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-            http://sofastack.io/schema/sofaboot   http://sofastack.io/schema/sofaboot.xsd"
+            http://sofastack.io/schema/sofaboot http://sofastack.io/schema/sofaboot.xsd"
        default-autowire="byName">
     <!-- service -->
     <bean id="sampleFacadeImpl" class="com.alipay.sofa.rpc.bean.impl.SampleFacadeImpl"/>

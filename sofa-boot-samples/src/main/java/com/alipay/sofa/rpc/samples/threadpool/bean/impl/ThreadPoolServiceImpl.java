@@ -20,7 +20,7 @@ import com.alipay.sofa.rpc.samples.threadpool.bean.ThreadPoolService;
 
 /**
  *
- * @author <a href="mailto:lw111072@antfin.com">liangen</a>
+ * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
 public class ThreadPoolServiceImpl implements ThreadPoolService {
     @Override

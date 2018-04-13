@@ -19,7 +19,7 @@ package com.alipay.sofa.rpc.bean;
 /**
  * URL constants
  *
- * @author <a href="mailto:lw111072@antfin.com">liangen</a>
+ * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
 public class URLConstants {
 

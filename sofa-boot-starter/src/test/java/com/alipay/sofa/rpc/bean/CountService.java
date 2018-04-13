@@ -18,8 +18,7 @@ package com.alipay.sofa.rpc.bean;
 
 /**
  *
- * @author liangen
- * @version $Id: ThreadService.java, v 0.1 2018年04月12日 下午12:23 liangen Exp $
+ * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
 public interface CountService {
 

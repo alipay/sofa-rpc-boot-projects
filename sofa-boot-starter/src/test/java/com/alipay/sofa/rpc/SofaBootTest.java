@@ -29,8 +29,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 /**
  *
- * @author liangen
- * @version $Id: SofaBootTest.java, v 0.1 2018年04月11日 下午2:24 liangen Exp $
+ * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = SofaBootSpringApplication.class)

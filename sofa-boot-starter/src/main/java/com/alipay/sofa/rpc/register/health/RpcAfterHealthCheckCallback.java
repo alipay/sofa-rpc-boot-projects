@@ -30,7 +30,7 @@ import org.springframework.stereotype.Component;
  *
  * SOFABoot health check callback.SOFABoot health check callback. Will be responsible for starting the server and publishing services.
  *
- * @author <a href="mailto:lw111072@antfin.com">liangen</a>
+ * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
 @Component
 public class RpcAfterHealthCheckCallback implements SofaBootMiddlewareAfterReadinessCheckCallback {

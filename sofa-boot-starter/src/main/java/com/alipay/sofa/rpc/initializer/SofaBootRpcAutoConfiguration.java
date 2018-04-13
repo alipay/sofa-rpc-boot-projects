@@ -22,7 +22,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  *
  *
- * @author <a href="mailto:lw111072@antfin.com">liangen</a>
+ * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
 @Configuration
 @ComponentScan(value = { "com.alipay.sofa.rpc.register" })

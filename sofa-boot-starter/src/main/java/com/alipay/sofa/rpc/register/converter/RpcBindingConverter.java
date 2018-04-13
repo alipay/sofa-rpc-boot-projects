@@ -44,7 +44,7 @@ import java.util.List;
  * Responsible for parsing the XML configuration or {@link RpcBindingParam} to {@link RpcBinding}
  *
  * @author <a href="mailto:caojie.cj@antfin.com">CaoJie</a>
- * @author <a href="mailto:lw111072@antfin.com">liangen</a>
+ * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
 public abstract class RpcBindingConverter implements BindingConverter<RpcBindingParam, RpcBinding> {
 

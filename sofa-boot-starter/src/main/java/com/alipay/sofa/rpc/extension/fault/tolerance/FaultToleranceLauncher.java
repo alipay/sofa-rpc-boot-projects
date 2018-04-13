@@ -26,7 +26,7 @@ import com.alipay.sofa.rpc.register.util.SofaBootRpcParserUtil;
  *
  * Responsible for loading config of adaptive fault tolerance
  *
- * @author <a href="mailto:lw111072@antfin.com">liangen</a>
+ * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
 public class FaultToleranceLauncher {
 

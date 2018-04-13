@@ -20,7 +20,7 @@ import com.alipay.sofa.rpc.samples.invoke.bean.HelloFutureService;
 
 /**
  *
- * @author <a href="mailto:lw111072@antfin.com">liangen</a>
+ * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
 public class HelloFutureServiceImpl implements HelloFutureService {
     @Override

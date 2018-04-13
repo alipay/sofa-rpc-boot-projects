@@ -26,7 +26,7 @@ import java.util.Map;
  *
  * configuration format: rpc.registry.protocol=zookeeper://xxx:2181?k1=v1
  *
- * @author <a href="mailto:lw111072@antfin.com">liangen</a>
+ * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
 public class ZookeeperConfiger {
 

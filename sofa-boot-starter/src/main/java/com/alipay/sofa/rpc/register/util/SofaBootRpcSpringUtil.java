@@ -24,7 +24,7 @@ import org.springframework.util.StringUtils;
 
 /**
  *
- * @author <a href="mailto:lw111072@antfin.com">liangen</a>
+ * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  * @author <a href="mailto:caojie.cj@antfin.com">CaoJie</a>
  */
 public class SofaBootRpcSpringUtil {

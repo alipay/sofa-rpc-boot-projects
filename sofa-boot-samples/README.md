@@ -31,7 +31,7 @@ SOFARPC Starter 是 SOFARPC 基于 SOFABoot 实现的框架，能够将 SOFARPC 
        xmlns:sofa="http://sofastack.io/schema/sofaboot"
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-            http://sofastack.io/schema/sofaboot   http://sofastack.io/schema/sofaboot.xsd"
+            http://sofastack.io/schema/sofaboot http://sofastack.io/schema/sofaboot.xsd"
        default-autowire="byName">
 ```
 
