@@ -69,9 +69,9 @@ public class RpcFilterHolder {
     public static List<Filter> getFilters(ApplicationContext applicationContext) {
 
         if (applicationContext != null) {
-            if (!alreadyLoad ) {
+            if (!alreadyLoad) {
                 synchronized (LOAD_LOCK) {
-                    if (!alreadyLoad ) {
+                    if (!alreadyLoad) {
                         loadFilters(applicationContext);
                         alreadyLoad = true;
                     }
