@@ -60,12 +60,10 @@ public class RpcAfterHealthCheckCallback implements SofaBootMiddlewareAfterReadi
 
         } catch (Exception e) {
 
-            LOGGER.error("health check callback errr", e);
+            LOGGER.error("Health check callback error", e);
             builder.status(Status.DOWN).withDetail("Exception", e.getMessage());
 
             return builder.build();
-
         }
-
     }
 }

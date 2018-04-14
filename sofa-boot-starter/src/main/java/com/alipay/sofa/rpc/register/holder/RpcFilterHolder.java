@@ -69,9 +69,9 @@ public class RpcFilterHolder {
     public static List<Filter> getFilters(ApplicationContext applicationContext) {
 
         if (applicationContext != null) {
-            if (alreadyLoad == false) {
+            if (!alreadyLoad ) {
                 synchronized (LOAD_LOCK) {
-                    if (alreadyLoad == false) {
+                    if (!alreadyLoad ) {
                         loadFilters(applicationContext);
                         alreadyLoad = true;
                     }
@@ -83,7 +83,7 @@ public class RpcFilterHolder {
             return filters;
 
         } else {
-            throw new SofaBootRpcRuntimeException("the applicationContext should not be null");
+            throw new SofaBootRpcRuntimeException("The applicationContext should not be null");
         }
     }
 
@@ -100,18 +100,18 @@ public class RpcFilterHolder {
             try {
                 filterClass = Class.forName(clazz);
             } catch (ClassNotFoundException e) {
-                throw new SofaBootRpcRuntimeException("can not find filter class " + filterClass + " ", e);
+                throw new SofaBootRpcRuntimeException("Can not find filter class " + clazz + " ", e);
             }
             if (Filter.class.isAssignableFrom(filterClass)) {
                 try {
                     filters.add((Filter) filterClass.newInstance());
                 } catch (Exception e) {
-                    throw new SofaBootRpcRuntimeException("error happen when create instance of " + filterClass + " ",
+                    throw new SofaBootRpcRuntimeException("Error happen when create instance of " + filterClass + " ",
                         e);
                 }
             } else {
                 throw new SofaBootRpcRuntimeException(
-                    "the class of " + clazz + " should be  a subclass of Filter");
+                    "The class of " + clazz + " should be a subclass of Filter");
             }
         }
     }

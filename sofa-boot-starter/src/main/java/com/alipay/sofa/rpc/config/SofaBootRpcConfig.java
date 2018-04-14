@@ -62,8 +62,8 @@ public class SofaBootRpcConfig {
      * 读取优先级：
      * 1）从System中读取XXX.XXX形式的key
      * 2）从System中读取XXX_XXX形式的key
-     * 3）从System中读取XXX.XXX形式的key
-     * 4）从System中读取XXX_XXX形式的key
+     * 3）从properties中读取XXX.XXX形式的key
+     * 4）从properties中读取XXX_XXX形式的key
      * @param key 配置key
      * @return 配置value
      */

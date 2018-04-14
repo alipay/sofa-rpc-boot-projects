@@ -89,9 +89,9 @@ public class SofaBootRpcSpringUtil {
     /**
      * 使用指定的classloader实例化某个类
      *
-     * @param clazz
-     * @param loader
-     * @return
+     * @param clazz 全类名
+     * @param loader 类加载器
+     * @return 类实例
      */
     public static Object newInstance(String clazz, ClassLoader loader, String appName) {
         if (!StringUtils.hasText(clazz)) {
