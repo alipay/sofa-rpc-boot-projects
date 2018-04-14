@@ -78,14 +78,14 @@ public class RpcThreadPoolMonitor {
                                         LOGGER.info(sb.toString());
                                     }
                                 } catch (Throwable throwable) {
-                                    LOGGER.error("thread pool monitor error", throwable);
+                                    LOGGER.error("Thread pool monitor error", throwable);
                                 }
 
                                 try {
                                     sleep(30000);
                                 } catch (InterruptedException e) {
                                     if (LOGGER.isInfoEnabled()) {
-                                        LOGGER.error("error happen the thread pool watch sleep ");
+                                        LOGGER.error("Error happen the thread pool watch sleep ");
                                     }
                                 }
                             }
