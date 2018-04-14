@@ -17,17 +17,16 @@
 package com.alipay.sofa.rpc.boot.health;
 
 import com.alipay.sofa.healthcheck.startup.SofaBootMiddlewareAfterReadinessCheckCallback;
-import com.alipay.sofa.rpc.log.Logger;
-import com.alipay.sofa.rpc.log.LoggerFactory;
 import com.alipay.sofa.rpc.boot.context.event.SofaBootRpcStartAfterEvent;
 import com.alipay.sofa.rpc.boot.context.event.SofaBootRpcStartEvent;
+import com.alipay.sofa.rpc.log.Logger;
+import com.alipay.sofa.rpc.log.LoggerFactory;
 import org.springframework.boot.actuate.health.Health;
 import org.springframework.boot.actuate.health.Status;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 /**
- *
  * SOFABoot RPC 健康检查回调.会启动服务器并发布服务
  *
  * @author <a href="mailto:lw111072@antfin.com">LiWei</a>

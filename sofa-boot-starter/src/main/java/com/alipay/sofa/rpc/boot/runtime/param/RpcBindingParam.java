@@ -16,8 +16,8 @@
  */
 package com.alipay.sofa.rpc.boot.runtime.param;
 
-import com.alipay.sofa.rpc.filter.Filter;
 import com.alipay.sofa.rpc.boot.runtime.binding.RpcBindingMethodInfo;
+import com.alipay.sofa.rpc.filter.Filter;
 import com.alipay.sofa.rpc.server.UserThreadPool;
 import com.alipay.sofa.runtime.api.client.param.BindingParam;
 
@@ -76,7 +76,7 @@ public abstract class RpcBindingParam implements BindingParam {
     /**
      * Setter method for property <tt>timeout</tt>.
      *
-     * @param timeout  value to be assigned to property timeout
+     * @param timeout value to be assigned to property timeout
      */
     public void setTimeout(Integer timeout) {
         this.timeout = timeout;
@@ -94,7 +94,7 @@ public abstract class RpcBindingParam implements BindingParam {
     /**
      * Setter method for property <tt>addressWaitTime</tt>.
      *
-     * @param addressWaitTime  value to be assigned to property addressWaitTime
+     * @param addressWaitTime value to be assigned to property addressWaitTime
      */
     public void setAddressWaitTime(Integer addressWaitTime) {
         this.addressWaitTime = addressWaitTime;
@@ -112,7 +112,7 @@ public abstract class RpcBindingParam implements BindingParam {
     /**
      * Setter method for property <tt>connectTimeout</tt>.
      *
-     * @param connectTimeout  value to be assigned to property connectTimeout
+     * @param connectTimeout value to be assigned to property connectTimeout
      */
     public void setConnectTimeout(Integer connectTimeout) {
         this.connectTimeout = connectTimeout;
@@ -130,7 +130,7 @@ public abstract class RpcBindingParam implements BindingParam {
     /**
      * Setter method for property <tt>retries</tt>.
      *
-     * @param retries  value to be assigned to property retries
+     * @param retries value to be assigned to property retries
      */
     public void setRetries(Integer retries) {
         this.retries = retries;
@@ -148,7 +148,7 @@ public abstract class RpcBindingParam implements BindingParam {
     /**
      * Setter method for property <tt>type</tt>.
      *
-     * @param type  value to be assigned to property type
+     * @param type value to be assigned to property type
      */
     public void setType(String type) {
         this.type = type;
@@ -166,7 +166,7 @@ public abstract class RpcBindingParam implements BindingParam {
     /**
      * Setter method for property <tt>callbackClass</tt>.
      *
-     * @param callbackClass  value to be assigned to property callbackClass
+     * @param callbackClass value to be assigned to property callbackClass
      */
     public void setCallbackClass(String callbackClass) {
         this.callbackClass = callbackClass;
@@ -184,7 +184,7 @@ public abstract class RpcBindingParam implements BindingParam {
     /**
      * Setter method for property <tt>callbackRef</tt>.
      *
-     * @param callbackRef  value to be assigned to property callbackRef
+     * @param callbackRef value to be assigned to property callbackRef
      */
     public void setCallbackRef(String callbackRef) {
         this.callbackRef = callbackRef;
@@ -202,7 +202,7 @@ public abstract class RpcBindingParam implements BindingParam {
     /**
      * Setter method for property <tt>callbackHandler</tt>.
      *
-     * @param callbackHandler  value to be assigned to property callbackHandler
+     * @param callbackHandler value to be assigned to property callbackHandler
      */
     public void setCallbackHandler(Object callbackHandler) {
         this.callbackHandler = callbackHandler;
@@ -220,7 +220,7 @@ public abstract class RpcBindingParam implements BindingParam {
     /**
      * Setter method for property <tt>weight</tt>.
      *
-     * @param weight  value to be assigned to property weight
+     * @param weight value to be assigned to property weight
      */
     public void setWeight(Integer weight) {
         this.weight = weight;
@@ -238,7 +238,7 @@ public abstract class RpcBindingParam implements BindingParam {
     /**
      * Setter method for property <tt>warmUpTime</tt>.
      *
-     * @param warmUpTime  value to be assigned to property warmUpTime
+     * @param warmUpTime value to be assigned to property warmUpTime
      */
     public void setWarmUpTime(Integer warmUpTime) {
         this.warmUpTime = warmUpTime;
@@ -256,7 +256,7 @@ public abstract class RpcBindingParam implements BindingParam {
     /**
      * Setter method for property <tt>warmUpWeight</tt>.
      *
-     * @param warmUpWeight  value to be assigned to property warmUpWeight
+     * @param warmUpWeight value to be assigned to property warmUpWeight
      */
     public void setWarmUpWeight(Integer warmUpWeight) {
         this.warmUpWeight = warmUpWeight;
@@ -274,7 +274,7 @@ public abstract class RpcBindingParam implements BindingParam {
     /**
      * Setter method for property <tt>filters</tt>.
      *
-     * @param filters  value to be assigned to property filters
+     * @param filters value to be assigned to property filters
      */
     public void setFilters(List<Filter> filters) {
         this.filters = filters;
@@ -292,7 +292,7 @@ public abstract class RpcBindingParam implements BindingParam {
     /**
      * Setter method for property <tt>methodInfos</tt>.
      *
-     * @param methodInfos  value to be assigned to property methodInfos
+     * @param methodInfos value to be assigned to property methodInfos
      */
     public void setMethodInfos(List<RpcBindingMethodInfo> methodInfos) {
         this.methodInfos = methodInfos;
@@ -310,7 +310,7 @@ public abstract class RpcBindingParam implements BindingParam {
     /**
      * Setter method for property <tt>targetUrl</tt>.
      *
-     * @param targetUrl  value to be assigned to property targetUrl
+     * @param targetUrl value to be assigned to property targetUrl
      */
     public void setTargetUrl(String targetUrl) {
         this.targetUrl = targetUrl;
@@ -328,7 +328,7 @@ public abstract class RpcBindingParam implements BindingParam {
     /**
      * Setter method for property <tt>userThreadPool</tt>.
      *
-     * @param userThreadPool  value to be assigned to property userThreadPool
+     * @param userThreadPool value to be assigned to property userThreadPool
      */
     public void setUserThreadPool(UserThreadPool userThreadPool) {
         this.userThreadPool = userThreadPool;
@@ -346,7 +346,7 @@ public abstract class RpcBindingParam implements BindingParam {
     /**
      * Setter method for property <tt>genericInterface</tt>.
      *
-     * @param genericInterface  value to be assigned to property genericInterface
+     * @param genericInterface value to be assigned to property genericInterface
      */
     public void setGenericInterface(String genericInterface) {
         this.genericInterface = genericInterface;

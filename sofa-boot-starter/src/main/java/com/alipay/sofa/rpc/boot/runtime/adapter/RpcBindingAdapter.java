@@ -16,17 +16,17 @@
  */
 package com.alipay.sofa.rpc.boot.runtime.adapter;
 
+import com.alipay.sofa.rpc.boot.container.ConsumerConfigContainer;
+import com.alipay.sofa.rpc.boot.container.ProviderConfigContainer;
+import com.alipay.sofa.rpc.boot.container.RegistryConfigContainer;
+import com.alipay.sofa.rpc.boot.runtime.adapter.helper.ConsumerConfigHelper;
+import com.alipay.sofa.rpc.boot.runtime.adapter.helper.ProviderConfigHelper;
+import com.alipay.sofa.rpc.boot.runtime.binding.RpcBinding;
+import com.alipay.sofa.rpc.boot.runtime.param.RpcBindingParam;
 import com.alipay.sofa.rpc.config.ConsumerConfig;
 import com.alipay.sofa.rpc.config.ProviderConfig;
 import com.alipay.sofa.rpc.config.ServerConfig;
-import com.alipay.sofa.rpc.boot.container.ConsumerConfigContainer;
-import com.alipay.sofa.rpc.boot.container.ProviderConfigContainer;
-import com.alipay.sofa.rpc.boot.runtime.adapter.helper.ProviderConfigHelper;
-import com.alipay.sofa.rpc.boot.container.RegistryConfigContainer;
 import com.alipay.sofa.rpc.log.LogCodes;
-import com.alipay.sofa.rpc.boot.runtime.adapter.helper.ConsumerConfigHelper;
-import com.alipay.sofa.rpc.boot.runtime.binding.RpcBinding;
-import com.alipay.sofa.rpc.boot.runtime.param.RpcBindingParam;
 import com.alipay.sofa.rpc.registry.Registry;
 import com.alipay.sofa.runtime.api.ServiceRuntimeException;
 import com.alipay.sofa.runtime.spi.binding.BindingAdapter;
@@ -46,9 +46,9 @@ public abstract class RpcBindingAdapter implements BindingAdapter<RpcBinding> {
     /**
      * pre out binding
      *
-     * @param contract binding contract
-     * @param binding binding object
-     * @param target  binding target
+     * @param contract           binding contract
+     * @param binding            binding object
+     * @param target             binding target
      * @param sofaRuntimeContext sofa runtime context
      */
     @Override
@@ -65,9 +65,9 @@ public abstract class RpcBindingAdapter implements BindingAdapter<RpcBinding> {
     /**
      * out binding, out binding means provide service
      *
-     * @param contract binding contract
-     * @param binding binding object
-     * @param target  binding target
+     * @param contract           binding contract
+     * @param binding            binding object
+     * @param target             binding target
      * @param sofaRuntimeContext sofa runtime context
      * @return binding result
      */
@@ -98,9 +98,9 @@ public abstract class RpcBindingAdapter implements BindingAdapter<RpcBinding> {
     /**
      * pre unout binding
      *
-     * @param contract binding contract
-     * @param binding binding object
-     * @param target  binding target
+     * @param contract           binding contract
+     * @param binding            binding object
+     * @param target             binding target
      * @param sofaRuntimeContext sofa runtime context
      */
     @Override
@@ -119,9 +119,9 @@ public abstract class RpcBindingAdapter implements BindingAdapter<RpcBinding> {
     /**
      * post unout binding
      *
-     * @param contract binding contract
-     * @param binding binding object
-     * @param target  binding target
+     * @param contract           binding contract
+     * @param binding            binding object
+     * @param target             binding target
      * @param sofaRuntimeContext sofa runtime context
      */
     @Override
@@ -144,8 +144,8 @@ public abstract class RpcBindingAdapter implements BindingAdapter<RpcBinding> {
     /**
      * in binding, in binding means reference service
      *
-     * @param contract binding contract
-     * @param binding binding object
+     * @param contract           binding contract
+     * @param binding            binding object
      * @param sofaRuntimeContext sofa runtime context
      */
     @Override

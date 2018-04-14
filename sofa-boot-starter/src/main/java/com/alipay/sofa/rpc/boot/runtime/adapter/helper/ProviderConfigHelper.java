@@ -17,22 +17,22 @@
 package com.alipay.sofa.rpc.boot.runtime.adapter.helper;
 
 import com.alipay.sofa.infra.constants.CommonMiddlewareConstants;
+import com.alipay.sofa.rpc.boot.common.SofaBootRpcRuntimeException;
+import com.alipay.sofa.rpc.boot.config.SofaBootRpcConfig;
 import com.alipay.sofa.rpc.boot.container.RegistryConfigContainer;
 import com.alipay.sofa.rpc.boot.container.ServerConfigContainer;
+import com.alipay.sofa.rpc.boot.runtime.binding.RpcBinding;
+import com.alipay.sofa.rpc.boot.runtime.binding.RpcBindingMethodInfo;
+import com.alipay.sofa.rpc.boot.runtime.param.RpcBindingParam;
 import com.alipay.sofa.rpc.client.ProviderInfoAttrs;
-import com.alipay.sofa.rpc.boot.common.SofaBootRpcRuntimeException;
 import com.alipay.sofa.rpc.config.ApplicationConfig;
 import com.alipay.sofa.rpc.config.ConfigUniqueNameGenerator;
 import com.alipay.sofa.rpc.config.MethodConfig;
 import com.alipay.sofa.rpc.config.ProviderConfig;
 import com.alipay.sofa.rpc.config.RegistryConfig;
 import com.alipay.sofa.rpc.config.ServerConfig;
-import com.alipay.sofa.rpc.boot.config.SofaBootRpcConfig;
 import com.alipay.sofa.rpc.config.UserThreadPoolManager;
 import com.alipay.sofa.rpc.filter.Filter;
-import com.alipay.sofa.rpc.boot.runtime.binding.RpcBinding;
-import com.alipay.sofa.rpc.boot.runtime.binding.RpcBindingMethodInfo;
-import com.alipay.sofa.rpc.boot.runtime.param.RpcBindingParam;
 import com.alipay.sofa.rpc.server.UserThreadPool;
 import com.alipay.sofa.runtime.spi.binding.Contract;
 import org.springframework.util.CollectionUtils;
@@ -51,8 +51,8 @@ public class ProviderConfigHelper {
     /**
      * 获取 ProviderConfig
      * @param contract the Contract
-     * @param binding the RpcBinding
-     * @param target 服务实例
+     * @param binding  the RpcBinding
+     * @param target   服务实例
      * @return the ProviderConfig
      * @throws SofaBootRpcRuntimeException
      */

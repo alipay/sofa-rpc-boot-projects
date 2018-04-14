@@ -17,11 +17,11 @@
 package com.alipay.sofa.rpc.boot.container;
 
 import com.alipay.sofa.rpc.boot.common.SofaBootRpcRuntimeException;
-import com.alipay.sofa.rpc.common.utils.StringUtils;
-import com.alipay.sofa.rpc.config.RegistryConfig;
 import com.alipay.sofa.rpc.boot.config.SofaBootRpcConfig;
 import com.alipay.sofa.rpc.boot.config.SofaBootRpcConfigConstants;
 import com.alipay.sofa.rpc.boot.config.ZookeeperConfigurator;
+import com.alipay.sofa.rpc.common.utils.StringUtils;
+import com.alipay.sofa.rpc.config.RegistryConfig;
 import com.alipay.sofa.rpc.registry.Registry;
 import com.alipay.sofa.rpc.registry.RegistryFactory;
 

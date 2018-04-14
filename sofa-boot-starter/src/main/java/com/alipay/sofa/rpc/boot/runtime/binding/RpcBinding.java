@@ -16,9 +16,9 @@
  */
 package com.alipay.sofa.rpc.boot.runtime.binding;
 
-import com.alipay.sofa.rpc.config.ConsumerConfig;
 import com.alipay.sofa.rpc.boot.config.SofaBootRpcConfigConstants;
 import com.alipay.sofa.rpc.boot.runtime.param.RpcBindingParam;
+import com.alipay.sofa.rpc.config.ConsumerConfig;
 import com.alipay.sofa.runtime.spi.binding.AbstractBinding;
 import com.alipay.sofa.runtime.spi.health.HealthResult;
 import org.springframework.context.ApplicationContext;
@@ -26,6 +26,7 @@ import org.w3c.dom.Element;
 
 /**
  * rpc binding implementation
+ *
  * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
 public abstract class RpcBinding extends AbstractBinding {
@@ -117,7 +118,7 @@ public abstract class RpcBinding extends AbstractBinding {
     /**
      * Setter method for property <tt>appName</tt>.
      *
-     * @param appName  value to be assigned to property appName
+     * @param appName value to be assigned to property appName
      */
     public void setAppName(String appName) {
         this.appName = appName;
@@ -135,7 +136,7 @@ public abstract class RpcBinding extends AbstractBinding {
     /**
      * Setter method for property <tt>beanId</tt>.
      *
-     * @param beanId  value to be assigned to property beanId
+     * @param beanId value to be assigned to property beanId
      */
     public void setBeanId(String beanId) {
         this.beanId = beanId;
@@ -153,7 +154,7 @@ public abstract class RpcBinding extends AbstractBinding {
     /**
      * Setter method for property <tt>rpcBindingParam</tt>.
      *
-     * @param rpcBindingParam  value to be assigned to property rpcBindingParam
+     * @param rpcBindingParam value to be assigned to property rpcBindingParam
      */
     public void setRpcBindingParam(RpcBindingParam rpcBindingParam) {
         this.rpcBindingParam = rpcBindingParam;
@@ -171,7 +172,7 @@ public abstract class RpcBinding extends AbstractBinding {
     /**
      * Setter method for property <tt>applicationContext</tt>.
      *
-     * @param applicationContext  value to be assigned to property applicationContext
+     * @param applicationContext value to be assigned to property applicationContext
      */
     public void setApplicationContext(ApplicationContext applicationContext) {
         this.applicationContext = applicationContext;
@@ -189,7 +190,7 @@ public abstract class RpcBinding extends AbstractBinding {
     /**
      * Setter method for property <tt>inBinding</tt>.
      *
-     * @param inBinding  value to be assigned to property inBinding
+     * @param inBinding value to be assigned to property inBinding
      */
     public void setInBinding(boolean inBinding) {
         this.inBinding = inBinding;
@@ -207,7 +208,7 @@ public abstract class RpcBinding extends AbstractBinding {
     /**
      * Setter method for property <tt>consumerConfig</tt>.
      *
-     * @param consumerConfig  value to be assigned to property consumerConfig
+     * @param consumerConfig value to be assigned to property consumerConfig
      */
     public void setConsumerConfig(ConsumerConfig consumerConfig) {
         this.consumerConfig = consumerConfig;

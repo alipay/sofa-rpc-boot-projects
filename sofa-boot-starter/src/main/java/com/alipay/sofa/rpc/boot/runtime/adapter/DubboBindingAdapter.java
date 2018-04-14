@@ -17,16 +17,15 @@
 package com.alipay.sofa.rpc.boot.runtime.adapter;
 
 import com.alipay.sofa.rpc.boot.container.ProviderConfigContainer;
-import com.alipay.sofa.rpc.log.LogCodes;
 import com.alipay.sofa.rpc.boot.runtime.binding.RpcBinding;
 import com.alipay.sofa.rpc.boot.runtime.binding.RpcBindingType;
+import com.alipay.sofa.rpc.log.LogCodes;
 import com.alipay.sofa.runtime.api.ServiceRuntimeException;
 import com.alipay.sofa.runtime.api.binding.BindingType;
 import com.alipay.sofa.runtime.spi.binding.Contract;
 import com.alipay.sofa.runtime.spi.component.SofaRuntimeContext;
 
 /**
- *
  * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
 public class DubboBindingAdapter extends RpcBindingAdapter {

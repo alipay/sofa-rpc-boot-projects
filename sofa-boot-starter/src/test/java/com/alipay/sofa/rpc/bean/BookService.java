@@ -16,11 +16,10 @@
  */
 package com.alipay.sofa.rpc.bean;
 
-import com.alipay.sofa.rpc.bean.model.BookModel;
 import com.alipay.sofa.rpc.bean.model.BookMarkModel;
+import com.alipay.sofa.rpc.bean.model.BookModel;
 
 /**
- *
  * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
 public interface BookService {

@@ -16,12 +16,12 @@
  */
 package com.alipay.sofa.rpc.boot.container;
 
+import com.alipay.sofa.rpc.boot.config.SofaBootRpcConfigConstants;
+import com.alipay.sofa.rpc.boot.runtime.binding.RpcBinding;
 import com.alipay.sofa.rpc.config.ProviderConfig;
 import com.alipay.sofa.rpc.config.ServerConfig;
-import com.alipay.sofa.rpc.boot.config.SofaBootRpcConfigConstants;
 import com.alipay.sofa.rpc.log.Logger;
 import com.alipay.sofa.rpc.log.LoggerFactory;
-import com.alipay.sofa.rpc.boot.runtime.binding.RpcBinding;
 import com.alipay.sofa.rpc.registry.Registry;
 import com.alipay.sofa.runtime.spi.binding.Contract;
 import org.springframework.util.StringUtils;

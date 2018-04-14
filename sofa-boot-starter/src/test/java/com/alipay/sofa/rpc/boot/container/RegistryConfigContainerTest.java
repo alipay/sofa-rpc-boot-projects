@@ -17,13 +17,12 @@
 package com.alipay.sofa.rpc.boot.container;
 
 import com.alipay.sofa.rpc.boot.common.SofaBootRpcRuntimeException;
-import com.alipay.sofa.rpc.config.RegistryConfig;
 import com.alipay.sofa.rpc.boot.config.SofaBootRpcConfigConstants;
+import com.alipay.sofa.rpc.config.RegistryConfig;
 import org.junit.Assert;
 import org.junit.Test;
 
 /**
- *
  * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
 public class RegistryConfigContainerTest {

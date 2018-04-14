@@ -16,13 +16,12 @@
  */
 package com.alipay.sofa.rpc.boot.container;
 
-import com.alipay.sofa.rpc.config.ServerConfig;
 import com.alipay.sofa.rpc.boot.config.SofaBootRpcConfigConstants;
+import com.alipay.sofa.rpc.config.ServerConfig;
 import org.junit.Assert;
 import org.junit.Test;
 
 /**
- *
  * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
 public class ServerConfigContainerTest {

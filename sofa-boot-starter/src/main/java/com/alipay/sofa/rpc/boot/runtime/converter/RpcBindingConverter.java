@@ -16,16 +16,16 @@
  */
 package com.alipay.sofa.rpc.boot.runtime.converter;
 
+import com.alipay.sofa.rpc.boot.common.SofaBootRpcParserUtil;
 import com.alipay.sofa.rpc.boot.common.SofaBootRpcRuntimeException;
-import com.alipay.sofa.rpc.filter.ExcludeFilter;
-import com.alipay.sofa.rpc.filter.Filter;
+import com.alipay.sofa.rpc.boot.common.SofaBootRpcSpringUtil;
+import com.alipay.sofa.rpc.boot.container.RpcFilterContainer;
 import com.alipay.sofa.rpc.boot.runtime.binding.RpcBinding;
 import com.alipay.sofa.rpc.boot.runtime.binding.RpcBindingMethodInfo;
 import com.alipay.sofa.rpc.boot.runtime.binding.RpcBindingXmlConstants;
-import com.alipay.sofa.rpc.boot.container.RpcFilterContainer;
 import com.alipay.sofa.rpc.boot.runtime.param.RpcBindingParam;
-import com.alipay.sofa.rpc.boot.common.SofaBootRpcParserUtil;
-import com.alipay.sofa.rpc.boot.common.SofaBootRpcSpringUtil;
+import com.alipay.sofa.rpc.filter.ExcludeFilter;
+import com.alipay.sofa.rpc.filter.Filter;
 import com.alipay.sofa.rpc.server.UserThreadPool;
 import com.alipay.sofa.runtime.spi.service.BindingConverter;
 import com.alipay.sofa.runtime.spi.service.BindingConverterContext;
@@ -40,7 +40,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
  * 解析 XML配置或者 {@link RpcBindingParam} 为 {@link RpcBinding}
  *
  * @author <a href="mailto:caojie.cj@antfin.com">CaoJie</a>
@@ -54,7 +53,7 @@ public abstract class RpcBindingConverter implements BindingConverter<RpcBinding
     /**
      * convert {@link RpcBindingParam} to concrete {@link RpcBinding}
      *
-     * @param bindingParam binding parameter
+     * @param bindingParam            binding parameter
      * @param bindingConverterContext binding converter context
      * @return RpcBinding Object
      */
@@ -73,7 +72,7 @@ public abstract class RpcBindingConverter implements BindingConverter<RpcBinding
     /**
      * convert xml Element to concrete {@link RpcBinding}
      *
-     * @param element xml Element
+     * @param element                 xml Element
      * @param bindingConverterContext binding converter context
      * @return RpcBinding Object
      */
@@ -97,9 +96,9 @@ public abstract class RpcBindingConverter implements BindingConverter<RpcBinding
 
     /**
      * 创建 RpcBinding
-     * @param bindingParam the RpcBindingParam
+     * @param bindingParam       the RpcBindingParam
      * @param applicationContext spring 上下文
-     * @param inBinding 是否是服务引用
+     * @param inBinding          是否是服务引用
      * @return the RpcBinding
      */
     protected abstract RpcBinding createRpcBinding(RpcBindingParam bindingParam,

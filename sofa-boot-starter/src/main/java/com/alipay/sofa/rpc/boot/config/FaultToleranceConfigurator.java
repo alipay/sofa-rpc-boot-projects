@@ -16,12 +16,11 @@
  */
 package com.alipay.sofa.rpc.boot.config;
 
+import com.alipay.sofa.rpc.boot.common.SofaBootRpcParserUtil;
 import com.alipay.sofa.rpc.client.aft.FaultToleranceConfig;
 import com.alipay.sofa.rpc.client.aft.FaultToleranceConfigManager;
-import com.alipay.sofa.rpc.boot.common.SofaBootRpcParserUtil;
 
 /**
- *
  * 自动故障剔除初始化器
  *
  * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
