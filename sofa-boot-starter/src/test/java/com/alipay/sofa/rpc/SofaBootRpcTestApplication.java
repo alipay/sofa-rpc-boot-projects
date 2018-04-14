@@ -26,11 +26,11 @@ import org.springframework.context.annotation.ImportResource;
  */
 @ImportResource({ "classpath*:rpc-sofa-boot-starter-test.xml" })
 @org.springframework.boot.autoconfigure.SpringBootApplication
-public class SofaBootSpringApplication {
+public class SofaBootRpcTestApplication {
 
     public static void main(String[] args) throws InterruptedException {
 
-        SpringApplication springApplication = new SpringApplication(SofaBootSpringApplication.class);
+        SpringApplication springApplication = new SpringApplication(SofaBootRpcTestApplication.class);
         springApplication.run(args);
 
     }

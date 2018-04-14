@@ -96,7 +96,7 @@ public class RegistryConfigFactory {
      * 创建 local 协议的 RegistryConfig
      * @return local RegistryConfig
      */
-    public static RegistryConfig createLocalRegistryConfig() {
+    static RegistryConfig createLocalRegistryConfig() {
 
         String filePath = SofaBootRpcConfig.getPropertyAllCircumstances(SofaBootRpcConfigConstants.REGISTRY_FILE_PATH);
         if (StringUtils.isBlank(filePath)) {
@@ -115,7 +115,7 @@ public class RegistryConfigFactory {
      * 创建 zookeeper 协议的 RegistryConfig
      * @return zookeeper RegistryConfig
      */
-    public static RegistryConfig createZookeeperRegistryConfig() {
+    static RegistryConfig createZookeeperRegistryConfig() {
         ZookeeperConfigurator.parseConfig();
 
         String address = ZookeeperConfigurator.getAddress();

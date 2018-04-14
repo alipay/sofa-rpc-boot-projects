@@ -31,21 +31,18 @@ public class RegistryConfigFactoryTest {
     @Test
     public void testGetRegistryConfig() {
 
-        //prepare
-        RegistryConfigFactory.removeAllRegistryConfig();
-
         System.setProperty(SofaBootRpcConfigConstants.REGISTRY_PROTOCOL,
             SofaBootRpcConfigConstants.REGISTRY_PROTOCOL_LOCAL);
         System.setProperty(SofaBootRpcConfigConstants.REGISTRY_FILE_PATH, "/home/admin/local");
 
-        RegistryConfig registryConfigLocal = RegistryConfigFactory.getRegistryConfig();
+        RegistryConfig registryConfigLocal = RegistryConfigFactory.createLocalRegistryConfig();
         Assert.assertEquals("local", registryConfigLocal.getProtocol());
         Assert.assertEquals("/home/admin/local", registryConfigLocal.getFile());
 
         System.setProperty(SofaBootRpcConfigConstants.REGISTRY_PROTOCOL,
             "zookeeper://127.0.0.1:2181?file=/home/admin/zookeeper");
 
-        RegistryConfig registryConfigZk = RegistryConfigFactory.getRegistryConfig();
+        RegistryConfig registryConfigZk = RegistryConfigFactory.createZookeeperRegistryConfig();
         Assert.assertEquals("zookeeper", registryConfigZk.getProtocol());
         Assert.assertEquals("/home/admin/zookeeper", registryConfigZk.getFile());
 
@@ -62,8 +59,6 @@ public class RegistryConfigFactoryTest {
         //clear
         System.clearProperty(SofaBootRpcConfigConstants.REGISTRY_PROTOCOL);
         System.clearProperty(SofaBootRpcConfigConstants.REGISTRY_FILE_PATH);
-
-        RegistryConfigFactory.removeAllRegistryConfig();
     }
 
 }

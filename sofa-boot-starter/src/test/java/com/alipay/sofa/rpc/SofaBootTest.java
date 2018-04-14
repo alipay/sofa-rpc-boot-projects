@@ -32,7 +32,7 @@ import org.springframework.test.context.junit4.SpringRunner;
  * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = SofaBootSpringApplication.class)
+@SpringBootTest(classes = SofaBootRpcTestApplication.class)
 public class SofaBootTest {
 
     @Autowired
