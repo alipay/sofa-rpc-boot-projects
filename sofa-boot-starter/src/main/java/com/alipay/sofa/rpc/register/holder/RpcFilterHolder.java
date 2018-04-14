@@ -75,9 +75,7 @@ public class RpcFilterHolder {
                         loadFilters(applicationContext);
                         alreadyLoad = true;
                     }
-
                 }
-
             }
 
             return filters;
