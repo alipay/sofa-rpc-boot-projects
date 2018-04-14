@@ -14,13 +14,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alipay.sofa.rpc.samples.invoke.bean;
+package com.alipay.sofa.rpc.samples.generic;
 
 /**
  *
  * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
-public interface HelloSyncService {
+public class SampleGenericServiceImpl implements SampleGenericService {
+    @Override
+    public SampleGenericResultModel sayGeneric(SampleGenericParamModel sampleGenericParamModel) {
 
-    String saySync(String string);
+        String name = sampleGenericParamModel.getName();
+
+        SampleGenericResultModel resultModel = new SampleGenericResultModel();
+        resultModel.setName(name);
+        resultModel.setValue("sample generic value");
+
+        return resultModel;
+    }
 }

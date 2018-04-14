@@ -1,7 +1,7 @@
 # 如何在 SOFABoot 环境中使用 SOFARPC
 
 ## 简介
-该用例工程演示如何在 SOFABoot 环境中使用 SOFARPC，阅读该文档之前，建议先了解 [SOFARPC](https://github.com/alipay/sofa-rpc)
+该用例工程演示如何在 SOFABoot 环境中使用 SOFARPC，阅读该文档之前，建议先了解 [SOFARPC](https://github.com/alipay/sofa-rpc) 和 [SOFABoot](https://github.com/alipay/sofa-boot)
 
 ## 引入 SOFABoot 依赖
 SOFABoot 提供了如健康检查，上下文隔离等基础能力，同时提供了多种中间件进行选择使用。 SOFABoot 对这些提供这些能力的依赖利用如下 pom 进行了管控，将工程的 parent 设为该 pom 。
@@ -38,9 +38,9 @@ SOFARPC Starter 是 SOFARPC 基于 SOFABoot 实现的框架，能够将 SOFARPC 
 ## 服务发布
 在 XML 中配置如下，就能够发布一个 SOFARPC 服务。
 ```xml
-<bean id="helloSyncServiceImpl" class="com.alipay.sofa.rpc.samples.invoke.bean.impl.HelloSyncServiceImpl"/>
+<bean id="helloSyncServiceImpl" class="com.alipay.sofa.rpc.samples.invoke.HelloSyncServiceImpl"/>
 
-<sofa:service ref="helloSyncServiceImpl" interface="com.alipay.sofa.rpc.samples.invoke.bean.HelloSyncService">
+<sofa:service ref="helloSyncServiceImpl" interface="com.alipay.sofa.rpc.samples.invoke.HelloSyncService">
     <sofa:binding.bolt/>
 </sofa:service>
 ```
@@ -49,7 +49,7 @@ SOFARPC Starter 是 SOFARPC 基于 SOFABoot 实现的框架，能够将 SOFARPC 
 ## 服务引用
 在 XML 中配置如下，就能够引用 SOFARPC 服务。
 ```xml
-<sofa:reference id="helloSyncServiceReference" interface="com.alipay.sofa.rpc.samples.invoke.bean.HelloSyncService">
+<sofa:reference id="helloSyncServiceReference" interface="com.alipay.sofa.rpc.samples.invoke.HelloSyncService">
     <sofa:binding.bolt/>
 </sofa:reference>
 ```
@@ -66,7 +66,7 @@ System.out.println(helloSyncServiceReference.saySync("sync"));
 ## 参数设置
 在声明服务发布或引用的同时也可以设置需要的参数。
 ```xml
-<sofa:reference id="helloSyncServiceReference" interface="com.alipay.sofa.rpc.samples.invoke.bean.HelloSyncService">
+<sofa:reference id="helloSyncServiceReference" interface="com.alipay.sofa.rpc.samples.invoke.HelloSyncService">
     <sofa:binding.bolt>
         <sofa:global-attrs timeout="3000" address-wait-time="2000"/>
         <sofa:route target-url="127.0.0.1:22000"/>
@@ -81,15 +81,15 @@ System.out.println(helloSyncServiceReference.saySync("sync"));
 
 1.全局生效方式。通过 rpc-global-filter 元素配置一个对所有服务都会生效的 Filter 。
 ```xml
-<bean id="sampleFilter" class="com.alipay.sofa.rpc.samples.filter.bean.SampleFilter"/>
+<bean id="sampleFilter" class="com.alipay.sofa.rpc.samples.filter.SampleFilter"/>
 
-<sofa:rpc-global-filter ref="com.alipay.sofa.rpc.samples.filter.bean.SampleFilter"/>
+<sofa:rpc-global-filter ref="com.alipay.sofa.rpc.samples.filter.SampleFilter"/>
 ```  
 2.服务生效方式。只对指定的服务生效。
 ```xml
-<bean id="sampleFilter" class="com.alipay.sofa.rpc.samples.filter.bean.SampleFilter"/>
+<bean id="sampleFilter" class="com.alipay.sofa.rpc.samples.filter.SampleFilter"/>
 
-<sofa:service ref="filterService" interface="com.alipay.sofa.rpc.samples.filter.bean.FilterService">
+<sofa:service ref="filterService" interface="com.alipay.sofa.rpc.samples.filter.FilterService">
     <sofa:binding.bolt>
         <sofa:global-attrs filter="sampleFilter"/>
     </sofa:binding.bolt>
@@ -101,7 +101,7 @@ System.out.println(helloSyncServiceReference.saySync("sync"));
 ```xml
 <sofa:reference id="sampleGenericServiceReference" interface="com.alipay.sofa.rpc.api.GenericService">
     <sofa:binding.bolt>
-        <sofa:global-attrs generic-interface="com.alipay.sofa.rpc.samples.generic.bean.SampleGenericService"/>
+        <sofa:global-attrs generic-interface="com.alipay.sofa.rpc.samples.generic.SampleGenericService"/>
     </sofa:binding.bolt>
 </sofa:reference>
 ```
@@ -109,11 +109,11 @@ System.out.println(helloSyncServiceReference.saySync("sync"));
 ```java
 GenericService sampleGenericServiceReference = (GenericService) applicationContext.getBean("sampleGenericServiceReference");
 
-GenericObject genericObject = new GenericObject("com.alipay.sofa.rpc.samples.generic.bean.model.SampleGenericParamModel");
+GenericObject genericObject = new GenericObject("com.alipay.sofa.rpc.samples.generic.SampleGenericParamModel");
 genericObject.putField("name", "Bible");
 
 GenericObject result = (GenericObject) sampleGenericServiceReference.$genericInvoke("sayGeneric",
-            new String[] { "com.alipay.sofa.rpc.samples.generic.bean.model.SampleGenericParamModel" },
+            new String[] { "com.alipay.sofa.rpc.samples.generic.SampleGenericParamModel" },
             new Object[] { genericObject });
 
 System.out.println(result.getType());
@@ -131,9 +131,9 @@ System.out.println(result.getField("value"));
     <property name="threadPoolName" value="customerThreadPool_name"/>
 </bean>
 
-<bean id="threadPoolServiceImpl" class="com.alipay.sofa.rpc.samples.threadpool.bean.impl.ThreadPoolServiceImpl"/>
+<bean id="threadPoolServiceImpl" class="com.alipay.sofa.rpc.samples.threadpool.ThreadPoolServiceImpl"/>
 
-<sofa:service ref="threadPoolServiceImpl" interface="com.alipay.sofa.rpc.samples.threadpool.bean.ThreadPoolService">
+<sofa:service ref="threadPoolServiceImpl" interface="com.alipay.sofa.rpc.samples.threadpool.ThreadPoolService">
     <sofa:binding.bolt>
         <sofa:global-attrs thread-pool-ref="customerThreadPool"/>
     </sofa:binding.bolt>

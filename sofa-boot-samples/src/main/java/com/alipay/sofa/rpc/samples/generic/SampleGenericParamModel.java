@@ -14,17 +14,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alipay.sofa.rpc.samples.generic.bean.model;
+package com.alipay.sofa.rpc.samples.generic;
 
 /**
  *
  * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
-public class SampleGenericResultModel {
+public class SampleGenericParamModel {
 
     private String name;
-
-    private String value;
 
     /**
      * Getter method for property <tt>name</tt>.
@@ -42,23 +40,5 @@ public class SampleGenericResultModel {
      */
     public void setName(String name) {
         this.name = name;
-    }
-
-    /**
-     * Getter method for property <tt>value</tt>.
-     *
-     * @return property value of value
-     */
-    public String getValue() {
-        return value;
-    }
-
-    /**
-     * Setter method for property <tt>value</tt>.
-     *
-     * @param value  value to be assigned to property value
-     */
-    public void setValue(String value) {
-        this.value = value;
     }
 }

@@ -14,17 +14,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alipay.sofa.rpc.samples.filter.bean.impl;
-
-import com.alipay.sofa.rpc.samples.filter.bean.FilterService;
+package com.alipay.sofa.rpc.samples.invoke;
 
 /**
  *
  * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
-public class FilterServiceImpl implements FilterService {
-    @Override
-    public String sayFilter(String string) {
-        return string;
-    }
+public interface HelloFutureService {
+
+    String sayFuture(String string);
 }

@@ -14,16 +14,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alipay.sofa.rpc.samples.generic.bean;
-
-import com.alipay.sofa.rpc.samples.generic.bean.model.SampleGenericParamModel;
-import com.alipay.sofa.rpc.samples.generic.bean.model.SampleGenericResultModel;
+package com.alipay.sofa.rpc.samples.invoke;
 
 /**
  *
  * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
-public interface SampleGenericService {
-
-    SampleGenericResultModel sayGeneric(SampleGenericParamModel sampleGenericParamModel);
+public class HelloFutureServiceImpl implements HelloFutureService {
+    @Override
+    public String sayFuture(String string) {
+        return string;
+    }
 }

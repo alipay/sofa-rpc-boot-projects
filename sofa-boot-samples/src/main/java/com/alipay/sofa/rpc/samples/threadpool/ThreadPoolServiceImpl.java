@@ -16,20 +16,13 @@
  */
 package com.alipay.sofa.rpc.samples.threadpool;
 
-import com.alipay.sofa.rpc.samples.threadpool.bean.ThreadPoolService;
-import org.springframework.context.ApplicationContext;
-
 /**
  *
  * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
-public class ThreadPoolMain {
-
-    public void start(ApplicationContext applicationContext) {
-        ThreadPoolService threadPoolService = (ThreadPoolService) applicationContext
-            .getBean("threadPoolServiceReference");
-
-        System.out.println(threadPoolService.sayThreadPool("threadPool"));
-
+public class ThreadPoolServiceImpl implements ThreadPoolService {
+    @Override
+    public String sayThreadPool(String string) {
+        return string + "[" + Thread.currentThread().getName() + "]";
     }
 }

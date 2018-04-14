@@ -14,13 +14,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alipay.sofa.rpc.samples.threadpool.bean;
+package com.alipay.sofa.rpc.samples.filter;
+
+import com.alipay.sofa.rpc.core.exception.SofaRpcException;
+import com.alipay.sofa.rpc.core.request.SofaRequest;
+import com.alipay.sofa.rpc.core.response.SofaResponse;
+import com.alipay.sofa.rpc.filter.Filter;
+import com.alipay.sofa.rpc.filter.FilterInvoker;
 
 /**
  *
  * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
-public interface ThreadPoolService {
+public class SampleFilter extends Filter {
+    @Override
+    public SofaResponse invoke(FilterInvoker invoker, SofaRequest request) throws SofaRpcException {
 
-    String sayThreadPool(String string);
+        System.out.println("SampleFilter before");
+
+        try {
+            return invoker.invoke(request);
+        } finally {
+            System.out.println("SampleFilter after");
+        }
+    }
 }

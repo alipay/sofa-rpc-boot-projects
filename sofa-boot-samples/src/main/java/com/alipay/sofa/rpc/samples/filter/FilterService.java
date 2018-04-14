@@ -14,28 +14,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alipay.sofa.rpc.samples.filter.bean;
-
-import com.alipay.sofa.rpc.core.exception.SofaRpcException;
-import com.alipay.sofa.rpc.core.request.SofaRequest;
-import com.alipay.sofa.rpc.core.response.SofaResponse;
-import com.alipay.sofa.rpc.filter.Filter;
-import com.alipay.sofa.rpc.filter.FilterInvoker;
+package com.alipay.sofa.rpc.samples.filter;
 
 /**
  *
  * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
-public class SampleFilter extends Filter {
-    @Override
-    public SofaResponse invoke(FilterInvoker invoker, SofaRequest request) throws SofaRpcException {
+public interface FilterService {
 
-        System.out.println("SampleFilter before");
-
-        try {
-            return invoker.invoke(request);
-        } finally {
-            System.out.println("SampleFilter after");
-        }
-    }
+    String sayFilter(String string);
 }

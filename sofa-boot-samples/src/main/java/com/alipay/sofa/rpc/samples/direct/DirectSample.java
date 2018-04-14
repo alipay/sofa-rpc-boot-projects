@@ -14,21 +14,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alipay.sofa.rpc.samples.filter;
+package com.alipay.sofa.rpc.samples.direct;
 
-import com.alipay.sofa.rpc.samples.filter.bean.FilterService;
 import org.springframework.context.ApplicationContext;
 
 /**
- *
+ * 直连方式调用
  * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
-public class FilterMain {
+public class DirectSample {
 
-    public void start(ApplicationContext applicationContext) {
-        FilterService filterServiceReference = (FilterService) applicationContext.getBean("filterServiceReference");
+    public void start(ApplicationContext applicationContext) throws InterruptedException {
 
-        System.out.println(filterServiceReference.sayFilter("filter"));
+        DirectService directService = (DirectService) applicationContext.getBean("directServiceReference");
+
+        Thread.sleep(5000);
+
+        System.out.println(directService.sayDirect("direct"));
     }
-
 }

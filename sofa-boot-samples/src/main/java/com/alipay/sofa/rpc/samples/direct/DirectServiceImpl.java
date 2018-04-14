@@ -14,17 +14,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alipay.sofa.rpc.samples.threadpool.bean.impl;
-
-import com.alipay.sofa.rpc.samples.threadpool.bean.ThreadPoolService;
+package com.alipay.sofa.rpc.samples.direct;
 
 /**
  *
  * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
-public class ThreadPoolServiceImpl implements ThreadPoolService {
+public class DirectServiceImpl implements DirectService {
     @Override
-    public String sayThreadPool(String string) {
-        return string + "[" + Thread.currentThread().getName() + "]";
+    public String sayDirect(String stirng) {
+        return stirng;
     }
 }

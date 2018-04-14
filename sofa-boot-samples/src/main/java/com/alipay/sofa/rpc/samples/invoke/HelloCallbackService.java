@@ -14,23 +14,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alipay.sofa.rpc.samples.direct;
-
-import com.alipay.sofa.rpc.samples.direct.bean.DirectService;
-import org.springframework.context.ApplicationContext;
+package com.alipay.sofa.rpc.samples.invoke;
 
 /**
  *
  * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
-public class DirectMain {
+public interface HelloCallbackService {
 
-    public void start(ApplicationContext applicationContext) throws InterruptedException {
-
-        DirectService directService = (DirectService) applicationContext.getBean("directServiceReference");
-
-        Thread.sleep(5000);
-
-        System.out.println(directService.sayDirect("direct"));
-    }
+    String sayCallback(String string);
 }

@@ -16,17 +16,16 @@
  */
 package com.alipay.sofa.rpc.samples.invoke;
 
-import com.alipay.sofa.rpc.samples.invoke.bean.HelloCallbackService;
-import com.alipay.sofa.rpc.samples.invoke.bean.HelloFutureService;
-import com.alipay.sofa.rpc.samples.invoke.bean.HelloSyncService;
 import com.alipay.sofa.rpc.api.future.SofaResponseFuture;
 import org.springframework.context.ApplicationContext;
 
 /**
  *
+ * 同步，future，回调调用方式
+ *
  * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
-public class InvokeMain {
+public class InvokeSample {
 
     public void start(ApplicationContext applicationContext) throws InterruptedException {
 

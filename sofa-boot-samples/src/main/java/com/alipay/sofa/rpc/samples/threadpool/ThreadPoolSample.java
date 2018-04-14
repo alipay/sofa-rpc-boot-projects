@@ -14,32 +14,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alipay.sofa.rpc.samples.generic.bean;
+package com.alipay.sofa.rpc.samples.threadpool;
 
-import com.alipay.hessian.generic.model.GenericObject;
-import com.alipay.sofa.rpc.api.GenericService;
 import org.springframework.context.ApplicationContext;
 
 /**
  *
+ * 自定义线程池
+ *
  * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
-public class GenericMain {
+public class ThreadPoolSample {
 
     public void start(ApplicationContext applicationContext) {
-        GenericService sampleGenericServiceReference = (GenericService) applicationContext
-            .getBean("sampleGenericServiceReference");
+        ThreadPoolService threadPoolService = (ThreadPoolService) applicationContext
+            .getBean("threadPoolServiceReference");
 
-        GenericObject genericObject = new GenericObject(
-            "com.alipay.sofa.rpc.samples.generic.bean.model.SampleGenericParamModel");
-        genericObject.putField("name", "Bible");
+        System.out.println(threadPoolService.sayThreadPool("threadPool"));
 
-        GenericObject result = (GenericObject) sampleGenericServiceReference.$genericInvoke("sayGeneric",
-            new String[] { "com.alipay.sofa.rpc.samples.generic.bean.model.SampleGenericParamModel" },
-            new Object[] { genericObject });
-
-        System.out.println(result.getType());
-        System.out.println(result.getField("name"));
-        System.out.println(result.getField("value"));
     }
 }

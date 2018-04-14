@@ -19,9 +19,9 @@ package com.alipay.sofa.rpc.samples;
 import com.alipay.hessian.generic.model.GenericObject;
 import com.alipay.sofa.rpc.api.GenericService;
 import com.alipay.sofa.rpc.api.future.SofaResponseFuture;
-import com.alipay.sofa.rpc.samples.invoke.bean.HelloFutureService;
-import com.alipay.sofa.rpc.samples.invoke.bean.HelloSyncService;
-import com.alipay.sofa.rpc.samples.threadpool.bean.ThreadPoolService;
+import com.alipay.sofa.rpc.samples.invoke.HelloFutureService;
+import com.alipay.sofa.rpc.samples.invoke.HelloSyncService;
+import com.alipay.sofa.rpc.samples.threadpool.ThreadPoolService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -64,14 +64,14 @@ public class SofaBootRpcSamplesTest {
     public void testGeneric() {
 
         GenericObject genericObject = new GenericObject(
-            "com.alipay.sofa.rpc.samples.generic.bean.model.SampleGenericParamModel");
+            "com.alipay.sofa.rpc.samples.generic.SampleGenericParamModel");
         genericObject.putField("name", "Bible");
         GenericObject result = (GenericObject) sampleGenericServiceReference.$genericInvoke("sayGeneric",
-            new String[] { "com.alipay.sofa.rpc.samples.generic.bean.model.SampleGenericParamModel" },
+            new String[] { "com.alipay.sofa.rpc.samples.generic.SampleGenericParamModel" },
             new Object[] { genericObject });
 
         Assert
-            .assertEquals("com.alipay.sofa.rpc.samples.generic.bean.model.SampleGenericResultModel", result.getType());
+            .assertEquals("com.alipay.sofa.rpc.samples.generic.SampleGenericResultModel", result.getType());
         Assert.assertEquals("Bible", result.getField("name"));
         Assert.assertEquals("sample generic value", result.getField("value"));
     }
@@ -82,5 +82,4 @@ public class SofaBootRpcSamplesTest {
             "threadPool[customerThreadPool_name"));
 
     }
-
 }

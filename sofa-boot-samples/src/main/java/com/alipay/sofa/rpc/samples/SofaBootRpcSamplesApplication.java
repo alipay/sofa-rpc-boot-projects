@@ -16,11 +16,11 @@
  */
 package com.alipay.sofa.rpc.samples;
 
-import com.alipay.sofa.rpc.samples.direct.DirectMain;
-import com.alipay.sofa.rpc.samples.filter.FilterMain;
-import com.alipay.sofa.rpc.samples.generic.bean.GenericMain;
-import com.alipay.sofa.rpc.samples.invoke.InvokeMain;
-import com.alipay.sofa.rpc.samples.threadpool.ThreadPoolMain;
+import com.alipay.sofa.rpc.samples.direct.DirectSample;
+import com.alipay.sofa.rpc.samples.filter.FilterSample;
+import com.alipay.sofa.rpc.samples.generic.GenericSample;
+import com.alipay.sofa.rpc.samples.invoke.InvokeSample;
+import com.alipay.sofa.rpc.samples.threadpool.ThreadPoolSample;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ImportResource;
@@ -38,11 +38,11 @@ public class SofaBootRpcSamplesApplication {
         SpringApplication springApplication = new SpringApplication(SofaBootRpcSamplesApplication.class);
         ApplicationContext applicationContext = springApplication.run(args);
 
-        new InvokeMain().start(applicationContext);
-        new DirectMain().start(applicationContext);
-        new GenericMain().start(applicationContext);
-        new FilterMain().start(applicationContext);
-        new ThreadPoolMain().start(applicationContext);
+        new InvokeSample().start(applicationContext);
+        new DirectSample().start(applicationContext);
+        new GenericSample().start(applicationContext);
+        new FilterSample().start(applicationContext);
+        new ThreadPoolSample().start(applicationContext);
 
     }
 }

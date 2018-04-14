@@ -14,26 +14,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alipay.sofa.rpc.samples.generic.bean.impl;
-
-import com.alipay.sofa.rpc.samples.generic.bean.SampleGenericService;
-import com.alipay.sofa.rpc.samples.generic.bean.model.SampleGenericParamModel;
-import com.alipay.sofa.rpc.samples.generic.bean.model.SampleGenericResultModel;
+package com.alipay.sofa.rpc.samples.direct;
 
 /**
  *
  * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
-public class SampleGenericServiceImpl implements SampleGenericService {
-    @Override
-    public SampleGenericResultModel sayGeneric(SampleGenericParamModel sampleGenericParamModel) {
+public interface DirectService {
 
-        String name = sampleGenericParamModel.getName();
+    String sayDirect(String stirng);
 
-        SampleGenericResultModel resultModel = new SampleGenericResultModel();
-        resultModel.setName(name);
-        resultModel.setValue("sample generic value");
-
-        return resultModel;
-    }
 }

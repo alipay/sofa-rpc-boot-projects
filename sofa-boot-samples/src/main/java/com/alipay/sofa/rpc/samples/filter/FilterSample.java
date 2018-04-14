@@ -14,13 +14,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alipay.sofa.rpc.samples.filter.bean;
+package com.alipay.sofa.rpc.samples.filter;
+
+import org.springframework.context.ApplicationContext;
 
 /**
  *
+ * 在服务端的处理链中加入自定义 Filter
+ *
  * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
-public interface FilterService {
+public class FilterSample {
 
-    String sayFilter(String string);
+    public void start(ApplicationContext applicationContext) {
+        FilterService filterServiceReference = (FilterService) applicationContext.getBean("filterServiceReference");
+
+        System.out.println(filterServiceReference.sayFilter("filter"));
+    }
+
 }

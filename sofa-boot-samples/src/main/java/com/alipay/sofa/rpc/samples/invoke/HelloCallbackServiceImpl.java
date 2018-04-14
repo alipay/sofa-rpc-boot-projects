@@ -14,18 +14,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alipay.sofa.rpc.samples.invoke.bean.impl;
-
-import com.alipay.sofa.rpc.samples.invoke.bean.HelloSyncService;
+package com.alipay.sofa.rpc.samples.invoke;
 
 /**
  *
  * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
-public class HelloSyncServiceImpl implements HelloSyncService {
-
+public class HelloCallbackServiceImpl implements HelloCallbackService {
     @Override
-    public String saySync(String string) {
+    public String sayCallback(String string) {
         return string;
     }
 }
