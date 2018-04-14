@@ -14,12 +14,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alipay.sofa.rpc.factory;
+package com.alipay.sofa.rpc.core.factory;
 
 import com.alipay.sofa.rpc.common.SofaBootRpcRuntimeException;
 import com.alipay.sofa.rpc.config.RegistryConfig;
 import com.alipay.sofa.rpc.config.SofaBootRpcConfigConstants;
-import com.alipay.sofa.rpc.core.factory.RegistryConfigFactory;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -31,6 +30,10 @@ public class RegistryConfigFactoryTest {
 
     @Test
     public void testGetRegistryConfig() {
+
+        //prepare
+        RegistryConfigFactory.removeAllRegistryConfig();
+
         System.setProperty(SofaBootRpcConfigConstants.REGISTRY_PROTOCOL,
             SofaBootRpcConfigConstants.REGISTRY_PROTOCOL_LOCAL);
         System.setProperty(SofaBootRpcConfigConstants.REGISTRY_FILE_PATH, "/home/admin/local");

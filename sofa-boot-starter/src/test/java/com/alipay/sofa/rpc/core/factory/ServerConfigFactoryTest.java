@@ -14,11 +14,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alipay.sofa.rpc.factory;
+package com.alipay.sofa.rpc.core.factory;
 
 import com.alipay.sofa.rpc.config.ServerConfig;
 import com.alipay.sofa.rpc.config.SofaBootRpcConfigConstants;
-import com.alipay.sofa.rpc.core.factory.ServerConfigFactory;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -50,11 +49,11 @@ public class ServerConfigFactoryTest {
         System.setProperty(SofaBootRpcConfigConstants.DUBBO_ACCEPTS_COUNT, "6666");
 
         ServerConfig serverConfigBolt = ServerConfigFactory
-            .getServerConfig(SofaBootRpcConfigConstants.RPC_PROTOCOL_BOLT);
+            .createBoltServerConfig();
         ServerConfig serverConfigRest = ServerConfigFactory
-            .getServerConfig(SofaBootRpcConfigConstants.RPC_PROTOCOL_REST);
+            .createRestServerConfig();
         ServerConfig serverConfigDubbo = ServerConfigFactory
-            .getServerConfig(SofaBootRpcConfigConstants.RPC_PROTOCOL_DUBBO);
+            .createDubboServerConfig();
 
         //assert
         Assert.assertEquals(9090, serverConfigBolt.getPort());

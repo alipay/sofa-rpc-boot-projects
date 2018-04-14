@@ -146,7 +146,11 @@ public class ServerConfigFactory {
         return ServerFactory.getServer(getServerConfig(protocol));
     }
 
-    private static ServerConfig createBoltServerConfig() {
+    /**
+     * 创建 bolt ServerConfig。rest 的 配置不需要外层 starter 设置默认值。
+     * @return
+     */
+    public static ServerConfig createBoltServerConfig() {
         String portStr = SofaBootRpcConfig.getPropertyAllCircumstances(SofaBootRpcConfigConstants.BOLT_PORT);
         String ioThreadCountStr = SofaBootRpcConfig
             .getPropertyAllCircumstances(SofaBootRpcConfigConstants.BOLT_IO_THREAD_COUNT);
@@ -178,10 +182,10 @@ public class ServerConfigFactory {
     }
 
     /**
-     * 创建 rest ServerConfig。rest 的 配置需要外层 starter设置默认值。
-     * @return ServerConfig
+     * 创建 rest ServerConfig。rest 的 配置需要外层 starter 设置默认值。
+     * @return rest ServerConfig
      */
-    private static ServerConfig createRestServerConfig() {
+    public static ServerConfig createRestServerConfig() {
         String hostName = SofaBootRpcConfig.getPropertyAllCircumstances(SofaBootRpcConfigConstants.REST_HOSTNAME);
         String portStr = SofaBootRpcConfig.getPropertyAllCircumstances(SofaBootRpcConfigConstants.REST_PORT);
         String ioThreadCountStr = SofaBootRpcConfig
@@ -254,10 +258,10 @@ public class ServerConfigFactory {
     }
 
     /**
-     * 创建 dubbo ServerConfig。会设置 Dubbo 的默认端口，其余配置不会由外层 Starter设置默认值。
-     * @return
+     * 创建 dubbo ServerConfig。会设置 Dubbo 的默认端口，其余配置不会由外层 Starter 设置默认值。
+     * @return dubbo ServerConfig
      */
-    private static ServerConfig createDubboServerConfig() {
+    public static ServerConfig createDubboServerConfig() {
 
         String portStr = SofaBootRpcConfig.getPropertyAllCircumstances(SofaBootRpcConfigConstants.DUBBO_PORT);
         String ioThreadCountStr = SofaBootRpcConfig

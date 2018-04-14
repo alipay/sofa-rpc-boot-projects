@@ -70,7 +70,7 @@ public class RegistryConfigFactory {
             if (localRegistryConfig == null) {
                 synchronized (RegistryConfigFactory.class) {
                     if (localRegistryConfig == null) {
-                        localRegistryConfig = createLoaclRegistryConfig();
+                        localRegistryConfig = createLocalRegistryConfig();
                     }
                 }
             }
@@ -92,7 +92,11 @@ public class RegistryConfigFactory {
         }
     }
 
-    private static RegistryConfig createLoaclRegistryConfig() {
+    /**
+     * 创建 local 协议的 RegistryConfig
+     * @return local RegistryConfig
+     */
+    public static RegistryConfig createLocalRegistryConfig() {
 
         String filePath = SofaBootRpcConfig.getPropertyAllCircumstances(SofaBootRpcConfigConstants.REGISTRY_FILE_PATH);
         if (StringUtils.isBlank(filePath)) {
@@ -107,7 +111,11 @@ public class RegistryConfigFactory {
 
     }
 
-    private static RegistryConfig createZookeeperRegistryConfig() {
+    /**
+     * 创建 zookeeper 协议的 RegistryConfig
+     * @return zookeeper RegistryConfig
+     */
+    public static RegistryConfig createZookeeperRegistryConfig() {
         ZookeeperConfigurator.parseConfig();
 
         String address = ZookeeperConfigurator.getAddress();
