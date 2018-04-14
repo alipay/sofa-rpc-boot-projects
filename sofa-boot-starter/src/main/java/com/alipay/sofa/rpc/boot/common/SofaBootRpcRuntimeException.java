@@ -18,6 +18,8 @@ package com.alipay.sofa.rpc.boot.common;
 
 /**
  *
+ * SOFABoot RPC 运行时异常
+ *
  * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
 public class SofaBootRpcRuntimeException extends RuntimeException {
