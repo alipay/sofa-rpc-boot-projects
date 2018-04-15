@@ -109,7 +109,7 @@ public class SofaBootRpcConfigConstants {
                                                                                  +
                                                                                  System
                                                                                      .getProperty("file.separator") +
-                                                                                 "localFileRegisty"
+                                                                                 "localFileRegistry"
                                                                                  +
                                                                                  System
                                                                                      .getProperty("file.separator") +

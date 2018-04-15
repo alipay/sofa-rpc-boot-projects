@@ -31,19 +31,21 @@
             <version>2.3.0</version>
         </dependency>
 
-<!-- 以下两个依赖用于测试ark插件 -->
-        <!--<dependency>-->
-        <!--<groupId>com.alipay.sofa</groupId>-->
-        <!--<artifactId>rpc-sofa-boot-starter</artifactId>-->
-        <!--<classifier>ark-plugin</classifier>-->
-        <!--<version>5.3.0</version>-->
-        <!--</dependency>-->
+        <!--以下两个依赖用于测试ark插件 -->
+        <!--
+        <dependency>
+            <groupId>com.alipay.sofa</groupId>
+            <artifactId>rpc-sofa-boot-starter</artifactId>
+            <classifier>ark-plugin</classifier>
+            <version>5.3.0</version>
+        </dependency>
 
-        <!--<dependency>-->
-        <!--<groupId>com.alipay.sofa</groupId>-->
-        <!--<artifactId>sofa-ark-springboot-starter</artifactId>-->
-        <!--<version>0.2.0</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>com.alipay.sofa</groupId>
+            <artifactId>sofa-ark-springboot-starter</artifactId>
+            <version>0.2.0</version>
+        </dependency>
+        -->
 
         <dependency>
             <groupId>junit</groupId>
@@ -79,6 +81,18 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <skipTests>${skipTests}</skipTests>
+                    <includes>
+                        <!-- 这里需要根据自己的需要指定要跑的单元测试 -->
+                        <include>**/*Test.java</include>
+                    </includes>
+                    <testFailureIgnore>false</testFailureIgnore>
+                </configuration>
             </plugin>
         </plugins>
     </build>
