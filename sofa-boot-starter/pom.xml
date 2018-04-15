@@ -368,39 +368,31 @@
                             <priority>2000</priority>
                             <pluginName>${ark.plugin.name}</pluginName>
 
-                            <imported>
-                                <packages>
-                                    <package>com.alipay.sofa.runtime.api</package>
-                                    <package>com.alipay.sofa.runtime.model</package>
-                                    <package>com.alipay.sofa.runtime.spi.client</package>
-                                    <package>com.alipay.sofa.runtime.spi.component</package>
-                                    <package>com.alipay.sofa.runtime.spi.constants</package>
-                                    <package>com.alipay.sofa.runtime.spi.health</package>
-                                    <package>com.alipay.sofa.runtime.spi.log</package>
-                                    <package>com.alipay.sofa.runtime.spi.util</package>
-                                    <package>com.alipay.sofa.runtime.client.impl</package>
-                                    <package>com.alipay.sofa.runtime.component.impl</package>
-                                    <package>com.alipay.sofa.runtime.impl</package>
-                                </packages>
-
-                                <classes>
-                                    <class>com.alipay.sofa.runtime.spi.SofaFramework</class>
-                                    <class>com.alipay.sofa.runtime.spi.SofaFrameworkHolder</class>
-                                    <class>com.alipay.sofa.runtime.SofaFrameworkImpl</class>
-                                    <class>com.alipay.sofa.runtime.SofaFrameworkInternal</class>
-                                    <class>com.alipay.sofa.runtime.service.component.AbstractContract</class>
-                                    <class>com.alipay.sofa.runtime.service.component.Reference</class>
-                                    <class>com.alipay.sofa.runtime.service.component.Service</class>
-                                    <class>com.alipay.sofa.runtime.spi.binding.AbstractBinding</class>
-                                    <class>com.alipay.sofa.runtime.spi.binding.Binding</class>
-                                    <class>com.alipay.sofa.runtime.spi.binding.Contract</class>
-                                </classes>
-                            </imported>
-
                             <exported>
                                 <packages>
-                                    <package>com.alipay.sofa.rpc</package>
-                                    <package>com.alipay.common.tracer</package>
+                                    <package>com.alipay.sofa.rpc.api</package>
+                                    <package>com.alipay.sofa.rpc.common</package>
+                                    <package>com.alipay.sofa.rpc.ext</package>
+                                    <package>com.alipay.sofa.rpc.message</package>
+                                    <package>com.alipay.sofa.rpc.server</package>
+                                    <package>com.alipay.sofa.rpc.base</package>
+                                    <package>com.alipay.sofa.rpc.config</package>
+                                    <package>com.alipay.sofa.rpc.filter</package>
+                                    <package>com.alipay.sofa.rpc.module</package>
+                                    <package>com.alipay.sofa.rpc.tracer</package>
+                                    <package>com.alipay.sofa.rpc.bootstrap</package>
+                                    <package>com.alipay.sofa.rpc.context</package>
+                                    <package>com.alipay.sofa.rpc.invoke</package>
+                                    <package>com.alipay.sofa.rpc.protocol</package>
+                                    <package>com.alipay.sofa.rpc.transport</package>
+                                    <package>com.alipay.sofa.rpc.client</package>
+                                    <package>com.alipay.sofa.rpc.core</package>
+                                    <package>com.alipay.sofa.rpc.listener</package>
+                                    <package>com.alipay.sofa.rpc.proxy</package>
+                                    <package>com.alipay.sofa.rpc.codec</package>
+                                    <package>com.alipay.sofa.rpc.event</package>
+                                    <package>com.alipay.sofa.rpc.log</package>
+                                    <package>com.alipay.sofa.rpc.registry</package>
                                 </packages>
                             </exported>
 
