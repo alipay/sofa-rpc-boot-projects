@@ -11,6 +11,7 @@
     <bean id="helloSyncServiceImpl" class="com.alipay.sofa.rpc.samples.invoke.HelloSyncServiceImpl"/>
     <sofa:service ref="helloSyncServiceImpl" interface="com.alipay.sofa.rpc.samples.invoke.HelloSyncService">
         <sofa:binding.bolt/>
+        <sofa:binding.rest/>
     </sofa:service>
     <sofa:reference id="helloSyncServiceReference" interface="com.alipay.sofa.rpc.samples.invoke.HelloSyncService">
         <sofa:binding.bolt/>
@@ -88,5 +89,14 @@
     </sofa:service>
     <sofa:reference id="threadPoolServiceReference" interface="com.alipay.sofa.rpc.samples.threadpool.ThreadPoolService">
         <sofa:binding.bolt/>
+    </sofa:reference>
+
+    <!-- rest -->
+    <bean id="restServiceImpl" class="com.alipay.sofa.rpc.samples.rest.RestServiceImpl"/>
+    <sofa:service ref="restServiceImpl" interface="com.alipay.sofa.rpc.samples.rest.RestService">
+        <sofa:binding.rest/>
+    </sofa:service>
+    <sofa:reference id="restServiceReference" interface="com.alipay.sofa.rpc.samples.rest.RestService">
+        <sofa:binding.rest/>
     </sofa:reference>
 </beans>

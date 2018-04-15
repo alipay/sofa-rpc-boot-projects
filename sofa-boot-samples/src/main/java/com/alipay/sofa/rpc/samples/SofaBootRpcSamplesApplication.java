@@ -20,6 +20,7 @@ import com.alipay.sofa.rpc.samples.direct.DirectSample;
 import com.alipay.sofa.rpc.samples.filter.FilterSample;
 import com.alipay.sofa.rpc.samples.generic.GenericSample;
 import com.alipay.sofa.rpc.samples.invoke.InvokeSample;
+import com.alipay.sofa.rpc.samples.rest.RestSample;
 import com.alipay.sofa.rpc.samples.threadpool.ThreadPoolSample;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ApplicationContext;
@@ -43,6 +44,7 @@ public class SofaBootRpcSamplesApplication {
         new GenericSample().start(applicationContext);
         new FilterSample().start(applicationContext);
         new ThreadPoolSample().start(applicationContext);
+        new RestSample().start(applicationContext);
 
     }
 }
