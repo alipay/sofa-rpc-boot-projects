@@ -17,6 +17,7 @@
 package com.alipay.sofa.rpc.samples;
 
 import com.alipay.sofa.rpc.samples.direct.DirectSample;
+import com.alipay.sofa.rpc.samples.dubbo.DubboSample;
 import com.alipay.sofa.rpc.samples.filter.FilterSample;
 import com.alipay.sofa.rpc.samples.generic.GenericSample;
 import com.alipay.sofa.rpc.samples.invoke.InvokeSample;
@@ -45,6 +46,7 @@ public class SofaBootRpcSamplesApplication {
         new FilterSample().start(applicationContext);
         new ThreadPoolSample().start(applicationContext);
         new RestSample().start(applicationContext);
+        new DubboSample().start(applicationContext);
 
     }
 }
