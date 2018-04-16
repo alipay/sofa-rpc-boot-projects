@@ -106,9 +106,7 @@
         <sofa:binding.dubbo/>
     </sofa:service>
     <sofa:reference id="dubboServiceReference" interface="com.alipay.sofa.rpc.samples.dubbo.DubboService">
-        <sofa:binding.dubbo>
-            <sofa:route target-url="dubbo://127.0.0.1:20880"/>
-        </sofa:binding.dubbo>
+        <sofa:binding.dubbo/>
     </sofa:reference>
 
 </beans>
