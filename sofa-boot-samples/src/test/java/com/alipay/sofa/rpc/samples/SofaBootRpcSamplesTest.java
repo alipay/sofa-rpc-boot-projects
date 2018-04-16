@@ -16,18 +16,19 @@
  */
 package com.alipay.sofa.rpc.samples;
 
-import com.alipay.hessian.generic.model.GenericObject;
-import com.alipay.sofa.rpc.api.GenericService;
-import com.alipay.sofa.rpc.api.future.SofaResponseFuture;
-import com.alipay.sofa.rpc.samples.invoke.HelloFutureService;
-import com.alipay.sofa.rpc.samples.invoke.HelloSyncService;
-import com.alipay.sofa.rpc.samples.threadpool.ThreadPoolService;
+import com.alipay.sofa.rpc.samples.direct.DirectSample;
+import com.alipay.sofa.rpc.samples.dubbo.DubboSample;
+import com.alipay.sofa.rpc.samples.filter.FilterSample;
+import com.alipay.sofa.rpc.samples.generic.GenericSample;
+import com.alipay.sofa.rpc.samples.invoke.InvokeSample;
+import com.alipay.sofa.rpc.samples.rest.RestSample;
+import com.alipay.sofa.rpc.samples.threadpool.ThreadPoolSample;
 import com.alipay.sofa.test.runner.SofaBootRunner;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.ApplicationContext;
 
 /**
  *
@@ -38,59 +39,16 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class SofaBootRpcSamplesTest {
 
     @Autowired
-    private HelloSyncService   helloSyncServiceReference;
-
-    @Autowired
-    private HelloFutureService helloFutureServiceReference;
-
-    @Autowired
-    private GenericService     sampleGenericServiceReference;
-
-    @Autowired
-    private ThreadPoolService  threadPoolServiceReference;
-
-    @Autowired
-    private TestWaitUtil       testWaitUtil;
+    private ApplicationContext applicationContext;
 
     @Test
-    public void testInvoke() throws InterruptedException {
-
-        testWaitUtil.waitForTest();
-
-        // invoke sync
-        Assert.assertEquals("sync", helloSyncServiceReference.saySync("sync"));
-
-        // invoke future
-        helloFutureServiceReference.sayFuture("future");
-        Assert.assertEquals("future", SofaResponseFuture.getResponse(5000, true));
-
-    }
-
-    @Test
-    public void testGeneric() throws InterruptedException {
-
-        testWaitUtil.waitForTest();
-
-        GenericObject genericObject = new GenericObject(
-            "com.alipay.sofa.rpc.samples.generic.SampleGenericParamModel");
-        genericObject.putField("name", "Bible");
-        GenericObject result = (GenericObject) sampleGenericServiceReference.$genericInvoke("sayGeneric",
-            new String[] { "com.alipay.sofa.rpc.samples.generic.SampleGenericParamModel" },
-            new Object[] { genericObject });
-
-        Assert
-            .assertEquals("com.alipay.sofa.rpc.samples.generic.SampleGenericResultModel", result.getType());
-        Assert.assertEquals("Bible", result.getField("name"));
-        Assert.assertEquals("sample generic value", result.getField("value"));
-    }
-
-    @Test
-    public void testThreadPool() throws InterruptedException {
-
-        testWaitUtil.waitForTest();
-
-        Assert.assertTrue(threadPoolServiceReference.sayThreadPool("threadPool").startsWith(
-            "threadPool[customerThreadPool_name"));
-
+    public void testALl() throws InterruptedException {
+        new InvokeSample().start(applicationContext);
+        new DirectSample().start(applicationContext);
+        new GenericSample().start(applicationContext);
+        new FilterSample().start(applicationContext);
+        new ThreadPoolSample().start(applicationContext);
+        new RestSample().start(applicationContext);
+        new DubboSample().start(applicationContext);
     }
 }

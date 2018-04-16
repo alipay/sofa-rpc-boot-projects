@@ -111,7 +111,4 @@
         </sofa:binding.dubbo>
     </sofa:reference>
 
-    <!-- for test -->
-    <bean id="testWaitUtil" class="com.alipay.sofa.rpc.samples.TestWaitUtil"/>
-
 </beans>
