@@ -38,6 +38,6 @@ public class TestWaitUtil implements ApplicationListener<ContextRefreshedEvent> 
     public void waitForTest() throws InterruptedException {
 
         COUNT_DOWN_LATCH.await();
-        Thread.sleep(5000);
+        Thread.sleep(8000);
     }
 }
