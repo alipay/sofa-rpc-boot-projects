@@ -85,7 +85,7 @@ public class SofaBootRpcConfigConstants {
     public static final String  DUBBO_ACCEPTS_COUNT                          = "com.alipay.sofa.rpc.dubbo.accepts.count";
 
     /** registry */
-    public static final String  REGISTRY_PROTOCOL                            = "com.alipay.sofa.rpc.registry.protocol";
+    public static final String  REGISTRY_PROTOCOL                            = "com.alipay.sofa.rpc.registry.address";
 
     public static final String  REGISTRY_FILE_PATH                           = "com.alipay.sofa.rpc.registry.file.path";
 
