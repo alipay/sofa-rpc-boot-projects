@@ -14,20 +14,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alipay.sofa.rpc.boot.context.event;
+package com.alipay.sofa.rpc.samples;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.event.ApplicationContextEvent;
+import org.springframework.context.ApplicationListener;
+import org.springframework.context.event.ContextRefreshedEvent;
+
+import java.util.concurrent.CountDownLatch;
 
 /**
  *
- * SOFABoot启动服务器和发布服务之后的事件
- *
- * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
+ * @author liangen
+ * @version $Id: TestWaitUtil.java, v 0.1 2018年04月16日 下午9:02 liangen Exp $
  */
-public class SofaBootRpcStartAfterEvent extends ApplicationContextEvent {
+public class TestWaitUtil implements ApplicationListener<ContextRefreshedEvent> {
 
-    public SofaBootRpcStartAfterEvent(ApplicationContext applicationContext) {
-        super(applicationContext);
+    private static final CountDownLatch COUNT_DOWN_LATCH = new CountDownLatch(1);
+
+    @Override
+    public void onApplicationEvent(ContextRefreshedEvent event) {
+        COUNT_DOWN_LATCH.countDown();
+    }
+
+    public void waitForTest() throws InterruptedException {
+
+        COUNT_DOWN_LATCH.await();
+        Thread.sleep(5000);
     }
 }

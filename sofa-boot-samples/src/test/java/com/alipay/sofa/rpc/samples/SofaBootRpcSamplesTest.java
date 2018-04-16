@@ -49,8 +49,14 @@ public class SofaBootRpcSamplesTest {
     @Autowired
     private ThreadPoolService  threadPoolServiceReference;
 
+    @Autowired
+    private TestWaitUtil       testWaitUtil;
+
     @Test
     public void testInvoke() throws InterruptedException {
+
+        testWaitUtil.waitForTest();
+
         // invoke sync
         Assert.assertEquals("sync", helloSyncServiceReference.saySync("sync"));
 
@@ -61,7 +67,9 @@ public class SofaBootRpcSamplesTest {
     }
 
     @Test
-    public void testGeneric() {
+    public void testGeneric() throws InterruptedException {
+
+        testWaitUtil.waitForTest();
 
         GenericObject genericObject = new GenericObject(
             "com.alipay.sofa.rpc.samples.generic.SampleGenericParamModel");
@@ -77,7 +85,10 @@ public class SofaBootRpcSamplesTest {
     }
 
     @Test
-    public void testThreadPool() {
+    public void testThreadPool() throws InterruptedException {
+
+        testWaitUtil.waitForTest();
+
         Assert.assertTrue(threadPoolServiceReference.sayThreadPool("threadPool").startsWith(
             "threadPool[customerThreadPool_name"));
 
