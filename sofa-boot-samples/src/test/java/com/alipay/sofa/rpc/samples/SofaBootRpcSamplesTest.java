@@ -79,7 +79,8 @@ public class SofaBootRpcSamplesTest {
 
         Thread.sleep(3000);
 
-        Assert.assertTrue(new ThreadPoolSample().start(applicationContext).startsWith("threadPool[[customerThreadPool_name"));
+        Assert.assertTrue(new ThreadPoolSample().start(applicationContext).startsWith(
+            "threadPool[customerThreadPool_name"));
     }
 
     @Test
