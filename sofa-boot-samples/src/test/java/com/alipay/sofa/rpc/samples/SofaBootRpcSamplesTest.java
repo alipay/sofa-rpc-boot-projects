@@ -42,13 +42,58 @@ public class SofaBootRpcSamplesTest {
     private ApplicationContext applicationContext;
 
     @Test
-    public void testALl() throws InterruptedException {
+    public void testInvoke() throws InterruptedException {
+
+        Thread.sleep(3000);
+
         new InvokeSample().start(applicationContext);
+    }
+
+    @Test
+    public void testDirect() throws InterruptedException {
+
+        Thread.sleep(3000);
+
         new DirectSample().start(applicationContext);
+    }
+
+    @Test
+    public void testGeneric() throws InterruptedException {
+
+        Thread.sleep(3000);
+
         new GenericSample().start(applicationContext);
+    }
+
+    @Test
+    public void testFilter() throws InterruptedException {
+
+        Thread.sleep(3000);
+
         new FilterSample().start(applicationContext);
+    }
+
+    @Test
+    public void testThreadPool() throws InterruptedException {
+
+        Thread.sleep(3000);
+
         new ThreadPoolSample().start(applicationContext);
+    }
+
+    @Test
+    public void testRest() throws InterruptedException {
+
+        Thread.sleep(3000);
+
         new RestSample().start(applicationContext);
+    }
+
+    @Test
+    public void testDubbo() throws InterruptedException {
+
+        Thread.sleep(3000);
+
         new DubboSample().start(applicationContext);
     }
 }
