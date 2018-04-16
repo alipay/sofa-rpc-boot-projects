@@ -25,11 +25,14 @@ import org.springframework.context.ApplicationContext;
  */
 public class DubboSample {
 
-    public void start(ApplicationContext applicationContext) throws InterruptedException {
+    public String start(ApplicationContext applicationContext) throws InterruptedException {
         DubboService dubboService = (DubboService) applicationContext.getBean("dubboServiceReference");
 
         Thread.sleep(5000);
 
-        System.out.println(dubboService.sayDubbo("dubbo"));
+        String result = dubboService.sayDubbo("dubbo");
+        System.out.println(result);
+
+        return result;
     }
 }

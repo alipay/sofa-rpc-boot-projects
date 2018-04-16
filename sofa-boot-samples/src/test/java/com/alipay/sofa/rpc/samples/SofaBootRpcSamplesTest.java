@@ -24,6 +24,7 @@ import com.alipay.sofa.rpc.samples.invoke.InvokeSample;
 import com.alipay.sofa.rpc.samples.rest.RestSample;
 import com.alipay.sofa.rpc.samples.threadpool.ThreadPoolSample;
 import com.alipay.sofa.test.runner.SofaBootRunner;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +47,7 @@ public class SofaBootRpcSamplesTest {
 
         Thread.sleep(3000);
 
-        new InvokeSample().start(applicationContext);
+        Assert.assertEquals("sync", new InvokeSample().start(applicationContext));
     }
 
     @Test
@@ -54,7 +55,7 @@ public class SofaBootRpcSamplesTest {
 
         Thread.sleep(3000);
 
-        new DirectSample().start(applicationContext);
+        Assert.assertEquals("direct", new DirectSample().start(applicationContext));
     }
 
     @Test
@@ -62,7 +63,7 @@ public class SofaBootRpcSamplesTest {
 
         Thread.sleep(3000);
 
-        new GenericSample().start(applicationContext);
+        Assert.assertEquals("sample generic value", new GenericSample().start(applicationContext));
     }
 
     @Test
@@ -70,7 +71,7 @@ public class SofaBootRpcSamplesTest {
 
         Thread.sleep(3000);
 
-        new FilterSample().start(applicationContext);
+        Assert.assertEquals("filter", new FilterSample().start(applicationContext));
     }
 
     @Test
@@ -78,7 +79,7 @@ public class SofaBootRpcSamplesTest {
 
         Thread.sleep(3000);
 
-        new ThreadPoolSample().start(applicationContext);
+        Assert.assertTrue(new ThreadPoolSample().start(applicationContext).startsWith("threadPool[[customerThreadPool_name"));
     }
 
     @Test
@@ -86,7 +87,7 @@ public class SofaBootRpcSamplesTest {
 
         Thread.sleep(3000);
 
-        new RestSample().start(applicationContext);
+        Assert.assertEquals("rest", new RestSample().start(applicationContext));
     }
 
     @Test
@@ -94,6 +95,6 @@ public class SofaBootRpcSamplesTest {
 
         Thread.sleep(3000);
 
-        new DubboSample().start(applicationContext);
+        Assert.assertEquals("dubbo", new DubboSample().start(applicationContext));
     }
 }
