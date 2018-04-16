@@ -16,7 +16,6 @@
  */
 package com.alipay.sofa.rpc.samples;
 
-import com.alipay.sofa.rpc.samples.direct.DirectSample;
 import com.alipay.sofa.rpc.samples.dubbo.DubboSample;
 import com.alipay.sofa.rpc.samples.filter.FilterSample;
 import com.alipay.sofa.rpc.samples.generic.GenericSample;
@@ -45,23 +44,11 @@ public class SofaBootRpcSamplesTest {
     @Test
     public void testInvoke() throws InterruptedException {
 
-        Thread.sleep(3000);
-
         Assert.assertEquals("sync", new InvokeSample().start(applicationContext));
     }
 
     @Test
-    public void testDirect() throws InterruptedException {
-
-        Thread.sleep(3000);
-
-        Assert.assertEquals("direct", new DirectSample().start(applicationContext));
-    }
-
-    @Test
     public void testGeneric() throws InterruptedException {
-
-        Thread.sleep(3000);
 
         Assert.assertEquals("sample generic value", new GenericSample().start(applicationContext));
     }
@@ -69,15 +56,11 @@ public class SofaBootRpcSamplesTest {
     @Test
     public void testFilter() throws InterruptedException {
 
-        Thread.sleep(3000);
-
         Assert.assertEquals("filter", new FilterSample().start(applicationContext));
     }
 
     @Test
     public void testThreadPool() throws InterruptedException {
-
-        Thread.sleep(3000);
 
         Assert.assertTrue(new ThreadPoolSample().start(applicationContext).startsWith(
             "threadPool[customerThreadPool_name"));
@@ -86,15 +69,11 @@ public class SofaBootRpcSamplesTest {
     @Test
     public void testRest() throws InterruptedException {
 
-        Thread.sleep(3000);
-
         Assert.assertEquals("rest", new RestSample().start(applicationContext));
     }
 
     @Test
     public void testDubbo() throws InterruptedException {
-
-        Thread.sleep(3000);
 
         Assert.assertEquals("dubbo", new DubboSample().start(applicationContext));
     }

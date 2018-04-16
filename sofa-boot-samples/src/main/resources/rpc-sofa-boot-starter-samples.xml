@@ -11,7 +11,6 @@
     <bean id="helloSyncServiceImpl" class="com.alipay.sofa.rpc.samples.invoke.HelloSyncServiceImpl"/>
     <sofa:service ref="helloSyncServiceImpl" interface="com.alipay.sofa.rpc.samples.invoke.HelloSyncService">
         <sofa:binding.bolt/>
-        <sofa:binding.rest/>
     </sofa:service>
     <sofa:reference id="helloSyncServiceReference" interface="com.alipay.sofa.rpc.samples.invoke.HelloSyncService">
         <sofa:binding.bolt/>
