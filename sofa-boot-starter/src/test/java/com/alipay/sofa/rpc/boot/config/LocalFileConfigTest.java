@@ -16,6 +16,7 @@
  */
 package com.alipay.sofa.rpc.boot.config;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -42,6 +43,11 @@ public class LocalFileConfigTest {
 
     @Before
     public void before() {
+        LocalFileConfigurator.setFile(null);
+    }
+
+    @After
+    public void after() {
         LocalFileConfigurator.setFile(null);
     }
 

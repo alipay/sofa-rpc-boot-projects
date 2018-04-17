@@ -16,6 +16,7 @@
  */
 package com.alipay.sofa.rpc.samples;
 
+import com.alipay.sofa.rpc.samples.direct.DirectSample;
 import com.alipay.sofa.rpc.samples.dubbo.DubboSample;
 import com.alipay.sofa.rpc.samples.filter.FilterSample;
 import com.alipay.sofa.rpc.samples.generic.GenericSample;
@@ -24,6 +25,7 @@ import com.alipay.sofa.rpc.samples.rest.RestSample;
 import com.alipay.sofa.rpc.samples.threadpool.ThreadPoolSample;
 import com.alipay.sofa.test.runner.SofaBootRunner;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,10 +43,13 @@ public class SofaBootRpcSamplesTest {
     @Autowired
     private ApplicationContext applicationContext;
 
+    @Before
+    public void before() throws InterruptedException {
+        Thread.sleep(1000);
+    }
+
     @Test
     public void testInvoke() throws InterruptedException {
-
-        Thread.sleep(1000);
 
         Assert.assertEquals("sync", new InvokeSample().start(applicationContext));
     }
@@ -52,23 +57,23 @@ public class SofaBootRpcSamplesTest {
     @Test
     public void testGeneric() throws InterruptedException {
 
-        Thread.sleep(1000);
-
         Assert.assertEquals("sample generic value", new GenericSample().start(applicationContext));
     }
 
     @Test
     public void testFilter() throws InterruptedException {
 
-        Thread.sleep(1000);
-
         Assert.assertEquals("filter", new FilterSample().start(applicationContext));
     }
 
     @Test
-    public void testThreadPool() throws InterruptedException {
+    public void testDirect() throws InterruptedException {
 
-        Thread.sleep(1000);
+        Assert.assertEquals("direct", new DirectSample().start(applicationContext));
+    }
+
+    @Test
+    public void testThreadPool() throws InterruptedException {
 
         Assert.assertTrue(new ThreadPoolSample().start(applicationContext).startsWith(
             "threadPool[customerThreadPool_name"));
@@ -77,15 +82,11 @@ public class SofaBootRpcSamplesTest {
     @Test
     public void testRest() throws InterruptedException {
 
-        Thread.sleep(1000);
-
         Assert.assertEquals("rest", new RestSample().start(applicationContext));
     }
 
     @Test
     public void testDubbo() throws InterruptedException {
-
-        Thread.sleep(1000);
 
         Assert.assertEquals("dubbo", new DubboSample().start(applicationContext));
     }
