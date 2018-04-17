@@ -25,7 +25,7 @@ import com.alipay.sofa.rpc.samples.rest.RestSample;
 import com.alipay.sofa.rpc.samples.threadpool.ThreadPoolSample;
 import com.alipay.sofa.test.runner.SofaBootRunner;
 import org.junit.Assert;
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,9 +43,9 @@ public class SofaBootRpcSamplesTest {
     @Autowired
     private ApplicationContext applicationContext;
 
-    @Before
-    public void before() throws InterruptedException {
-        Thread.sleep(1000);
+    @BeforeClass
+    public static void before() throws InterruptedException {
+        Thread.sleep(5000);
     }
 
     @Test
