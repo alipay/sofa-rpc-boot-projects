@@ -87,8 +87,6 @@ public class SofaBootRpcConfigConstants {
     /** registry */
     public static final String  REGISTRY_PROTOCOL                            = "com.alipay.sofa.rpc.registry.address";
 
-    public static final String  REGISTRY_FILE_PATH                           = "com.alipay.sofa.rpc.registry.file.path";
-
     /** key end ********************************************************/
 
     /** default config value start ********************************************************/
@@ -97,7 +95,7 @@ public class SofaBootRpcConfigConstants {
     public static final int     REST_PORT_DEFAULT                            = 8341;
     public static final int     REST_IO_THREAD_COUNT_DEFAULT                 = SystemInfo.getCpuCores() * 2;
     public static final int     REST_EXECUTOR_THREAD_COUNT_DEFAULT           = 200;
-    public static final int     REST_MAX_REQUEST_SIZE_DEFAULT                = 500;
+    public static final int     REST_MAX_REQUEST_SIZE_DEFAULT                = 1024 * 1024 * 10;
     public static final boolean REST_TELNET_DEFAULT                          = true;
     public static final boolean REST_DAEMON_DEFAULT                          = true;
 

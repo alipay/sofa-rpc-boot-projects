@@ -31,7 +31,7 @@ import java.util.Map;
 public class ZookeeperConfigurator {
 
     /**
-     * 缓存文件地址
+     * 缓存文件地址key
      */
     private static final String              FILE         = "file";
 

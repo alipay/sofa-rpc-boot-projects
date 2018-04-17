@@ -31,8 +31,7 @@ public class RegistryConfigContainerTest {
     public void testGetRegistryConfig() {
 
         System.setProperty(SofaBootRpcConfigConstants.REGISTRY_PROTOCOL,
-            SofaBootRpcConfigConstants.REGISTRY_PROTOCOL_LOCAL);
-        System.setProperty(SofaBootRpcConfigConstants.REGISTRY_FILE_PATH, "/home/admin/local");
+            "local:/home/admin/local");
 
         RegistryConfig registryConfigLocal = RegistryConfigContainer.createLocalRegistryConfig();
         Assert.assertEquals("local", registryConfigLocal.getProtocol());
@@ -57,7 +56,6 @@ public class RegistryConfigContainerTest {
 
         //clear
         System.clearProperty(SofaBootRpcConfigConstants.REGISTRY_PROTOCOL);
-        System.clearProperty(SofaBootRpcConfigConstants.REGISTRY_FILE_PATH);
     }
 
 }
