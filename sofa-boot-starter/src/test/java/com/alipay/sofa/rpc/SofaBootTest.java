@@ -50,7 +50,7 @@ public class SofaBootTest {
     @Test
     public void testRemote() throws InterruptedException {
 
-        Thread.sleep(2000);
+        Thread.sleep(3000);
 
         System.out.println(sampleFacadeReferenceBolt.sayHi("bolt"));
         System.out.println(sampleFacadeReferenceRest.sayHi("rest"));
@@ -62,7 +62,7 @@ public class SofaBootTest {
     @Test
     public void testThread() throws InterruptedException {
 
-        Thread.sleep(2000);
+        Thread.sleep(3000);
 
         Assert.assertTrue(countServiceReference.getCount().startsWith("1000countServiceThreadPool_name"));
     }
@@ -70,7 +70,7 @@ public class SofaBootTest {
     @Test
     public void testGeneric() throws InterruptedException {
 
-        Thread.sleep(2000);
+        Thread.sleep(3000);
 
         GenericObject genericObject = new GenericObject("com.alipay.sofa.rpc.bean.model.BookMarkModel");
         genericObject.putField("name", "Bible");
