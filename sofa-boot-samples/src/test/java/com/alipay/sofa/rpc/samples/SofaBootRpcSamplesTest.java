@@ -66,11 +66,6 @@ public class SofaBootRpcSamplesTest {
         Assert.assertEquals("filter", new FilterSample().start(applicationContext));
     }
 
-    @Test
-    public void testDirect() throws InterruptedException {
-
-        Assert.assertEquals("direct", new DirectSample().start(applicationContext));
-    }
 
     @Test
     public void testThreadPool() throws InterruptedException {
