@@ -71,4 +71,8 @@ public class LocalFileConfigurator {
         }
     }
 
+    public static void setFile(String file) {
+        LocalFileConfigurator.FILE = file;
+    }
+
 }

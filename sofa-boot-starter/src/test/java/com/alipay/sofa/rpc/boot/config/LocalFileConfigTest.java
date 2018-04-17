@@ -17,6 +17,7 @@
 package com.alipay.sofa.rpc.boot.config;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -37,6 +38,11 @@ public class LocalFileConfigTest {
 
         LocalFileConfigurator.parseConfig(config);
         Assert.assertEquals("/home/admin/registry", LocalFileConfigurator.getFile());
+    }
+
+    @Before
+    public void before() {
+        LocalFileConfigurator.setFile(null);
     }
 
 }
