@@ -58,7 +58,7 @@ public class RegistryConfigContainerTest {
     }
 
     @After
-    public void after(){
+    public void after() {
         System.clearProperty(SofaBootRpcConfigConstants.REGISTRY_PROTOCOL);
 
     }

@@ -96,7 +96,7 @@ public class ServerConfigContainerTest {
     }
 
     @After
-    public void after(){
+    public void after() {
         ServerConfigContainer.closeAllServer();
     }
 }
