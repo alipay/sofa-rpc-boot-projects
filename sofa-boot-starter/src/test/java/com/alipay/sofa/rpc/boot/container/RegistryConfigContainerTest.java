@@ -19,6 +19,7 @@ package com.alipay.sofa.rpc.boot.container;
 import com.alipay.sofa.rpc.boot.common.SofaBootRpcRuntimeException;
 import com.alipay.sofa.rpc.boot.config.SofaBootRpcConfigConstants;
 import com.alipay.sofa.rpc.config.RegistryConfig;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -54,8 +55,12 @@ public class RegistryConfigContainerTest {
             Assert.assertEquals("protocl[no] is not supported", e.getMessage());
         }
 
-        //clear
+    }
+
+    @After
+    public void after(){
         System.clearProperty(SofaBootRpcConfigConstants.REGISTRY_PROTOCOL);
+
     }
 
 }

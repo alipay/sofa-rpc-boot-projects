@@ -18,6 +18,7 @@ package com.alipay.sofa.rpc.boot.container;
 
 import com.alipay.sofa.rpc.boot.config.SofaBootRpcConfigConstants;
 import com.alipay.sofa.rpc.config.ServerConfig;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -92,6 +93,10 @@ public class ServerConfigContainerTest {
         System.clearProperty(SofaBootRpcConfigConstants.DUBBO_EXECUTOR_THREAD_COUNT);
         System.clearProperty(SofaBootRpcConfigConstants.DUBBO_ACCEPTS_COUNT);
 
+    }
+
+    @After
+    public void after(){
         ServerConfigContainer.closeAllServer();
     }
 }
