@@ -16,7 +16,6 @@
  */
 package com.alipay.sofa.rpc.samples;
 
-import com.alipay.sofa.rpc.samples.direct.DirectSample;
 import com.alipay.sofa.rpc.samples.dubbo.DubboSample;
 import com.alipay.sofa.rpc.samples.filter.FilterSample;
 import com.alipay.sofa.rpc.samples.generic.GenericSample;
@@ -66,11 +65,11 @@ public class SofaBootRpcSamplesTest {
         Assert.assertEquals("filter", new FilterSample().start(applicationContext));
     }
 
-    @Test
-    public void testDirect() throws InterruptedException {
-
-        Assert.assertEquals("direct", new DirectSample().start(applicationContext));
-    }
+    //@Test
+    //public void testDirect() throws InterruptedException {
+    //
+    //    Assert.assertEquals("direct", new DirectSample().start(applicationContext));
+    //}
 
     @Test
     public void testThreadPool() throws InterruptedException {

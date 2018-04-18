@@ -40,15 +40,15 @@
     </sofa:reference>
     
     <!-- direct -->
-    <bean id="directServiceImpl" class="com.alipay.sofa.rpc.samples.direct.DirectServiceImpl"/>
-    <sofa:service ref="directServiceImpl" interface="com.alipay.sofa.rpc.samples.direct.DirectService">
-        <sofa:binding.bolt/>
-    </sofa:service>
-    <sofa:reference id="directServiceReference" interface="com.alipay.sofa.rpc.samples.direct.DirectService">
-        <sofa:binding.bolt>
-            <sofa:route target-url="bolt://127.0.0.1:22000"/>
-        </sofa:binding.bolt>
-    </sofa:reference>
+    <!--<bean id="directServiceImpl" class="com.alipay.sofa.rpc.samples.direct.DirectServiceImpl"/>-->
+    <!--<sofa:service ref="directServiceImpl" interface="com.alipay.sofa.rpc.samples.direct.DirectService">-->
+        <!--<sofa:binding.bolt/>-->
+    <!--</sofa:service>-->
+    <!--<sofa:reference id="directServiceReference" interface="com.alipay.sofa.rpc.samples.direct.DirectService">-->
+        <!--<sofa:binding.bolt>-->
+            <!--<sofa:route target-url="bolt://127.0.0.1:22000"/>-->
+        <!--</sofa:binding.bolt>-->
+    <!--</sofa:reference>-->
 
     <!-- generic -->
     <bean id="sampleGenericServiceImpl" class="com.alipay.sofa.rpc.samples.generic.SampleGenericServiceImpl"/>
