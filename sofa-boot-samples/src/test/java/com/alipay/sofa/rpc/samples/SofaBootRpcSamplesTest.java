@@ -16,6 +16,7 @@
  */
 package com.alipay.sofa.rpc.samples;
 
+import com.alipay.sofa.rpc.samples.direct.DirectSample;
 import com.alipay.sofa.rpc.samples.dubbo.DubboSample;
 import com.alipay.sofa.rpc.samples.filter.FilterSample;
 import com.alipay.sofa.rpc.samples.generic.GenericSample;
@@ -23,6 +24,7 @@ import com.alipay.sofa.rpc.samples.invoke.InvokeSample;
 import com.alipay.sofa.rpc.samples.rest.RestSample;
 import com.alipay.sofa.rpc.samples.threadpool.ThreadPoolSample;
 import com.alipay.sofa.test.runner.SofaBootRunner;
+import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -47,6 +49,11 @@ public class SofaBootRpcSamplesTest {
         Thread.sleep(5000);
     }
 
+    @AfterClass
+    public static void after(){
+        System.exit(0);
+    }
+
     @Test
     public void testInvoke() throws InterruptedException {
 
@@ -65,11 +72,11 @@ public class SofaBootRpcSamplesTest {
         Assert.assertEquals("filter", new FilterSample().start(applicationContext));
     }
 
-    //@Test
-    //public void testDirect() throws InterruptedException {
-    //
-    //    Assert.assertEquals("direct", new DirectSample().start(applicationContext));
-    //}
+    @Test
+    public void testDirect() throws InterruptedException {
+
+        Assert.assertEquals("direct", new DirectSample().start(applicationContext));
+    }
 
     @Test
     public void testThreadPool() throws InterruptedException {
