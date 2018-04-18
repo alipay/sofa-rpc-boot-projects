@@ -385,6 +385,7 @@
                                     <package>com.alipay.sofa.rpc.registry</package>
                                     <package>com.alipay.hessian.generic.model</package>
                                     <package>com.alibaba.dubbo</package>
+                                    <package>org.I0Itec.zkclient</package>
                                     <package>javax.ws.rs</package>
                                 </packages>
                             </exported>
