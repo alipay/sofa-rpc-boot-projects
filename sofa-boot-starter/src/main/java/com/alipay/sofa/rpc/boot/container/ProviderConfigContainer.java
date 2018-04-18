@@ -101,6 +101,8 @@ public class ProviderConfigContainer {
             if (!serverConfig.getProtocol().equalsIgnoreCase(SofaBootRpcConfigConstants.RPC_PROTOCOL_DUBBO)) {
                 providerConfig.setRegister(true);
                 registry.register(providerConfig);
+
+                LOGGER.info("service published [" + providerConfig + "]");
             }
         }
     }
@@ -115,6 +117,8 @@ public class ProviderConfigContainer {
             if (serverConfig.getProtocol().equalsIgnoreCase(SofaBootRpcConfigConstants.RPC_PROTOCOL_DUBBO)) {
                 providerConfig.setRegister(true);
                 providerConfig.export();
+
+                LOGGER.info("service published [" + providerConfig + "]");
             }
         }
     }
