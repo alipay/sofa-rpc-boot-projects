@@ -85,8 +85,6 @@ public class ServerConfigContainer {
         if (restServerConfig != null) {
             restServerConfig.buildIfAbsent().start();
         }
-
-        LOGGER.info("bolt server and rest server started");
     }
 
     /**

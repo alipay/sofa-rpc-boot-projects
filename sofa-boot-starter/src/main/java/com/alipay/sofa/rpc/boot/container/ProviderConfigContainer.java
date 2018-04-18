@@ -102,7 +102,8 @@ public class ProviderConfigContainer {
                 providerConfig.setRegister(true);
                 registry.register(providerConfig);
 
-                LOGGER.info("service published [" + providerConfig + "]");
+                LOGGER.info("service published.  interfaceid[" + providerConfig.getInterfaceId() + "]; protocl[" +
+                    serverConfig.getProtocol() + "]");
             }
         }
     }
@@ -118,7 +119,8 @@ public class ProviderConfigContainer {
                 providerConfig.setRegister(true);
                 providerConfig.export();
 
-                LOGGER.info("service published [" + providerConfig + "]");
+                LOGGER.info("service published.  interfaceid[" + providerConfig.getInterfaceId() + "]; protocl[" +
+                    serverConfig.getProtocol() + "]");
             }
         }
     }

@@ -31,7 +31,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class RpcThreadPoolMonitor {
 
-    private static final Logger LOGGER     = SofaBootRpcLoggerFactory.getLogger("RPC-TR-THREADPOOL");
+    private static final Logger LOGGER     = SofaBootRpcLoggerFactory.getLogger("RPC-BOLT-THREADPOOL");
 
     /**
      * 线程池

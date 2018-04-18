@@ -30,7 +30,7 @@
     <appender name="ROOT-APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <append>true</append>
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
-            <level>${logging.level.com.alipay.sofa.rpc}</level>
+            <level>${logging.level.com.alipay.sofa.rpc.boot}</level>
             <onMatch>ACCEPT</onMatch>
             <onMismatch>DENY</onMismatch>
         </filter>
