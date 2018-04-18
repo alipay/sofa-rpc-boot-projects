@@ -24,7 +24,6 @@ import com.alipay.sofa.rpc.samples.invoke.InvokeSample;
 import com.alipay.sofa.rpc.samples.rest.RestSample;
 import com.alipay.sofa.rpc.samples.threadpool.ThreadPoolSample;
 import com.alipay.sofa.test.runner.SofaBootRunner;
-import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -47,11 +46,6 @@ public class SofaBootRpcSamplesTest {
     @BeforeClass
     public static void before() throws InterruptedException {
         Thread.sleep(5000);
-    }
-
-    @AfterClass
-    public static void after(){
-        System.exit(0);
     }
 
     @Test
