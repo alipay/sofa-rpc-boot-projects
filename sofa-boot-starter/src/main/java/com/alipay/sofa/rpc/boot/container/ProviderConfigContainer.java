@@ -58,7 +58,9 @@ public class ProviderConfigContainer {
     public static void addProviderConfig(String key, ProviderConfig providerConfig) {
         if (providerConfig != null) {
             if (RPC_SERVICE_CONTAINER.containsKey(key)) {
-                LOGGER.warn("已经存在相同的服务及协议,key[" + key + "];protocol[" + providerConfig.getServer().get(0) + "]");
+                if (LOGGER.isWarnEnabled()) {
+                    LOGGER.warn("已经存在相同的服务及协议,key[" + key + "];protocol[" + providerConfig.getServer().get(0) + "]");
+                }
             } else {
                 RPC_SERVICE_CONTAINER.put(key, providerConfig);
             }
@@ -102,8 +104,10 @@ public class ProviderConfigContainer {
                 providerConfig.setRegister(true);
                 registry.register(providerConfig);
 
-                LOGGER.info("service published.  interfaceid[" + providerConfig.getInterfaceId() + "]; protocl[" +
-                    serverConfig.getProtocol() + "]");
+                if (LOGGER.isInfoEnabled()) {
+                    LOGGER.info("service published.  interfaceid[" + providerConfig.getInterfaceId() + "]; protocl[" +
+                        serverConfig.getProtocol() + "]");
+                }
             }
         }
     }
@@ -119,8 +123,10 @@ public class ProviderConfigContainer {
                 providerConfig.setRegister(true);
                 providerConfig.export();
 
-                LOGGER.info("service published.  interfaceid[" + providerConfig.getInterfaceId() + "]; protocl[" +
-                    serverConfig.getProtocol() + "]");
+                if (LOGGER.isInfoEnabled()) {
+                    LOGGER.info("service published.  interfaceid[" + providerConfig.getInterfaceId() + "]; protocl[" +
+                        serverConfig.getProtocol() + "]");
+                }
             }
         }
     }
