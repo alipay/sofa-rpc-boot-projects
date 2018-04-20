@@ -27,7 +27,7 @@ import org.springframework.context.annotation.ImportResource;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @SpringBootApplication
-@SpringBootTest(properties = "com.alipay.sofa.rpc.bolt-port=12201")
+@SpringBootTest(properties = "com.alipay.sofa.rpc.bolt.port=12201")
 @RunWith(SpringRunner.class)
 @ImportResource("classpath*:spring/*.xml")
 public class SimpleInvokeTest {

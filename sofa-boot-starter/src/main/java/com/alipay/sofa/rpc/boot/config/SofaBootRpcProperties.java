@@ -16,13 +16,22 @@
  */
 package com.alipay.sofa.rpc.boot.config;
 
+import com.google.common.base.CaseFormat;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.core.env.Environment;
+import org.springframework.util.StringUtils;
 
 /**
  * @author khotyn
  */
-@ConfigurationProperties("com.alipay.sofa.rpc")
+@ConfigurationProperties(SofaBootRpcProperties.PREFIX)
 public class SofaBootRpcProperties {
+    static final String PREFIX = "com.alipay.sofa.rpc";
+
+    @Autowired
+    private Environment environment;
+
     /* fault-tolerance */
     private String aftRegulationEffective;
     private String aftDegradeEffective;
@@ -55,7 +64,8 @@ public class SofaBootRpcProperties {
     private String registryProtocol;
 
     public String getAftRegulationEffective() {
-        return aftRegulationEffective;
+        return StringUtils.isEmpty(aftRegulationEffective) ? getDotString(new Object() {
+        }.getClass().getEnclosingMethod().getName()) : aftRegulationEffective;
     }
 
     public void setAftRegulationEffective(String aftRegulationEffective) {
@@ -63,7 +73,8 @@ public class SofaBootRpcProperties {
     }
 
     public String getAftDegradeEffective() {
-        return aftDegradeEffective;
+        return StringUtils.isEmpty(aftDegradeEffective) ? getDotString(new Object() {
+        }.getClass().getEnclosingMethod().getName()) : aftDegradeEffective;
     }
 
     public void setAftDegradeEffective(String aftDegradeEffective) {
@@ -71,7 +82,8 @@ public class SofaBootRpcProperties {
     }
 
     public String getAftTimeWindow() {
-        return aftTimeWindow;
+        return StringUtils.isEmpty(aftTimeWindow) ? getDotString(new Object() {
+        }.getClass().getEnclosingMethod().getName()) : aftTimeWindow;
     }
 
     public void setAftTimeWindow(String aftTimeWindow) {
@@ -79,7 +91,8 @@ public class SofaBootRpcProperties {
     }
 
     public String getAftLeastWindowCount() {
-        return aftLeastWindowCount;
+        return StringUtils.isEmpty(aftLeastWindowCount) ? getDotString(new Object() {
+        }.getClass().getEnclosingMethod().getName()) : aftLeastWindowCount;
     }
 
     public void setAftLeastWindowCount(String aftLeastWindowCount) {
@@ -87,7 +100,8 @@ public class SofaBootRpcProperties {
     }
 
     public String getAftLeastWindowExceptionRateMultiple() {
-        return aftLeastWindowExceptionRateMultiple;
+        return StringUtils.isEmpty(aftLeastWindowExceptionRateMultiple) ? getDotString(new Object() {
+        }.getClass().getEnclosingMethod().getName()) : aftLeastWindowExceptionRateMultiple;
     }
 
     public void setAftLeastWindowExceptionRateMultiple(String aftLeastWindowExceptionRateMultiple) {
@@ -95,7 +109,8 @@ public class SofaBootRpcProperties {
     }
 
     public String getAftWeightDegradeRate() {
-        return aftWeightDegradeRate;
+        return StringUtils.isEmpty(aftWeightDegradeRate) ? getDotString(new Object() {
+        }.getClass().getEnclosingMethod().getName()) : aftWeightDegradeRate;
     }
 
     public void setAftWeightDegradeRate(String aftWeightDegradeRate) {
@@ -103,7 +118,8 @@ public class SofaBootRpcProperties {
     }
 
     public String getAftWeightRecoverRate() {
-        return aftWeightRecoverRate;
+        return StringUtils.isEmpty(aftWeightRecoverRate) ? getDotString(new Object() {
+        }.getClass().getEnclosingMethod().getName()) : aftWeightRecoverRate;
     }
 
     public void setAftWeightRecoverRate(String aftWeightRecoverRate) {
@@ -111,7 +127,8 @@ public class SofaBootRpcProperties {
     }
 
     public String getAftDegradeLeastWeight() {
-        return aftDegradeLeastWeight;
+        return StringUtils.isEmpty(aftDegradeLeastWeight) ? getDotString(new Object() {
+        }.getClass().getEnclosingMethod().getName()) : aftDegradeLeastWeight;
     }
 
     public void setAftDegradeLeastWeight(String aftDegradeLeastWeight) {
@@ -119,7 +136,8 @@ public class SofaBootRpcProperties {
     }
 
     public String getAftDegradeMaxIpCount() {
-        return aftDegradeMaxIpCount;
+        return StringUtils.isEmpty(aftDegradeMaxIpCount) ? getDotString(new Object() {
+        }.getClass().getEnclosingMethod().getName()) : aftDegradeMaxIpCount;
     }
 
     public void setAftDegradeMaxIpCount(String aftDegradeMaxIpCount) {
@@ -127,7 +145,8 @@ public class SofaBootRpcProperties {
     }
 
     public String getBoltPort() {
-        return boltPort;
+        return StringUtils.isEmpty(boltPort) ? getDotString(new Object() {
+        }.getClass().getEnclosingMethod().getName()) : boltPort;
     }
 
     public void setBoltPort(String boltPort) {
@@ -135,7 +154,8 @@ public class SofaBootRpcProperties {
     }
 
     public String getBoltIoThreadCount() {
-        return boltIoThreadCount;
+        return StringUtils.isEmpty(boltIoThreadCount) ? getDotString(new Object() {
+        }.getClass().getEnclosingMethod().getName()) : boltIoThreadCount;
     }
 
     public void setBoltIoThreadCount(String boltIoThreadCount) {
@@ -143,7 +163,8 @@ public class SofaBootRpcProperties {
     }
 
     public String getBoltExecutorThreadCount() {
-        return boltExecutorThreadCount;
+        return StringUtils.isEmpty(boltExecutorThreadCount) ? getDotString(new Object() {
+        }.getClass().getEnclosingMethod().getName()) : boltExecutorThreadCount;
     }
 
     public void setBoltExecutorThreadCount(String boltExecutorThreadCount) {
@@ -151,7 +172,8 @@ public class SofaBootRpcProperties {
     }
 
     public String getBoltAcceptsCount() {
-        return boltAcceptsCount;
+        return StringUtils.isEmpty(boltAcceptsCount) ? getDotString(new Object() {
+        }.getClass().getEnclosingMethod().getName()) : boltAcceptsCount;
     }
 
     public void setBoltAcceptsCount(String boltAcceptsCount) {
@@ -159,7 +181,8 @@ public class SofaBootRpcProperties {
     }
 
     public String getRestHostname() {
-        return restHostname;
+        return StringUtils.isEmpty(restHostname) ? getDotString(new Object() {
+        }.getClass().getEnclosingMethod().getName()) : restHostname;
     }
 
     public void setRestHostname(String restHostname) {
@@ -167,7 +190,8 @@ public class SofaBootRpcProperties {
     }
 
     public String getRestPort() {
-        return restPort;
+        return StringUtils.isEmpty(restPort) ? getDotString(new Object() {
+        }.getClass().getEnclosingMethod().getName()) : restPort;
     }
 
     public void setRestPort(String restPort) {
@@ -175,7 +199,8 @@ public class SofaBootRpcProperties {
     }
 
     public String getRestIoThreadCount() {
-        return restIoThreadCount;
+        return StringUtils.isEmpty(restIoThreadCount) ? getDotString(new Object() {
+        }.getClass().getEnclosingMethod().getName()) : restIoThreadCount;
     }
 
     public void setRestIoThreadCount(String restIoThreadCount) {
@@ -183,7 +208,8 @@ public class SofaBootRpcProperties {
     }
 
     public String getRestExecutorThreadCount() {
-        return restExecutorThreadCount;
+        return StringUtils.isEmpty(restExecutorThreadCount) ? getDotString(new Object() {
+        }.getClass().getEnclosingMethod().getName()) : restExecutorThreadCount;
     }
 
     public void setRestExecutorThreadCount(String restExecutorThreadCount) {
@@ -191,7 +217,8 @@ public class SofaBootRpcProperties {
     }
 
     public String getRestMaxRequestSize() {
-        return restMaxRequestSize;
+        return StringUtils.isEmpty(restMaxRequestSize) ? getDotString(new Object() {
+        }.getClass().getEnclosingMethod().getName()) : restMaxRequestSize;
     }
 
     public void setRestMaxRequestSize(String restMaxRequestSize) {
@@ -199,7 +226,8 @@ public class SofaBootRpcProperties {
     }
 
     public String getRestTelnet() {
-        return restTelnet;
+        return StringUtils.isEmpty(restTelnet) ? getDotString(new Object() {
+        }.getClass().getEnclosingMethod().getName()) : restTelnet;
     }
 
     public void setRestTelnet(String restTelnet) {
@@ -207,7 +235,8 @@ public class SofaBootRpcProperties {
     }
 
     public String getRestDaemon() {
-        return restDaemon;
+        return StringUtils.isEmpty(restDaemon) ? getDotString(new Object() {
+        }.getClass().getEnclosingMethod().getName()) : restDaemon;
     }
 
     public void setRestDaemon(String restDaemon) {
@@ -215,7 +244,8 @@ public class SofaBootRpcProperties {
     }
 
     public String getDubboPort() {
-        return dubboPort;
+        return StringUtils.isEmpty(dubboPort) ? getDotString(new Object() {
+        }.getClass().getEnclosingMethod().getName()) : dubboPort;
     }
 
     public void setDubboPort(String dubboPort) {
@@ -223,7 +253,8 @@ public class SofaBootRpcProperties {
     }
 
     public String getDubboIoThreadCount() {
-        return dubboIoThreadCount;
+        return StringUtils.isEmpty(dubboIoThreadCount) ? getDotString(new Object() {
+        }.getClass().getEnclosingMethod().getName()) : dubboIoThreadCount;
     }
 
     public void setDubboIoThreadCount(String dubboIoThreadCount) {
@@ -231,7 +262,8 @@ public class SofaBootRpcProperties {
     }
 
     public String getDubboExecutorThreadCount() {
-        return dubboExecutorThreadCount;
+        return StringUtils.isEmpty(dubboExecutorThreadCount) ? getDotString(new Object() {
+        }.getClass().getEnclosingMethod().getName()) : dubboExecutorThreadCount;
     }
 
     public void setDubboExecutorThreadCount(String dubboExecutorThreadCount) {
@@ -239,7 +271,8 @@ public class SofaBootRpcProperties {
     }
 
     public String getDubboAcceptsCount() {
-        return dubboAcceptsCount;
+        return StringUtils.isEmpty(dubboAcceptsCount) ? getDotString(new Object() {
+        }.getClass().getEnclosingMethod().getName()) : dubboAcceptsCount;
     }
 
     public void setDubboAcceptsCount(String dubboAcceptsCount) {
@@ -247,10 +280,24 @@ public class SofaBootRpcProperties {
     }
 
     public String getRegistryProtocol() {
-        return registryProtocol;
+        return StringUtils.isEmpty(registryProtocol) ? getDotString(new Object() {
+        }.getClass().getEnclosingMethod().getName()) : registryProtocol;
     }
 
     public void setRegistryProtocol(String registryProtocol) {
         this.registryProtocol = registryProtocol;
     }
+
+    private String getDotString(String enclosingMethodName) {
+        if (environment == null) {
+            return null;
+        }
+        return environment.getProperty(PREFIX + "." + camelToDot(enclosingMethodName.substring(3)));
+    }
+
+    String camelToDot(String camelCaseString) {
+        return CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_HYPHEN, camelCaseString).replaceAll("-", ".");
+    }
+
+
 }
