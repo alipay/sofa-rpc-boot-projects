@@ -20,20 +20,19 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
- *
  * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
-public class ZookeeperConfigTest {
+public class ZookeeperConfiguratorTest {
 
     @Test
     public void test() {
+        ZookeeperConfigurator zookeeperConfigurator = new ZookeeperConfigurator(new SofaBootRpcProperties());
         String config = "zookeeper://127.0.0.1:2181?aaa=111&rrr=666&file=/host/zk";
+        zookeeperConfigurator.parseConfig(config);
 
-        ZookeeperConfigurator.parseConfig(config);
-
-        Assert.assertEquals("111", ZookeeperConfigurator.getParamValue("aaa"));
-        Assert.assertEquals("666", ZookeeperConfigurator.getParamValue("rrr"));
-        Assert.assertEquals("127.0.0.1:2181", ZookeeperConfigurator.getAddress());
-        Assert.assertEquals("/host/zk", ZookeeperConfigurator.getFile());
+        Assert.assertEquals("111", zookeeperConfigurator.getParamValue("aaa"));
+        Assert.assertEquals("666", zookeeperConfigurator.getParamValue("rrr"));
+        Assert.assertEquals("127.0.0.1:2181", zookeeperConfigurator.getAddress());
+        Assert.assertEquals("/host/zk", zookeeperConfigurator.getFile());
     }
 }

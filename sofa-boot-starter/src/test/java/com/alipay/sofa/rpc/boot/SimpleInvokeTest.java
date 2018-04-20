@@ -14,28 +14,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alipay.sofa.rpc.boot.config;
+package com.alipay.sofa.rpc.boot;
 
+import com.alipay.sofa.rpc.bean.SampleFacade;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.ImportResource;
+import org.springframework.test.context.junit4.SpringRunner;
 
-/**
- * @author liangen
- * @version $Id: LocalFileConfigTest.java, v 0.1 2018年04月17日 下午2:51 liangen Exp $
- */
-public class LocalFileConfigTest {
+@SpringBootApplication
+@SpringBootTest(properties = "com.alipay.sofa.rpc.bolt-port=12201")
+@RunWith(SpringRunner.class)
+@ImportResource("classpath*:spring/*.xml")
+public class SimpleInvokeTest {
+    @Autowired
+    private SampleFacade sampleFacade;
 
     @Test
-    public void test() {
-        LocalFileConfigurator localFileConfigurator = new LocalFileConfigurator(new SofaBootRpcProperties());
-        String configA = "local";
-
-        localFileConfigurator.parseConfig(configA);
-        Assert.assertNull(localFileConfigurator.getFile());
-
-        String config = "local:/home/admin/registry";
-
-        localFileConfigurator.parseConfig(config);
-        Assert.assertEquals("/home/admin/registry", localFileConfigurator.getFile());
+    public void testSimpleInvocation() {
+        Assert.assertEquals("hi World!", sampleFacade.sayHi("World"));
     }
 }

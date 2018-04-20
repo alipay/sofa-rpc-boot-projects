@@ -18,14 +18,15 @@ package com.alipay.sofa.rpc.boot.container;
 
 import com.alipay.sofa.rpc.boot.common.RpcThreadPoolMonitor;
 import com.alipay.sofa.rpc.boot.common.SofaBootRpcRuntimeException;
-import com.alipay.sofa.rpc.boot.config.SofaBootRpcConfig;
 import com.alipay.sofa.rpc.boot.config.SofaBootRpcConfigConstants;
+import com.alipay.sofa.rpc.boot.config.SofaBootRpcProperties;
 import com.alipay.sofa.rpc.boot.log.SofaBootRpcLoggerFactory;
 import com.alipay.sofa.rpc.config.ServerConfig;
 import com.alipay.sofa.rpc.server.Server;
 import com.alipay.sofa.rpc.server.ServerFactory;
 import com.alipay.sofa.rpc.server.bolt.BoltServer;
 import org.slf4j.Logger;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.util.StringUtils;
 
 import java.util.concurrent.ThreadPoolExecutor;
@@ -35,40 +36,46 @@ import java.util.concurrent.ThreadPoolExecutor;
  *
  * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
-public class ServerConfigContainer {
+public class ServerConfigContainer implements InitializingBean {
 
-    private static final Logger          LOGGER     = SofaBootRpcLoggerFactory.getLogger(ServerConfigContainer.class);
+    private static final Logger   LOGGER     = SofaBootRpcLoggerFactory.getLogger(ServerConfigContainer.class);
 
+    private SofaBootRpcProperties sofaBootRpcProperties;
     /**
      * bolt ServerConfig
      */
-    private volatile static ServerConfig boltServerConfig;
-    private static final Object          BOLT_LOCK  = new Object();
+    private volatile ServerConfig boltServerConfig;
+    private final Object          BOLT_LOCK  = new Object();
 
     /**
      * rest ServerConfig
      */
-    private volatile static ServerConfig restServerConfig;
-    private static final Object          REST_LOCK  = new Object();
+    private volatile ServerConfig restServerConfig;
+    private final Object          REST_LOCK  = new Object();
 
     /**
      * dubbo ServerConfig
      */
-    private volatile static ServerConfig dubboServerConfig;
-    private static final Object          DUBBO_LOCK = new Object();
+    private volatile ServerConfig dubboServerConfig;
+    private final Object          DUBBO_LOCK = new Object();
+
+    public ServerConfigContainer(SofaBootRpcProperties sofaBootRpcProperties) {
+        this.sofaBootRpcProperties = sofaBootRpcProperties;
+    }
 
     /**
      * 是否需要开启Server
+     *
      * @return 是否需要开启
      */
-    public static boolean isNeedStart() {
+    public boolean isNeedStart() {
         return boltServerConfig != null || restServerConfig != null || dubboServerConfig != null;
     }
 
     /**
      * 开启所有 ServerConfig 对应的 Server
      */
-    public static void startServers() {
+    public void startServers() {
         if (boltServerConfig != null) {
             boltServerConfig.buildIfAbsent().start();
 
@@ -91,10 +98,11 @@ public class ServerConfigContainer {
 
     /**
      * 获取 ServerConfig
+     *
      * @param protocol 协议
      * @return the ServerConfig
      */
-    public static ServerConfig getServerConfig(String protocol) {
+    public ServerConfig getServerConfig(String protocol) {
 
         if (protocol.equalsIgnoreCase(SofaBootRpcConfigConstants.RPC_PROTOCOL_BOLT)) {
             if (boltServerConfig == null) {
@@ -135,30 +143,31 @@ public class ServerConfigContainer {
 
     /**
      * 获取 Server
+     *
      * @param protocol 协议
      * @return the Server
      */
-    public static Server getServer(String protocol) {
+    public Server getServer(String protocol) {
         return ServerFactory.getServer(getServerConfig(protocol));
     }
 
     /**
      * 创建 bolt ServerConfig。rest 的 配置不需要外层 starter 设置默认值。
-     * @return
+     *
+     * @return Bolt 的服务端配置信息
      */
-    static ServerConfig createBoltServerConfig() {
-        String portStr = SofaBootRpcConfig.getPropertyAllCircumstances(SofaBootRpcConfigConstants.BOLT_PORT);
-        String ioThreadCountStr = SofaBootRpcConfig
-            .getPropertyAllCircumstances(SofaBootRpcConfigConstants.BOLT_IO_THREAD_COUNT);
-        String executorThreadCountStr = SofaBootRpcConfig
-            .getPropertyAllCircumstances(SofaBootRpcConfigConstants.BOLT_EXECUTOR_THREAD_COUNT);
-        String acceptsCountStr = SofaBootRpcConfig
-            .getPropertyAllCircumstances(SofaBootRpcConfigConstants.BOLT_ACCEPTS_COUNT);
+    ServerConfig createBoltServerConfig() {
+        String portStr = sofaBootRpcProperties.getBoltPort();
+        String ioThreadCountStr = sofaBootRpcProperties.getBoltIoThreadCount();
+        String executorThreadCountStr = sofaBootRpcProperties.getBoltExecutorThreadCount();
+        String acceptsCountStr = sofaBootRpcProperties.getBoltAcceptsCount();
 
         ServerConfig serverConfig = new ServerConfig();
 
         if (StringUtils.hasText(portStr)) {
             serverConfig.setPort(Integer.parseInt(portStr));
+        } else {
+            serverConfig.setPort(12200);
         }
 
         if (StringUtils.hasText(ioThreadCountStr)) {
@@ -179,26 +188,24 @@ public class ServerConfigContainer {
 
     /**
      * 创建 rest ServerConfig。rest 的 配置需要外层 starter 设置默认值。
+     *
      * @return rest ServerConfig
      */
-    static ServerConfig createRestServerConfig() {
-        String hostName = SofaBootRpcConfig.getPropertyAllCircumstances(SofaBootRpcConfigConstants.REST_HOSTNAME);
-        String portStr = SofaBootRpcConfig.getPropertyAllCircumstances(SofaBootRpcConfigConstants.REST_PORT);
-        String ioThreadCountStr = SofaBootRpcConfig
-            .getPropertyAllCircumstances(SofaBootRpcConfigConstants.REST_IO_THREAD_COUNT);
-        String executorThreadCountStr = SofaBootRpcConfig
-            .getPropertyAllCircumstances(SofaBootRpcConfigConstants.REST_EXECUTOR_THREAD_COUNT);
-        String maxRequestSizeStr = SofaBootRpcConfig
-            .getPropertyAllCircumstances(SofaBootRpcConfigConstants.REST_MAX_REQUEST_SIZE);
-        String telnetStr = SofaBootRpcConfig.getPropertyAllCircumstances(SofaBootRpcConfigConstants.REST_TELNET);
-        String daemonStr = SofaBootRpcConfig.getPropertyAllCircumstances(SofaBootRpcConfigConstants.REST_DAEMON);
+    ServerConfig createRestServerConfig() {
+        String hostName = sofaBootRpcProperties.getRestHostname();
+        String portStr = sofaBootRpcProperties.getRestPort();
+        String ioThreadCountStr = sofaBootRpcProperties.getRestIoThreadCount();
+        String executorThreadCountStr = sofaBootRpcProperties.getRestExecutorThreadCount();
+        String maxRequestSizeStr = sofaBootRpcProperties.getRestMaxRequestSize();
+        String telnetStr = sofaBootRpcProperties.getRestTelnet();
+        String daemonStr = sofaBootRpcProperties.getRestDaemon();
 
-        int port = 0;
-        int ioThreadCount = 0;
-        int executorThreadCount = 0;
-        int maxRequestSize = 0;
-        boolean telnet = false;
-        boolean daemon = true;
+        int port;
+        int ioThreadCount;
+        int executorThreadCount;
+        int maxRequestSize;
+        boolean telnet;
+        boolean daemon;
 
         if (!StringUtils.hasText(hostName)) {
             hostName = null;
@@ -255,17 +262,14 @@ public class ServerConfigContainer {
 
     /**
      * 创建 dubbo ServerConfig。会设置 Dubbo 的默认端口，其余配置不会由外层 Starter 设置默认值。
+     *
      * @return dubbo ServerConfig
      */
-    static ServerConfig createDubboServerConfig() {
-
-        String portStr = SofaBootRpcConfig.getPropertyAllCircumstances(SofaBootRpcConfigConstants.DUBBO_PORT);
-        String ioThreadCountStr = SofaBootRpcConfig
-            .getPropertyAllCircumstances(SofaBootRpcConfigConstants.DUBBO_IO_THREAD_COUNT);
-        String executorThreadCountStr = SofaBootRpcConfig
-            .getPropertyAllCircumstances(SofaBootRpcConfigConstants.DUBBO_EXECUTOR_THREAD_COUNT);
-        String acceptsCountStr = SofaBootRpcConfig
-            .getPropertyAllCircumstances(SofaBootRpcConfigConstants.DUBBO_ACCEPTS_COUNT);
+    ServerConfig createDubboServerConfig() {
+        String portStr = sofaBootRpcProperties.getDubboPort();
+        String ioThreadCountStr = sofaBootRpcProperties.getDubboIoThreadCount();
+        String executorThreadCountStr = sofaBootRpcProperties.getDubboExecutorThreadCount();
+        String acceptsCountStr = sofaBootRpcProperties.getDubboAcceptsCount();
 
         ServerConfig serverConfig = new ServerConfig();
 
@@ -295,7 +299,7 @@ public class ServerConfigContainer {
     /**
      * 释放所有 ServerConfig 对应的资源，并移除所有的 ServerConfig。
      */
-    public static void closeAllServer() {
+    public void closeAllServer() {
         if (boltServerConfig != null) {
             boltServerConfig.destroy();
             boltServerConfig = null;
@@ -310,5 +314,10 @@ public class ServerConfigContainer {
             dubboServerConfig.destroy();
             dubboServerConfig = null;
         }
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+
     }
 }

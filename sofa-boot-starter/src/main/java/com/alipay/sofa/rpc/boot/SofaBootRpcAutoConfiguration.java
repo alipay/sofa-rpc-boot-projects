@@ -16,16 +16,72 @@
  */
 package com.alipay.sofa.rpc.boot;
 
+import com.alipay.sofa.rpc.boot.config.FaultToleranceConfigurator;
+import com.alipay.sofa.rpc.boot.config.LocalFileConfigurator;
+import com.alipay.sofa.rpc.boot.config.SofaBootRpcProperties;
+import com.alipay.sofa.rpc.boot.config.ZookeeperConfigurator;
+import com.alipay.sofa.rpc.boot.container.ConsumerConfigContainer;
+import com.alipay.sofa.rpc.boot.container.ProviderConfigContainer;
+import com.alipay.sofa.rpc.boot.container.RegistryConfigContainer;
+import com.alipay.sofa.rpc.boot.container.ServerConfigContainer;
+import com.alipay.sofa.rpc.boot.runtime.adapter.helper.ConsumerConfigHelper;
+import com.alipay.sofa.rpc.boot.runtime.adapter.helper.ProviderConfigHelper;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 /**
- *
- *
  * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
 @Configuration
 @ComponentScan(value = { "com.alipay.sofa.rpc.boot" })
+@EnableConfigurationProperties({ SofaBootRpcProperties.class })
 public class SofaBootRpcAutoConfiguration {
+    @Bean
+    public ProviderConfigContainer providerConfigContainer() {
+        return new ProviderConfigContainer();
+    }
 
+    @Bean
+    public FaultToleranceConfigurator faultToleranceConfigurator() {
+        return new FaultToleranceConfigurator();
+    }
+
+    @Bean
+    public ServerConfigContainer serverConfigContainer(SofaBootRpcProperties sofaBootRpcProperties) {
+        return new ServerConfigContainer(sofaBootRpcProperties);
+    }
+
+    @Bean
+    public RegistryConfigContainer registryConfigContainer(SofaBootRpcProperties sofaBootRpcProperties,
+                                                           ZookeeperConfigurator zookeeperConfigurator,
+                                                           LocalFileConfigurator localFileConfigurator) {
+        return new RegistryConfigContainer(sofaBootRpcProperties, zookeeperConfigurator, localFileConfigurator);
+    }
+
+    @Bean
+    public ConsumerConfigHelper consumerConfigHelper() {
+        return new ConsumerConfigHelper();
+    }
+
+    @Bean
+    public ProviderConfigHelper providerConfigHelper() {
+        return new ProviderConfigHelper();
+    }
+
+    @Bean
+    public ZookeeperConfigurator zookeeperConfigurator(SofaBootRpcProperties sofaBootRpcProperties) {
+        return new ZookeeperConfigurator(sofaBootRpcProperties);
+    }
+
+    @Bean
+    public LocalFileConfigurator localFileConfigurator(SofaBootRpcProperties sofaBootRpcProperties) {
+        return new LocalFileConfigurator(sofaBootRpcProperties);
+    }
+
+    @Bean
+    public ConsumerConfigContainer consumerConfigContainer() {
+        return new ConsumerConfigContainer();
+    }
 }

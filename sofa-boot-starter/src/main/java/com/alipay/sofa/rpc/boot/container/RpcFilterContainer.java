@@ -25,7 +25,6 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
- *
  * 持有从 XML 解析的 Filter 实例或者 id。
  *
  * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
@@ -43,6 +42,7 @@ public class RpcFilterContainer {
 
     /**
      * 增加 Filter id
+     *
      * @param filterId id
      */
     public static void addFilterId(String filterId) {
@@ -53,6 +53,7 @@ public class RpcFilterContainer {
 
     /**
      * 增加 Filter 实例
+     *
      * @param filterClass 实例
      */
     public static void addFilterClass(String filterClass) {
@@ -63,6 +64,7 @@ public class RpcFilterContainer {
 
     /**
      * 获取所有的 Filter 实例
+     *
      * @param applicationContext Spring 上下文
      * @return 所有的 Filter 实例
      */
@@ -87,6 +89,7 @@ public class RpcFilterContainer {
 
     /**
      * 加载并持有所有的 Filter id 或实例
+     *
      * @param applicationContext Spring 上下文
      */
     public static void loadFilters(ApplicationContext applicationContext) {
@@ -94,7 +97,7 @@ public class RpcFilterContainer {
             filters.add((applicationContext.getBean(filterId, Filter.class)));
         }
         for (String clazz : filterClasses) {
-            Class filterClass = null;
+            Class filterClass;
             try {
                 filterClass = Class.forName(clazz);
             } catch (ClassNotFoundException e) {

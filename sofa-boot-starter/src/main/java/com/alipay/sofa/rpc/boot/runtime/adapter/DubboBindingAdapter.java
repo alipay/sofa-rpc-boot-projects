@@ -24,11 +24,15 @@ import com.alipay.sofa.runtime.api.ServiceRuntimeException;
 import com.alipay.sofa.runtime.api.binding.BindingType;
 import com.alipay.sofa.runtime.spi.binding.Contract;
 import com.alipay.sofa.runtime.spi.component.SofaRuntimeContext;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
 public class DubboBindingAdapter extends RpcBindingAdapter {
+    @Autowired
+    private ProviderConfigContainer providerConfigContainer;
+
     @Override
     public BindingType getBindingType() {
         return RpcBindingType.DUBBO_BINDING_TYPE;
@@ -44,8 +48,8 @@ public class DubboBindingAdapter extends RpcBindingAdapter {
     public void postUnoutBinding(Object contract, RpcBinding binding, Object target,
                                  SofaRuntimeContext sofaRuntimeContext) {
         try {
-            String key = ProviderConfigContainer.createUniqueName((Contract) contract, binding);
-            ProviderConfigContainer.removeProviderConfig(key);
+            String key = providerConfigContainer.createUniqueName((Contract) contract, binding);
+            providerConfigContainer.removeProviderConfig(key);
         } catch (Exception e) {
             throw new ServiceRuntimeException(
                 LogCodes.getLog(LogCodes.ERROR_PROXY_POST_UNPUBLISH_FAIL), e);
