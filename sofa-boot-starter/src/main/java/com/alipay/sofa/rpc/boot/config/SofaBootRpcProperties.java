@@ -33,35 +33,35 @@ public class SofaBootRpcProperties {
     private Environment environment;
 
     /* fault-tolerance */
-    private String aftRegulationEffective;
-    private String aftDegradeEffective;
-    private String aftTimeWindow;
-    private String aftLeastWindowCount;
-    private String aftLeastWindowExceptionRateMultiple;
-    private String aftWeightDegradeRate;
-    private String aftWeightRecoverRate;
-    private String aftDegradeLeastWeight;
-    private String aftDegradeMaxIpCount;
+    private String      aftRegulationEffective;
+    private String      aftDegradeEffective;
+    private String      aftTimeWindow;
+    private String      aftLeastWindowCount;
+    private String      aftLeastWindowExceptionRateMultiple;
+    private String      aftWeightDegradeRate;
+    private String      aftWeightRecoverRate;
+    private String      aftDegradeLeastWeight;
+    private String      aftDegradeMaxIpCount;
     /* Bolt */
-    private String boltPort;
-    private String boltIoThreadCount;
-    private String boltExecutorThreadCount;
-    private String boltAcceptsCount;
+    private String      boltPort;
+    private String      boltIoThreadCount;
+    private String      boltExecutorThreadCount;
+    private String      boltAcceptsCount;
     /* rest */
-    private String restHostname;
-    private String restPort;
-    private String restIoThreadCount;
-    private String restExecutorThreadCount;
-    private String restMaxRequestSize;
-    private String restTelnet;
-    private String restDaemon;
+    private String      restHostname;
+    private String      restPort;
+    private String      restIoThreadCount;
+    private String      restExecutorThreadCount;
+    private String      restMaxRequestSize;
+    private String      restTelnet;
+    private String      restDaemon;
     /* dubbo */
-    private String dubboPort;
-    private String dubboIoThreadCount;
-    private String dubboExecutorThreadCount;
-    private String dubboAcceptsCount;
+    private String      dubboPort;
+    private String      dubboIoThreadCount;
+    private String      dubboExecutorThreadCount;
+    private String      dubboAcceptsCount;
     /* registry */
-    private String registryProtocol;
+    private String      registryProtocol;
 
     public String getAftRegulationEffective() {
         return StringUtils.isEmpty(aftRegulationEffective) ? getDotString(new Object() {
@@ -298,6 +298,5 @@ public class SofaBootRpcProperties {
     String camelToDot(String camelCaseString) {
         return CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_HYPHEN, camelCaseString).replaceAll("-", ".");
     }
-
 
 }
