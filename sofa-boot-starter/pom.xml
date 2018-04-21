@@ -9,7 +9,6 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.alipay.sofa</groupId>
     <artifactId>rpc-sofa-boot-starter</artifactId>
     <version>5.3.1</version>
 
@@ -304,6 +303,7 @@
                     <destFile>${jacoco.path}</destFile>
                     <dataFile>${jacoco.path}</dataFile>
                     <sessionId>jacoco_coverage</sessionId>
+                    <append>true</append>
                     <excludes>
                         <exclude>com.alipay.boot.sofarpc.spring.*</exclude>
                         <exclude>com.alipay.sofa.*</exclude>

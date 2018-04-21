@@ -22,8 +22,6 @@ import com.alipay.sofa.rpc.boot.config.SofaBootRpcConfigConstants;
 import com.alipay.sofa.rpc.boot.config.SofaBootRpcProperties;
 import com.alipay.sofa.rpc.boot.log.SofaBootRpcLoggerFactory;
 import com.alipay.sofa.rpc.config.ServerConfig;
-import com.alipay.sofa.rpc.server.Server;
-import com.alipay.sofa.rpc.server.ServerFactory;
 import com.alipay.sofa.rpc.server.bolt.BoltServer;
 import org.slf4j.Logger;
 import org.springframework.util.StringUtils;
@@ -60,15 +58,6 @@ public class ServerConfigContainer {
 
     public ServerConfigContainer(SofaBootRpcProperties sofaBootRpcProperties) {
         this.sofaBootRpcProperties = sofaBootRpcProperties;
-    }
-
-    /**
-     * 是否需要开启Server
-     *
-     * @return 是否需要开启
-     */
-    public boolean isNeedStart() {
-        return boltServerConfig != null || restServerConfig != null || dubboServerConfig != null;
     }
 
     /**
@@ -138,16 +127,6 @@ public class ServerConfigContainer {
             throw new SofaBootRpcRuntimeException("protocol [" + protocol + "] is not supported");
         }
 
-    }
-
-    /**
-     * 获取 Server
-     *
-     * @param protocol 协议
-     * @return the Server
-     */
-    public Server getServer(String protocol) {
-        return ServerFactory.getServer(getServerConfig(protocol));
     }
 
     /**
