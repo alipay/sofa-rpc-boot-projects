@@ -16,6 +16,7 @@
  */
 package com.alipay.sofa.rpc.boot.container;
 
+import com.alipay.sofa.rpc.boot.config.SofaBootRpcConfigConstants;
 import com.alipay.sofa.rpc.boot.config.SofaBootRpcProperties;
 import com.alipay.sofa.rpc.config.ServerConfig;
 import org.junit.Assert;
@@ -51,7 +52,7 @@ public class ServerConfigContainerTest {
     public void testBoltServerDefaultPort() {
         sofaBootRpcProperties.setBoltPort("");
         ServerConfig serverConfig = serverConfigContainer.createBoltServerConfig();
-        Assert.assertEquals(12200, serverConfig.getPort());
+        Assert.assertEquals(SofaBootRpcConfigConstants.BOLT_PORT_DEFAULT, serverConfig.getPort());
     }
 
     @Test
