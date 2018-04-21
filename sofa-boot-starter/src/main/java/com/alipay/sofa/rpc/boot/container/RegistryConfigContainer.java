@@ -74,7 +74,7 @@ public class RegistryConfigContainer {
      * @throws SofaBootRpcRuntimeException SofaBoot运行时异常
      */
     public RegistryConfig getRegistryConfig() throws SofaBootRpcRuntimeException {
-        String registryConfig = sofaBootRpcProperties.getRegistryProtocol();
+        String registryConfig = sofaBootRpcProperties.getRegistryAddress();
 
         if (StringUtils.isBlank(registryConfig) ||
             registryConfig.startsWith(SofaBootRpcConfigConstants.REGISTRY_PROTOCOL_LOCAL)) {

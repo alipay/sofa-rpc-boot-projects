@@ -16,28 +16,27 @@
  */
 package com.alipay.sofa.rpc.boot;
 
-import com.alipay.sofa.rpc.boot.config.FaultToleranceConfigurator;
-import com.alipay.sofa.rpc.boot.config.LocalFileConfigurator;
-import com.alipay.sofa.rpc.boot.config.SofaBootRpcProperties;
-import com.alipay.sofa.rpc.boot.config.ZookeeperConfigurator;
-import com.alipay.sofa.rpc.boot.container.ConsumerConfigContainer;
-import com.alipay.sofa.rpc.boot.container.ProviderConfigContainer;
-import com.alipay.sofa.rpc.boot.container.RegistryConfigContainer;
-import com.alipay.sofa.rpc.boot.container.ServerConfigContainer;
+import com.alipay.sofa.rpc.boot.config.*;
+import com.alipay.sofa.rpc.boot.container.*;
 import com.alipay.sofa.rpc.boot.runtime.adapter.helper.ConsumerConfigHelper;
 import com.alipay.sofa.rpc.boot.runtime.adapter.helper.ProviderConfigHelper;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 
 /**
  * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
 @Configuration
 @ComponentScan(value = { "com.alipay.sofa.rpc.boot" })
-@EnableConfigurationProperties({ SofaBootRpcProperties.class })
 public class SofaBootRpcAutoConfiguration {
+    @Bean
+    public SofaBootRpcProperties sofaBootRpcProperties(Environment environment) {
+        return new SofaBootRpcProperties(environment);
+    }
+
     @Bean
     public ProviderConfigContainer providerConfigContainer() {
         return new ProviderConfigContainer();
@@ -61,8 +60,9 @@ public class SofaBootRpcAutoConfiguration {
     }
 
     @Bean
-    public ConsumerConfigHelper consumerConfigHelper() {
-        return new ConsumerConfigHelper();
+    public ConsumerConfigHelper consumerConfigHelper(RegistryConfigContainer registryConfigContainer,
+                                                     @Value("${" + SofaBootRpcConfigConstants.APP_NAME + "}") String appName) {
+        return new ConsumerConfigHelper(registryConfigContainer, appName);
     }
 
     @Bean
@@ -83,5 +83,10 @@ public class SofaBootRpcAutoConfiguration {
     @Bean
     public ConsumerConfigContainer consumerConfigContainer() {
         return new ConsumerConfigContainer();
+    }
+
+    @Bean
+    public RpcFilterContainer rpcFilterContainer() {
+        return new RpcFilterContainer();
     }
 }

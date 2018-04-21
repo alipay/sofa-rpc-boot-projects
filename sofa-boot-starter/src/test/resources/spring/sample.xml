@@ -4,6 +4,7 @@
        xmlns:sofa="http://sofastack.io/schema/sofaboot"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
             http://sofastack.io/schema/sofaboot   http://sofastack.io/schema/sofaboot.xsd">
+    <sofa:rpc-global-filter ref="sampleGlobalFilter"/>
     <bean class="com.alipay.sofa.rpc.bean.impl.SampleFacadeImpl" id="sampleFacadeBean"/>
     <sofa:service ref="sampleFacadeBean" interface="com.alipay.sofa.rpc.bean.SampleFacade">
         <sofa:binding.bolt/>
@@ -13,4 +14,7 @@
             <sofa:route target-url="127.0.0.1:12201"/>
         </sofa:binding.bolt>
     </sofa:reference>
+
+    <!-- Global Filter Test -->
+    <bean class="com.alipay.sofa.rpc.bean.SampleGlobalFilter" id="sampleGlobalFilter"/>
 </beans>

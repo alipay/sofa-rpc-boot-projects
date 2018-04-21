@@ -32,10 +32,15 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class ApplicationContextClosedListener implements ApplicationListener {
+    private final ProviderConfigContainer providerConfigContainer;
+    private final ServerConfigContainer   serverConfigContainer;
+
     @Autowired
-    private ProviderConfigContainer providerConfigContainer;
-    @Autowired
-    private ServerConfigContainer   serverConfigContainer;
+    public ApplicationContextClosedListener(ProviderConfigContainer providerConfigContainer,
+                                            ServerConfigContainer serverConfigContainer) {
+        this.providerConfigContainer = providerConfigContainer;
+        this.serverConfigContainer = serverConfigContainer;
+    }
 
     @Override
     public void onApplicationEvent(ApplicationEvent event) {

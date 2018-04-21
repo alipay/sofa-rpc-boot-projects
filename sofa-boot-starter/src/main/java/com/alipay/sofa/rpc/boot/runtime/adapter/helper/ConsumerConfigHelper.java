@@ -29,8 +29,6 @@ import com.alipay.sofa.rpc.config.RegistryConfig;
 import com.alipay.sofa.rpc.core.invoke.SofaResponseCallback;
 import com.alipay.sofa.rpc.filter.Filter;
 import com.alipay.sofa.runtime.spi.binding.Contract;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
@@ -43,10 +41,13 @@ import java.util.List;
  * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
 public class ConsumerConfigHelper {
-    @Autowired
-    private RegistryConfigContainer registryConfigContainer;
-    @Value("${" + SofaBootRpcConfigConstants.APP_NAME + "}")
-    private String                  appName;
+    private final RegistryConfigContainer registryConfigContainer;
+    private final String                  appName;
+
+    public ConsumerConfigHelper(RegistryConfigContainer registryConfigContainer, String appName) {
+        this.registryConfigContainer = registryConfigContainer;
+        this.appName = appName;
+    }
 
     /**
      * 获取 ConsumerConfig

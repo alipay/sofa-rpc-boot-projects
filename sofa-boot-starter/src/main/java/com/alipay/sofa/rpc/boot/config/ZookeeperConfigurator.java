@@ -110,7 +110,7 @@ public class ZookeeperConfigurator {
      */
     public void parseConfig() {
         if (!alreadyParse) {
-            parseConfig(sofaBootRpcProperties.getRegistryProtocol());
+            parseConfig(sofaBootRpcProperties.getRegistryAddress());
             alreadyParse = true;
         }
 

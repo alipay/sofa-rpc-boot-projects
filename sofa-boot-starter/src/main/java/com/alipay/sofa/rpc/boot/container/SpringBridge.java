@@ -46,6 +46,10 @@ public class SpringBridge {
         return applicationContext.getBean(ConsumerConfigContainer.class);
     }
 
+    public static RpcFilterContainer getRpcFilterContainer() {
+        return applicationContext.getBean(RpcFilterContainer.class);
+    }
+
     public static void setApplicationContext(ApplicationContext applicationContext) {
         SpringBridge.applicationContext = applicationContext;
     }

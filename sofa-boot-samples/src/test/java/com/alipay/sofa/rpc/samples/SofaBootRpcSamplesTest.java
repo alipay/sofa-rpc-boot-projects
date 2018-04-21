@@ -43,44 +43,37 @@ public class SofaBootRpcSamplesTest {
 
     @Test
     public void testInvoke() throws InterruptedException {
-
         Assert.assertEquals("sync", new InvokeSample().start(applicationContext));
     }
 
     @Test
     public void testGeneric() {
-
         Assert.assertEquals("sample generic value", new GenericSample().start(applicationContext));
     }
 
     @Test
     public void testFilter() {
-
         Assert.assertEquals("filter", new FilterSample().start(applicationContext));
     }
 
     @Test
     public void testDirect() throws InterruptedException {
-
         Assert.assertEquals("direct", new DirectSample().start(applicationContext));
     }
 
     @Test
     public void testThreadPool() {
-
         Assert.assertTrue(new ThreadPoolSample().start(applicationContext).startsWith(
             "threadPool[customerThreadPool_name"));
     }
 
     @Test
     public void testRest() {
-
         Assert.assertEquals("rest", new RestSample().start(applicationContext));
     }
 
     @Test
     public void testDubbo() throws InterruptedException {
-
         Assert.assertEquals("dubbo", new DubboSample().start(applicationContext));
     }
 }

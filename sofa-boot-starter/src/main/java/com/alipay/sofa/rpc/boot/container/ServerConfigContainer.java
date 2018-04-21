@@ -26,7 +26,6 @@ import com.alipay.sofa.rpc.server.Server;
 import com.alipay.sofa.rpc.server.ServerFactory;
 import com.alipay.sofa.rpc.server.bolt.BoltServer;
 import org.slf4j.Logger;
-import org.springframework.beans.factory.InitializingBean;
 import org.springframework.util.StringUtils;
 
 import java.util.concurrent.ThreadPoolExecutor;
@@ -36,7 +35,7 @@ import java.util.concurrent.ThreadPoolExecutor;
  *
  * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
-public class ServerConfigContainer implements InitializingBean {
+public class ServerConfigContainer {
 
     private static final Logger   LOGGER     = SofaBootRpcLoggerFactory.getLogger(ServerConfigContainer.class);
 
@@ -314,10 +313,5 @@ public class ServerConfigContainer implements InitializingBean {
             dubboServerConfig.destroy();
             dubboServerConfig = null;
         }
-    }
-
-    @Override
-    public void afterPropertiesSet() throws Exception {
-
     }
 }

@@ -37,7 +37,7 @@ public class RegistryConfigContainerTest {
     private RegistryConfigContainer registryConfigContainer;
 
     public RegistryConfigContainerTest() {
-        sofaBootRpcProperties = new SofaBootRpcProperties();
+        sofaBootRpcProperties = new SofaBootRpcProperties(null);
         registryConfigContainer = new RegistryConfigContainer(sofaBootRpcProperties,
             new ZookeeperConfigurator(sofaBootRpcProperties),
             new LocalFileConfigurator(sofaBootRpcProperties));
@@ -45,7 +45,7 @@ public class RegistryConfigContainerTest {
 
     @Test
     public void testGetLocalRegistryConfig() {
-        sofaBootRpcProperties.setRegistryProtocol("local:/home/admin/local");
+        sofaBootRpcProperties.setRegistryAddress("local:/home/admin/local");
         RegistryConfig registryConfigLocal = registryConfigContainer.createLocalRegistryConfig();
         Assert.assertEquals("local", registryConfigLocal.getProtocol());
         Assert.assertEquals("/home/admin/local", registryConfigLocal.getFile());
@@ -53,7 +53,7 @@ public class RegistryConfigContainerTest {
 
     @Test
     public void testZooKeeperRegistryConfig() {
-        sofaBootRpcProperties.setRegistryProtocol("zookeeper://127.0.0.1:2181?file=/home/admin/zookeeper");
+        sofaBootRpcProperties.setRegistryAddress("zookeeper://127.0.0.1:2181?file=/home/admin/zookeeper");
         RegistryConfig registryConfigZk = registryConfigContainer.createZookeeperRegistryConfig();
         Assert.assertEquals("zookeeper", registryConfigZk.getProtocol());
         Assert.assertEquals("/home/admin/zookeeper", registryConfigZk.getFile());
@@ -63,7 +63,7 @@ public class RegistryConfigContainerTest {
     public void testWrongRegistryConfig() {
         thrown.expect(SofaBootRpcRuntimeException.class);
         thrown.expectMessage("protocol[no] is not supported");
-        sofaBootRpcProperties.setRegistryProtocol("no");
+        sofaBootRpcProperties.setRegistryAddress("no");
         registryConfigContainer.getRegistryConfig();
     }
 

@@ -38,4 +38,9 @@ public class SimpleInvokeTest {
     public void testSimpleInvocation() {
         Assert.assertEquals("hi World!", sampleFacade.sayHi("World"));
     }
+
+    @Test
+    public void testGlobalFilter() {
+        Assert.assertEquals("hi GlobalFilter!", sampleFacade.sayHi("FilterTest"));
+    }
 }

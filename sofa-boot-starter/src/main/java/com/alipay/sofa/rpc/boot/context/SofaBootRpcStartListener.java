@@ -46,7 +46,6 @@ public class SofaBootRpcStartListener implements ApplicationListener<SofaBootRpc
 
     @Override
     public void onApplicationEvent(SofaBootRpcStartEvent event) {
-
         //start fault tolerance
         faultToleranceConfigurator.startFaultTolerance();
 
@@ -64,6 +63,5 @@ public class SofaBootRpcStartListener implements ApplicationListener<SofaBootRpc
 
         //export dubbo
         providerConfigContainer.exportAllDubboProvideConfig();
-
     }
 }

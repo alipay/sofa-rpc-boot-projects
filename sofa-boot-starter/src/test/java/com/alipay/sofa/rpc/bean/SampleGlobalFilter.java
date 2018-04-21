@@ -14,19 +14,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alipay.sofa.rpc.boot.runtime.parser;
+package com.alipay.sofa.rpc.bean;
+
+import com.alipay.sofa.rpc.core.exception.SofaRpcException;
+import com.alipay.sofa.rpc.core.request.SofaRequest;
+import com.alipay.sofa.rpc.core.response.SofaResponse;
+import com.alipay.sofa.rpc.filter.Filter;
+import com.alipay.sofa.rpc.filter.FilterInvoker;
 
 /**
- * 全局 Filter 的元素和属性。
- *
  * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
-public class GlobalFilterXmlConstants {
-
-    public static final String TAG_GLOBAL_FILTER = "rpc-global-filter";
-
-    public static final String TAG_REF           = "ref";
-
-    public static final String TAG_CLASS         = "class";
-
+public class SampleGlobalFilter extends Filter {
+    @Override
+    public SofaResponse invoke(FilterInvoker invoker, SofaRequest request) throws SofaRpcException {
+        if (request.getInterfaceName() != null &&
+            request.getInterfaceName().equals("com.alipay.sofa.rpc.bean.SampleFacade")) {
+            if (request.getMethodArgs()[0].equals("FilterTest")) {
+                request.getMethodArgs()[0] = "GlobalFilter";
+            }
+        }
+        return invoker.invoke(request);
+    }
 }

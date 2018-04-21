@@ -171,7 +171,6 @@ public abstract class RpcBindingAdapter implements BindingAdapter<RpcBinding> {
      */
     @Override
     public void unInBinding(Object contract, RpcBinding binding, SofaRuntimeContext sofaRuntimeContext) {
-
         try {
             SpringBridge.getConsumerConfigContainer().removeAndUnReferConsumerConfig(binding);
         } catch (Exception e) {
