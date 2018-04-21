@@ -166,7 +166,7 @@ public class ServerConfigContainer {
         if (StringUtils.hasText(portStr)) {
             serverConfig.setPort(Integer.parseInt(portStr));
         } else {
-            serverConfig.setPort(12200);
+            serverConfig.setPort(SofaBootRpcConfigConstants.BOLT_PORT_DEFAULT);
         }
 
         if (StringUtils.hasText(ioThreadCountStr)) {

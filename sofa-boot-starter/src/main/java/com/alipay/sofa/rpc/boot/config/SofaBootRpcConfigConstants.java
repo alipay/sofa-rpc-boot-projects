@@ -28,6 +28,7 @@ public class SofaBootRpcConfigConstants {
     public static final String  APP_NAME                           = "spring.application.name";
 
     /* default config value start ********************************************************/
+    public static final int     BOLT_PORT_DEFAULT                  = 12200;
 
     /* rest default configuration */
     public static final int     REST_PORT_DEFAULT                  = 8341;
