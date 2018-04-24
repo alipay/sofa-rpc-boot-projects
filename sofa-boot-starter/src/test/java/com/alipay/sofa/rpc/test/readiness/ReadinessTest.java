@@ -19,6 +19,7 @@ package com.alipay.sofa.rpc.test.readiness;
 import com.alipay.sofa.rpc.bean.SampleFacade;
 import com.alipay.sofa.rpc.boot.config.SofaBootRpcConfigConstants;
 import com.alipay.sofa.rpc.core.exception.SofaRouteException;
+import com.alipay.sofa.rpc.test.util.TestUtils;
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
@@ -34,13 +35,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.util.SocketUtils;
 
 import java.util.concurrent.TimeUnit;
 
 @SpringBootApplication
-@SpringBootTest(properties = { "com.alipay.sofa.rpc.registry.address=zookeeper://localhost:2181" }
-        , classes = com.alipay.sofa.rpc.test.readiness.ReadinessTest.class)
+@SpringBootTest(properties = {"com.alipay.sofa.rpc.registry.address=zookeeper://localhost:2181"}
+        , classes = ReadinessTest.class)
 @RunWith(SpringRunner.class)
 @ImportResource("classpath:spring/readiness.xml")
 @Import(ReadinessTest.Config.class)
@@ -48,21 +48,20 @@ public class ReadinessTest {
     @Rule
     public ExpectedException thrown = ExpectedException.none();
     @Autowired
-    private SampleFacade     sampleFacade;
+    private SampleFacade sampleFacade;
 
     @Test
     public void testCannotFoundAddress() throws InterruptedException {
         thrown.expect(SofaRouteException.class);
         thrown
-            .expectMessage("RPC-02306: Cannot get the service address of service [com.alipay.sofa.rpc.bean.SampleFacade:1.0], please check the registry log.");
+                .expectMessage("RPC-02306: Cannot get the service address of service [com.alipay.sofa.rpc.bean.SampleFacade:1.0], please check the registry log.");
         TimeUnit.SECONDS.sleep(1);
         Assert.assertEquals("hi World!", sampleFacade.sayHi("World"));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void testPortNotOpen() {
-        SocketUtils.findAvailableTcpPort(SofaBootRpcConfigConstants.BOLT_PORT_DEFAULT,
-            SofaBootRpcConfigConstants.BOLT_PORT_DEFAULT);
+        Assert.assertTrue(TestUtils.available(SofaBootRpcConfigConstants.BOLT_PORT_DEFAULT));
     }
 
     @TestConfiguration
