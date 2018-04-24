@@ -27,7 +27,7 @@ public class LocalFileConfigTest {
 
     @Test
     public void test() {
-        LocalFileConfigurator localFileConfigurator = new LocalFileConfigurator(new SofaBootRpcProperties(null));
+        LocalFileConfigurator localFileConfigurator = new LocalFileConfigurator(new SofaBootRpcProperties());
         String configA = "local";
 
         localFileConfigurator.parseConfig(configA);

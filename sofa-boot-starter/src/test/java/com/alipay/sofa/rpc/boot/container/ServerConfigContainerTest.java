@@ -30,7 +30,7 @@ public class ServerConfigContainerTest {
     private ServerConfigContainer serverConfigContainer;
 
     public ServerConfigContainerTest() {
-        sofaBootRpcProperties = new SofaBootRpcProperties(null);
+        sofaBootRpcProperties = new SofaBootRpcProperties();
         serverConfigContainer = new ServerConfigContainer(sofaBootRpcProperties);
     }
 

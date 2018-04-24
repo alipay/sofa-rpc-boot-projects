@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alipay.sofa.rpc.boot;
+package com.alipay.sofa.rpc.test.bolt;
 
 import com.alipay.sofa.rpc.bean.SampleFacade;
 import org.junit.Assert;
@@ -26,11 +26,15 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.test.context.junit4.SpringRunner;
 
+/**
+ * @author khotyn
+ */
 @SpringBootApplication
-@SpringBootTest(properties = "com.alipay.sofa.rpc.bolt.port=12201")
+@SpringBootTest(properties = { "com.alipay.sofa.rpc.bolt.port=12201" }
+        , classes = BoltInvokeTest.class)
 @RunWith(SpringRunner.class)
-@ImportResource("classpath*:spring/*.xml")
-public class SimpleInvokeTest {
+@ImportResource("classpath:spring/bolt.xml")
+public class BoltInvokeTest {
     @Autowired
     private SampleFacade sampleFacade;
 

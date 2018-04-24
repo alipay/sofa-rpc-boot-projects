@@ -26,7 +26,7 @@ public class ZookeeperConfiguratorTest {
 
     @Test
     public void test() {
-        ZookeeperConfigurator zookeeperConfigurator = new ZookeeperConfigurator(new SofaBootRpcProperties(null));
+        ZookeeperConfigurator zookeeperConfigurator = new ZookeeperConfigurator(new SofaBootRpcProperties());
         String config = "zookeeper://127.0.0.1:2181?aaa=111&rrr=666&file=/host/zk";
         zookeeperConfigurator.parseConfig(config);
 
