@@ -39,7 +39,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.concurrent.TimeUnit;
 
 @SpringBootApplication
-@SpringBootTest(properties = {"com.alipay.sofa.rpc.registry.address=zookeeper://localhost:2181"}
+@SpringBootTest(properties = { "com.alipay.sofa.rpc.registry.address=zookeeper://localhost:2181" }
         , classes = ReadinessTest.class)
 @RunWith(SpringRunner.class)
 @ImportResource("classpath:spring/readiness.xml")
@@ -48,13 +48,13 @@ public class ReadinessTest {
     @Rule
     public ExpectedException thrown = ExpectedException.none();
     @Autowired
-    private SampleFacade sampleFacade;
+    private SampleFacade     sampleFacade;
 
     @Test
     public void testCannotFoundAddress() throws InterruptedException {
         thrown.expect(SofaRouteException.class);
         thrown
-                .expectMessage("RPC-02306: Cannot get the service address of service [com.alipay.sofa.rpc.bean.SampleFacade:1.0], please check the registry log.");
+            .expectMessage("RPC-02306: Cannot get the service address of service [com.alipay.sofa.rpc.bean.SampleFacade:1.0], please check the registry log.");
         TimeUnit.SECONDS.sleep(1);
         Assert.assertEquals("hi World!", sampleFacade.sayHi("World"));
     }
