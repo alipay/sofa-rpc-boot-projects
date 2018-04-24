@@ -17,7 +17,6 @@
 package com.alipay.sofa.rpc.boot.config;
 
 import com.google.common.base.CaseFormat;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.core.env.Environment;
 import org.springframework.util.StringUtils;
@@ -29,7 +28,6 @@ import org.springframework.util.StringUtils;
 public class SofaBootRpcProperties {
     static final String PREFIX = "com.alipay.sofa.rpc";
 
-    @Autowired
     private Environment environment;
     /* fault-tolerance */
     private String      aftRegulationEffective;
@@ -61,6 +59,10 @@ public class SofaBootRpcProperties {
     private String      dubboAcceptsCount;
     /* registry */
     private String      registryAddress;
+
+    public SofaBootRpcProperties(Environment environment) {
+        this.environment = environment;
+    }
 
     public String getAftRegulationEffective() {
         return StringUtils.isEmpty(aftRegulationEffective) ? getDotString(new Object() {

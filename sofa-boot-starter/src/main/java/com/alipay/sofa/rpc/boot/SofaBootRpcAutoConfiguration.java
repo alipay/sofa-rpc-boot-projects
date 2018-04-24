@@ -30,6 +30,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.core.env.Environment;
 
 /**
  * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
@@ -37,8 +38,8 @@ import org.springframework.context.annotation.Lazy;
 @Configuration
 public class SofaBootRpcAutoConfiguration {
     @Bean
-    public SofaBootRpcProperties sofaBootRpcProperties() {
-        return new SofaBootRpcProperties();
+    public SofaBootRpcProperties sofaBootRpcProperties(Environment environment) {
+        return new SofaBootRpcProperties(environment);
     }
 
     @Bean

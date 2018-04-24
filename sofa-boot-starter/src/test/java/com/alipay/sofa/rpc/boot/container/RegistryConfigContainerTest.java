@@ -37,7 +37,7 @@ public class RegistryConfigContainerTest {
     private RegistryConfigContainer registryConfigContainer;
 
     public RegistryConfigContainerTest() {
-        sofaBootRpcProperties = new SofaBootRpcProperties();
+        sofaBootRpcProperties = new SofaBootRpcProperties(null);
         registryConfigContainer = new RegistryConfigContainer(sofaBootRpcProperties,
             new ZookeeperConfigurator(sofaBootRpcProperties),
             new LocalFileConfigurator(sofaBootRpcProperties));
