@@ -22,6 +22,7 @@ import com.alipay.sofa.rpc.samples.filter.FilterSample;
 import com.alipay.sofa.rpc.samples.generic.GenericSample;
 import com.alipay.sofa.rpc.samples.invoke.InvokeSample;
 import com.alipay.sofa.rpc.samples.rest.RestSample;
+import com.alipay.sofa.rpc.samples.retry.RetriesSample;
 import com.alipay.sofa.rpc.samples.threadpool.ThreadPoolSample;
 import com.alipay.sofa.test.runner.SofaBootRunner;
 import org.junit.Assert;
@@ -75,5 +76,10 @@ public class SofaBootRpcSamplesTest {
     @Test
     public void testDubbo() throws InterruptedException {
         Assert.assertEquals("dubbo", new DubboSample().start(applicationContext));
+    }
+
+    @Test
+    public void testRetry() throws InterruptedException {
+        Assert.assertEquals(6, new RetriesSample().start(applicationContext));
     }
 }

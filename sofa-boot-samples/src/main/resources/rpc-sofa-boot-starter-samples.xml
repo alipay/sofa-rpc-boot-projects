@@ -109,4 +109,21 @@
         <sofa:binding.dubbo/>
     </sofa:reference>
 
+    <!-- retries -->
+    <bean id="retriesServiceImpl" class="com.alipay.sofa.rpc.samples.retry.RetriesServiceImpl"/>
+    <sofa:service ref="retriesServiceImpl" interface="com.alipay.sofa.rpc.samples.retry.RetriesService">
+        <sofa:binding.bolt/>
+        <sofa:binding.dubbo/>
+    </sofa:service>
+    <sofa:reference id="retriesServiceReferenceBolt" interface="com.alipay.sofa.rpc.samples.retry.RetriesService">
+        <sofa:binding.bolt>
+            <sofa:global-attrs retries="2"/>
+        </sofa:binding.bolt>
+    </sofa:reference>
+    <sofa:reference id="retriesServiceReferenceDubbo" interface="com.alipay.sofa.rpc.samples.retry.RetriesService">
+        <sofa:binding.dubbo>
+            <sofa:global-attrs retries="2"/>
+        </sofa:binding.dubbo>
+    </sofa:reference>
+
 </beans>

@@ -14,40 +14,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alipay.sofa.rpc.samples;
+package com.alipay.sofa.rpc.lazy;
 
-import com.alipay.sofa.rpc.samples.direct.DirectSample;
-import com.alipay.sofa.rpc.samples.dubbo.DubboSample;
-import com.alipay.sofa.rpc.samples.filter.FilterSample;
-import com.alipay.sofa.rpc.samples.generic.GenericSample;
-import com.alipay.sofa.rpc.samples.invoke.InvokeSample;
-import com.alipay.sofa.rpc.samples.rest.RestSample;
-import com.alipay.sofa.rpc.samples.retry.RetriesSample;
-import com.alipay.sofa.rpc.samples.threadpool.ThreadPoolSample;
+import com.alipay.sofa.rpc.samples.SofaBootRpcSamplesApplication;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ImportResource;
 
 /**
  *
- * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
+ * @author <a href="mailto:lw111072@antfin.com">LiWei.Liangen</a>
+ * @version $Id: LazySofaBootRpcApplication.java, v 0.1 2018年04月26日 下午5:59 LiWei.Liangen Exp $
  */
-@ImportResource({ "classpath*:rpc-sofa-boot-starter-samples.xml" })
+@ImportResource({ "classpath*:lazy.xml" })
 @org.springframework.boot.autoconfigure.SpringBootApplication
-public class SofaBootRpcSamplesApplication {
-
+public class LazySofaBootRpcApplication {
     public static void main(String[] args) throws InterruptedException {
 
         SpringApplication springApplication = new SpringApplication(SofaBootRpcSamplesApplication.class);
         ApplicationContext applicationContext = springApplication.run(args);
 
-        new InvokeSample().start(applicationContext);
-        new DirectSample().start(applicationContext);
-        new GenericSample().start(applicationContext);
-        new FilterSample().start(applicationContext);
-        new ThreadPoolSample().start(applicationContext);
-        new RestSample().start(applicationContext);
-        new DubboSample().start(applicationContext);
-        new RetriesSample().start(applicationContext);
     }
 }
