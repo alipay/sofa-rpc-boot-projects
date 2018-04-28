@@ -14,25 +14,33 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alipay.sofa.rpc.samples.rest;
+package com.alipay.sofa.rpc.samples.retries;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  *
- * @author liangen
- * @version $Id: RestService.java, v 0.1 2018年04月15日 下午5:37 liangen Exp $
+ * @author <a href="mailto:lw111072@antfin.com">LiWei.Liangen</a>
+ * @version $Id: RetryServiceImpl.java, v 0.1 2018年04月26日 下午3:07 LiWei.Liangen Exp $
  */
-@Path("/webapi")
-@Consumes("application/json;charset=UTF-8")
-@Produces("application/json;charset=UTF-8")
-public interface RestService {
+public class RetriesServiceImpl implements RetriesService {
 
-    @GET
-    @Path("/restService/{id}")
-    String sayRest(@PathParam("id") String string);
+    private final AtomicInteger count = new AtomicInteger(0);
+
+    @Override
+    public String sayRetry(String string) throws InterruptedException {
+
+        int current = count.incrementAndGet();
+        if (current == 3 || current == 6) {
+            return string;
+        } else {
+            Thread.sleep(3000);
+        }
+        return "xxx";
+    }
+
+    @Override
+    public int getCount() {
+        return count.get();
+    }
 }

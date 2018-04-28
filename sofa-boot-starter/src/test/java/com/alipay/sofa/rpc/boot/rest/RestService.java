@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alipay.sofa.rpc.samples.rest;
+package com.alipay.sofa.rpc.boot.rest;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;

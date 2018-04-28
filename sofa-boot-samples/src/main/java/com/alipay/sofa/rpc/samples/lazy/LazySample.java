@@ -14,25 +14,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alipay.sofa.rpc.samples.rest;
+package com.alipay.sofa.rpc.samples.lazy;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import org.springframework.context.ApplicationContext;
 
 /**
  *
- * @author liangen
- * @version $Id: RestService.java, v 0.1 2018年04月15日 下午5:37 liangen Exp $
+ * @author <a href="mailto:lw111072@antfin.com">LiWei.Liangen</a>
+ * @version $Id: LazySample.java, v 0.1 2018年04月28日 上午1:51 LiWei.Liangen Exp $
  */
-@Path("/webapi")
-@Consumes("application/json;charset=UTF-8")
-@Produces("application/json;charset=UTF-8")
-public interface RestService {
+public class LazySample {
 
-    @GET
-    @Path("/restService/{id}")
-    String sayRest(@PathParam("id") String string);
+    public void start(ApplicationContext applicationContext) {
+
+        LazyService lazyServiceReferenceBolt = (LazyService) applicationContext.getBean("lazyServiceReferenceBolt");
+        LazyService lazyServiceReferenceDubbo = (LazyService) applicationContext.getBean("lazyServiceReferenceDubbo");
+
+        System.out.println(lazyServiceReferenceBolt.sayLazy("lazy"));
+        System.out.println(lazyServiceReferenceDubbo.sayLazy("dubbo"));
+
+    }
 }

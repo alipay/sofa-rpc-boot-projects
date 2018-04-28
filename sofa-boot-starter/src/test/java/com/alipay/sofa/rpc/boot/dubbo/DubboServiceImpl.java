@@ -14,25 +14,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alipay.sofa.rpc.samples.rest;
-
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+package com.alipay.sofa.rpc.boot.dubbo;
 
 /**
  *
  * @author liangen
- * @version $Id: RestService.java, v 0.1 2018年04月15日 下午5:37 liangen Exp $
+ * @version $Id: DubboServiceImpl.java, v 0.1 2018年04月15日 下午6:28 liangen Exp $
  */
-@Path("/webapi")
-@Consumes("application/json;charset=UTF-8")
-@Produces("application/json;charset=UTF-8")
-public interface RestService {
-
-    @GET
-    @Path("/restService/{id}")
-    String sayRest(@PathParam("id") String string);
+public class DubboServiceImpl implements DubboService {
+    @Override
+    public String sayDubbo(String string) {
+        return string;
+    }
 }

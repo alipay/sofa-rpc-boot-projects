@@ -14,25 +14,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alipay.sofa.rpc.samples.rest;
+package com.alipay.sofa.rpc.boot.filter;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import com.alipay.sofa.rpc.core.exception.SofaRpcException;
+import com.alipay.sofa.rpc.core.request.SofaRequest;
+import com.alipay.sofa.rpc.core.response.SofaResponse;
+import com.alipay.sofa.rpc.filter.Filter;
+import com.alipay.sofa.rpc.filter.FilterInvoker;
 
 /**
  *
- * @author liangen
- * @version $Id: RestService.java, v 0.1 2018年04月15日 下午5:37 liangen Exp $
+ * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
-@Path("/webapi")
-@Consumes("application/json;charset=UTF-8")
-@Produces("application/json;charset=UTF-8")
-public interface RestService {
+public class TestFilter extends Filter {
+    @Override
+    public SofaResponse invoke(FilterInvoker invoker, SofaRequest request) throws SofaRpcException {
 
-    @GET
-    @Path("/restService/{id}")
-    String sayRest(@PathParam("id") String string);
+        request.getMethodArgs()[0] = "filter_change";
+        return invoker.invoke(request);
+
+    }
 }
