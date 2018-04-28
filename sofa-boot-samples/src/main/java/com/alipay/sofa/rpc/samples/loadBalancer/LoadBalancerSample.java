@@ -19,6 +19,7 @@ package com.alipay.sofa.rpc.samples.loadBalancer;
 import org.springframework.context.ApplicationContext;
 
 /**
+ * load balance invoke
  *
  * @author <a href="mailto:lw111072@antfin.com">LiWei.Liangen</a>
  * @version $Id: CheckSample.java, v 0.1 2018年04月28日 上午1:57 LiWei.Liangen Exp $

@@ -19,6 +19,7 @@ package com.alipay.sofa.rpc.samples.retries;
 import org.springframework.context.ApplicationContext;
 
 /**
+ * retries invoke
  *
  * @author <a href="mailto:lw111072@antfin.com">LiWei.Liangen</a>
  * @version $Id: RetrySample.java, v 0.1 2018年04月26日 下午3:09 LiWei.Liangen Exp $

@@ -19,6 +19,7 @@ package com.alipay.sofa.rpc.samples.lazy;
 import org.springframework.context.ApplicationContext;
 
 /**
+ * lazy invoke
  *
  * @author <a href="mailto:lw111072@antfin.com">LiWei.Liangen</a>
  * @version $Id: LazySample.java, v 0.1 2018年04月28日 上午1:51 LiWei.Liangen Exp $
