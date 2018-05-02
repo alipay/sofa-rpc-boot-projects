@@ -136,9 +136,10 @@ public class ServerConfigContainer {
      */
     ServerConfig createBoltServerConfig() {
         String portStr = sofaBootRpcProperties.getBoltPort();
-        String ioThreadCountStr = sofaBootRpcProperties.getBoltIoThreadCount();
-        String executorThreadCountStr = sofaBootRpcProperties.getBoltExecutorThreadCount();
+        String botCoreThreadsCountStr = sofaBootRpcProperties.getBoltThreadPoolCoreCount();
+        String botMaxThreadsCountStr = sofaBootRpcProperties.getBoltThreadPoolMaxCount();
         String acceptsCountStr = sofaBootRpcProperties.getBoltAcceptsCount();
+        String boltQueueStr = sofaBootRpcProperties.getBoltThreadPoolQueueSize();
 
         ServerConfig serverConfig = new ServerConfig();
 
@@ -148,16 +149,20 @@ public class ServerConfigContainer {
             serverConfig.setPort(SofaBootRpcConfigConstants.BOLT_PORT_DEFAULT);
         }
 
-        if (StringUtils.hasText(ioThreadCountStr)) {
-            serverConfig.setIoThreads(Integer.parseInt(ioThreadCountStr));
+        if (StringUtils.hasText(botMaxThreadsCountStr)) {
+            serverConfig.setMaxThreads(Integer.parseInt(botMaxThreadsCountStr));
         }
 
-        if (StringUtils.hasText(executorThreadCountStr)) {
-            serverConfig.setMaxThreads(Integer.parseInt(executorThreadCountStr));
+        if (StringUtils.hasText(botCoreThreadsCountStr)) {
+            serverConfig.setCoreThreads(Integer.parseInt(botCoreThreadsCountStr));
         }
 
         if (StringUtils.hasText(acceptsCountStr)) {
             serverConfig.setAccepts(Integer.parseInt(acceptsCountStr));
+        }
+
+        if (StringUtils.hasText(boltQueueStr)) {
+            serverConfig.setQueues(Integer.parseInt(boltQueueStr));
         }
 
         serverConfig.setAutoStart(false);

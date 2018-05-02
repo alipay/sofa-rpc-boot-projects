@@ -37,13 +37,13 @@ public class ServerConfigContainerTest {
     @Test
     public void testBoltConfiguration() {
         sofaBootRpcProperties.setBoltPort("9090");
-        sofaBootRpcProperties.setBoltIoThreadCount("8080");
-        sofaBootRpcProperties.setBoltExecutorThreadCount("7070");
+        sofaBootRpcProperties.setBoltThreadPoolCoreCount("8080");
+        sofaBootRpcProperties.setBoltThreadPoolMaxCount("7070");
         sofaBootRpcProperties.setBoltAcceptsCount(("6060"));
 
         ServerConfig serverConfig = serverConfigContainer.createBoltServerConfig();
         Assert.assertEquals(9090, serverConfig.getPort());
-        Assert.assertEquals(8080, serverConfig.getIoThreads());
+        Assert.assertEquals(8080, serverConfig.getCoreThreads());
         Assert.assertEquals(7070, serverConfig.getMaxThreads());
         Assert.assertEquals(6060, serverConfig.getAccepts());
     }

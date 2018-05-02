@@ -29,7 +29,8 @@ public class SofaBootRpcProperties {
     static final String PREFIX = "com.alipay.sofa.rpc";
 
     private Environment environment;
-    /* fault-tolerance */
+
+    /* fault-tolerance start */
     private String      aftRegulationEffective;
     private String      aftDegradeEffective;
     private String      aftTimeWindow;
@@ -39,12 +40,17 @@ public class SofaBootRpcProperties {
     private String      aftWeightRecoverRate;
     private String      aftDegradeLeastWeight;
     private String      aftDegradeMaxIpCount;
-    /* Bolt */
+    /* fault-tolerance end */
+
+    /* Bolt start*/
     private String      boltPort;
-    private String      boltIoThreadCount;
-    private String      boltExecutorThreadCount;
+    private String      boltThreadPoolCoreCount;
+    private String      boltThreadPoolMaxCount;
+    private String      boltThreadPoolQueueSize;
     private String      boltAcceptsCount;
-    /* rest */
+    /* Bolt end*/
+
+    /* rest start*/
     private String      restHostname;
     private String      restPort;
     private String      restIoThreadCount;
@@ -52,11 +58,15 @@ public class SofaBootRpcProperties {
     private String      restMaxRequestSize;
     private String      restTelnet;
     private String      restDaemon;
-    /* dubbo */
+    /* rest end */
+
+    /* dubbo  start*/
     private String      dubboPort;
     private String      dubboIoThreadCount;
     private String      dubboExecutorThreadCount;
     private String      dubboAcceptsCount;
+    /* dubbo  end*/
+
     /* registry */
     private String      registryAddress;
 
@@ -154,22 +164,31 @@ public class SofaBootRpcProperties {
         this.boltPort = boltPort;
     }
 
-    public String getBoltIoThreadCount() {
-        return StringUtils.isEmpty(boltIoThreadCount) ? getDotString(new Object() {
-        }.getClass().getEnclosingMethod().getName()) : boltIoThreadCount;
+    public String getDubboIoThreadCount() {
+        return StringUtils.isEmpty(dubboIoThreadCount) ? getDotString(new Object() {
+        }.getClass().getEnclosingMethod().getName()) : dubboIoThreadCount;
     }
 
-    public void setBoltIoThreadCount(String boltIoThreadCount) {
-        this.boltIoThreadCount = boltIoThreadCount;
+    public void setDubboIoThreadCount(String dubboIoThreadCount) {
+        this.dubboIoThreadCount = dubboIoThreadCount;
     }
 
-    public String getBoltExecutorThreadCount() {
-        return StringUtils.isEmpty(boltExecutorThreadCount) ? getDotString(new Object() {
-        }.getClass().getEnclosingMethod().getName()) : boltExecutorThreadCount;
+    public String getBoltThreadPoolCoreCount() {
+        return StringUtils.isEmpty(boltThreadPoolCoreCount) ? getDotString(new Object() {
+        }.getClass().getEnclosingMethod().getName()) : boltThreadPoolCoreCount;
     }
 
-    public void setBoltExecutorThreadCount(String boltExecutorThreadCount) {
-        this.boltExecutorThreadCount = boltExecutorThreadCount;
+    public void setBoltThreadPoolCoreCount(String boltThreadPoolCoreCount) {
+        this.boltThreadPoolCoreCount = boltThreadPoolCoreCount;
+    }
+
+    public String getBoltThreadPoolMaxCount() {
+        return StringUtils.isEmpty(boltThreadPoolMaxCount) ? getDotString(new Object() {
+        }.getClass().getEnclosingMethod().getName()) : boltThreadPoolMaxCount;
+    }
+
+    public void setBoltThreadPoolMaxCount(String boltThreadPoolMaxCount) {
+        this.boltThreadPoolMaxCount = boltThreadPoolMaxCount;
     }
 
     public String getBoltAcceptsCount() {
@@ -253,15 +272,6 @@ public class SofaBootRpcProperties {
         this.dubboPort = dubboPort;
     }
 
-    public String getDubboIoThreadCount() {
-        return StringUtils.isEmpty(dubboIoThreadCount) ? getDotString(new Object() {
-        }.getClass().getEnclosingMethod().getName()) : dubboIoThreadCount;
-    }
-
-    public void setDubboIoThreadCount(String dubboIoThreadCount) {
-        this.dubboIoThreadCount = dubboIoThreadCount;
-    }
-
     public String getDubboExecutorThreadCount() {
         return StringUtils.isEmpty(dubboExecutorThreadCount) ? getDotString(new Object() {
         }.getClass().getEnclosingMethod().getName()) : dubboExecutorThreadCount;
@@ -287,6 +297,15 @@ public class SofaBootRpcProperties {
 
     public void setRegistryAddress(String registryAddress) {
         this.registryAddress = registryAddress;
+    }
+
+    public String getBoltThreadPoolQueueSize() {
+        return StringUtils.isEmpty(boltThreadPoolQueueSize) ? getDotString(new Object() {
+        }.getClass().getEnclosingMethod().getName()) : boltThreadPoolQueueSize;
+    }
+
+    public void setBoltThreadPoolQueueSize(String boltThreadPoolQueueSize) {
+        this.boltThreadPoolQueueSize = boltThreadPoolQueueSize;
     }
 
     private String getDotString(String enclosingMethodName) {
