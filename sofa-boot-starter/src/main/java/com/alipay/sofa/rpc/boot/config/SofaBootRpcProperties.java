@@ -44,17 +44,19 @@ public class SofaBootRpcProperties {
 
     /* Bolt start*/
     private String      boltPort;
-    private String      boltThreadPoolCoreCount;
-    private String      boltThreadPoolMaxCount;
+    private String      boltThreadPoolCoreSize;
+    private String      boltThreadPoolMaxSize;
     private String      boltThreadPoolQueueSize;
-    private String      boltAcceptsCount;
+    private String      boltAcceptsSize;
     /* Bolt end*/
 
     /* rest start*/
     private String      restHostname;
     private String      restPort;
-    private String      restIoThreadCount;
-    private String      restExecutorThreadCount;
+    private String      restIoThreadSize;
+    // has no use
+    private String      restThreadPoolCoreSize;
+    private String      restThreadPoolMaxSize;
     private String      restMaxRequestSize;
     private String      restTelnet;
     private String      restDaemon;
@@ -62,9 +64,13 @@ public class SofaBootRpcProperties {
 
     /* dubbo  start*/
     private String      dubboPort;
-    private String      dubboIoThreadCount;
-    private String      dubboExecutorThreadCount;
-    private String      dubboAcceptsCount;
+    private String      dubboIoThreadSize;
+    //has no use
+    private String      dubboThreadPoolCoreSize;
+    private String      dubboThreadPoolMaxSize;
+    //has no use
+    private String      dubboThreadPoolQueueSize;
+    private String      dubboAcceptsSize;
     /* dubbo  end*/
 
     /* registry */
@@ -164,40 +170,40 @@ public class SofaBootRpcProperties {
         this.boltPort = boltPort;
     }
 
-    public String getDubboIoThreadCount() {
-        return StringUtils.isEmpty(dubboIoThreadCount) ? getDotString(new Object() {
-        }.getClass().getEnclosingMethod().getName()) : dubboIoThreadCount;
+    public String getDubboIoThreadSize() {
+        return StringUtils.isEmpty(dubboIoThreadSize) ? getDotString(new Object() {
+        }.getClass().getEnclosingMethod().getName()) : dubboIoThreadSize;
     }
 
-    public void setDubboIoThreadCount(String dubboIoThreadCount) {
-        this.dubboIoThreadCount = dubboIoThreadCount;
+    public void setDubboIoThreadSize(String dubboIoThreadSize) {
+        this.dubboIoThreadSize = dubboIoThreadSize;
     }
 
-    public String getBoltThreadPoolCoreCount() {
-        return StringUtils.isEmpty(boltThreadPoolCoreCount) ? getDotString(new Object() {
-        }.getClass().getEnclosingMethod().getName()) : boltThreadPoolCoreCount;
+    public String getBoltThreadPoolCoreSize() {
+        return StringUtils.isEmpty(boltThreadPoolCoreSize) ? getDotString(new Object() {
+        }.getClass().getEnclosingMethod().getName()) : boltThreadPoolCoreSize;
     }
 
-    public void setBoltThreadPoolCoreCount(String boltThreadPoolCoreCount) {
-        this.boltThreadPoolCoreCount = boltThreadPoolCoreCount;
+    public void setBoltThreadPoolCoreSize(String boltThreadPoolCoreSize) {
+        this.boltThreadPoolCoreSize = boltThreadPoolCoreSize;
     }
 
-    public String getBoltThreadPoolMaxCount() {
-        return StringUtils.isEmpty(boltThreadPoolMaxCount) ? getDotString(new Object() {
-        }.getClass().getEnclosingMethod().getName()) : boltThreadPoolMaxCount;
+    public String getBoltThreadPoolMaxSize() {
+        return StringUtils.isEmpty(boltThreadPoolMaxSize) ? getDotString(new Object() {
+        }.getClass().getEnclosingMethod().getName()) : boltThreadPoolMaxSize;
     }
 
-    public void setBoltThreadPoolMaxCount(String boltThreadPoolMaxCount) {
-        this.boltThreadPoolMaxCount = boltThreadPoolMaxCount;
+    public void setBoltThreadPoolMaxSize(String boltThreadPoolMaxSize) {
+        this.boltThreadPoolMaxSize = boltThreadPoolMaxSize;
     }
 
-    public String getBoltAcceptsCount() {
-        return StringUtils.isEmpty(boltAcceptsCount) ? getDotString(new Object() {
-        }.getClass().getEnclosingMethod().getName()) : boltAcceptsCount;
+    public String getBoltAcceptsSize() {
+        return StringUtils.isEmpty(boltAcceptsSize) ? getDotString(new Object() {
+        }.getClass().getEnclosingMethod().getName()) : boltAcceptsSize;
     }
 
-    public void setBoltAcceptsCount(String boltAcceptsCount) {
-        this.boltAcceptsCount = boltAcceptsCount;
+    public void setBoltAcceptsSize(String boltAcceptsSize) {
+        this.boltAcceptsSize = boltAcceptsSize;
     }
 
     public String getRestHostname() {
@@ -218,22 +224,22 @@ public class SofaBootRpcProperties {
         this.restPort = restPort;
     }
 
-    public String getRestIoThreadCount() {
-        return StringUtils.isEmpty(restIoThreadCount) ? getDotString(new Object() {
-        }.getClass().getEnclosingMethod().getName()) : restIoThreadCount;
+    public String getRestIoThreadSize() {
+        return StringUtils.isEmpty(restIoThreadSize) ? getDotString(new Object() {
+        }.getClass().getEnclosingMethod().getName()) : restIoThreadSize;
     }
 
-    public void setRestIoThreadCount(String restIoThreadCount) {
-        this.restIoThreadCount = restIoThreadCount;
+    public void setRestIoThreadSize(String restIoThreadSize) {
+        this.restIoThreadSize = restIoThreadSize;
     }
 
-    public String getRestExecutorThreadCount() {
-        return StringUtils.isEmpty(restExecutorThreadCount) ? getDotString(new Object() {
-        }.getClass().getEnclosingMethod().getName()) : restExecutorThreadCount;
+    public String getRestThreadPoolMaxSize() {
+        return StringUtils.isEmpty(restThreadPoolMaxSize) ? getDotString(new Object() {
+        }.getClass().getEnclosingMethod().getName()) : restThreadPoolMaxSize;
     }
 
-    public void setRestExecutorThreadCount(String restExecutorThreadCount) {
-        this.restExecutorThreadCount = restExecutorThreadCount;
+    public void setRestThreadPoolMaxSize(String restThreadPoolMaxSize) {
+        this.restThreadPoolMaxSize = restThreadPoolMaxSize;
     }
 
     public String getRestMaxRequestSize() {
@@ -272,22 +278,22 @@ public class SofaBootRpcProperties {
         this.dubboPort = dubboPort;
     }
 
-    public String getDubboExecutorThreadCount() {
-        return StringUtils.isEmpty(dubboExecutorThreadCount) ? getDotString(new Object() {
-        }.getClass().getEnclosingMethod().getName()) : dubboExecutorThreadCount;
+    public String getDubboThreadPoolMaxSize() {
+        return StringUtils.isEmpty(dubboThreadPoolMaxSize) ? getDotString(new Object() {
+        }.getClass().getEnclosingMethod().getName()) : dubboThreadPoolMaxSize;
     }
 
-    public void setDubboExecutorThreadCount(String dubboExecutorThreadCount) {
-        this.dubboExecutorThreadCount = dubboExecutorThreadCount;
+    public void setDubboThreadPoolMaxSize(String dubboThreadPoolMaxSize) {
+        this.dubboThreadPoolMaxSize = dubboThreadPoolMaxSize;
     }
 
-    public String getDubboAcceptsCount() {
-        return StringUtils.isEmpty(dubboAcceptsCount) ? getDotString(new Object() {
-        }.getClass().getEnclosingMethod().getName()) : dubboAcceptsCount;
+    public String getDubboAcceptsSize() {
+        return StringUtils.isEmpty(dubboAcceptsSize) ? getDotString(new Object() {
+        }.getClass().getEnclosingMethod().getName()) : dubboAcceptsSize;
     }
 
-    public void setDubboAcceptsCount(String dubboAcceptsCount) {
-        this.dubboAcceptsCount = dubboAcceptsCount;
+    public void setDubboAcceptsSize(String dubboAcceptsSize) {
+        this.dubboAcceptsSize = dubboAcceptsSize;
     }
 
     public String getRegistryAddress() {
@@ -306,6 +312,33 @@ public class SofaBootRpcProperties {
 
     public void setBoltThreadPoolQueueSize(String boltThreadPoolQueueSize) {
         this.boltThreadPoolQueueSize = boltThreadPoolQueueSize;
+    }
+
+    public String getDubboThreadPoolCoreSize() {
+        return StringUtils.isEmpty(dubboThreadPoolCoreSize) ? getDotString(new Object() {
+        }.getClass().getEnclosingMethod().getName()) : dubboThreadPoolCoreSize;
+    }
+
+    public void setDubboThreadPoolCoreSize(String dubboThreadPoolCoreSize) {
+        this.dubboThreadPoolCoreSize = dubboThreadPoolCoreSize;
+    }
+
+    public String getDubboThreadPoolQueueSize() {
+        return StringUtils.isEmpty(dubboThreadPoolQueueSize) ? getDotString(new Object() {
+        }.getClass().getEnclosingMethod().getName()) : dubboThreadPoolQueueSize;
+    }
+
+    public void setDubboThreadPoolQueueSize(String dubboThreadPoolQueueSize) {
+        this.dubboThreadPoolQueueSize = dubboThreadPoolQueueSize;
+    }
+
+    public String getRestThreadPoolCoreSize() {
+        return StringUtils.isEmpty(restThreadPoolCoreSize) ? getDotString(new Object() {
+        }.getClass().getEnclosingMethod().getName()) : restThreadPoolCoreSize;
+    }
+
+    public void setRestThreadPoolCoreSize(String restThreadPoolCoreSize) {
+        this.restThreadPoolCoreSize = restThreadPoolCoreSize;
     }
 
     private String getDotString(String enclosingMethodName) {
