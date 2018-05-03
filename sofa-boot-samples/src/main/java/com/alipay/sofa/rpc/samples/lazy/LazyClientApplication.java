@@ -16,7 +16,10 @@
  */
 package com.alipay.sofa.rpc.samples.lazy;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.ImportResource;
 
 /**
  * lazy invoke
@@ -24,15 +27,31 @@ import org.springframework.context.ApplicationContext;
  * @author <a href="mailto:lw111072@antfin.com">LiWei.Liangen</a>
  * @version $Id: LazySample.java, v 0.1 2018年04月28日 上午1:51 LiWei.Liangen Exp $
  */
-public class LazySample {
+@ImportResource({ "classpath:lazy-client-example.xml" })
+@SpringBootApplication
+public class LazyClientApplication {
 
-    public void start(ApplicationContext applicationContext) {
+    public static void main(String[] args) {
+
+        //change port to run in local machine
+        System.setProperty("server.port", "8081");
+
+        SpringApplication springApplication = new SpringApplication(LazyClientApplication.class);
+        ApplicationContext applicationContext = springApplication.run(args);
 
         LazyService lazyServiceReferenceBolt = (LazyService) applicationContext.getBean("lazyServiceReferenceBolt");
         LazyService lazyServiceReferenceDubbo = (LazyService) applicationContext.getBean("lazyServiceReferenceDubbo");
 
-        System.out.println(lazyServiceReferenceBolt.sayLazy("lazy"));
-        System.out.println(lazyServiceReferenceDubbo.sayLazy("dubbo"));
+        String resultBolt = lazyServiceReferenceBolt.sayLazy("lazy_bolt");
+        String resultDubbo = lazyServiceReferenceDubbo.sayLazy("lazy_dubbo");
 
+        System.out.println(resultBolt);
+        System.out.println(resultDubbo);
+
+        if (resultBolt.equalsIgnoreCase("lazy_bolt")) {
+            System.out.println("lazy invoke success");
+        } else {
+            System.out.println("lazy invoke fail");
+        }
     }
 }

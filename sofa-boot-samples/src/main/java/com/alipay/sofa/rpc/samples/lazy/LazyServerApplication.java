@@ -14,14 +14,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alipay.sofa.rpc.samples.loadBalancer;
+package com.alipay.sofa.rpc.samples.lazy;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.ImportResource;
 
 /**
- *
  * @author <a href="mailto:lw111072@antfin.com">LiWei.Liangen</a>
- * @version $Id: CheckService.java, v 0.1 2018年04月28日 上午1:56 LiWei.Liangen Exp $
  */
-public interface LoadBalancerService {
+@ImportResource({ "classpath:lazy-server-example.xml" })
+@SpringBootApplication
+public class LazyServerApplication {
 
-    String sayLoadBalancer(String string);
+    public static void main(String[] args) {
+
+        SpringApplication springApplication = new SpringApplication(LazyServerApplication.class);
+        ApplicationContext applicationContext = springApplication.run(args);
+    }
 }

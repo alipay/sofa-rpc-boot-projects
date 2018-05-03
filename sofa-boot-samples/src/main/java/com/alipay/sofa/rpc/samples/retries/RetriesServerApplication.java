@@ -16,28 +16,21 @@
  */
 package com.alipay.sofa.rpc.samples.retries;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.ImportResource;
 
 /**
- * retries invoke
- *
  * @author <a href="mailto:lw111072@antfin.com">LiWei.Liangen</a>
- * @version $Id: RetrySample.java, v 0.1 2018年04月26日 下午3:09 LiWei.Liangen Exp $
  */
-public class RetriesSample {
+@ImportResource({ "classpath:retries-server-example.xml" })
+@SpringBootApplication
+public class RetriesServerApplication {
 
-    public void start(ApplicationContext applicationContext) throws InterruptedException {
+    public static void main(String[] args) {
 
-        RetriesService retriesServiceBolt = (RetriesService) applicationContext.getBean("retriesServiceReferenceBolt");
-        RetriesService retriesServiceDubbo = (RetriesService) applicationContext
-            .getBean("retriesServiceReferenceDubbo");
-
-        String resultBolt = retriesServiceBolt.sayRetry("retries_bolt");
-        String resultDubbo = retriesServiceDubbo.sayRetry("retries_dubbo");
-
-        System.out.println(resultBolt);
-        System.out.println(resultDubbo);
-        System.out.println(retriesServiceBolt.getCount());
-
+        SpringApplication springApplication = new SpringApplication(RetriesServerApplication.class);
+        ApplicationContext applicationContext = springApplication.run(args);
     }
 }

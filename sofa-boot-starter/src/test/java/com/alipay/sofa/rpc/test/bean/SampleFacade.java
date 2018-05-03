@@ -14,25 +14,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alipay.sofa.rpc.bean;
-
-import javax.ws.rs.core.MediaType;
+package com.alipay.sofa.rpc.test.bean;
 
 /**
- * constants
+ * rest service interface<br>
+ * the get, post, delete, put method each deal with the function of query info, add info, delete info and update info
  *
  * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
-public class RestConstants {
+public interface SampleFacade {
 
-    /**
-     * response encoding
-     */
-    public static final String DEFAULT_CHARSET      = "UTF-8";
-    /**
-     * Content-Type
-     */
-    public static final String DEFAULT_CONTENT_TYPE = MediaType.APPLICATION_JSON + ";" + MediaType.CHARSET_PARAMETER +
-                                                        "=" + DEFAULT_CHARSET;
-
+    String sayHi(String string);
 }

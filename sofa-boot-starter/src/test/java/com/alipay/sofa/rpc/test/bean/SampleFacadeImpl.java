@@ -14,26 +14,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alipay.sofa.rpc.bean;
-
-import com.alipay.sofa.rpc.core.exception.SofaRpcException;
-import com.alipay.sofa.rpc.core.request.SofaRequest;
-import com.alipay.sofa.rpc.core.response.SofaResponse;
-import com.alipay.sofa.rpc.filter.Filter;
-import com.alipay.sofa.rpc.filter.FilterInvoker;
+package com.alipay.sofa.rpc.test.bean;
 
 /**
+ *
  * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
-public class SampleGlobalFilter extends Filter {
+public class SampleFacadeImpl implements SampleFacade {
     @Override
-    public SofaResponse invoke(FilterInvoker invoker, SofaRequest request) throws SofaRpcException {
-        if (request.getInterfaceName() != null &&
-            request.getInterfaceName().equals("com.alipay.sofa.rpc.bean.SampleFacade")) {
-            if (request.getMethodArgs()[0].equals("FilterTest")) {
-                request.getMethodArgs()[0] = "GlobalFilter";
-            }
-        }
-        return invoker.invoke(request);
+    public String sayHi(String string) {
+        return "hi " + string + "!";
     }
 }
