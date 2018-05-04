@@ -16,9 +16,9 @@
  */
 package com.alipay.sofa.rpc.test.readiness;
 
-import com.alipay.sofa.rpc.test.bean.SampleFacade;
 import com.alipay.sofa.rpc.boot.config.SofaBootRpcConfigConstants;
 import com.alipay.sofa.rpc.core.exception.SofaRouteException;
+import com.alipay.sofa.rpc.test.bean.SampleFacade;
 import com.alipay.sofa.rpc.test.util.TestUtils;
 import org.junit.Assert;
 import org.junit.Rule;
