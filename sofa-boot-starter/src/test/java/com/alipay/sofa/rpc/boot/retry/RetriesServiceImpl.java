@@ -35,7 +35,7 @@ public class RetriesServiceImpl implements RetriesService {
             return string;
         } else {
             System.out.println("timeout for retries. count[" + count.get() + "]");
-            Thread.sleep(3000);
+            Thread.sleep(3100);
             return "xxx";
         }
     }
