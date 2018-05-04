@@ -34,8 +34,9 @@ public class RetriesServiceImpl implements RetriesService {
         if (current == 3 || current == 6) {
             return string;
         } else {
+            System.out.println("timeout for retries. count[" + count.get() + "]");
             Thread.sleep(3000);
+            return "xxx";
         }
-        return "xxx";
     }
 }
