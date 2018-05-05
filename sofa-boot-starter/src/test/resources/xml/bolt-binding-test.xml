@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:sofa="http://sofastack.io/schema/sofaboot"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://sofastack.io/schema/sofaboot http://sofastack.io/schema/sofaboot.xsd"
+       default-autowire="byName">
+    
+    <bean id="demoService" class="com.alipay.sofa.rpc.boot.runtime.demo.impl.DemoServiceImpl"/>
+
+    <sofa:service ref="demoService" interface="com.alipay.sofa.rpc.boot.runtime.demo.DemoService">
+        <sofa:binding.bolt/>
+    </sofa:service>
+    <sofa:reference id="demoServiceReference" interface="com.alipay.sofa.rpc.boot.runtime.demo.DemoService">
+    <sofa:binding.bolt>
+        <sofa:global-attrs/>
+    </sofa:binding.bolt>
+    </sofa:reference>
+
+    <bean id="callbackRef" class="com.alipay.sofa.rpc.boot.runtime.convertor.TestSofaResponseCallback"/>
+
+</beans>
