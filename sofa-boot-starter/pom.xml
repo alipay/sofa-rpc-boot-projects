@@ -304,10 +304,6 @@
                     <dataFile>${jacoco.path}</dataFile>
                     <sessionId>jacoco_coverage</sessionId>
                     <append>true</append>
-                    <excludes>
-                        <exclude>com.alipay.boot.sofarpc.spring.*</exclude>
-                        <exclude>com.alipay.sofa.*</exclude>
-                    </excludes>
                 </configuration>
                 <executions>
                     <execution>
