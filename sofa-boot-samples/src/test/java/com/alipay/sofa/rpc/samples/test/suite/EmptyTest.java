@@ -16,11 +16,13 @@
  */
 package com.alipay.sofa.rpc.samples.test.suite;
 
+import com.alipay.sofa.rpc.samples.rest.RestServiceImpl;
 import org.junit.Assert;
 import org.junit.Test;
 
 /**
  * only for jacoco test
+ *
  * @author bystander
  * @version $Id: EmptyTest.java, v 0.1 2018年05月10日 3:09 PM bystander Exp $
  */
@@ -28,6 +30,8 @@ public class EmptyTest {
 
     @Test
     public void test() {
+        RestServiceImpl service = new RestServiceImpl();
+        service.sayRest("xx");
         Assert.assertTrue(true);
     }
 }
