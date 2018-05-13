@@ -82,6 +82,11 @@ public class SofaBootRpcProperties {
     //publish to registry
     private String      virtualPort;
 
+    //publish to registry virtual host range
+    private String      enabledIpRange;
+
+    private String      bindNetworkInterface;
+
     // bound server
     private String      boundHost;
 
@@ -348,6 +353,22 @@ public class SofaBootRpcProperties {
 
     public void setVirtualPort(String virtualPort) {
         this.virtualPort = virtualPort;
+    }
+
+    public String getEnabledIpRange() {
+        return fetchTransformedString(enabledIpRange);
+    }
+
+    public void setEnabledIpRange(String enabledIpRange) {
+        this.enabledIpRange = enabledIpRange;
+    }
+
+    public String getBindNetworkInterface() {
+        return fetchTransformedString(bindNetworkInterface);
+    }
+
+    public void setBindNetworkInterface(String bindNetworkInterface) {
+        this.bindNetworkInterface = bindNetworkInterface;
     }
 
     private String getDotString(String enclosingMethodName) {

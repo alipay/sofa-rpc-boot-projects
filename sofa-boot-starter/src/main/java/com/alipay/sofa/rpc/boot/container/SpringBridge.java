@@ -16,6 +16,7 @@
  */
 package com.alipay.sofa.rpc.boot.container;
 
+import com.alipay.sofa.rpc.boot.common.NetworkAddressUtil;
 import com.alipay.sofa.rpc.boot.runtime.adapter.helper.ConsumerConfigHelper;
 import com.alipay.sofa.rpc.boot.runtime.adapter.helper.ProviderConfigHelper;
 import org.springframework.context.ApplicationContext;
@@ -44,6 +45,10 @@ public class SpringBridge {
 
     public static ConsumerConfigContainer getConsumerConfigContainer() {
         return applicationContext.getBean("consumerConfigContainer", ConsumerConfigContainer.class);
+    }
+
+    public static NetworkAddressUtil getNetworkAddressUtil() {
+        return applicationContext.getBean("networkAddressUtil", NetworkAddressUtil.class);
     }
 
     public static void setApplicationContext(ApplicationContext applicationContext) {

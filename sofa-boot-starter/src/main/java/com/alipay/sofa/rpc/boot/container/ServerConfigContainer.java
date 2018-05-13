@@ -39,6 +39,7 @@ public class ServerConfigContainer {
     private static final Logger   LOGGER     = SofaBootRpcLoggerFactory.getLogger(ServerConfigContainer.class);
 
     private SofaBootRpcProperties sofaBootRpcProperties;
+    private NetworkAddressUtil    networkAddressUtil;
     /**
      * bolt ServerConfig
      */
@@ -57,8 +58,9 @@ public class ServerConfigContainer {
     private volatile ServerConfig dubboServerConfig;
     private final Object          DUBBO_LOCK = new Object();
 
-    public ServerConfigContainer(SofaBootRpcProperties sofaBootRpcProperties) {
+    public ServerConfigContainer(SofaBootRpcProperties sofaBootRpcProperties, NetworkAddressUtil networkAddressUtil) {
         this.sofaBootRpcProperties = sofaBootRpcProperties;
+        this.networkAddressUtil = networkAddressUtil;
     }
 
     /**
@@ -136,10 +138,16 @@ public class ServerConfigContainer {
      * @param serverConfig
      */
     private void addCommonServerConfig(ServerConfig serverConfig) {
+
         String boundHostStr = sofaBootRpcProperties.getBoundHost();
         String virtualHostStr = sofaBootRpcProperties.getVirtualHost();
         String virtualPortStr = sofaBootRpcProperties.getVirtualPort();
 
+        //this will filter by networkface and iprange
+        serverConfig.setVirtualHost(networkAddressUtil.getLocalIP());
+        serverConfig.setBoundHost(networkAddressUtil.getLocalBindIP());
+
+        //if has more accurate settings, use this.
         if (StringUtils.hasText(boundHostStr)) {
             serverConfig.setBoundHost(boundHostStr);
         }
