@@ -76,13 +76,21 @@ public class SofaBootRpcProperties {
     /* registry */
     private String      registryAddress;
 
+    //publish to registry
+    private String      virtualHost;
+
+    //publish to registry
+    private String      virtualPort;
+
+    // bound server
+    private String      boundHost;
+
     public SofaBootRpcProperties(Environment environment) {
         this.environment = environment;
     }
 
     public String getAftRegulationEffective() {
-        return StringUtils.isEmpty(aftRegulationEffective) ? getDotString(new Object() {
-        }.getClass().getEnclosingMethod().getName()) : aftRegulationEffective;
+        return fetchTransformedString(aftRegulationEffective);
     }
 
     public void setAftRegulationEffective(String aftRegulationEffective) {
@@ -90,8 +98,7 @@ public class SofaBootRpcProperties {
     }
 
     public String getAftDegradeEffective() {
-        return StringUtils.isEmpty(aftDegradeEffective) ? getDotString(new Object() {
-        }.getClass().getEnclosingMethod().getName()) : aftDegradeEffective;
+        return fetchTransformedString(aftDegradeEffective);
     }
 
     public void setAftDegradeEffective(String aftDegradeEffective) {
@@ -99,8 +106,7 @@ public class SofaBootRpcProperties {
     }
 
     public String getAftTimeWindow() {
-        return StringUtils.isEmpty(aftTimeWindow) ? getDotString(new Object() {
-        }.getClass().getEnclosingMethod().getName()) : aftTimeWindow;
+        return fetchTransformedString(aftTimeWindow);
     }
 
     public void setAftTimeWindow(String aftTimeWindow) {
@@ -108,8 +114,7 @@ public class SofaBootRpcProperties {
     }
 
     public String getAftLeastWindowCount() {
-        return StringUtils.isEmpty(aftLeastWindowCount) ? getDotString(new Object() {
-        }.getClass().getEnclosingMethod().getName()) : aftLeastWindowCount;
+        return fetchTransformedString(aftLeastWindowCount);
     }
 
     public void setAftLeastWindowCount(String aftLeastWindowCount) {
@@ -117,8 +122,7 @@ public class SofaBootRpcProperties {
     }
 
     public String getAftLeastWindowExceptionRateMultiple() {
-        return StringUtils.isEmpty(aftLeastWindowExceptionRateMultiple) ? getDotString(new Object() {
-        }.getClass().getEnclosingMethod().getName()) : aftLeastWindowExceptionRateMultiple;
+        return fetchTransformedString(aftLeastWindowExceptionRateMultiple);
     }
 
     public void setAftLeastWindowExceptionRateMultiple(String aftLeastWindowExceptionRateMultiple) {
@@ -126,8 +130,7 @@ public class SofaBootRpcProperties {
     }
 
     public String getAftWeightDegradeRate() {
-        return StringUtils.isEmpty(aftWeightDegradeRate) ? getDotString(new Object() {
-        }.getClass().getEnclosingMethod().getName()) : aftWeightDegradeRate;
+        return fetchTransformedString(aftWeightDegradeRate);
     }
 
     public void setAftWeightDegradeRate(String aftWeightDegradeRate) {
@@ -135,8 +138,7 @@ public class SofaBootRpcProperties {
     }
 
     public String getAftWeightRecoverRate() {
-        return StringUtils.isEmpty(aftWeightRecoverRate) ? getDotString(new Object() {
-        }.getClass().getEnclosingMethod().getName()) : aftWeightRecoverRate;
+        return fetchTransformedString(aftWeightRecoverRate);
     }
 
     public void setAftWeightRecoverRate(String aftWeightRecoverRate) {
@@ -144,8 +146,7 @@ public class SofaBootRpcProperties {
     }
 
     public String getAftDegradeLeastWeight() {
-        return StringUtils.isEmpty(aftDegradeLeastWeight) ? getDotString(new Object() {
-        }.getClass().getEnclosingMethod().getName()) : aftDegradeLeastWeight;
+        return fetchTransformedString(aftDegradeLeastWeight);
     }
 
     public void setAftDegradeLeastWeight(String aftDegradeLeastWeight) {
@@ -153,8 +154,7 @@ public class SofaBootRpcProperties {
     }
 
     public String getAftDegradeMaxIpCount() {
-        return StringUtils.isEmpty(aftDegradeMaxIpCount) ? getDotString(new Object() {
-        }.getClass().getEnclosingMethod().getName()) : aftDegradeMaxIpCount;
+        return fetchTransformedString(aftDegradeMaxIpCount);
     }
 
     public void setAftDegradeMaxIpCount(String aftDegradeMaxIpCount) {
@@ -162,8 +162,7 @@ public class SofaBootRpcProperties {
     }
 
     public String getBoltPort() {
-        return StringUtils.isEmpty(boltPort) ? getDotString(new Object() {
-        }.getClass().getEnclosingMethod().getName()) : boltPort;
+        return fetchTransformedString(boltPort);
     }
 
     public void setBoltPort(String boltPort) {
@@ -171,8 +170,7 @@ public class SofaBootRpcProperties {
     }
 
     public String getDubboIoThreadSize() {
-        return StringUtils.isEmpty(dubboIoThreadSize) ? getDotString(new Object() {
-        }.getClass().getEnclosingMethod().getName()) : dubboIoThreadSize;
+        return fetchTransformedString(dubboIoThreadSize);
     }
 
     public void setDubboIoThreadSize(String dubboIoThreadSize) {
@@ -180,8 +178,7 @@ public class SofaBootRpcProperties {
     }
 
     public String getBoltThreadPoolCoreSize() {
-        return StringUtils.isEmpty(boltThreadPoolCoreSize) ? getDotString(new Object() {
-        }.getClass().getEnclosingMethod().getName()) : boltThreadPoolCoreSize;
+        return fetchTransformedString(boltThreadPoolCoreSize);
     }
 
     public void setBoltThreadPoolCoreSize(String boltThreadPoolCoreSize) {
@@ -189,8 +186,7 @@ public class SofaBootRpcProperties {
     }
 
     public String getBoltThreadPoolMaxSize() {
-        return StringUtils.isEmpty(boltThreadPoolMaxSize) ? getDotString(new Object() {
-        }.getClass().getEnclosingMethod().getName()) : boltThreadPoolMaxSize;
+        return fetchTransformedString(boltThreadPoolMaxSize);
     }
 
     public void setBoltThreadPoolMaxSize(String boltThreadPoolMaxSize) {
@@ -198,8 +194,7 @@ public class SofaBootRpcProperties {
     }
 
     public String getBoltAcceptsSize() {
-        return StringUtils.isEmpty(boltAcceptsSize) ? getDotString(new Object() {
-        }.getClass().getEnclosingMethod().getName()) : boltAcceptsSize;
+        return fetchTransformedString(boltAcceptsSize);
     }
 
     public void setBoltAcceptsSize(String boltAcceptsSize) {
@@ -207,8 +202,7 @@ public class SofaBootRpcProperties {
     }
 
     public String getRestHostname() {
-        return StringUtils.isEmpty(restHostname) ? getDotString(new Object() {
-        }.getClass().getEnclosingMethod().getName()) : restHostname;
+        return fetchTransformedString(restHostname);
     }
 
     public void setRestHostname(String restHostname) {
@@ -216,8 +210,7 @@ public class SofaBootRpcProperties {
     }
 
     public String getRestPort() {
-        return StringUtils.isEmpty(restPort) ? getDotString(new Object() {
-        }.getClass().getEnclosingMethod().getName()) : restPort;
+        return fetchTransformedString(restPort);
     }
 
     public void setRestPort(String restPort) {
@@ -225,8 +218,7 @@ public class SofaBootRpcProperties {
     }
 
     public String getRestIoThreadSize() {
-        return StringUtils.isEmpty(restIoThreadSize) ? getDotString(new Object() {
-        }.getClass().getEnclosingMethod().getName()) : restIoThreadSize;
+        return fetchTransformedString(restIoThreadSize);
     }
 
     public void setRestIoThreadSize(String restIoThreadSize) {
@@ -234,8 +226,7 @@ public class SofaBootRpcProperties {
     }
 
     public String getRestThreadPoolMaxSize() {
-        return StringUtils.isEmpty(restThreadPoolMaxSize) ? getDotString(new Object() {
-        }.getClass().getEnclosingMethod().getName()) : restThreadPoolMaxSize;
+        return fetchTransformedString(restThreadPoolMaxSize);
     }
 
     public void setRestThreadPoolMaxSize(String restThreadPoolMaxSize) {
@@ -243,8 +234,7 @@ public class SofaBootRpcProperties {
     }
 
     public String getRestMaxRequestSize() {
-        return StringUtils.isEmpty(restMaxRequestSize) ? getDotString(new Object() {
-        }.getClass().getEnclosingMethod().getName()) : restMaxRequestSize;
+        return fetchTransformedString(restMaxRequestSize);
     }
 
     public void setRestMaxRequestSize(String restMaxRequestSize) {
@@ -252,8 +242,7 @@ public class SofaBootRpcProperties {
     }
 
     public String getRestTelnet() {
-        return StringUtils.isEmpty(restTelnet) ? getDotString(new Object() {
-        }.getClass().getEnclosingMethod().getName()) : restTelnet;
+        return fetchTransformedString(restTelnet);
     }
 
     public void setRestTelnet(String restTelnet) {
@@ -261,8 +250,7 @@ public class SofaBootRpcProperties {
     }
 
     public String getRestDaemon() {
-        return StringUtils.isEmpty(restDaemon) ? getDotString(new Object() {
-        }.getClass().getEnclosingMethod().getName()) : restDaemon;
+        return fetchTransformedString(restDaemon);
     }
 
     public void setRestDaemon(String restDaemon) {
@@ -270,8 +258,7 @@ public class SofaBootRpcProperties {
     }
 
     public String getDubboPort() {
-        return StringUtils.isEmpty(dubboPort) ? getDotString(new Object() {
-        }.getClass().getEnclosingMethod().getName()) : dubboPort;
+        return fetchTransformedString(dubboPort);
     }
 
     public void setDubboPort(String dubboPort) {
@@ -279,8 +266,7 @@ public class SofaBootRpcProperties {
     }
 
     public String getDubboThreadPoolMaxSize() {
-        return StringUtils.isEmpty(dubboThreadPoolMaxSize) ? getDotString(new Object() {
-        }.getClass().getEnclosingMethod().getName()) : dubboThreadPoolMaxSize;
+        return fetchTransformedString(dubboThreadPoolMaxSize);
     }
 
     public void setDubboThreadPoolMaxSize(String dubboThreadPoolMaxSize) {
@@ -288,8 +274,7 @@ public class SofaBootRpcProperties {
     }
 
     public String getDubboAcceptsSize() {
-        return StringUtils.isEmpty(dubboAcceptsSize) ? getDotString(new Object() {
-        }.getClass().getEnclosingMethod().getName()) : dubboAcceptsSize;
+        return fetchTransformedString(dubboAcceptsSize);
     }
 
     public void setDubboAcceptsSize(String dubboAcceptsSize) {
@@ -297,8 +282,7 @@ public class SofaBootRpcProperties {
     }
 
     public String getRegistryAddress() {
-        return StringUtils.isEmpty(registryAddress) ? getDotString(new Object() {
-        }.getClass().getEnclosingMethod().getName()) : registryAddress;
+        return fetchTransformedString(registryAddress);
     }
 
     public void setRegistryAddress(String registryAddress) {
@@ -306,8 +290,7 @@ public class SofaBootRpcProperties {
     }
 
     public String getBoltThreadPoolQueueSize() {
-        return StringUtils.isEmpty(boltThreadPoolQueueSize) ? getDotString(new Object() {
-        }.getClass().getEnclosingMethod().getName()) : boltThreadPoolQueueSize;
+        return fetchTransformedString(boltThreadPoolQueueSize);
     }
 
     public void setBoltThreadPoolQueueSize(String boltThreadPoolQueueSize) {
@@ -315,8 +298,7 @@ public class SofaBootRpcProperties {
     }
 
     public String getDubboThreadPoolCoreSize() {
-        return StringUtils.isEmpty(dubboThreadPoolCoreSize) ? getDotString(new Object() {
-        }.getClass().getEnclosingMethod().getName()) : dubboThreadPoolCoreSize;
+        return fetchTransformedString(dubboThreadPoolCoreSize);
     }
 
     public void setDubboThreadPoolCoreSize(String dubboThreadPoolCoreSize) {
@@ -324,8 +306,7 @@ public class SofaBootRpcProperties {
     }
 
     public String getDubboThreadPoolQueueSize() {
-        return StringUtils.isEmpty(dubboThreadPoolQueueSize) ? getDotString(new Object() {
-        }.getClass().getEnclosingMethod().getName()) : dubboThreadPoolQueueSize;
+        return fetchTransformedString(dubboThreadPoolQueueSize);
     }
 
     public void setDubboThreadPoolQueueSize(String dubboThreadPoolQueueSize) {
@@ -333,12 +314,40 @@ public class SofaBootRpcProperties {
     }
 
     public String getRestThreadPoolCoreSize() {
-        return StringUtils.isEmpty(restThreadPoolCoreSize) ? getDotString(new Object() {
-        }.getClass().getEnclosingMethod().getName()) : restThreadPoolCoreSize;
+        return fetchTransformedString(restThreadPoolCoreSize);
     }
 
     public void setRestThreadPoolCoreSize(String restThreadPoolCoreSize) {
         this.restThreadPoolCoreSize = restThreadPoolCoreSize;
+    }
+
+    public String getVirtualHost() {
+        return fetchTransformedString(virtualHost);
+    }
+
+    private String fetchTransformedString(String orginalValue) {
+        return StringUtils.isEmpty(orginalValue) ? getDotString(new Object() {
+        }.getClass().getEnclosingMethod().getName()) : orginalValue;
+    }
+
+    public void setVirtualHost(String virtualHost) {
+        this.virtualHost = virtualHost;
+    }
+
+    public String getBoundHost() {
+        return fetchTransformedString(boundHost);
+    }
+
+    public void setBoundHost(String boundHost) {
+        this.boundHost = boundHost;
+    }
+
+    public String getVirtualPort() {
+        return fetchTransformedString(virtualPort);
+    }
+
+    public void setVirtualPort(String virtualPort) {
+        this.virtualPort = virtualPort;
     }
 
     private String getDotString(String enclosingMethodName) {

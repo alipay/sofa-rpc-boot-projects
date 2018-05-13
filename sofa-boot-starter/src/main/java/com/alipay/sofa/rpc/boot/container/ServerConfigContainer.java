@@ -16,6 +16,7 @@
  */
 package com.alipay.sofa.rpc.boot.container;
 
+import com.alipay.sofa.rpc.boot.common.NetworkAddressUtil;
 import com.alipay.sofa.rpc.boot.common.RpcThreadPoolMonitor;
 import com.alipay.sofa.rpc.boot.common.SofaBootRpcRuntimeException;
 import com.alipay.sofa.rpc.boot.config.SofaBootRpcConfigConstants;
@@ -130,6 +131,29 @@ public class ServerConfigContainer {
     }
 
     /**
+     * some common server config whether protocol
+     *
+     * @param serverConfig
+     */
+    private void addCommonServerConfig(ServerConfig serverConfig) {
+        String boundHostStr = sofaBootRpcProperties.getBoundHost();
+        String virtualHostStr = sofaBootRpcProperties.getVirtualHost();
+        String virtualPortStr = sofaBootRpcProperties.getVirtualPort();
+
+        if (StringUtils.hasText(boundHostStr)) {
+            serverConfig.setBoundHost(boundHostStr);
+        }
+
+        if (StringUtils.hasText(virtualHostStr)) {
+            serverConfig.setVirtualHost(virtualHostStr);
+        }
+
+        if (StringUtils.hasText(virtualPortStr)) {
+            serverConfig.setVirtualPort(Integer.parseInt(virtualPortStr));
+        }
+    }
+
+    /**
      * 创建 bolt ServerConfig。rest 的 配置不需要外层 starter 设置默认值。
      *
      * @return Bolt 的服务端配置信息
@@ -166,7 +190,11 @@ public class ServerConfigContainer {
         }
 
         serverConfig.setAutoStart(false);
-        return serverConfig.setProtocol(SofaBootRpcConfigConstants.RPC_PROTOCOL_BOLT);
+        serverConfig.setProtocol(SofaBootRpcConfigConstants.RPC_PROTOCOL_BOLT);
+
+        addCommonServerConfig(serverConfig);
+
+        return serverConfig;
     }
 
     /**
@@ -240,7 +268,10 @@ public class ServerConfigContainer {
             .setDaemon(daemon);
 
         serverConfig.setAutoStart(false);
-        return serverConfig.setProtocol(SofaBootRpcConfigConstants.RPC_PROTOCOL_REST);
+        serverConfig.setProtocol(SofaBootRpcConfigConstants.RPC_PROTOCOL_REST);
+        addCommonServerConfig(serverConfig);
+
+        return serverConfig;
     }
 
     /**
@@ -275,7 +306,11 @@ public class ServerConfigContainer {
         }
 
         serverConfig.setAutoStart(false);
-        return serverConfig.setProtocol(SofaBootRpcConfigConstants.RPC_PROTOCOL_DUBBO);
+        serverConfig.setProtocol(SofaBootRpcConfigConstants.RPC_PROTOCOL_DUBBO);
+
+        addCommonServerConfig(serverConfig);
+
+        return serverConfig;
 
     }
 
