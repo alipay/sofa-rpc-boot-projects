@@ -267,7 +267,6 @@ public class ServerConfigContainer {
         }
 
         ServerConfig serverConfig = new ServerConfig()
-            .setBoundHost(hostName)
             .setPort(port)
             .setIoThreads(ioThreadCount)
             .setMaxThreads(restThreadPoolMaxSize)
@@ -278,6 +277,8 @@ public class ServerConfigContainer {
         serverConfig.setAutoStart(false);
         serverConfig.setProtocol(SofaBootRpcConfigConstants.RPC_PROTOCOL_REST);
         addCommonServerConfig(serverConfig);
+
+        serverConfig.setBoundHost(hostName);
 
         return serverConfig;
     }
