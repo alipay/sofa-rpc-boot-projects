@@ -20,7 +20,6 @@
  */
 package com.alipay.sofa.rpc.boot.common;
 
-import com.alipay.sofa.rpc.boot.config.SofaBootRpcProperties;
 import com.alipay.sofa.rpc.common.utils.StringUtils;
 import com.alipay.sofa.rpc.log.Logger;
 import com.alipay.sofa.rpc.log.LoggerFactory;
@@ -40,8 +39,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 public class NetworkAddressUtil {
 
-    private SofaBootRpcProperties  sofaBootRpcProperties;
-
     private static final char      COLON                = ':';
 
     private static final Logger    logger               = LoggerFactory
@@ -54,17 +51,21 @@ public class NetworkAddressUtil {
 
     private static String          DEFAULT_HOST_NAME    = "app";
 
-    public NetworkAddressUtil(SofaBootRpcProperties sofaBootRpcProperties) {
-        this.sofaBootRpcProperties = sofaBootRpcProperties;
+    /**
+     * this method should be invoked fisrt
+     *
+     * @param enabledIpRange
+     * @param bindNetworkInterface
+     */
+    public static void caculate(String enabledIpRange, String bindNetworkInterface) {
         IP_RANGES = new CopyOnWriteArrayList<IpRange>();
-        String ipRangeConfig = sofaBootRpcProperties.getEnabledIpRange();
-        if (StringUtils.isEmpty(ipRangeConfig)) { // 没有设置bind_network_interface
+        if (StringUtils.isEmpty(enabledIpRange)) { // 没有设置bind_network_interface
             // 默认支持所有的ip端口
             IP_RANGES.add(new IpRange("0", "255"));
             // ip_range 为空的时候，bind 的地址为 0.0.0.0
             BIND_NETWORK_ADDRESS = "0.0.0.0";
         } else {
-            String[] ipRanges = ipRangeConfig.split(",");
+            String[] ipRanges = enabledIpRange.split(",");
             for (String ipRange : ipRanges) {
                 if (StringUtils.isEmpty(ipRange)) {
                     continue;
@@ -79,7 +80,7 @@ public class NetworkAddressUtil {
             }
         }
 
-        NETWORK_ADDRESS = getNetworkAddress();
+        NETWORK_ADDRESS = getNetworkAddress(bindNetworkInterface);
         HOST_NAME = getHostName();
     }
 
@@ -91,7 +92,7 @@ public class NetworkAddressUtil {
      *
      * @return 本地的 IP 地址
      */
-    public String getNetworkAddress() {
+    public static String getNetworkAddress(String bindNetworkInterface) {
         Enumeration<NetworkInterface> netInterfaces;
         try {
             netInterfaces = NetworkInterface.getNetworkInterfaces();
@@ -99,9 +100,8 @@ public class NetworkAddressUtil {
             while (netInterfaces.hasMoreElements()) {
                 boolean useNi = false;
                 NetworkInterface ni = netInterfaces.nextElement();
-                String rpcNi = sofaBootRpcProperties.getBindNetworkInterface();
-                if (!StringUtils.isBlank(rpcNi)) {
-                    if (rpcNi.equals(ni.getDisplayName()) || rpcNi.equals(ni.getName())) {
+                if (!StringUtils.isBlank(bindNetworkInterface)) {
+                    if (bindNetworkInterface.equals(ni.getDisplayName()) || bindNetworkInterface.equals(ni.getName())) {
                         useNi = true;
                     } else {
                         continue;

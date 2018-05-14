@@ -16,7 +16,6 @@
  */
 package com.alipay.sofa.rpc.boot.container;
 
-import com.alipay.sofa.rpc.boot.common.NetworkAddressUtil;
 import com.alipay.sofa.rpc.boot.config.SofaBootRpcConfigConstants;
 import com.alipay.sofa.rpc.boot.config.SofaBootRpcProperties;
 import com.alipay.sofa.rpc.config.ServerConfig;
@@ -33,8 +32,7 @@ public class ServerConfigContainerTest {
 
     public ServerConfigContainerTest() {
         sofaBootRpcProperties = new SofaBootRpcProperties(null);
-        NetworkAddressUtil networkAddressUtil = new NetworkAddressUtil(sofaBootRpcProperties);
-        serverConfigContainer = new ServerConfigContainer(sofaBootRpcProperties, networkAddressUtil);
+        serverConfigContainer = new ServerConfigContainer(sofaBootRpcProperties);
     }
 
     @Test
@@ -60,8 +58,7 @@ public class ServerConfigContainerTest {
     @Ignore("only can run in multi ip env")
     public void testBoltIpCustomConfiguration() {
         sofaBootRpcProperties.setEnabledIpRange("192.168");
-        NetworkAddressUtil networkAddressUtil = new NetworkAddressUtil(sofaBootRpcProperties);
-        serverConfigContainer = new ServerConfigContainer(sofaBootRpcProperties, networkAddressUtil);
+        serverConfigContainer = new ServerConfigContainer(sofaBootRpcProperties);
         ServerConfig serverConfig = serverConfigContainer.createBoltServerConfig();
         Assert.assertEquals("192.168", serverConfig.getVirtualHost());
     }

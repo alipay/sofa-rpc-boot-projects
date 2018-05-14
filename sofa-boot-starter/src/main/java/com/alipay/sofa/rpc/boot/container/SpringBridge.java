@@ -47,10 +47,6 @@ public class SpringBridge {
         return applicationContext.getBean("consumerConfigContainer", ConsumerConfigContainer.class);
     }
 
-    public static NetworkAddressUtil getNetworkAddressUtil() {
-        return applicationContext.getBean("networkAddressUtil", NetworkAddressUtil.class);
-    }
-
     public static void setApplicationContext(ApplicationContext applicationContext) {
         SpringBridge.applicationContext = applicationContext;
     }

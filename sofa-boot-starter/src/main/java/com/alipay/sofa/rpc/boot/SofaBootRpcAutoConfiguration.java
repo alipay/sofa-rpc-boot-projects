@@ -16,7 +16,6 @@
  */
 package com.alipay.sofa.rpc.boot;
 
-import com.alipay.sofa.rpc.boot.common.NetworkAddressUtil;
 import com.alipay.sofa.rpc.boot.config.*;
 import com.alipay.sofa.rpc.boot.container.ConsumerConfigContainer;
 import com.alipay.sofa.rpc.boot.container.ProviderConfigContainer;
@@ -55,15 +54,8 @@ public class SofaBootRpcAutoConfiguration {
 
     @Bean
     public ServerConfigContainer serverConfigContainer(
-                                                       SofaBootRpcProperties sofaBootRpcProperties,
-                                                       NetworkAddressUtil networkAddressUtil) {
-        return new ServerConfigContainer(sofaBootRpcProperties, networkAddressUtil);
-    }
-
-    @Bean
-    public NetworkAddressUtil networkAddressUtil(
-                                                 SofaBootRpcProperties sofaBootRpcProperties) {
-        return new NetworkAddressUtil(sofaBootRpcProperties);
+                                                       SofaBootRpcProperties sofaBootRpcProperties) {
+        return new ServerConfigContainer(sofaBootRpcProperties);
     }
 
     @Bean
