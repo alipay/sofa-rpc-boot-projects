@@ -22,12 +22,7 @@ import com.alipay.sofa.rpc.boot.runtime.binding.RpcBinding;
 import com.alipay.sofa.rpc.boot.runtime.binding.RpcBindingType;
 import com.alipay.sofa.rpc.boot.runtime.param.DubboBindingParam;
 import com.alipay.sofa.rpc.boot.runtime.param.RpcBindingParam;
-import com.alipay.sofa.runtime.api.annotation.SofaReference;
-import com.alipay.sofa.runtime.api.annotation.SofaReferenceBinding;
-import com.alipay.sofa.runtime.api.annotation.SofaService;
-import com.alipay.sofa.runtime.api.annotation.SofaServiceBinding;
 import com.alipay.sofa.runtime.api.binding.BindingType;
-import com.alipay.sofa.runtime.spi.service.BindingConverterContext;
 import org.springframework.context.ApplicationContext;
 
 /**
@@ -44,19 +39,6 @@ public class DubboBindingConverter extends RpcBindingConverter {
     @Override
     protected RpcBindingParam createRpcBindingParam() {
         return new DubboBindingParam();
-    }
-
-    @Override
-    public RpcBinding convert(SofaService sofaServiceAnnotation, SofaServiceBinding sofaServiceBindingAnnotation,
-                              BindingConverterContext bindingConverterContext) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public RpcBinding convert(SofaReference sofaReferenceAnnotation,
-                              SofaReferenceBinding sofaReferenceBindingAnnotation,
-                              BindingConverterContext bindingConverterContext) {
-        throw new UnsupportedOperationException();
     }
 
     @Override
