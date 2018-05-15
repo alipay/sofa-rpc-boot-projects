@@ -48,14 +48,17 @@ public class BoltBindingConverter extends RpcBindingConverter {
     @Override
     public RpcBinding convert(SofaService sofaServiceAnnotation, SofaServiceBinding sofaServiceBindingAnnotation,
                               BindingConverterContext bindingConverterContext) {
-        throw new UnsupportedOperationException();
+        RpcBindingParam bindingParam = new BoltBindingParam();
+        return new BoltBinding(bindingParam, bindingConverterContext.getApplicationContext(), false);
+
     }
 
     @Override
     public RpcBinding convert(SofaReference sofaReferenceAnnotation,
                               SofaReferenceBinding sofaReferenceBindingAnnotation,
                               BindingConverterContext bindingConverterContext) {
-        throw new UnsupportedOperationException();
+        RpcBindingParam bindingParam = new BoltBindingParam();
+        return new BoltBinding(bindingParam, bindingConverterContext.getApplicationContext(), true);
     }
 
     @Override
