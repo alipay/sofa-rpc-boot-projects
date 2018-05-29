@@ -197,6 +197,7 @@ public abstract class RpcBindingConverter implements BindingConverter<RpcBinding
         Boolean lazy = SofaBootRpcParserUtil.parseBoolean(element.getAttribute(RpcBindingXmlConstants.TAG_LAZY));
         Boolean check = SofaBootRpcParserUtil.parseBoolean(element.getAttribute(RpcBindingXmlConstants.TAG_CHECK));
 
+        String serialization = element.getAttribute(RpcBindingXmlConstants.TAG_SERIALIZE_TYPE);
         if (timeout != null) {
             param.setTimeout(timeout);
         }
@@ -241,6 +242,9 @@ public abstract class RpcBindingConverter implements BindingConverter<RpcBinding
         }
         if (check != null) {
             param.setCheck(check);
+        }
+        if (StringUtils.hasText(serialization)) {
+            param.setSerialization(serialization);
         }
     }
 
