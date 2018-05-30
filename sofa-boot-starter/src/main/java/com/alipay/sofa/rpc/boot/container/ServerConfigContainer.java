@@ -93,10 +93,6 @@ public class ServerConfigContainer {
             restServerConfig.buildIfAbsent().start();
         }
 
-        if (dubboServerConfig != null) {
-            dubboServerConfig.buildIfAbsent().start();
-        }
-
         if (h2cServerConfig != null) {
             h2cServerConfig.buildIfAbsent().start();
         }
@@ -408,6 +404,11 @@ public class ServerConfigContainer {
         if (dubboServerConfig != null) {
             dubboServerConfig.destroy();
             dubboServerConfig = null;
+        }
+
+        if (h2cServerConfig != null) {
+            h2cServerConfig.destroy();
+            h2cServerConfig = null;
         }
     }
 }
