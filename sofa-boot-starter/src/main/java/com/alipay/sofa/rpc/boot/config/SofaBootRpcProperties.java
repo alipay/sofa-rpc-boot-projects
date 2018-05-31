@@ -99,7 +99,7 @@ public class SofaBootRpcProperties {
     private String      boundHost;
 
     // disable lookout
-    private String      disableLookoutCollect;
+    private String      lookoutCollectDisable;
 
     public SofaBootRpcProperties(Environment environment) {
         this.environment = environment;
@@ -456,13 +456,13 @@ public class SofaBootRpcProperties {
         this.h2cAcceptsSize = h2cAcceptsSize;
     }
 
-    public String getDisableLookoutCollect() {
-        return StringUtils.isEmpty(disableLookoutCollect) ? getDotString(new Object() {
-        }.getClass().getEnclosingMethod().getName()) : disableLookoutCollect;
+    public String getLookoutCollectDisable() {
+        return StringUtils.isEmpty(lookoutCollectDisable) ? getDotString(new Object() {
+        }.getClass().getEnclosingMethod().getName()) : lookoutCollectDisable;
     }
 
-    public void setDisableLookoutCollect(String disableLookoutCollect) {
-        this.disableLookoutCollect = disableLookoutCollect;
+    public void setLookoutCollectDisable(String lookoutCollectDisable) {
+        this.lookoutCollectDisable = lookoutCollectDisable;
     }
 
     private String getDotString(String enclosingMethodName) {
