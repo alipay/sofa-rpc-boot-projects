@@ -38,7 +38,7 @@ import org.springframework.context.ApplicationListener;
 public class SofaBootRpcStartListener implements ApplicationListener<SofaBootRpcStartEvent> {
 
     @Autowired
-    private SofaBootRpcProperties sofaBootRpcProperties;
+    private SofaBootRpcProperties            sofaBootRpcProperties;
 
     private final ProviderConfigContainer    providerConfigContainer;
     private final FaultToleranceConfigurator faultToleranceConfigurator;
@@ -83,7 +83,7 @@ public class SofaBootRpcStartListener implements ApplicationListener<SofaBootRpc
     private void disableLookout() {
         Boolean disable = SofaBootRpcParserUtil.parseBoolean(sofaBootRpcProperties.getDisableMetricsCollect());
 
-        if(disable != null){
+        if (disable != null) {
             LookoutSubscriber.setLookoutCollectDisable(disable);
         }
     }

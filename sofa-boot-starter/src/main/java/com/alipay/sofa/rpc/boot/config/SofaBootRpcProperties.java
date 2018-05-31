@@ -99,7 +99,7 @@ public class SofaBootRpcProperties {
     private String      boundHost;
 
     // disable metrics
-    private String disableMetricsCollect;
+    private String      disableMetricsCollect;
 
     public SofaBootRpcProperties(Environment environment) {
         this.environment = environment;
