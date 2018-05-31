@@ -98,6 +98,9 @@ public class SofaBootRpcProperties {
     // bound server
     private String      boundHost;
 
+    // disable metrics
+    private String disableMetricsCollect;
+
     public SofaBootRpcProperties(Environment environment) {
         this.environment = environment;
     }
@@ -451,6 +454,15 @@ public class SofaBootRpcProperties {
 
     public void setH2cAcceptsSize(String h2cAcceptsSize) {
         this.h2cAcceptsSize = h2cAcceptsSize;
+    }
+
+    public String getDisableMetricsCollect() {
+        return StringUtils.isEmpty(disableMetricsCollect) ? getDotString(new Object() {
+        }.getClass().getEnclosingMethod().getName()) : disableMetricsCollect;
+    }
+
+    public void setDisableMetricsCollect(String disableMetricsCollect) {
+        this.disableMetricsCollect = disableMetricsCollect;
     }
 
     private String getDotString(String enclosingMethodName) {
