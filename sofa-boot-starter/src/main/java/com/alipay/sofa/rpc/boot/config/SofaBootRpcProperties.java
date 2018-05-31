@@ -98,8 +98,8 @@ public class SofaBootRpcProperties {
     // bound server
     private String      boundHost;
 
-    // disable metrics
-    private String      disableMetricsCollect;
+    // disable lookout
+    private String      disableLookoutCollect;
 
     public SofaBootRpcProperties(Environment environment) {
         this.environment = environment;
@@ -456,13 +456,13 @@ public class SofaBootRpcProperties {
         this.h2cAcceptsSize = h2cAcceptsSize;
     }
 
-    public String getDisableMetricsCollect() {
-        return StringUtils.isEmpty(disableMetricsCollect) ? getDotString(new Object() {
-        }.getClass().getEnclosingMethod().getName()) : disableMetricsCollect;
+    public String getDisableLookoutCollect() {
+        return StringUtils.isEmpty(disableLookoutCollect) ? getDotString(new Object() {
+        }.getClass().getEnclosingMethod().getName()) : disableLookoutCollect;
     }
 
-    public void setDisableMetricsCollect(String disableMetricsCollect) {
-        this.disableMetricsCollect = disableMetricsCollect;
+    public void setDisableLookoutCollect(String disableLookoutCollect) {
+        this.disableLookoutCollect = disableLookoutCollect;
     }
 
     private String getDotString(String enclosingMethodName) {

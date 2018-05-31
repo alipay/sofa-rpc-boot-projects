@@ -81,7 +81,7 @@ public class SofaBootRpcStartListener implements ApplicationListener<SofaBootRpc
     }
 
     private void disableLookout() {
-        Boolean disable = SofaBootRpcParserUtil.parseBoolean(sofaBootRpcProperties.getDisableMetricsCollect());
+        Boolean disable = SofaBootRpcParserUtil.parseBoolean(sofaBootRpcProperties.getDisableLookoutCollect());
 
         if (disable != null) {
             LookoutSubscriber.setLookoutCollectDisable(disable);
