@@ -418,7 +418,7 @@ public abstract class RpcBindingConverter implements BindingConverter<RpcBinding
         if (sofaReferenceBindingAnnotation.timeout() != 0) {
             bindingParam.setTimeout(sofaReferenceBindingAnnotation.timeout());
         }
-        bindingParam.setType(sofaReferenceBindingAnnotation.bindingType());
+        bindingParam.setType(sofaReferenceBindingAnnotation.invokeType());
 
         ApplicationContext applicationContext = bindingConverterContext.getApplicationContext();
         List<Filter> filters = new ArrayList<Filter>(RpcFilterContainer.getInstance().getFilters(
