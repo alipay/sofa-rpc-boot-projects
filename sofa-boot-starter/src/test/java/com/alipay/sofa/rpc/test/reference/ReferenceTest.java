@@ -68,12 +68,12 @@ public class ReferenceTest {
 
     @Test
     public void testInvokeWithoutProvider() throws InterruptedException {
-        
+
         try {
             helloSyncService.saySync("sync");
         } catch (Exception e) {
             assertEquals(SofaRouteException.class, e.getClass());
         }
     }
-                                                                                                                                                                                                                                                                                     
+
 }
