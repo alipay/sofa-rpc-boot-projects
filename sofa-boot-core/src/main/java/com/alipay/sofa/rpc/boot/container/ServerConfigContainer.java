@@ -278,6 +278,7 @@ public class ServerConfigContainer {
         String hostName = sofaBootRpcProperties.getRestHostname();
         String portStr = sofaBootRpcProperties.getRestPort();
         String ioThreadSizeStr = sofaBootRpcProperties.getRestIoThreadSize();
+        String contextPath = sofaBootRpcProperties.getRestContextPath();
         String restThreadPoolMaxSizeStr = sofaBootRpcProperties.getRestThreadPoolMaxSize();
         String maxRequestSizeStr = sofaBootRpcProperties.getRestMaxRequestSize();
         String telnetStr = sofaBootRpcProperties.getRestTelnet();
@@ -333,6 +334,7 @@ public class ServerConfigContainer {
         ServerConfig serverConfig = new ServerConfig()
             .setPort(port)
             .setIoThreads(ioThreadCount)
+            .setContextPath(contextPath)
             .setMaxThreads(restThreadPoolMaxSize)
             .setPayload(maxRequestSize)
             .setTelnet(telnet)
