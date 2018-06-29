@@ -135,4 +135,23 @@ public class ServerConfigContainerTest {
         Assert.assertTrue(result);
 
     }
+
+    @Test
+    public void testCustomServerConfigTwice() {
+
+        final ServerConfig serverConfig = new ServerConfig();
+        serverConfig.setPort(123);
+        final String protocol = "xxx";
+        serverConfigContainer.registerCustomServerConfig(protocol, serverConfig);
+
+        ServerConfig serverConfig2 = serverConfigContainer.getServerConfig(protocol);
+
+        Assert.assertEquals(123, serverConfig2.getPort());
+        Assert.assertEquals(serverConfig.getPort(), serverConfig2.getPort());
+
+        boolean twiceResult = serverConfigContainer.registerCustomServerConfig(protocol, serverConfig);
+
+        Assert.assertFalse(twiceResult);
+
+    }
 }
