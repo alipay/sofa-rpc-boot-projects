@@ -334,11 +334,14 @@ public class ServerConfigContainer {
         ServerConfig serverConfig = new ServerConfig()
             .setPort(port)
             .setIoThreads(ioThreadCount)
-            .setContextPath(contextPath)
             .setMaxThreads(restThreadPoolMaxSize)
             .setPayload(maxRequestSize)
             .setTelnet(telnet)
             .setDaemon(daemon);
+
+        if (!StringUtils.isEmpty(contextPath)) {
+            serverConfig.setContextPath(contextPath);
+        }
 
         serverConfig.setAutoStart(false);
         serverConfig.setProtocol(SofaBootRpcConfigConstants.RPC_PROTOCOL_REST);
