@@ -23,6 +23,7 @@
         <dependency>
             <groupId>com.alipay.sofa</groupId>
             <artifactId>rpc-sofa-boot-starter</artifactId>
+            <version>${rpc.starter.version}</version>
         </dependency>
         <dependency>
             <groupId>com.alipay.sofa</groupId>
