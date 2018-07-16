@@ -23,13 +23,14 @@
         <dubbo_version>2.4.10</dubbo_version>
         <cxf.version>3.0.14</cxf.version>
         <skipTests>false</skipTests>
+        <rpc.version>5.4.3</rpc.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>com.alipay.sofa</groupId>
             <artifactId>sofa-rpc-all</artifactId>
-            <version>5.4.3-SNAPSHOT</version>
+            <version>${rpc.version}</version>
         </dependency>
 
         <dependency>
