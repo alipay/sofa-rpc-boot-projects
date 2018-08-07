@@ -26,8 +26,7 @@
         <dependency>
             <groupId>com.alipay.sofa</groupId>
             <artifactId>rpc-sofa-boot-core</artifactId>
-            <!--<version>${rpc.starter.version}</version>-->
-            <version>5.4.3</version>
+            <version>${rpc.starter.version}</version>
         </dependency>
 
         <dependency>

@@ -9,22 +9,36 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>rpc-sofa-ark-plugin</artifactId>
+    <artifactId>rpc-sofa-boot-plugin</artifactId>
     <version>5.4.4-SNAPSHOT</version>
+
+    <properties>
+        <ark.plugin.name>rpc-sofa-boot-plugin</ark.plugin.name>
+    </properties>
 
     <dependencies>
         <dependency>
             <groupId>com.alipay.sofa</groupId>
             <artifactId>rpc-sofa-boot-starter</artifactId>
             <version>5.4.4-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.alipay.sofa</groupId>
+                    <artifactId>sofa-rpc-all</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
-        <dependency>
-            <groupId>com.alipay.sofa</groupId>
-            <artifactId>sofa-ark-spi</artifactId>
-        </dependency>
+
         <dependency>
             <groupId>com.alipay.sofa</groupId>
             <artifactId>healthcheck-sofa-boot-starter</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alipay.sofa</groupId>
+            <artifactId>sofa-rpc-all</artifactId>
+            <version>5.4.4-SNAPSHOT</version>
             <optional>true</optional>
         </dependency>
     </dependencies>
@@ -34,7 +48,7 @@
             <plugin>
                 <groupId>com.alipay.sofa</groupId>
                 <artifactId>sofa-ark-plugin-maven-plugin</artifactId>
-                <version>0.4.0</version>
+                <version>0.4.1</version>
                 <executions>
                     <execution>
                         <id>default-cli</id>
@@ -45,6 +59,7 @@
                         <configuration>
                             <priority>2000</priority>
                             <pluginName>${ark.plugin.name}</pluginName>
+                            <classifier> </classifier>
 
                             <exported>
                                 <packages>
@@ -84,6 +99,10 @@
                                 <excludeGroupId>org.springframework.boot</excludeGroupId>
                                 <excludeGroupId>org.apache.tomcat.embed</excludeGroupId>
                             </excludeGroupIds>
+
+                            <excludes>
+                                <exclude>com.alipay.sofa:healthcheck-sofa-boot-starter</exclude>
+                            </excludes>
 
                             <shades>
                                 <shade>com.alipay.sofa:rpc-sofa-boot-starter</shade>

@@ -30,8 +30,7 @@
         <dependency>
             <groupId>com.alipay.sofa</groupId>
             <artifactId>sofa-rpc-all</artifactId>
-            <!--<version>${rpc.all.version}</version>-->
-            <version>5.4.3</version>
+            <version>${rpc.all.version}</version>
         </dependency>
 
         <dependency>

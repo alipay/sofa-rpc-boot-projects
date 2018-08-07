@@ -22,7 +22,7 @@
         <module>sofa-boot-starter</module>
         <module>sofa-boot-samples</module>
         <module>sofa-boot-core</module>
-        <module>rpc-sofa-ark-plugin</module>
+        <module>sofa-boot-plugin</module>
     </modules>
 
     <properties>
