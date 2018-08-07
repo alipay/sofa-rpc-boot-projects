@@ -48,7 +48,6 @@
             <plugin>
                 <groupId>com.alipay.sofa</groupId>
                 <artifactId>sofa-ark-plugin-maven-plugin</artifactId>
-                <version>0.4.1</version>
                 <executions>
                     <execution>
                         <id>default-cli</id>
