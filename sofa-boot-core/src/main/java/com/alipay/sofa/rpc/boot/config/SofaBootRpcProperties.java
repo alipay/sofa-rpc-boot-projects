@@ -30,7 +30,7 @@ import java.util.Map;
  */
 @ConfigurationProperties(SofaBootRpcProperties.PREFIX)
 public class SofaBootRpcProperties {
-    static final String         PREFIX        = "com.alipay.sofa.rpc";
+    static final String         PREFIX     = "com.alipay.sofa.rpc";
 
     private Environment         environment;
 
@@ -107,7 +107,7 @@ public class SofaBootRpcProperties {
     private String              lookoutCollectDisable;
 
     //custom registry
-    private Map<String, String> registryAlias = new HashMap<String, String>();
+    private Map<String, String> registries = new HashMap<String, String>();
 
     public SofaBootRpcProperties(Environment environment) {
         this.environment = environment;
@@ -484,12 +484,12 @@ public class SofaBootRpcProperties {
         this.lookoutCollectDisable = lookoutCollectDisable;
     }
 
-    public Map<String, String> getRegistryAlias() {
-        return registryAlias;
+    public Map<String, String> getRegistries() {
+        return registries;
     }
 
-    public void setRegistryAlias(Map<String, String> registryAlias) {
-        this.registryAlias = registryAlias;
+    public void setRegistries(Map<String, String> registries) {
+        this.registries = registries;
     }
 
     private String getDotString(String enclosingMethodName) {

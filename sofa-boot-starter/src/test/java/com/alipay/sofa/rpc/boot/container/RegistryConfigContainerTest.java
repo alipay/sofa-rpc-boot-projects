@@ -80,7 +80,7 @@ public class RegistryConfigContainerTest {
     public void testCustomRegistryConfig() {
         Map<String, String> registryAlias = new HashMap<String, String>();
         registryAlias.put("zk1", "zookeeper://127.0.0.1:2181?file=/home/admin/zookeeper");
-        sofaBootRpcProperties.setRegistryAlias(registryAlias);
+        sofaBootRpcProperties.setRegistries(registryAlias);
         RegistryConfig registryConfig = registryConfigContainer.getRegistryConfig("zk1");
         Assert.assertEquals(registryConfig.getProtocol(), "zookeeper");
     }

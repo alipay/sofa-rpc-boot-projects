@@ -31,7 +31,7 @@ import java.util.Map;
 @SpringBootTest(properties = {
                               SofaBootRpcProperties.PREFIX + ".bolt.port=5000",
                               "com_alipay_sofa_rpc_bolt_thread_pool_max_size=600",
-                              SofaBootRpcProperties.PREFIX + ".registry-alias.zk1=zookeeper://xxxx"
+                              SofaBootRpcProperties.PREFIX + ".registries.zk1=zookeeper://xxxx"
 })
 public class SofaBootRpcPropertiesTest {
     @Autowired
@@ -55,7 +55,7 @@ public class SofaBootRpcPropertiesTest {
 
     @Test
     public void testCustoMapConfig() {
-        Map<String, String> map = sofaBootRpcProperties.getRegistryAlias();
+        Map<String, String> map = sofaBootRpcProperties.getRegistries();
 
         Assert.assertTrue(map != null);
         Assert.assertEquals("zookeeper://xxxx", map.get("zk1"));

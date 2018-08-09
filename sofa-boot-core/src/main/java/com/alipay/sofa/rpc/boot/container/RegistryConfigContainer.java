@@ -54,7 +54,7 @@ public class RegistryConfigContainer {
         if (StringUtils.isEmpty(registryAlias) || GLOBAL_REGISTRY.equalsIgnoreCase(registryAlias)) {
             registryAddress = sofaBootRpcProperties.getRegistryAddress();
         } else {
-            registryAddress = sofaBootRpcProperties.getRegistryAlias().get(registryAlias);
+            registryAddress = sofaBootRpcProperties.getRegistries().get(registryAlias);
         }
 
         if (StringUtils.isBlank(registryAddress)) {
