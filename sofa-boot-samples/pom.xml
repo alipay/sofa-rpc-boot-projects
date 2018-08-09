@@ -120,7 +120,6 @@
                 <dependency>
                     <groupId>com.alipay.sofa</groupId>
                     <artifactId>rpc-sofa-boot-starter</artifactId>
-                    <classifier>ark-plugin</classifier>
                     <version>${rpc.starter.version}</version>
                 </dependency>
 
