@@ -42,8 +42,9 @@ public class ZookeeperConfigurator implements RegistryConfigureProcessor {
     String parseAddress(String config) {
         String address = null;
 
-        if (StringUtils.isNotEmpty(config) && config.startsWith("zookeeper")) {
-            String value = config.substring(12);
+        if (StringUtils.isNotEmpty(config) && config.startsWith(SofaBootRpcConfigConstants.REGISTRY_PROTOCOL_ZOOKEEPER)) {
+            final String zkProtol = SofaBootRpcConfigConstants.REGISTRY_PROTOCOL_ZOOKEEPER + "://";
+            String value = config.substring(zkProtol.length());
             if (!value.contains("?")) {
                 address = value;
             } else {
