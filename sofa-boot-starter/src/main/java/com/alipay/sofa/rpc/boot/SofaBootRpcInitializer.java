@@ -50,7 +50,7 @@ public class SofaBootRpcInitializer implements ApplicationContextInitializer<Con
     private void checkAppName(String appName) {
         if (!StringUtils.hasText(appName)) {
             throw new SofaBootRpcRuntimeException("Please add '" + SofaBootRpcConfigConstants.APP_NAME +
-                "' in application.properties");
+                    "' in application.properties");
         }
     }
 
