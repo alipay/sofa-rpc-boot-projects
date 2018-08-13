@@ -37,14 +37,14 @@ import java.util.Map;
  */
 public class RegistryConfigContainer {
 
-    private static final String GLOBAL_REGISTRY = "DEFAULT";
+    private static final String                     GLOBAL_REGISTRY   = "DEFAULT";
 
     @Autowired
-    private SofaBootRpcProperties sofaBootRpcProperties;
+    private SofaBootRpcProperties                   sofaBootRpcProperties;
 
     @Resource(name = "registryConfigMap")
     private Map<String, RegistryConfigureProcessor> registryConfigMap = new HashMap<String, RegistryConfigureProcessor>(
-            4);
+                                                                          4);
 
     public RegistryConfigContainer() {
     }
@@ -105,7 +105,6 @@ public class RegistryConfigContainer {
         this.registryConfigMap = registryConfigMap;
     }
 
-
     /**
      * protocol can be meshed
      * @param protocol
@@ -115,7 +114,8 @@ public class RegistryConfigContainer {
 
         String meshConfig = sofaBootRpcProperties.getEnableMesh();
         final Map<String, String> registries = sofaBootRpcProperties.getRegistries();
-        if (StringUtils.isNotBlank(meshConfig) && registries != null && registries.get(SofaBootRpcConfigConstants.REGISTRY_PROTOCOL_MESH) != null) {
+        if (StringUtils.isNotBlank(meshConfig) && registries != null &&
+            registries.get(SofaBootRpcConfigConstants.REGISTRY_PROTOCOL_MESH) != null) {
             if (meshConfig.equalsIgnoreCase(SofaBootRpcConfigConstants.ENABLE_MESH_ALL)) {
                 return true;
             } else {
@@ -128,7 +128,7 @@ public class RegistryConfigContainer {
                 return false;
             }
         }
-        else{
+        else {
             return false;
         }
 

@@ -149,8 +149,9 @@ public class ConsumerConfigHelper {
                 RegistryConfig registryConfig = registryConfigContainer.getRegistryConfig(registryAlias);
                 consumerConfig.setRegistry(registryConfig);
             }
-        } else if (registryConfigContainer.isMeshEnabled(protocol)){
-            RegistryConfig registryConfig = registryConfigContainer.getRegistryConfig(SofaBootRpcConfigConstants.REGISTRY_PROTOCOL_MESH);
+        } else if (registryConfigContainer.isMeshEnabled(protocol)) {
+            RegistryConfig registryConfig = registryConfigContainer
+                .getRegistryConfig(SofaBootRpcConfigConstants.REGISTRY_PROTOCOL_MESH);
             consumerConfig.setRegistry(registryConfig);
         }
         else {

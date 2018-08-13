@@ -40,8 +40,8 @@ public class MeshConfigurator implements RegistryConfigureProcessor {
         String address = null;
 
         if (StringUtils.isNotEmpty(config) && config.startsWith(SofaBootRpcConfigConstants.REGISTRY_PROTOCOL_MESH)) {
-            final String zkProtol = SofaBootRpcConfigConstants.REGISTRY_PROTOCOL_MESH + "://";
-            String value = config.substring(zkProtol.length());
+            final String meshProtocol = SofaBootRpcConfigConstants.REGISTRY_PROTOCOL_MESH + "://";
+            String value = config.substring(meshProtocol.length());
             if (!value.contains("?")) {
                 address = value;
             } else {
@@ -59,8 +59,8 @@ public class MeshConfigurator implements RegistryConfigureProcessor {
 
         meshAddress = HTTP + meshAddress;
         return new RegistryConfig()
-                .setAddress(meshAddress)
-                .setProtocol(SofaBootRpcConfigConstants.REGISTRY_PROTOCOL_MESH);
+            .setAddress(meshAddress)
+            .setProtocol(SofaBootRpcConfigConstants.REGISTRY_PROTOCOL_MESH);
     }
 
 }

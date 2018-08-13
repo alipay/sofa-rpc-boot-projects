@@ -37,8 +37,8 @@ import static org.junit.Assert.assertEquals;
  * you should change mesh address to test
  */
 @SpringBootApplication
-@SpringBootTest(properties = {"com.alipay.sofa.rpc.registries.mesh=mesh://127.0.0.1:13330",
-        "com.alipay.sofa.rpc.enable.mesh=bolt"},
+@SpringBootTest(properties = { "com.alipay.sofa.rpc.registries.mesh=mesh://127.0.0.1:13330",
+                              "com.alipay.sofa.rpc.enable.mesh=bolt" },
         classes = MeshTest.class)
 @RunWith(SpringRunner.class)
 @ImportResource("classpath*:spring/test_only_mesh.xml")
@@ -47,9 +47,8 @@ public class MeshTest {
     @Resource(name = "helloSyncConsumerMesh")
     private HelloSyncService helloSyncConsumerMesh;
 
-
     @Autowired
-    private SampleService sampleService;
+    private SampleService    sampleService;
 
     @Test
     public void testInvokeWithMesh() throws InterruptedException {
