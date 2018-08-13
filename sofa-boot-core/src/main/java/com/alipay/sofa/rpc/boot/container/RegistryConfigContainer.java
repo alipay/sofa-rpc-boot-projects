@@ -25,7 +25,9 @@ import com.alipay.sofa.rpc.config.RegistryConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.Resource;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -35,14 +37,14 @@ import java.util.Map;
  */
 public class RegistryConfigContainer {
 
-    private static final String                     GLOBAL_REGISTRY   = "DEFAULT";
+    private static final String GLOBAL_REGISTRY = "DEFAULT";
 
     @Autowired
-    private SofaBootRpcProperties                   sofaBootRpcProperties;
+    private SofaBootRpcProperties sofaBootRpcProperties;
 
     @Resource(name = "registryConfigMap")
     private Map<String, RegistryConfigureProcessor> registryConfigMap = new HashMap<String, RegistryConfigureProcessor>(
-                                                                          4);
+            4);
 
     public RegistryConfigContainer() {
     }
@@ -63,8 +65,7 @@ public class RegistryConfigContainer {
             final int endIndex = registryAddress.indexOf(":");
             if (endIndex != -1) {
                 registryProtocol = registryAddress.substring(0, endIndex);
-            }
-            else {
+            } else {
                 registryProtocol = registryAlias;
             }
         }
@@ -102,5 +103,34 @@ public class RegistryConfigContainer {
 
     public void setRegistryConfigMap(Map<String, RegistryConfigureProcessor> registryConfigMap) {
         this.registryConfigMap = registryConfigMap;
+    }
+
+
+    /**
+     * protocol can be meshed
+     * @param protocol
+     * @return
+     */
+    public boolean isMeshEnabled(String protocol) {
+
+        String meshConfig = sofaBootRpcProperties.getEnableMesh();
+        final Map<String, String> registries = sofaBootRpcProperties.getRegistries();
+        if (StringUtils.isNotBlank(meshConfig) && registries != null && registries.get(SofaBootRpcConfigConstants.REGISTRY_PROTOCOL_MESH) != null) {
+            if (meshConfig.equalsIgnoreCase(SofaBootRpcConfigConstants.ENABLE_MESH_ALL)) {
+                return true;
+            } else {
+                List<String> meshEnableProtocols = Arrays.asList(meshConfig.split(","));
+                for (String meshProtocol : meshEnableProtocols) {
+                    if (StringUtils.equals(meshProtocol, protocol)) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+        }
+        else{
+            return false;
+        }
+
     }
 }
