@@ -13,4 +13,8 @@
     <sofa:service  id="helloSyncProviderMesh" interface="com.alipay.sofa.rpc.boot.invoke.HelloSyncService" ref="helloSyncServiceImpl">
         <sofa:binding.bolt/>
     </sofa:service>
+    <sofa:reference jvm-first="false" id="sampleServiceRef" interface="com.alipay.rpc.common.service.facade.SampleService">
+        <sofa:binding.bolt/>
+    </sofa:reference>
+
 </beans>

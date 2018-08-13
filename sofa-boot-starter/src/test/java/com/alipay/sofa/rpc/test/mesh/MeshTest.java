@@ -16,10 +16,12 @@
  */
 package com.alipay.sofa.rpc.test.mesh;
 
+import com.alipay.rpc.common.service.facade.SampleService;
 import com.alipay.sofa.rpc.boot.invoke.HelloSyncService;
-import com.alipay.sofa.rpc.core.exception.SofaRouteException;
+import com.alipay.sofa.rpc.core.exception.SofaRpcException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ImportResource;
@@ -30,8 +32,9 @@ import javax.annotation.Resource;
 import static org.junit.Assert.assertEquals;
 
 /**
- * @author zhuoyu.sjw
- * @version $Id: SofaBootRpCReferenceTest.java, v 0.1 2018-06-25 19:26 zhuoyu.sjw Exp $$
+ * @author zhiyuan.lzy
+ * @version $Id: MeshTest.java, v 0.1 2018-06-25 19:26 zhiyuan.lzy Exp $$
+ * you should change mesh address to test
  */
 @SpringBootApplication
 @SpringBootTest(properties = {"com.alipay.sofa.rpc.registries.mesh=mesh://127.0.0.1:13330",
@@ -45,14 +48,18 @@ public class MeshTest {
     private HelloSyncService helloSyncConsumerMesh;
 
 
+    @Autowired
+    private SampleService sampleService;
+
     @Test
     public void testInvokeWithMesh() throws InterruptedException {
 
         try {
-            helloSyncConsumerMesh.saySync("sync");
+            String result = sampleService.echoStr("sync");
+            System.out.println("mesh:" + result);
         } catch (Exception e) {
             e.printStackTrace();
-            assertEquals(SofaRouteException.class, e.getClass());
+            assertEquals(SofaRpcException.class, e.getClass());
         }
     }
 
