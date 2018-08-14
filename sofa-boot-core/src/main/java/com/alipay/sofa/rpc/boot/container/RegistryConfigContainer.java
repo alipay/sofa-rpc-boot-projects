@@ -29,6 +29,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * RegistryConfig 工厂
@@ -46,14 +47,28 @@ public class RegistryConfigContainer {
     private Map<String, RegistryConfigureProcessor> registryConfigMap = new HashMap<String, RegistryConfigureProcessor>(
                                                                           4);
 
+    /**
+     * for cache
+     */
+    private Map<String, RegistryConfig>             registryConfigs   = new ConcurrentHashMap<String, RegistryConfig>();
+
     public RegistryConfigContainer() {
     }
 
     public RegistryConfig getRegistryConfig(String registryAlias) throws SofaBootRpcRuntimeException {
-
+        RegistryConfig registryConfig;
         String registryProtocol;
         String registryAddress = null;
-        if (StringUtils.isEmpty(registryAlias) || GLOBAL_REGISTRY.equalsIgnoreCase(registryAlias)) {
+
+        if (StringUtils.isEmpty(registryAlias)) {
+            registryAlias = GLOBAL_REGISTRY;
+        }
+
+        if (registryConfigs.get(registryAlias) != null) {
+            return registryConfigs.get(registryAlias);
+        }
+
+        if (GLOBAL_REGISTRY.equalsIgnoreCase(registryAlias)) {
             registryAddress = sofaBootRpcProperties.getRegistryAddress();
         } else {
             registryAddress = sofaBootRpcProperties.getRegistries().get(registryAlias);
@@ -72,7 +87,8 @@ public class RegistryConfigContainer {
 
         if (registryConfigMap.get(registryProtocol) != null) {
             RegistryConfigureProcessor registryConfigureProcessor = registryConfigMap.get(registryProtocol);
-            RegistryConfig registryConfig = registryConfigureProcessor.buildFromAddress(registryAddress);
+            registryConfig = registryConfigureProcessor.buildFromAddress(registryAddress);
+            registryConfigs.put(registryAlias, registryConfig);
             return registryConfig;
         } else {
             throw new SofaBootRpcRuntimeException("registry config [" + registryAddress + "] is not supported");
@@ -107,6 +123,7 @@ public class RegistryConfigContainer {
 
     /**
      * protocol can be meshed
+     *
      * @param protocol
      * @return
      */
@@ -127,8 +144,7 @@ public class RegistryConfigContainer {
                 }
                 return false;
             }
-        }
-        else {
+        } else {
             return false;
         }
 
