@@ -69,6 +69,8 @@ public class SofaBootRpcConfigConstants {
     /** mesh **/
     public static final String  ENABLE_MESH_ALL                    = "all";
 
+    public static final String  DEFAULT_REGISTRY                   = "default.registry";
+
     /* possible config value end ********************************************************/
 
 }

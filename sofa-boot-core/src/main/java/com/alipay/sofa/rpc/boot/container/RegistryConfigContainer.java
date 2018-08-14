@@ -20,9 +20,11 @@ import com.alipay.sofa.rpc.boot.common.SofaBootRpcRuntimeException;
 import com.alipay.sofa.rpc.boot.config.RegistryConfigureProcessor;
 import com.alipay.sofa.rpc.boot.config.SofaBootRpcConfigConstants;
 import com.alipay.sofa.rpc.boot.config.SofaBootRpcProperties;
+import com.alipay.sofa.rpc.common.SofaOptions;
 import com.alipay.sofa.rpc.common.utils.StringUtils;
 import com.alipay.sofa.rpc.config.RegistryConfig;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 
 import javax.annotation.Resource;
 import java.util.Arrays;
@@ -52,13 +54,32 @@ public class RegistryConfigContainer {
      */
     private Map<String, RegistryConfig>             registryConfigs   = new ConcurrentHashMap<String, RegistryConfig>();
 
+    /**
+     * for custom extends
+     */
+    private String                                  defaultAlias;
+
+    /**
+     * for default address for  defaultAlias
+     */
+    private String                                  defaultAddress;
+
     public RegistryConfigContainer() {
+        defaultAlias = System.getProperty(SofaBootRpcConfigConstants.DEFAULT_REGISTRY);
+        if (StringUtils.isNotBlank(defaultAlias)) {
+            defaultAddress = System.getProperty(defaultAlias);
+        }
     }
 
     public RegistryConfig getRegistryConfig(String registryAlias) throws SofaBootRpcRuntimeException {
         RegistryConfig registryConfig;
         String registryProtocol;
         String registryAddress = null;
+
+        //说明被扩展机制修改过.
+        if (StringUtils.isNotBlank(defaultAlias)) {
+            registryAlias = defaultAlias;
+        }
 
         if (StringUtils.isEmpty(registryAlias)) {
             registryAlias = GLOBAL_REGISTRY;
@@ -70,8 +91,11 @@ public class RegistryConfigContainer {
 
         if (GLOBAL_REGISTRY.equalsIgnoreCase(registryAlias)) {
             registryAddress = sofaBootRpcProperties.getRegistryAddress();
-        } else {
+        } else if (StringUtils.isBlank(defaultAlias)) {
             registryAddress = sofaBootRpcProperties.getRegistries().get(registryAlias);
+        } else {
+            //if seted,use custom default address
+            registryAddress = defaultAddress;
         }
 
         if (StringUtils.isBlank(registryAddress)) {
@@ -89,6 +113,14 @@ public class RegistryConfigContainer {
             RegistryConfigureProcessor registryConfigureProcessor = registryConfigMap.get(registryProtocol);
             registryConfig = registryConfigureProcessor.buildFromAddress(registryAddress);
             registryConfigs.put(registryAlias, registryConfig);
+            //不再处理以.分隔的.
+            final Environment environment = sofaBootRpcProperties.getEnvironment();
+            if (environment.containsProperty(SofaOptions.CONFIG_RPC_REGISTER_CONFREG_IGNORE)) {
+                if (Boolean.TRUE.toString().equalsIgnoreCase(
+                    environment.getProperty(SofaOptions.CONFIG_RPC_REGISTER_CONFREG_IGNORE))) {
+                    registryConfig.setRegister(false);
+                }
+            }
             return registryConfig;
         } else {
             throw new SofaBootRpcRuntimeException("registry config [" + registryAddress + "] is not supported");
@@ -119,6 +151,10 @@ public class RegistryConfigContainer {
 
     public void setRegistryConfigMap(Map<String, RegistryConfigureProcessor> registryConfigMap) {
         this.registryConfigMap = registryConfigMap;
+    }
+
+    public Map<String, RegistryConfig> getRegistryConfigs() {
+        return registryConfigs;
     }
 
     /**

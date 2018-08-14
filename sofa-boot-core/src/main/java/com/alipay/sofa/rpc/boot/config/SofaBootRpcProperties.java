@@ -516,4 +516,8 @@ public class SofaBootRpcProperties {
         return CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_HYPHEN, camelCaseString).replaceAll("-",
             ".");
     }
+
+    public Environment getEnvironment() {
+        return environment;
+    }
 }
