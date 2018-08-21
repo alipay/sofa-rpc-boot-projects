@@ -19,6 +19,7 @@ package com.alipay.sofa.rpc.test.mesh;
 import com.alipay.rpc.common.service.facade.SampleService;
 import com.alipay.sofa.rpc.boot.invoke.HelloSyncService;
 import com.alipay.sofa.rpc.core.exception.SofaRpcException;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +52,7 @@ public class MeshTest {
     private SampleService    sampleService;
 
     @Test
+    @Ignore("需要有 mesh 环境")
     public void testInvokeWithMesh() throws InterruptedException {
 
         try {
