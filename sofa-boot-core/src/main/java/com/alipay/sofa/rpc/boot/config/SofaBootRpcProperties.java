@@ -16,11 +16,11 @@
  */
 package com.alipay.sofa.rpc.boot.config;
 
+import com.alipay.sofa.rpc.common.SofaOptions;
+import com.google.common.base.CaseFormat;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.core.env.Environment;
 import org.springframework.util.StringUtils;
-
-import com.google.common.base.CaseFormat;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -201,6 +201,11 @@ public class SofaBootRpcProperties {
     }
 
     public String getBoltPort() {
+
+        if (environment.containsProperty(SofaOptions.CONFIG_TR_PORT)) {
+            return environment.getProperty(SofaOptions.CONFIG_TR_PORT);
+        }
+
         return StringUtils.isEmpty(boltPort) ? getDotString(new Object() {
         }.getClass().getEnclosingMethod().getName()) : boltPort;
     }
@@ -219,6 +224,11 @@ public class SofaBootRpcProperties {
     }
 
     public String getBoltThreadPoolCoreSize() {
+
+        if (environment.containsProperty(SofaOptions.TR_MIN_POOLSIZE)) {
+            return environment.getProperty(SofaOptions.TR_MIN_POOLSIZE);
+        }
+
         return StringUtils.isEmpty(boltThreadPoolCoreSize) ? getDotString(new Object() {
         }.getClass().getEnclosingMethod().getName()) : boltThreadPoolCoreSize;
     }
@@ -228,6 +238,11 @@ public class SofaBootRpcProperties {
     }
 
     public String getBoltThreadPoolMaxSize() {
+
+        if (environment.containsProperty(SofaOptions.TR_MAX_POOLSIZE)) {
+            return environment.getProperty(SofaOptions.TR_MAX_POOLSIZE);
+        }
+
         return StringUtils.isEmpty(boltThreadPoolMaxSize) ? getDotString(new Object() {
         }.getClass().getEnclosingMethod().getName()) : boltThreadPoolMaxSize;
     }
@@ -354,6 +369,10 @@ public class SofaBootRpcProperties {
     }
 
     public String getBoltThreadPoolQueueSize() {
+
+        if (environment.containsProperty(SofaOptions.TR_QUEUE_SIZE)) {
+            return environment.getProperty(SofaOptions.TR_QUEUE_SIZE);
+        }
         return StringUtils.isEmpty(boltThreadPoolQueueSize) ? getDotString(new Object() {
         }.getClass().getEnclosingMethod().getName()) : boltThreadPoolQueueSize;
     }
@@ -417,6 +436,11 @@ public class SofaBootRpcProperties {
     }
 
     public String getEnabledIpRange() {
+
+        if (environment.containsProperty(SofaOptions.CONFIG_IP_RANGE)) {
+            return environment.getProperty(SofaOptions.CONFIG_IP_RANGE);
+        }
+
         return StringUtils.isEmpty(enabledIpRange) ? getDotString(new Object() {
         }.getClass().getEnclosingMethod().getName()) : enabledIpRange;
     }
@@ -426,6 +450,11 @@ public class SofaBootRpcProperties {
     }
 
     public String getBindNetworkInterface() {
+
+        if (environment.containsProperty(SofaOptions.CONFIG_NI_BIND)) {
+            return environment.getProperty(SofaOptions.CONFIG_NI_BIND);
+        }
+
         return StringUtils.isEmpty(bindNetworkInterface) ? getDotString(new Object() {
         }.getClass().getEnclosingMethod().getName()) : bindNetworkInterface;
     }
