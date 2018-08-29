@@ -13,7 +13,7 @@
     <properties>
         <dubbo_version>2.4.10</dubbo_version>
         <cxf.version>3.0.14</cxf.version>
-        <sofaboot.version>2.4.6</sofaboot.version>
+        <sofaboot.version>2.4.7-SNAPSHOT</sofaboot.version>
         <rpc.starter.version>5.4.5</rpc.starter.version>
     </properties>
 
