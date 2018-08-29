@@ -44,6 +44,7 @@ import static org.junit.Assert.assertEquals;
         classes = MeshTest.class)
 @RunWith(SpringRunner.class)
 @ImportResource("classpath*:spring/test_only_mesh.xml")
+@Ignore
 public class MeshTest extends ActivelyDestroyTest {
 
     @Resource(name = "helloSyncConsumerMesh")
