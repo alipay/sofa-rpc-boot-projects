@@ -16,6 +16,7 @@
  */
 package com.alipay.sofa.rpc.boot.container;
 
+import com.alipay.sofa.common.utils.StringUtil;
 import com.alipay.sofa.rpc.boot.common.SofaBootRpcRuntimeException;
 import com.alipay.sofa.rpc.boot.config.RegistryConfigureProcessor;
 import com.alipay.sofa.rpc.boot.config.SofaBootRpcConfigConstants;
@@ -135,7 +136,11 @@ public class RegistryConfigContainer {
      */
     public RegistryConfig getRegistryConfig() throws SofaBootRpcRuntimeException {
 
-        return getRegistryConfig(GLOBAL_REGISTRY);
+        if (StringUtil.isNotBlank(defaultAlias)) {
+            return getRegistryConfig(defaultAlias);
+        } else {
+            return getRegistryConfig(GLOBAL_REGISTRY);
+        }
     }
 
     /**
