@@ -41,7 +41,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class RegistryConfigContainer {
 
-    private static final String                     GLOBAL_REGISTRY   = "DEFAULT";
+    private static final String                     DEFAULT_REGISTRY  = "DEFAULT";
 
     @Autowired
     private SofaBootRpcProperties                   sofaBootRpcProperties;
@@ -58,47 +58,58 @@ public class RegistryConfigContainer {
     /**
      * for custom extends
      */
-    private String                                  defaultAlias;
+    private String                                  CUSTOM_DEFAULT_REGISTRY;
 
     /**
-     * for default address for  defaultAlias
+     * for default address for  CUSTOM_DEFAULT_REGISTRY
      */
-    private String                                  defaultAddress;
+    private String                                  CUSTOM_DEFAULT_REGISTRY_ADDRESS;
 
     public RegistryConfigContainer() {
-        defaultAlias = System.getProperty(SofaBootRpcConfigConstants.DEFAULT_REGISTRY);
-        if (StringUtils.isNotBlank(defaultAlias)) {
-            defaultAddress = System.getProperty(defaultAlias);
+        CUSTOM_DEFAULT_REGISTRY = System.getProperty(SofaBootRpcConfigConstants.DEFAULT_REGISTRY);
+        if (StringUtils.isNotBlank(CUSTOM_DEFAULT_REGISTRY)) {
+            CUSTOM_DEFAULT_REGISTRY_ADDRESS = System.getProperty(CUSTOM_DEFAULT_REGISTRY);
         }
     }
 
+    /**
+     * @param registryAlias
+     * @return
+     * @throws SofaBootRpcRuntimeException
+     */
     public RegistryConfig getRegistryConfig(String registryAlias) throws SofaBootRpcRuntimeException {
         RegistryConfig registryConfig;
         String registryProtocol;
-        String registryAddress = null;
+        String registryAddress;
 
-        //说明被扩展机制修改过.这里可能是 zk
-        if (StringUtils.isNotBlank(defaultAlias) && StringUtils.isBlank(registryAlias)) {
-            registryAlias = defaultAlias;
+        String currentDefaultAlias;
+
+        if (StringUtils.isNotBlank(CUSTOM_DEFAULT_REGISTRY)) {
+            currentDefaultAlias = CUSTOM_DEFAULT_REGISTRY;
+        } else {
+            currentDefaultAlias = DEFAULT_REGISTRY;
         }
 
         if (StringUtils.isEmpty(registryAlias)) {
-            registryAlias = GLOBAL_REGISTRY;
+            registryAlias = currentDefaultAlias;
         }
+
+        //cloud be mesh,default,zk
 
         if (registryConfigs.get(registryAlias) != null) {
             return registryConfigs.get(registryAlias);
         }
 
-        if (GLOBAL_REGISTRY.equalsIgnoreCase(registryAlias)) {
+        // just for new address
+        if (DEFAULT_REGISTRY.equalsIgnoreCase(registryAlias)) {
             registryAddress = sofaBootRpcProperties.getRegistryAddress();
-        } else if (StringUtils.isBlank(defaultAlias)) {
-            registryAddress = sofaBootRpcProperties.getRegistries().get(registryAlias);
+        } else if (registryAlias.equals(CUSTOM_DEFAULT_REGISTRY)) {
+            registryAddress = CUSTOM_DEFAULT_REGISTRY_ADDRESS;
         } else {
-            //if seted,use custom default address
-            registryAddress = defaultAddress;
+            registryAddress = sofaBootRpcProperties.getRegistries().get(registryAlias);
         }
 
+        //for worst condition.
         if (StringUtils.isBlank(registryAddress)) {
             registryProtocol = SofaBootRpcConfigConstants.REGISTRY_PROTOCOL_LOCAL;
         } else {
@@ -136,10 +147,10 @@ public class RegistryConfigContainer {
      */
     public RegistryConfig getRegistryConfig() throws SofaBootRpcRuntimeException {
 
-        if (StringUtil.isNotBlank(defaultAlias)) {
-            return getRegistryConfig(defaultAlias);
+        if (StringUtil.isNotBlank(CUSTOM_DEFAULT_REGISTRY)) {
+            return getRegistryConfig(CUSTOM_DEFAULT_REGISTRY);
         } else {
-            return getRegistryConfig(GLOBAL_REGISTRY);
+            return getRegistryConfig(DEFAULT_REGISTRY);
         }
     }
 
