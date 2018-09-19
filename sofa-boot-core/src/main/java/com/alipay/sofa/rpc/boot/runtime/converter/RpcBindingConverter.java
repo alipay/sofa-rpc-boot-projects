@@ -34,6 +34,7 @@ import com.alipay.sofa.runtime.api.annotation.SofaService;
 import com.alipay.sofa.runtime.api.annotation.SofaServiceBinding;
 import com.alipay.sofa.runtime.spi.service.BindingConverter;
 import com.alipay.sofa.runtime.spi.service.BindingConverterContext;
+import org.springframework.beans.BeanUtils;
 import org.springframework.context.ApplicationContext;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
@@ -462,12 +463,20 @@ public abstract class RpcBindingConverter implements BindingConverter<RpcBinding
         if (!CollectionUtils.isEmpty(filters)) {
             bindingParam.setFilters(filters);
         }
-
         bindingParam.setRetries(sofaReferenceBindingAnnotation.retries());
 
         String callbackRef = sofaReferenceBindingAnnotation.callbackHandler();
         if (StringUtils.hasText(callbackRef)) {
-            bindingParam.setCallbackHandler(applicationContext.getBean(callbackRef));
+            try {
+                if (applicationContext.containsBean(callbackRef)) {
+                    bindingParam.setCallbackHandler(applicationContext.getBean(callbackRef));
+                } else {
+                    Object callback = BeanUtils.instantiate(applicationContext.getClassLoader().loadClass(callbackRef));
+                    bindingParam.setCallbackHandler(callback);
+                }
+            } catch (Throwable throwable) {
+                throw new RuntimeException(throwable);
+            }
         }
         bindingParam.setLazy(sofaReferenceBindingAnnotation.lazy());
     }
