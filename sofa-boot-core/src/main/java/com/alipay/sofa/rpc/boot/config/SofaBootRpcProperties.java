@@ -566,6 +566,9 @@ public class SofaBootRpcProperties implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        System.setProperty(RpcOptions.CONSUMER_REPEATED_REFERENCE_LIMIT, getConsumerRepeatedReferenceLimit());
+        String referenceLimit = getConsumerRepeatedReferenceLimit();
+        if (!StringUtils.isEmpty(referenceLimit)) {
+            System.setProperty(RpcOptions.CONSUMER_REPEATED_REFERENCE_LIMIT, getConsumerRepeatedReferenceLimit());
+        }
     }
 }
