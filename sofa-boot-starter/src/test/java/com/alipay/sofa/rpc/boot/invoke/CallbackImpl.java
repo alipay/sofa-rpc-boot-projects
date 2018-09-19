@@ -35,11 +35,11 @@ public class CallbackImpl implements SofaResponseCallback {
 
     @Override
     public void onAppException(Throwable throwable, String methodName, RequestBase request) {
-
+        System.out.println("xx");
     }
 
     @Override
     public void onSofaException(SofaRpcException sofaException, String methodName, RequestBase request) {
-
+        System.out.println("xx");
     }
 }

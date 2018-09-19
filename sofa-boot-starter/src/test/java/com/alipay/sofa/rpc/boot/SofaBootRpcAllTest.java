@@ -32,6 +32,8 @@ import com.alipay.sofa.rpc.boot.rest.RestService;
 import com.alipay.sofa.rpc.boot.retry.RetriesService;
 import com.alipay.sofa.rpc.boot.retry.RetriesServiceImpl;
 import com.alipay.sofa.rpc.boot.threadpool.ThreadPoolService;
+import com.alipay.sofa.runtime.api.annotation.SofaReference;
+import com.alipay.sofa.runtime.api.annotation.SofaReferenceBinding;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -46,6 +48,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @ImportResource("classpath*:spring/test_all.xml")
 public class SofaBootRpcAllTest {
+
+    @SofaReference(interfaceType = HelloCallbackService.class, jvmFirst = false, binding = @SofaReferenceBinding(invokeType = "callback", bindingType = "bolt", callbackHandler = "callbackImpl"))
+    private HelloCallbackService testSpringCallback;
+
+    @SofaReference(interfaceType = HelloCallbackService.class, jvmFirst = false, binding = @SofaReferenceBinding(invokeType = "callback", bindingType = "bolt", callbackHandler = "com.alipay.sofa.rpc.boot.invoke.CallbackImpl"))
+    private HelloCallbackService testClassCallback;
 
     @Autowired
     private HelloSyncService     helloSyncService;
@@ -88,6 +96,16 @@ public class SofaBootRpcAllTest {
 
     @Autowired
     private LazyService          lazyServiceDubbo;
+
+    @Test
+    public void testCallback() throws InterruptedException {
+        testSpringCallback.sayCallback("springRef");
+        Thread.sleep(1000);
+        Assert.assertEquals("springRef", CallbackImpl.result);
+        testClassCallback.sayCallback("className");
+        Thread.sleep(1000);
+        Assert.assertEquals("className", CallbackImpl.result);
+    }
 
     @Test
     public void testInvoke() throws InterruptedException {
