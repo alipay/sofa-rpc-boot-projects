@@ -16,12 +16,14 @@
  */
 package com.alipay.sofa.rpc.boot.config;
 
+import com.alipay.sofa.rpc.common.RpcOptions;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Map;
@@ -33,6 +35,7 @@ import java.util.Map;
                               "com_alipay_sofa_rpc_bolt_thread_pool_max_size=600",
                               SofaBootRpcProperties.PREFIX + ".registries.zk1=zookeeper://xxxx"
 })
+@TestPropertySource(properties = { SofaBootRpcProperties.PREFIX + ".consumer.repeated.reference.limit=10" })
 public class SofaBootRpcPropertiesTest {
     @Autowired
     private SofaBootRpcProperties sofaBootRpcProperties;
@@ -46,6 +49,11 @@ public class SofaBootRpcPropertiesTest {
     @Test
     public void testDotConfig() {
         Assert.assertEquals("5000", sofaBootRpcProperties.getBoltPort());
+    }
+
+    @Test
+    public void testConsumerRepeatedReferenceLimit() {
+        Assert.assertEquals("10", System.getProperty(RpcOptions.CONSUMER_REPEATED_REFERENCE_LIMIT));
     }
 
     @Test

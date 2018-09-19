@@ -16,8 +16,11 @@
  */
 package com.alipay.sofa.rpc.boot.config;
 
+import com.alipay.sofa.rpc.common.RpcOptions;
 import com.alipay.sofa.rpc.common.SofaOptions;
 import com.google.common.base.CaseFormat;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.core.env.Environment;
 import org.springframework.util.StringUtils;
@@ -29,9 +32,10 @@ import java.util.Map;
  * @author khotyn
  */
 @ConfigurationProperties(SofaBootRpcProperties.PREFIX)
-public class SofaBootRpcProperties {
+public class SofaBootRpcProperties implements InitializingBean {
     static final String         PREFIX     = "com.alipay.sofa.rpc";
 
+    @Autowired
     private Environment         environment;
 
     /* fault-tolerance start */
@@ -110,12 +114,9 @@ public class SofaBootRpcProperties {
     private Map<String, String> registries = new HashMap<String, String>();
 
     //mesh switch,can be protocol,like bolt,mesh,all,now we only support bolt
-
     private String              enableMesh;
 
-    public SofaBootRpcProperties(Environment environment) {
-        this.environment = environment;
-    }
+    private String              consumerRepeatedReferenceLimit;
 
     public String getAftRegulationEffective() {
         return StringUtils.isEmpty(aftRegulationEffective) ? getDotString(new Object() {
@@ -534,6 +535,15 @@ public class SofaBootRpcProperties {
         this.enableMesh = enableMesh;
     }
 
+    public String getConsumerRepeatedReferenceLimit() {
+        return StringUtils.isEmpty(consumerRepeatedReferenceLimit) ? getDotString(new Object() {
+        }.getClass().getEnclosingMethod().getName()) : consumerRepeatedReferenceLimit;
+    }
+
+    public void setConsumerRepeatedReferenceLimit(String consumerRepeatedReferenceLimit) {
+        this.consumerRepeatedReferenceLimit = consumerRepeatedReferenceLimit;
+    }
+
     private String getDotString(String enclosingMethodName) {
         if (environment == null) {
             return null;
@@ -548,5 +558,14 @@ public class SofaBootRpcProperties {
 
     public Environment getEnvironment() {
         return environment;
+    }
+
+    public void setEnvironment(Environment environment) {
+        this.environment = environment;
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        System.setProperty(RpcOptions.CONSUMER_REPEATED_REFERENCE_LIMIT, getConsumerRepeatedReferenceLimit());
     }
 }
