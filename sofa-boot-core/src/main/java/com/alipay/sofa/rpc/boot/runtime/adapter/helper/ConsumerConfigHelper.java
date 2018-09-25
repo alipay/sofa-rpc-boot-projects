@@ -44,9 +44,10 @@ import java.util.List;
 public class ConsumerConfigHelper {
     private final RegistryConfigContainer registryConfigContainer;
     private final String                  appName;
-    private final SofaBootRpcProperties sofaBootRpcProperties;
+    private final SofaBootRpcProperties   sofaBootRpcProperties;
 
-    public ConsumerConfigHelper(SofaBootRpcProperties sofaBootRpcProperties, RegistryConfigContainer registryConfigContainer, String appName) {
+    public ConsumerConfigHelper(SofaBootRpcProperties sofaBootRpcProperties,
+                                RegistryConfigContainer registryConfigContainer, String appName) {
         this.sofaBootRpcProperties = sofaBootRpcProperties;
         this.registryConfigContainer = registryConfigContainer;
         this.appName = appName;

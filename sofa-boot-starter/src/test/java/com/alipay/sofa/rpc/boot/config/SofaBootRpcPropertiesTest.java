@@ -45,18 +45,18 @@ import java.util.Map;
 })
 public class SofaBootRpcPropertiesTest {
     @Autowired
-    private SofaBootRpcProperties sofaBootRpcProperties;
+    private SofaBootRpcProperties   sofaBootRpcProperties;
 
     @SofaReference(jvmFirst = false, binding = @SofaReferenceBinding(bindingType = "bolt"))
-    private SampleFacade sampleFacade;
+    private SampleFacade            sampleFacade;
 
     @Autowired
     private ConsumerConfigContainer consumerConfigContainer;
 
-    private Field consumerConfigMap;
+    private Field                   consumerConfigMap;
 
     @Before
-    public void setUp() throws Throwable{
+    public void setUp() throws Throwable {
         consumerConfigMap = ConsumerConfigContainer.class.getDeclaredField("consumerConfigMap");
         consumerConfigMap.setAccessible(true);
     }
@@ -77,7 +77,7 @@ public class SofaBootRpcPropertiesTest {
         try {
             Map configMap = (Map) consumerConfigMap.get(consumerConfigContainer);
             for (Object consumerConfig : configMap.values()) {
-                Assert.assertEquals(10, ((ConsumerConfig)consumerConfig).getRepeatedReferLimit());
+                Assert.assertEquals(10, ((ConsumerConfig) consumerConfig).getRepeatedReferLimit());
             }
         } catch (IllegalAccessException ex) {
 
