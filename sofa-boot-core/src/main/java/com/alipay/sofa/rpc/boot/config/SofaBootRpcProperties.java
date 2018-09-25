@@ -32,7 +32,7 @@ import java.util.Map;
  * @author khotyn
  */
 @ConfigurationProperties(SofaBootRpcProperties.PREFIX)
-public class SofaBootRpcProperties implements InitializingBean {
+public class SofaBootRpcProperties {
     static final String         PREFIX     = "com.alipay.sofa.rpc";
 
     @Autowired
@@ -562,13 +562,5 @@ public class SofaBootRpcProperties implements InitializingBean {
 
     public void setEnvironment(Environment environment) {
         this.environment = environment;
-    }
-
-    @Override
-    public void afterPropertiesSet() throws Exception {
-        String referenceLimit = getConsumerRepeatedReferenceLimit();
-        if (!StringUtils.isEmpty(referenceLimit)) {
-            System.setProperty(RpcOptions.CONSUMER_REPEATED_REFERENCE_LIMIT, getConsumerRepeatedReferenceLimit());
-        }
     }
 }

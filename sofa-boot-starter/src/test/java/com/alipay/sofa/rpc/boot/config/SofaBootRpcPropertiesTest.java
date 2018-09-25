@@ -16,8 +16,14 @@
  */
 package com.alipay.sofa.rpc.boot.config;
 
+import com.alipay.sofa.rpc.boot.container.ConsumerConfigContainer;
 import com.alipay.sofa.rpc.common.RpcOptions;
+import com.alipay.sofa.rpc.config.ConsumerConfig;
+import com.alipay.sofa.rpc.test.bean.SampleFacade;
+import com.alipay.sofa.runtime.api.annotation.SofaReference;
+import com.alipay.sofa.runtime.api.annotation.SofaReferenceBinding;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +32,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.lang.reflect.Field;
 import java.util.Map;
 
 @RunWith(SpringRunner.class)
@@ -33,12 +40,26 @@ import java.util.Map;
 @SpringBootTest(properties = {
                               SofaBootRpcProperties.PREFIX + ".bolt.port=5000",
                               "com_alipay_sofa_rpc_bolt_thread_pool_max_size=600",
-                              SofaBootRpcProperties.PREFIX + ".registries.zk1=zookeeper://xxxx"
+                              SofaBootRpcProperties.PREFIX + ".registries.zk1=zookeeper://xxxx",
+                              SofaBootRpcProperties.PREFIX + ".consumer.repeated.reference.limit=10"
 })
-@TestPropertySource(properties = { SofaBootRpcProperties.PREFIX + ".consumer.repeated.reference.limit=10" })
 public class SofaBootRpcPropertiesTest {
     @Autowired
     private SofaBootRpcProperties sofaBootRpcProperties;
+
+    @SofaReference(jvmFirst = false, binding = @SofaReferenceBinding(bindingType = "bolt"))
+    private SampleFacade sampleFacade;
+
+    @Autowired
+    private ConsumerConfigContainer consumerConfigContainer;
+
+    private Field consumerConfigMap;
+
+    @Before
+    public void setUp() throws Throwable{
+        consumerConfigMap = ConsumerConfigContainer.class.getDeclaredField("consumerConfigMap");
+        consumerConfigMap.setAccessible(true);
+    }
 
     @Test
     public void testCamelCaseToDot() {
@@ -53,7 +74,14 @@ public class SofaBootRpcPropertiesTest {
 
     @Test
     public void testConsumerRepeatedReferenceLimit() {
-        Assert.assertEquals("10", System.getProperty(RpcOptions.CONSUMER_REPEATED_REFERENCE_LIMIT));
+        try {
+            Map configMap = (Map) consumerConfigMap.get(consumerConfigContainer);
+            for (Object consumerConfig : configMap.values()) {
+                Assert.assertEquals(10, ((ConsumerConfig)consumerConfig).getRepeatedReferLimit());
+            }
+        } catch (IllegalAccessException ex) {
+
+        }
     }
 
     @Test

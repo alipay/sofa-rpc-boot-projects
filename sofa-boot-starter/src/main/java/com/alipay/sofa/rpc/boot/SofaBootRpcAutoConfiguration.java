@@ -73,10 +73,10 @@ public class SofaBootRpcAutoConfiguration {
     }
 
     @Bean
-    public ConsumerConfigHelper consumerConfigHelper(
+    public ConsumerConfigHelper consumerConfigHelper(SofaBootRpcProperties sofaBootRpcProperties,
                                                      @Lazy RegistryConfigContainer registryConfigContainer,
                                                      @Value("${" + SofaBootRpcConfigConstants.APP_NAME + "}") String appName) {
-        return new ConsumerConfigHelper(registryConfigContainer, appName);
+        return new ConsumerConfigHelper(sofaBootRpcProperties, registryConfigContainer, appName);
     }
 
     @Bean
