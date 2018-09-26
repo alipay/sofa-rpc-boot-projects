@@ -57,17 +57,17 @@ public class RegistryConfigContainer {
     /**
      * for custom extends
      */
-    private String                                  CUSTOM_DEFAULT_REGISTRY;
+    private String                                  customDefaultRegistry;
 
     /**
-     * for default address for  CUSTOM_DEFAULT_REGISTRY
+     * for default address for  customDefaultRegistry
      */
-    private String                                  CUSTOM_DEFAULT_REGISTRY_ADDRESS;
+    private String                                  customDefaultRegistryAddress;
 
     public RegistryConfigContainer() {
-        CUSTOM_DEFAULT_REGISTRY = System.getProperty(SofaBootRpcConfigConstants.DEFAULT_REGISTRY);
-        if (StringUtils.isNotBlank(CUSTOM_DEFAULT_REGISTRY)) {
-            CUSTOM_DEFAULT_REGISTRY_ADDRESS = System.getProperty(CUSTOM_DEFAULT_REGISTRY);
+        customDefaultRegistry = System.getProperty(SofaBootRpcConfigConstants.DEFAULT_REGISTRY);
+        if (StringUtils.isNotBlank(customDefaultRegistry)) {
+            customDefaultRegistryAddress = System.getProperty(customDefaultRegistry);
         }
     }
 
@@ -83,8 +83,8 @@ public class RegistryConfigContainer {
 
         String currentDefaultAlias;
 
-        if (StringUtils.isNotBlank(CUSTOM_DEFAULT_REGISTRY)) {
-            currentDefaultAlias = CUSTOM_DEFAULT_REGISTRY;
+        if (StringUtils.isNotBlank(customDefaultRegistry)) {
+            currentDefaultAlias = customDefaultRegistry;
         } else {
             currentDefaultAlias = DEFAULT_REGISTRY;
         }
@@ -102,8 +102,8 @@ public class RegistryConfigContainer {
         // just for new address
         if (DEFAULT_REGISTRY.equalsIgnoreCase(registryAlias)) {
             registryAddress = sofaBootRpcProperties.getRegistryAddress();
-        } else if (registryAlias.equals(CUSTOM_DEFAULT_REGISTRY)) {
-            registryAddress = CUSTOM_DEFAULT_REGISTRY_ADDRESS;
+        } else if (registryAlias.equals(customDefaultRegistry)) {
+            registryAddress = customDefaultRegistryAddress;
         } else {
             registryAddress = sofaBootRpcProperties.getRegistries().get(registryAlias);
         }
@@ -146,8 +146,8 @@ public class RegistryConfigContainer {
      */
     public RegistryConfig getRegistryConfig() throws SofaBootRpcRuntimeException {
 
-        if (StringUtils.isNotBlank(CUSTOM_DEFAULT_REGISTRY)) {
-            return getRegistryConfig(CUSTOM_DEFAULT_REGISTRY);
+        if (StringUtils.isNotBlank(customDefaultRegistry)) {
+            return getRegistryConfig(customDefaultRegistry);
         } else {
             return getRegistryConfig(DEFAULT_REGISTRY);
         }
