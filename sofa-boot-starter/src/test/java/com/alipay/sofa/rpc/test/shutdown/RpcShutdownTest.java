@@ -39,11 +39,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class RpcShutdownTest extends ActivelyDestroyTest implements ApplicationContextAware {
     private static ApplicationContext applicationContext;
 
-    @Test
-    public void test() {
-        Assert.assertFalse(TestUtils.available(SofaBootRpcConfigConstants.BOLT_PORT_DEFAULT));
-    }
-
     @AfterClass
     public static void testRpcGracefulShutdown() {
         ((ConfigurableApplicationContext) applicationContext).close();
