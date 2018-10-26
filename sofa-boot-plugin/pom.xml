@@ -14,7 +14,7 @@
 
     <properties>
         <ark.plugin.name>rpc-sofa-boot-plugin</ark.plugin.name>
-        <rpc.all.version>3.0.0-SNAPSHOT</rpc.all.version>
+        <rpc.all.version>5.4.7</rpc.all.version>
     </properties>
 
     <dependencies>
