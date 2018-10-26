@@ -19,8 +19,6 @@ package com.alipay.sofa.rpc.boot.health;
 import com.alipay.sofa.healthcheck.startup.ReadinessCheckCallback;
 import com.alipay.sofa.rpc.boot.context.event.SofaBootRpcStartAfterEvent;
 import com.alipay.sofa.rpc.boot.context.event.SofaBootRpcStartEvent;
-import com.alipay.sofa.rpc.boot.log.SofaBootRpcLoggerFactory;
-import org.slf4j.Logger;
 import org.springframework.boot.actuate.health.Health;
 import org.springframework.boot.actuate.health.Status;
 import org.springframework.context.ApplicationContext;
@@ -33,9 +31,6 @@ import org.springframework.core.PriorityOrdered;
  */
 public class RpcAfterHealthCheckCallback implements ReadinessCheckCallback, PriorityOrdered {
 
-    private static final Logger LOGGER = SofaBootRpcLoggerFactory
-            .getLogger(RpcAfterHealthCheckCallback.class);
-
     /**
      * 健康检查
      *
@@ -46,18 +41,13 @@ public class RpcAfterHealthCheckCallback implements ReadinessCheckCallback, Prio
     public Health onHealthy(ApplicationContext applicationContext) {
         Health.Builder builder = new Health.Builder();
 
-        try {
-            //rpc 开始启动事件监听器
-            applicationContext.publishEvent(new SofaBootRpcStartEvent(applicationContext));
+        //rpc 开始启动事件监听器
+        applicationContext.publishEvent(new SofaBootRpcStartEvent(applicationContext));
 
-            //rpc 启动完毕事件监听器
-            applicationContext.publishEvent(new SofaBootRpcStartAfterEvent(applicationContext));
+        //rpc 启动完毕事件监听器
+        applicationContext.publishEvent(new SofaBootRpcStartAfterEvent(applicationContext));
 
-            return builder.status(Status.UP).build();
-        } catch (Exception e) {
-            LOGGER.error("Health check callback error", e);
-            return builder.status(Status.DOWN).withDetail("Exception", e.getMessage()).build();
-        }
+        return builder.status(Status.UP).build();
     }
 
     @Override

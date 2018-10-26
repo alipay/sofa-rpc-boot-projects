@@ -63,7 +63,7 @@ public class SofaBootRpcAutoConfiguration {
 
     @Bean
     public ServerConfigContainer serverConfigContainer(
-            SofaBootRpcProperties sofaBootRpcProperties) {
+                                                       SofaBootRpcProperties sofaBootRpcProperties) {
         return new ServerConfigContainer(sofaBootRpcProperties);
     }
 
@@ -120,24 +120,24 @@ public class SofaBootRpcAutoConfiguration {
     }
 
     @Bean
-    @ConditionalOnMissingClass({"com.alipay.sofa.healthcheck.startup.ReadinessCheckCallback"})
+    @ConditionalOnMissingClass({ "com.alipay.sofa.healthcheck.startup.ReadinessCheckCallback" })
     public ApplicationContextRefreshedListener applicationContextRefreshedListener() {
         return new ApplicationContextRefreshedListener();
     }
 
     @Bean
     public SofaBootRpcStartListener sofaBootRpcStartListener(
-            ProviderConfigContainer providerConfigContainer,
-            FaultToleranceConfigurator faultToleranceConfigurator,
-            ServerConfigContainer serverConfigContainer,
-            RegistryConfigContainer registryConfigContainer
-    ) {
+                                                             ProviderConfigContainer providerConfigContainer,
+                                                             FaultToleranceConfigurator faultToleranceConfigurator,
+                                                             ServerConfigContainer serverConfigContainer,
+                                                             RegistryConfigContainer registryConfigContainer
+            ) {
         return new SofaBootRpcStartListener(providerConfigContainer, faultToleranceConfigurator, serverConfigContainer,
-                registryConfigContainer);
+            registryConfigContainer);
     }
 
     @Configuration
-    @ConditionalOnClass({ReadinessCheckCallback.class})
+    @ConditionalOnClass({ ReadinessCheckCallback.class })
     public static class SofaModuleHealthCheckConfiguration {
         @Bean
         public RpcAfterHealthCheckCallback rpcAfterHealthCheckCallback() {
