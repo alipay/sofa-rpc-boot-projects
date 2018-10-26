@@ -24,13 +24,14 @@ import org.slf4j.Logger;
 import org.springframework.boot.actuate.health.Health;
 import org.springframework.boot.actuate.health.Status;
 import org.springframework.context.ApplicationContext;
+import org.springframework.core.PriorityOrdered;
 
 /**
  * SOFABoot RPC 健康检查回调.会启动服务器并发布服务
  *
  * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
-public class RpcAfterHealthCheckCallback implements ReadinessCheckCallback {
+public class RpcAfterHealthCheckCallback implements ReadinessCheckCallback, PriorityOrdered {
 
     private static final Logger LOGGER = SofaBootRpcLoggerFactory
             .getLogger(RpcAfterHealthCheckCallback.class);
@@ -57,5 +58,10 @@ public class RpcAfterHealthCheckCallback implements ReadinessCheckCallback {
             LOGGER.error("Health check callback error", e);
             return builder.status(Status.DOWN).withDetail("Exception", e.getMessage()).build();
         }
+    }
+
+    @Override
+    public int getOrder() {
+        return PriorityOrdered.LOWEST_PRECEDENCE;
     }
 }
