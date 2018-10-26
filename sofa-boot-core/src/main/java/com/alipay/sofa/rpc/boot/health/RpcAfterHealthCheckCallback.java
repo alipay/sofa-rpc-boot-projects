@@ -16,7 +16,7 @@
  */
 package com.alipay.sofa.rpc.boot.health;
 
-import com.alipay.sofa.healthcheck.startup.SofaBootMiddlewareAfterReadinessCheckCallback;
+import com.alipay.sofa.healthcheck.startup.ReadinessCheckCallback;
 import com.alipay.sofa.rpc.boot.context.event.SofaBootRpcStartAfterEvent;
 import com.alipay.sofa.rpc.boot.context.event.SofaBootRpcStartEvent;
 import com.alipay.sofa.rpc.boot.log.SofaBootRpcLoggerFactory;
@@ -30,10 +30,10 @@ import org.springframework.context.ApplicationContext;
  *
  * @author <a href="mailto:lw111072@antfin.com">LiWei</a>
  */
-public class RpcAfterHealthCheckCallback implements SofaBootMiddlewareAfterReadinessCheckCallback {
+public class RpcAfterHealthCheckCallback implements ReadinessCheckCallback {
 
     private static final Logger LOGGER = SofaBootRpcLoggerFactory
-                                           .getLogger(RpcAfterHealthCheckCallback.class);
+            .getLogger(RpcAfterHealthCheckCallback.class);
 
     /**
      * 健康检查
