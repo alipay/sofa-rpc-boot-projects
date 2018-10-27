@@ -17,7 +17,6 @@
 package com.alipay.sofa.rpc.boot.config;
 
 import com.alipay.sofa.rpc.boot.container.ConsumerConfigContainer;
-import com.alipay.sofa.rpc.common.RpcOptions;
 import com.alipay.sofa.rpc.config.ConsumerConfig;
 import com.alipay.sofa.rpc.test.bean.SampleFacade;
 import com.alipay.sofa.runtime.api.annotation.SofaReference;
@@ -29,7 +28,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.lang.reflect.Field;
@@ -39,7 +37,7 @@ import java.util.Map;
 @SpringBootApplication
 @SpringBootTest(properties = {
                               SofaBootRpcProperties.PREFIX + ".bolt.port=5000",
-                              "com_alipay_sofa_rpc_bolt_thread_pool_max_size=600",
+                              "COM_ALIPAY_SOFA_RPC_BOLT_THREAD_POOL_MAX_SIZE=600",
                               SofaBootRpcProperties.PREFIX + ".registries.zk1=zookeeper://xxxx",
                               SofaBootRpcProperties.PREFIX + ".consumer.repeated.reference.limit=10"
 })
