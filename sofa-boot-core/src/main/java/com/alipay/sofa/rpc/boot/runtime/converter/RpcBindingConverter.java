@@ -35,6 +35,7 @@ import com.alipay.sofa.runtime.api.annotation.SofaServiceBinding;
 import com.alipay.sofa.runtime.spi.service.BindingConverter;
 import com.alipay.sofa.runtime.spi.service.BindingConverterContext;
 import org.springframework.context.ApplicationContext;
+import org.springframework.core.env.Environment;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.util.xml.DomUtils;
@@ -436,17 +437,18 @@ public abstract class RpcBindingConverter implements BindingConverter<RpcBinding
     protected void convertReferenceAnnotation(RpcBindingParam bindingParam,
                                               SofaReferenceBinding sofaReferenceBindingAnnotation,
                                               BindingConverterContext bindingConverterContext) {
+        Environment env = bindingConverterContext.getApplicationContext().getEnvironment();
         //TODO need a magic number
         if (sofaReferenceBindingAnnotation.addressWaitTime() != 0) {
             bindingParam.setAddressWaitTime(sofaReferenceBindingAnnotation.addressWaitTime());
         }
         if (StringUtils.hasText(sofaReferenceBindingAnnotation.directUrl())) {
-            bindingParam.setTargetUrl(sofaReferenceBindingAnnotation.directUrl());
+            bindingParam.setTargetUrl(resolve(env, sofaReferenceBindingAnnotation.directUrl()));
         }
         if (sofaReferenceBindingAnnotation.timeout() != 0) {
             bindingParam.setTimeout(sofaReferenceBindingAnnotation.timeout());
         }
-        bindingParam.setType(sofaReferenceBindingAnnotation.invokeType());
+        bindingParam.setType(resolve(env, sofaReferenceBindingAnnotation.invokeType()));
 
         ApplicationContext applicationContext = bindingConverterContext.getApplicationContext();
         List<Filter> filters = new ArrayList<Filter>(RpcFilterContainer.getInstance().getFilters(
@@ -481,6 +483,23 @@ public abstract class RpcBindingConverter implements BindingConverter<RpcBinding
         if (StringUtils.hasText(registryAlias)) {
             String[] registrys = registryAlias.split(",");
             bindingParam.setRegistrys(Arrays.asList(registrys));
+        }
+    }
+
+    /**
+     * Get real value of content, since original raw may be a placeholder formula
+     *
+     * @param env    environment
+     * @param origin origin content
+     * @return value content
+     */
+    private String resolve(Environment env, String origin) {
+        if (StringUtils.hasText(origin)
+            && origin.startsWith("${")
+            && origin.endsWith("}")) {
+            return env.resolvePlaceholders(origin);
+        } else {
+            return origin;
         }
     }
 }
