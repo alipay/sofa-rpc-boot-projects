@@ -33,7 +33,7 @@ public class LocalFileConfigTest {
         String file = localFileConfigurator.parseConfig(configA);
         Assert.assertNull(file);
 
-        String config = "local:/home/admin/registry";
+        String config = "local:///home/admin/registry";
 
         file = localFileConfigurator.parseConfig(config);
         Assert.assertEquals("/home/admin/registry", file);
