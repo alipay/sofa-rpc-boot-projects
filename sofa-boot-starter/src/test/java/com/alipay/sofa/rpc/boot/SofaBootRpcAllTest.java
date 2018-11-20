@@ -190,8 +190,8 @@ public class SofaBootRpcAllTest {
     // Encode on serialization should failed
     @Test
     public void testAnnotationProtobuf() {
-//        thrown.expect(SofaRpcException.class);
-//        thrown.expectMessage("com.alipay.remoting.exception.SerializationException: 0");
+        //        thrown.expect(SofaRpcException.class);
+        //        thrown.expectMessage("com.alipay.remoting.exception.SerializationException: 0");
         annotationServicePb.hello();
     }
 }
