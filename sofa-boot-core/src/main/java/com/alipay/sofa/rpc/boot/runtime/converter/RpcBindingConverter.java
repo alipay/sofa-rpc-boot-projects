@@ -452,6 +452,9 @@ public abstract class RpcBindingConverter implements BindingConverter<RpcBinding
         if (StringUtils.hasText(sofaReferenceBindingAnnotation.serializeType())) {
             bindingParam.setSerialization(sofaReferenceBindingAnnotation.serializeType());
         }
+        if (StringUtils.hasText(sofaReferenceBindingAnnotation.loadBalancer())) {
+            bindingParam.setLoadBalancer(sofaReferenceBindingAnnotation.loadBalancer());
+        }
         bindingParam.setType(sofaReferenceBindingAnnotation.invokeType());
 
         ApplicationContext applicationContext = bindingConverterContext.getApplicationContext();
