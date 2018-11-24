@@ -20,6 +20,8 @@ import com.alipay.hessian.generic.model.GenericObject;
 import com.alipay.sofa.rpc.api.GenericService;
 import com.alipay.sofa.rpc.api.future.SofaResponseFuture;
 import com.alipay.sofa.rpc.boot.annotation.AnnotationService;
+import com.alipay.sofa.rpc.boot.container.ConsumerConfigContainer;
+import com.alipay.sofa.rpc.boot.container.SpringBridge;
 import com.alipay.sofa.rpc.boot.direct.DirectService;
 import com.alipay.sofa.rpc.boot.dubbo.DubboService;
 import com.alipay.sofa.rpc.boot.filter.FilterService;
@@ -33,9 +35,11 @@ import com.alipay.sofa.rpc.boot.rest.RestService;
 import com.alipay.sofa.rpc.boot.retry.RetriesService;
 import com.alipay.sofa.rpc.boot.retry.RetriesServiceImpl;
 import com.alipay.sofa.rpc.boot.threadpool.ThreadPoolService;
+import com.alipay.sofa.rpc.config.ConsumerConfig;
 import com.alipay.sofa.rpc.core.exception.SofaRpcException;
 import com.alipay.sofa.runtime.api.annotation.SofaReference;
 import com.alipay.sofa.runtime.api.annotation.SofaReferenceBinding;
+import com.alipay.sofa.runtime.spi.binding.Binding;
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
@@ -46,6 +50,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.lang.reflect.Field;
+import java.util.concurrent.ConcurrentMap;
 
 @SpringBootApplication
 @SpringBootTest
@@ -104,6 +111,9 @@ public class SofaBootRpcAllTest {
     @SofaReference(binding = @SofaReferenceBinding(bindingType = "bolt", serializeType = "protobuf"),
             jvmFirst = false)
     private AnnotationService    annotationServicePb;
+
+    @SofaReference(binding = @SofaReferenceBinding(bindingType = "bolt", loadBalancer = "roundRobin"), uniqueId = "loadbalancer")
+    private AnnotationService    annotationLoadBalancerService;
 
     @Test
     public void testInvoke() throws InterruptedException {
@@ -193,5 +203,25 @@ public class SofaBootRpcAllTest {
         thrown.expect(SofaRpcException.class);
         thrown.expectMessage("com.alipay.remoting.exception.SerializationException: 0");
         annotationServicePb.hello();
+    }
+
+    @Test
+    public void testLoadBalancerAnnotation() throws NoSuchFieldException, IllegalAccessException {
+        ConsumerConfigContainer ccc = SpringBridge.getConsumerConfigContainer();
+        Field consumerConfigMapField = ConsumerConfigContainer.class.getDeclaredField("consumerConfigMap");
+        consumerConfigMapField.setAccessible(true);
+        ConcurrentMap<Binding, ConsumerConfig> consumerConfigMap = (ConcurrentMap<Binding, ConsumerConfig>) consumerConfigMapField
+            .get(ccc);
+
+        boolean found = false;
+        for (ConsumerConfig consumerConfig : consumerConfigMap.values()) {
+            if ("loadbalancer".equals(consumerConfig.getUniqueId()) &&
+                AnnotationService.class.getName().equals(consumerConfig.getInterfaceId())) {
+                found = true;
+                Assert.assertEquals("roundRobin", consumerConfig.getLoadBalancer());
+            }
+        }
+
+        Assert.assertTrue("Found roundrobin reference", found);
     }
 }
