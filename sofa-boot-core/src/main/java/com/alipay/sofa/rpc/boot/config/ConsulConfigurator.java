@@ -105,7 +105,7 @@ public class ConsulConfigurator implements RegistryConfigureProcessor {
         Map<String, String> map = parseParam(address);
         return new RegistryConfig()
             .setAddress(consulAddress)
-            .setProtocol(SofaBootRpcConfigConstants.REGISTRY_PROTOCOL_ZOOKEEPER)
+            .setProtocol(SofaBootRpcConfigConstants.REGISTRY_PROTOCOL_CONSUL)
             .setParameters(map);
 
     }
