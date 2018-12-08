@@ -17,13 +17,7 @@
 package com.alipay.sofa.rpc.boot;
 
 import com.alipay.sofa.healthcheck.startup.ReadinessCheckCallback;
-import com.alipay.sofa.rpc.boot.config.FaultToleranceConfigurator;
-import com.alipay.sofa.rpc.boot.config.LocalFileConfigurator;
-import com.alipay.sofa.rpc.boot.config.MeshConfigurator;
-import com.alipay.sofa.rpc.boot.config.RegistryConfigureProcessor;
-import com.alipay.sofa.rpc.boot.config.SofaBootRpcConfigConstants;
-import com.alipay.sofa.rpc.boot.config.SofaBootRpcProperties;
-import com.alipay.sofa.rpc.boot.config.ZookeeperConfigurator;
+import com.alipay.sofa.rpc.boot.config.*;
 import com.alipay.sofa.rpc.boot.container.ConsumerConfigContainer;
 import com.alipay.sofa.rpc.boot.container.ProviderConfigContainer;
 import com.alipay.sofa.rpc.boot.container.RegistryConfigContainer;
@@ -38,13 +32,12 @@ import com.alipay.sofa.rpc.boot.swagger.SwaggerServiceApplicationListener;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
-
-import io.swagger.v3.jaxrs2.integration.JaxrsOpenApiContextBuilder;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -141,7 +134,7 @@ public class SofaBootRpcAutoConfiguration {
     }
 
     @Bean
-    @ConditionalOnClass(JaxrsOpenApiContextBuilder.class)
+    @ConditionalOnProperty(name = "com.alipay.sofa.rpc.rest-swagger", havingValue = "true")
     public ApplicationListener swaggerServiceApplicationListener() {
         return new SwaggerServiceApplicationListener();
     }
