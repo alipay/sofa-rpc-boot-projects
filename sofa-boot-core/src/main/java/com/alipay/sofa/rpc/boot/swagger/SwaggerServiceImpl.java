@@ -22,11 +22,14 @@ import com.alipay.sofa.runtime.SofaFramework;
 import com.alipay.sofa.runtime.service.component.ServiceComponent;
 import io.swagger.v3.core.util.Json;
 import io.swagger.v3.jaxrs2.integration.JaxrsOpenApiContextBuilder;
+import io.swagger.v3.oas.integration.GenericOpenApiContext;
 import io.swagger.v3.oas.integration.OpenApiConfigurationException;
+import io.swagger.v3.oas.integration.OpenApiContextLocator;
 import io.swagger.v3.oas.integration.SwaggerConfiguration;
 import io.swagger.v3.oas.integration.api.OpenApiContext;
 import io.swagger.v3.oas.models.OpenAPI;
 
+import java.util.Collection;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -34,13 +37,24 @@ import java.util.stream.Collectors;
  * @author khotyn
  */
 public class SwaggerServiceImpl implements SwaggerService {
-    private OpenAPI openapi;
+    private OpenAPI     openapi;
+    private Set<String> restfulServices;
 
     @Override
     public String openapi() {
-        synchronized (this) {
-            if (openapi == null) {
-                openapi = buildOpenApi();
+        if (openapi == null) {
+            synchronized (this) {
+                if (openapi == null) {
+                    openapi = buildOpenApi();
+                }
+            }
+        } else {
+            if (!getAllRestfulService().equals(restfulServices)) {
+                synchronized (this) {
+                    if (!getAllRestfulService().equals(restfulServices)) {
+                        openapi = updateOpenApi();
+                    }
+                }
             }
         }
 
@@ -48,9 +62,28 @@ public class SwaggerServiceImpl implements SwaggerService {
 
     }
 
+    private OpenAPI updateOpenApi() {
+        OpenApiContext openApiContext = OpenApiContextLocator.getInstance().getOpenApiContext(
+            OpenApiContext.OPENAPI_CONTEXT_ID_DEFAULT);
+        if (openApiContext instanceof GenericOpenApiContext) {
+            restfulServices = getAllRestfulService();
+            SwaggerConfiguration oasConfig = new SwaggerConfiguration().resourceClasses(restfulServices);
+            ((GenericOpenApiContext) openApiContext).getOpenApiScanner().setConfiguration(oasConfig);
+            try {
+                ((GenericOpenApiContext) openApiContext).setCacheTTL(0);
+                return openApiContext.read();
+            } finally {
+                ((GenericOpenApiContext) openApiContext).setCacheTTL(-1);
+            }
+        } else {
+            return null;
+        }
+    }
+
     private OpenAPI buildOpenApi() {
         try {
-            SwaggerConfiguration oasConfig = new SwaggerConfiguration().resourceClasses(getAllRestfulService());
+            restfulServices = getAllRestfulService();
+            SwaggerConfiguration oasConfig = new SwaggerConfiguration().resourceClasses(restfulServices);
 
             OpenApiContext oac = new JaxrsOpenApiContextBuilder()
                 .openApiConfiguration(oasConfig)
@@ -64,6 +97,7 @@ public class SwaggerServiceImpl implements SwaggerService {
     private Set<String> getAllRestfulService() {
         return SofaFramework.getRuntimeSet().stream()
                 .map(srm -> srm.getComponentManager().getComponentInfosByType(ServiceComponent.SERVICE_COMPONENT_TYPE))
+                .flatMap(Collection::stream)
                 .collect(Collectors.toSet())
                 .stream()
                 .filter(ci -> {

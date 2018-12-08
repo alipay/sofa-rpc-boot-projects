@@ -17,6 +17,7 @@
 
 package com.alipay.sofa.rpc.boot.swagger;
 
+import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
@@ -27,6 +28,7 @@ import javax.ws.rs.Produces;
  */
 @Path("swagger")
 public interface SwaggerService {
+    @GET
     @Path("openapi")
     @Produces("application/json")
     String openapi();
