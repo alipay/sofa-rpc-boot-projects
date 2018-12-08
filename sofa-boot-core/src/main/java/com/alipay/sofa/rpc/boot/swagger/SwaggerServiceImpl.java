@@ -19,8 +19,6 @@ package com.alipay.sofa.rpc.boot.swagger;
 
 import com.alipay.sofa.rpc.boot.runtime.binding.RpcBindingType;
 import com.alipay.sofa.runtime.SofaFramework;
-import com.alipay.sofa.runtime.api.binding.BindingType;
-import com.alipay.sofa.runtime.model.ComponentType;
 import com.alipay.sofa.runtime.service.component.ServiceComponent;
 import io.swagger.v3.core.util.Json;
 import io.swagger.v3.jaxrs2.integration.JaxrsOpenApiContextBuilder;
