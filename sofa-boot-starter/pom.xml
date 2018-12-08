@@ -15,7 +15,7 @@
     <url>https://github.com/alipay/sofa-rpc</url>
 
     <properties>
-        <java.version>1.6</java.version>
+        <java.version>1.8</java.version>
         <project.build.encoding>UTF-8</project.build.encoding>
         <skipTests>false</skipTests>
         <rpc.starter.version>6.0.1-SNAPSHOT</rpc.starter.version>
@@ -62,6 +62,14 @@
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-el</artifactId>
+        </dependency>
+
+        <!-- Swagger Dependency -->
+        <dependency>
+            <groupId>io.swagger.core.v3</groupId>
+            <artifactId>swagger-jaxrs2</artifactId>
+            <version>2.0.0</version>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>

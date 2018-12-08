@@ -34,13 +34,17 @@ import com.alipay.sofa.rpc.boot.context.SofaBootRpcStartListener;
 import com.alipay.sofa.rpc.boot.health.RpcAfterHealthCheckCallback;
 import com.alipay.sofa.rpc.boot.runtime.adapter.helper.ConsumerConfigHelper;
 import com.alipay.sofa.rpc.boot.runtime.adapter.helper.ProviderConfigHelper;
+import com.alipay.sofa.rpc.boot.swagger.SwaggerServiceApplicationListener;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingClass;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
+
+import io.swagger.v3.jaxrs2.integration.JaxrsOpenApiContextBuilder;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -63,7 +67,7 @@ public class SofaBootRpcAutoConfiguration {
 
     @Bean
     public ServerConfigContainer serverConfigContainer(
-                                                       SofaBootRpcProperties sofaBootRpcProperties) {
+            SofaBootRpcProperties sofaBootRpcProperties) {
         return new ServerConfigContainer(sofaBootRpcProperties);
     }
 
@@ -120,24 +124,30 @@ public class SofaBootRpcAutoConfiguration {
     }
 
     @Bean
-    @ConditionalOnMissingClass({ "com.alipay.sofa.healthcheck.startup.ReadinessCheckCallback" })
+    @ConditionalOnMissingClass({"com.alipay.sofa.healthcheck.startup.ReadinessCheckCallback"})
     public ApplicationContextRefreshedListener applicationContextRefreshedListener() {
         return new ApplicationContextRefreshedListener();
     }
 
     @Bean
     public SofaBootRpcStartListener sofaBootRpcStartListener(
-                                                             ProviderConfigContainer providerConfigContainer,
-                                                             FaultToleranceConfigurator faultToleranceConfigurator,
-                                                             ServerConfigContainer serverConfigContainer,
-                                                             RegistryConfigContainer registryConfigContainer
-            ) {
+            ProviderConfigContainer providerConfigContainer,
+            FaultToleranceConfigurator faultToleranceConfigurator,
+            ServerConfigContainer serverConfigContainer,
+            RegistryConfigContainer registryConfigContainer
+    ) {
         return new SofaBootRpcStartListener(providerConfigContainer, faultToleranceConfigurator, serverConfigContainer,
-            registryConfigContainer);
+                registryConfigContainer);
+    }
+
+    @Bean
+    @ConditionalOnClass(JaxrsOpenApiContextBuilder.class)
+    public ApplicationListener swaggerServiceApplicationListener() {
+        return new SwaggerServiceApplicationListener();
     }
 
     @Configuration
-    @ConditionalOnClass({ ReadinessCheckCallback.class })
+    @ConditionalOnClass({ReadinessCheckCallback.class})
     public static class SofaModuleHealthCheckConfiguration {
         @Bean
         public RpcAfterHealthCheckCallback rpcAfterHealthCheckCallback() {
