@@ -71,7 +71,7 @@ import java.util.List;
 import java.util.concurrent.ConcurrentMap;
 
 @SpringBootApplication
-@SpringBootTest
+@SpringBootTest(properties = "com.alipay.sofa.rpc.rest-swagger=true")
 @RunWith(SpringRunner.class)
 @ImportResource("classpath*:spring/test_all.xml")
 public class SofaBootRpcAllTest {
@@ -125,7 +125,7 @@ public class SofaBootRpcAllTest {
     private AnnotationService    annotationService;
 
     @SofaReference(binding = @SofaReferenceBinding(bindingType = "bolt", serializeType = "protobuf"),
-            jvmFirst = false)
+            jvmFirst = false, uniqueId = "pb")
     private AnnotationService    annotationServicePb;
 
     @SofaReference(binding = @SofaReferenceBinding(bindingType = "bolt", loadBalancer = "roundRobin"), uniqueId = "loadbalancer")
