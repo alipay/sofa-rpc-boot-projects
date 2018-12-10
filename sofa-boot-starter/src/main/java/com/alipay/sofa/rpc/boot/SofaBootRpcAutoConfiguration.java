@@ -17,7 +17,13 @@
 package com.alipay.sofa.rpc.boot;
 
 import com.alipay.sofa.healthcheck.startup.ReadinessCheckCallback;
-import com.alipay.sofa.rpc.boot.config.*;
+import com.alipay.sofa.rpc.boot.config.FaultToleranceConfigurator;
+import com.alipay.sofa.rpc.boot.config.LocalFileConfigurator;
+import com.alipay.sofa.rpc.boot.config.MeshConfigurator;
+import com.alipay.sofa.rpc.boot.config.RegistryConfigureProcessor;
+import com.alipay.sofa.rpc.boot.config.SofaBootRpcConfigConstants;
+import com.alipay.sofa.rpc.boot.config.SofaBootRpcProperties;
+import com.alipay.sofa.rpc.boot.config.ZookeeperConfigurator;
 import com.alipay.sofa.rpc.boot.container.ConsumerConfigContainer;
 import com.alipay.sofa.rpc.boot.container.ProviderConfigContainer;
 import com.alipay.sofa.rpc.boot.container.RegistryConfigContainer;
