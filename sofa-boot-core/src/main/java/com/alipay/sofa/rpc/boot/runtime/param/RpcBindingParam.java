@@ -75,9 +75,9 @@ public abstract class RpcBindingParam implements BindingParam {
 
     protected String                     serialization;
 
-    protected Map<String, String> parameters = new ConcurrentHashMap<String, String>();
+    protected Map<String, String>        parameters = new ConcurrentHashMap<String, String>();
 
-    protected List<String>               registrys = new ArrayList<String>();
+    protected List<String>               registrys  = new ArrayList<String>();
 
     /**
      * Getter method for property <tt>timeout</tt>.

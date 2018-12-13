@@ -178,8 +178,8 @@ public class ConsumerConfigHelper {
             consumerConfig.setParameters(param.getParameters());
         }
 
-        if (Boolean.TRUE.toString().equals(sofaBootRpcProperties.getEnableHystrix())){
-            consumerConfig.setParameter(HystrixConstants.SOFA_HYSTRIX_ENABLED,true);
+        if (Boolean.TRUE.toString().equals(sofaBootRpcProperties.getEnableHystrix())) {
+            consumerConfig.setParameter(HystrixConstants.SOFA_HYSTRIX_ENABLED, true);
         }
 
         return consumerConfig.setProtocol(protocol);

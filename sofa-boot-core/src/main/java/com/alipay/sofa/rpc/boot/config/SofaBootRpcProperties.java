@@ -118,7 +118,7 @@ public class SofaBootRpcProperties {
 
     private String              consumerRepeatedReferenceLimit;
 
-    private String enableHystrix;
+    private String              enableHystrix;
 
     public String getAftRegulationEffective() {
         return StringUtils.isEmpty(aftRegulationEffective) ? getDotString(new Object() {
@@ -545,7 +545,6 @@ public class SofaBootRpcProperties {
     public void setConsumerRepeatedReferenceLimit(String consumerRepeatedReferenceLimit) {
         this.consumerRepeatedReferenceLimit = consumerRepeatedReferenceLimit;
     }
-
 
     public String getEnableHystrix() {
         return StringUtils.isEmpty(enableHystrix) ? getDotString(new Object() {
