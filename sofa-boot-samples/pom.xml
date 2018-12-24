@@ -13,7 +13,7 @@
     <properties>
         <dubbo_version>2.4.10</dubbo_version>
         <cxf.version>3.0.14</cxf.version>
-        <sofaboot.version>3.0.0</sofaboot.version>
+        <sofaboot.version>3.1.1-SNAPSHOT</sofaboot.version>
         <rpc.starter.version>6.0.1-SNAPSHOT</rpc.starter.version>
     </properties>
 
@@ -46,13 +46,6 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <version>1.4.2.RELEASE</version>
-            <scope>test</scope>
-        </dependency>
-
         <dependency>
             <groupId>com.101tec</groupId>
             <artifactId>zkclient</artifactId>
