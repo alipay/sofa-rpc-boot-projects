@@ -18,13 +18,20 @@ package com.alipay.sofa.rpc.test.parameter;
 
 import com.alipay.sofa.rpc.boot.filter.ParameterFilter;
 import com.alipay.sofa.rpc.boot.invoke.HelloSyncService;
+import com.alipay.sofa.rpc.boot.invoke.HelloSyncServiceImpl;
+import com.alipay.sofa.runtime.api.annotation.SofaParameter;
+import com.alipay.sofa.runtime.api.annotation.SofaReference;
+import com.alipay.sofa.runtime.api.annotation.SofaReferenceBinding;
+import com.alipay.sofa.runtime.api.annotation.SofaService;
+import com.alipay.sofa.runtime.api.annotation.SofaServiceBinding;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.ImportResource;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -36,20 +43,26 @@ import java.util.Map;
  */
 @SpringBootApplication
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = ParameterTest.class)
+@SpringBootTest(classes = ParameterAnnotationTest.class)
 @TestPropertySource(properties = {
                                   "com.alipay.sofa.rpc.registry.address=", // override default zk path
                                   "dynamic_key=dynamic_test_key",
                                   "dynamic_value=dynamic_test_value"
 })
-@ImportResource("classpath*:spring/test_only_parameter.xml")
-public class ParameterTest {
+public class ParameterAnnotationTest {
 
-    @Autowired
+    @SofaReference(
+            jvmFirst = false,
+            binding = @SofaReferenceBinding(
+                    filters = "parameterFilter",
+                    bindingType = "bolt",
+                    parameters = {
+                    @SofaParameter(key = "static_key", value = "static_value"),
+                    @SofaParameter(key = "${dynamic_key}", value = "${dynamic_value}") }))
     private HelloSyncService helloSyncService;
 
     @Autowired
-    private ParameterFilter  parameterFilter;
+    private ParameterFilter parameterFilter;
 
     @Test
     public void testParameter() {
@@ -63,6 +76,27 @@ public class ParameterTest {
             Assert.assertEquals(2, parameters.size());
             Assert.assertEquals("static_value", parameters.get("static_key"));
             Assert.assertEquals("dynamic_test_value", parameters.get("dynamic_test_key"));
+        }
+    }
+
+    @Configuration
+    static class Config {
+
+        @Bean
+        public ParameterFilter parameterFilter() {
+            return new ParameterFilter();
+        }
+
+        @Bean
+        @SofaService(
+                bindings = @SofaServiceBinding(
+                        filters = "parameterFilter",
+                        bindingType = "bolt",
+                        parameters = {
+                                @SofaParameter(key = "static_key", value = "static_value"),
+                                @SofaParameter(key = "${dynamic_key}", value = "${dynamic_value}") }))
+        public HelloSyncService helloSyncService() {
+            return new HelloSyncServiceImpl();
         }
     }
 }
