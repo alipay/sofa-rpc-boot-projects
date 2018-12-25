@@ -28,6 +28,7 @@ import com.alipay.sofa.rpc.config.UserThreadPoolManager;
 import com.alipay.sofa.rpc.filter.ExcludeFilter;
 import com.alipay.sofa.rpc.filter.Filter;
 import com.alipay.sofa.rpc.server.UserThreadPool;
+import com.alipay.sofa.runtime.api.annotation.SofaParameter;
 import com.alipay.sofa.runtime.api.annotation.SofaReference;
 import com.alipay.sofa.runtime.api.annotation.SofaReferenceBinding;
 import com.alipay.sofa.runtime.api.annotation.SofaService;
@@ -434,6 +435,11 @@ public abstract class RpcBindingConverter implements BindingConverter<RpcBinding
             String[] registrys = registryAlias.split(",");
             bindingParam.setRegistrys(Arrays.asList(registrys));
         }
+
+        SofaParameter[] parameters = sofaServiceBindingAnnotation.parameters();
+        if (parameters.length > 0) {
+            bindingParam.setParameters(parseSofaParameters(parameters));
+        }
     }
 
     /**
@@ -511,5 +517,18 @@ public abstract class RpcBindingConverter implements BindingConverter<RpcBinding
             String[] registrys = registryAlias.split(",");
             bindingParam.setRegistrys(Arrays.asList(registrys));
         }
+
+        SofaParameter[] parameters = sofaReferenceBindingAnnotation.parameters();
+        if (parameters.length > 0) {
+            bindingParam.setParameters(parseSofaParameters(parameters));
+        }
+    }
+
+    private Map<String, String> parseSofaParameters(SofaParameter[] parameterAnnos) {
+        Map<String, String> parameters = new LinkedHashMap<>();
+        for (SofaParameter parameter : parameterAnnos) {
+            parameters.put(parameter.key(), parameter.value());
+        }
+        return parameters;
     }
 }
