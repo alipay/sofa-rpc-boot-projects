@@ -43,7 +43,9 @@ import org.w3c.dom.Node;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 解析 XML配置或者 {@link RpcBindingParam} 为 {@link RpcBinding}
@@ -90,11 +92,14 @@ public abstract class RpcBindingConverter implements BindingConverter<RpcBinding
             .getChildElementByTagName(element, RpcBindingXmlConstants.TAG_GLOBAL_ATTRS);
         Element routeElement = DomUtils.getChildElementByTagName(element, RpcBindingXmlConstants.TAG_ROUTE);
         List<Element> methodElements = DomUtils.getChildElementsByTagName(element, RpcBindingXmlConstants.TAG_METHOD);
+        List<Element> parameterElements = DomUtils.getChildElementsByTagName(element,
+            RpcBindingXmlConstants.TAG_PARAMETER);
 
         parseGlobalAttrs(globalAttrsElement, param, bindingConverterContext);
         parseFilter(globalAttrsElement, param, bindingConverterContext);
         parseMethod(methodElements, param);
         parseRoute(routeElement, param);
+        parseParameter(parameterElements, param);
 
         return convert(param, bindingConverterContext);
 
@@ -164,7 +169,22 @@ public abstract class RpcBindingConverter implements BindingConverter<RpcBinding
         }
 
         param.setMethodInfos(boltBindingMethodInfos);
+    }
 
+    private void parseParameter(List<Element> parameterElements, RpcBindingParam param) {
+        if (CollectionUtils.isEmpty(parameterElements)) {
+            return;
+        }
+        Map<String, String> parameters = new LinkedHashMap<>(parameterElements.size());
+        for (Element element : parameterElements) {
+            if (element.getNodeType() == Node.ELEMENT_NODE &&
+                    element.getLocalName().equals(RpcBindingXmlConstants.TAG_PARAMETER)) {
+                String key = element.getAttribute(RpcBindingXmlConstants.TAG_PARAMETER_KEY);
+                String value = element.getAttribute(RpcBindingXmlConstants.TAG_PARAMETER_VALUE);
+                parameters.put(key, value);
+            }
+        }
+        param.setParameters(parameters);
     }
 
     private void parseGlobalAttrs(Element element, RpcBindingParam param,
