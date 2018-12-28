@@ -26,9 +26,6 @@
         <maven-surefire-plugin.version>2.16</maven-surefire-plugin.version>
         <sofa-version-maven-plugin.version>1.0.1</sofa-version-maven-plugin.version>
         <jacoco-maven-plugin.version>0.7.9</jacoco-maven-plugin.version>
-        <maven-javadoc-plugin.version>2.10.4</maven-javadoc-plugin.version>
-        <nexus-staging-maven-plugin.version>1.6.7</nexus-staging-maven-plugin.version>
-        <maven-gpg-plugin.version>1.5</maven-gpg-plugin.version>
     </properties>
 
     <dependencies>
@@ -136,6 +133,18 @@
             <plugin>
                 <groupId>com.googlecode.maven-java-formatter-plugin</groupId>
                 <artifactId>maven-java-formatter-plugin</artifactId>
+                <version>${maven-java-formatter-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>format</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <configFile>${user.dir}/tools/codestyle/formatter.xml</configFile>
+                    <encoding>UTF-8</encoding>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -174,9 +183,25 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacoco-maven-plugin.version}</version>
                 <configuration>
                     <skip>false</skip>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>default-prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>default-report</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report-aggregate</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
 
         </plugins>
@@ -200,7 +225,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>${maven-javadoc-plugin.version}</version>
+                        <version>2.10.4</version>
                         <configuration>
                             <encoding>${project.build.sourceEncoding}</encoding>
                             <detectOfflineLinks>true</detectOfflineLinks>
@@ -221,7 +246,7 @@
                     <plugin>
                         <groupId>org.sonatype.plugins</groupId>
                         <artifactId>nexus-staging-maven-plugin</artifactId>
-                        <version>${nexus-staging-maven-plugin.version}</version>
+                        <version>1.6.7</version>
                         <extensions>true</extensions>
                         <configuration>
                             <serverId>ossrh</serverId>
@@ -232,7 +257,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
-                        <version>${maven-gpg-plugin.version}</version>
+                        <version>1.5</version>
                         <executions>
                             <execution>
                                 <id>sign-artifacts</id>

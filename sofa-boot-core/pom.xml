@@ -24,16 +24,16 @@
         <cxf.version>3.0.14</cxf.version>
         <skipTests>false</skipTests>
         <rpc.all.version>5.5.0-SNAPSHOT</rpc.all.version>
-        <javax.el-api.version>2.2.5</javax.el-api.version>
-        <javax.el.version>2.2.6</javax.el.version>
         <zkclient.version>0.10</zkclient.version>
+        <maven-compiler-plugin.version>3.3</maven-compiler-plugin.version>
+        <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
         <license-maven-plugin.version>3.0</license-maven-plugin.version>
         <maven-java-formatter-plugin.version>0.4</maven-java-formatter-plugin.version>
         <maven-surefire-plugin.version>2.16</maven-surefire-plugin.version>
         <sofa-version-maven-plugin.version>1.0.1</sofa-version-maven-plugin.version>
         <jacoco-maven-plugin.version>0.7.9</jacoco-maven-plugin.version>
-        <maven-compiler-plugin.version>3.3</maven-compiler-plugin.version>
-        <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
+        <javax.el-api.version>2.2.5</javax.el-api.version>
+        <javax.el.version>2.2.6</javax.el.version>
     </properties>
 
     <dependencies>
