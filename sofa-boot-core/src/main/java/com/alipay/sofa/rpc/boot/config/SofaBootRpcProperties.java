@@ -258,6 +258,8 @@ public class SofaBootRpcProperties {
      */
     private String              consumerRepeatedReferenceLimit;
 
+    private String              hystrixEnable;
+
     private String              defaultTracer;
 
     public String getAftRegulationEffective() {
@@ -692,6 +694,15 @@ public class SofaBootRpcProperties {
 
     public void setDefaultTracer(String defaultTracer) {
         this.defaultTracer = defaultTracer;
+    }
+
+    public String getHystrixEnable() {
+        return StringUtils.isEmpty(hystrixEnable) ? getDotString(new Object() {
+        }.getClass().getEnclosingMethod().getName()) : hystrixEnable;
+    }
+
+    public void setHystrixEnable(String hystrixEnable) {
+        this.hystrixEnable = hystrixEnable;
     }
 
     private String getDotString(String enclosingMethodName) {
