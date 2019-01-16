@@ -116,6 +116,8 @@ public class SofaBootRpcProperties {
 
     private String              consumerRepeatedReferenceLimit;
 
+    private String              defaultTracer;
+
     public String getAftRegulationEffective() {
         return StringUtils.isEmpty(aftRegulationEffective) ? getDotString(new Object() {
         }.getClass().getEnclosingMethod().getName()) : aftRegulationEffective;
@@ -540,6 +542,14 @@ public class SofaBootRpcProperties {
 
     public void setConsumerRepeatedReferenceLimit(String consumerRepeatedReferenceLimit) {
         this.consumerRepeatedReferenceLimit = consumerRepeatedReferenceLimit;
+    }
+
+    public String getDefaultTracer() {
+        return defaultTracer;
+    }
+
+    public void setDefaultTracer(String defaultTracer) {
+        this.defaultTracer = defaultTracer;
     }
 
     private String getDotString(String enclosingMethodName) {

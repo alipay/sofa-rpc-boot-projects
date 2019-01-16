@@ -14,17 +14,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alipay.sofa.rpc.boot.annotation;
 
-import com.alipay.sofa.runtime.api.annotation.SofaService;
-import com.alipay.sofa.runtime.api.annotation.SofaServiceBinding;
-import org.springframework.stereotype.Component;
+package com.alipay.sofa.rpc.boot.config;
 
-@Component
-@SofaService(bindings = { @SofaServiceBinding(bindingType = "bolt") }, uniqueId = "bolt")
-public class AnnotationServiceImpl implements AnnotationService {
-    @Override
-    public String hello() {
-        return "Hello, Annotation";
+import com.alipay.sofa.rpc.module.SofaTracerModule;
+import org.junit.Assert;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+
+/**
+ * @author khotyn
+ */
+@RunWith(SpringRunner.class)
+@SpringBootTest
+public class DefaultTracingTest {
+    @Test
+    public void testSofaTracerDefaultEnabled() {
+        Assert.assertTrue(SofaTracerModule.isEnable());
     }
 }
