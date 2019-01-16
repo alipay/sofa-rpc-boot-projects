@@ -31,7 +31,7 @@ import java.util.Map;
  */
 @ConfigurationProperties(SofaBootRpcProperties.PREFIX)
 public class SofaBootRpcProperties {
-    static final String         PREFIX     = "com.alipay.sofa.rpc";
+    public static final String  PREFIX     = "com.alipay.sofa.rpc";
 
     @Autowired
     private Environment         environment;

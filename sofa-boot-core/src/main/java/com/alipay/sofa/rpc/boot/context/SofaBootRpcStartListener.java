@@ -23,8 +23,6 @@ import com.alipay.sofa.rpc.boot.container.ProviderConfigContainer;
 import com.alipay.sofa.rpc.boot.container.RegistryConfigContainer;
 import com.alipay.sofa.rpc.boot.container.ServerConfigContainer;
 import com.alipay.sofa.rpc.boot.context.event.SofaBootRpcStartEvent;
-import com.alipay.sofa.rpc.common.RpcConfigs;
-import com.alipay.sofa.rpc.common.RpcOptions;
 import com.alipay.sofa.rpc.config.ProviderConfig;
 import com.alipay.sofa.rpc.event.LookoutSubscriber;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,11 +63,6 @@ public class SofaBootRpcStartListener implements ApplicationListener<SofaBootRpc
     public void onApplicationEvent(SofaBootRpcStartEvent event) {
         //choose disable metrics lookout
         disableLookout();
-
-        //Configure Tracing
-        if (sofaBootRpcProperties.getDefaultTracer() != null) {
-            RpcConfigs.putValue(RpcOptions.DEFAULT_TRACER, sofaBootRpcProperties.getDefaultTracer());
-        }
 
         //start fault tolerance
         faultToleranceConfigurator.startFaultTolerance();

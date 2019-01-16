@@ -17,12 +17,16 @@
 
 package com.alipay.sofa.rpc.boot.config;
 
-import com.alipay.sofa.rpc.module.SofaTracerModule;
+import com.alipay.sofa.rpc.module.Module;
+import com.alipay.sofa.rpc.module.ModuleFactory;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.lang.reflect.Field;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author khotyn
@@ -31,7 +35,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class DefaultTracingTest {
     @Test
-    public void testSofaTracerDefaultEnabled() {
-        Assert.assertTrue(SofaTracerModule.isEnable());
+    public void testSofaTracerDefaultEnabled() throws NoSuchFieldException, IllegalAccessException {
+        Field installedModulesField = ModuleFactory.class.getDeclaredField("INSTALLED_MODULES");
+        installedModulesField.setAccessible(true);
+        @SuppressWarnings("unchecked")
+        ConcurrentHashMap<String, Module> modules = (ConcurrentHashMap<String, Module>) installedModulesField
+            .get(ModuleFactory.class);
+        Assert.assertNotNull(modules.get("sofaTracer"));
     }
 }
