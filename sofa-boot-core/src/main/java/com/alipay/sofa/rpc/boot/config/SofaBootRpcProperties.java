@@ -248,7 +248,7 @@ public class SofaBootRpcProperties {
     private Map<String, String> registries = new HashMap<String, String>();
 
     /**
-     * enable mesh，an be protocol,like bolt,mesh,all,now we only support bolt （是否开启mesh支持，目前只支持bolt）
+     * enable mesh，can be protocol,like bolt,mesh,all,now we only support bolt （是否开启mesh支持，目前只支持bolt）
      */
     private String              enableMesh;
 
