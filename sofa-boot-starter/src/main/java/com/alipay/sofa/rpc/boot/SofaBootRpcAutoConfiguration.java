@@ -116,6 +116,11 @@ public class SofaBootRpcAutoConfiguration {
         return new ConsumerConfigContainer();
     }
 
+    //    @Bean
+    //    public ApplicationEnvironmentPreparedListener applicationEnvironmentPreparedListener(SofaBootRpcProperties sofaBootRpcProperties) {
+    //        return new ApplicationEnvironmentPreparedListener(sofaBootRpcProperties);
+    //    }
+
     @Bean
     public ApplicationContextClosedListener applicationContextClosedListener(ProviderConfigContainer providerConfigContainer,
                                                                              ServerConfigContainer serverConfigContainer) {

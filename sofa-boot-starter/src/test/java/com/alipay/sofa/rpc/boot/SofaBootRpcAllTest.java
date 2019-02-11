@@ -121,7 +121,7 @@ public class SofaBootRpcAllTest {
     private LazyService          lazyServiceDubbo;
 
     @SofaReference(binding = @SofaReferenceBinding(bindingType = "bolt"),
-            jvmFirst = false)
+            jvmFirst = false, uniqueId = "bolt")
     private AnnotationService    annotationService;
 
     @SofaReference(binding = @SofaReferenceBinding(bindingType = "bolt", serializeType = "protobuf"),
