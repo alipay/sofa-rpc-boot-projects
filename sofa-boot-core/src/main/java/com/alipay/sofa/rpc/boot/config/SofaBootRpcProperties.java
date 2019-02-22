@@ -149,6 +149,11 @@ public class SofaBootRpcProperties {
      * rest context path (rest context path)
      */
     private String              restContextPath;
+
+    /**
+     * cors settings
+     */
+    private String              restAllowedOrigins;
     // has no use
     /**
      * the core thread pool size of rest （rest 核心线程数）
@@ -703,6 +708,15 @@ public class SofaBootRpcProperties {
 
     public void setHystrixEnable(String hystrixEnable) {
         this.hystrixEnable = hystrixEnable;
+    }
+
+    public String getRestAllowedOrigins() {
+        return StringUtils.isEmpty(restAllowedOrigins) ? getDotString(new Object() {
+        }.getClass().getEnclosingMethod().getName()) : restAllowedOrigins;
+    }
+
+    public void setRestAllowedOrigins(String restAllowedOrigins) {
+        this.restAllowedOrigins = restAllowedOrigins;
     }
 
     private String getDotString(String enclosingMethodName) {
