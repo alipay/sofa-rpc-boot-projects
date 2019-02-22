@@ -31,7 +31,7 @@ import java.util.Map;
  */
 @ConfigurationProperties(SofaBootRpcProperties.PREFIX)
 public class SofaBootRpcProperties {
-    static final String         PREFIX     = "com.alipay.sofa.rpc";
+    public static final String  PREFIX     = "com.alipay.sofa.rpc";
 
     @Autowired
     private Environment         environment;
@@ -172,6 +172,7 @@ public class SofaBootRpcProperties {
      * whether rest server is daemon (是否hold住端口，true的话随主线程退出而退出)
      */
     private String              restDaemon;
+    private boolean             restSwagger;
     /* rest end */
 
     /* dubbo  start*/
@@ -256,6 +257,8 @@ public class SofaBootRpcProperties {
      * the reference limit numbers of the same interface could be referred (允许客户端对同一个服务生成的引用代理数量，默认为3)
      */
     private String              consumerRepeatedReferenceLimit;
+
+    private String              defaultTracer;
 
     public String getAftRegulationEffective() {
         return StringUtils.isEmpty(aftRegulationEffective) ? getDotString(new Object() {
@@ -683,6 +686,14 @@ public class SofaBootRpcProperties {
         this.consumerRepeatedReferenceLimit = consumerRepeatedReferenceLimit;
     }
 
+    public String getDefaultTracer() {
+        return defaultTracer;
+    }
+
+    public void setDefaultTracer(String defaultTracer) {
+        this.defaultTracer = defaultTracer;
+    }
+
     private String getDotString(String enclosingMethodName) {
         if (environment == null) {
             return null;
@@ -701,5 +712,13 @@ public class SofaBootRpcProperties {
 
     public void setEnvironment(Environment environment) {
         this.environment = environment;
+    }
+
+    public boolean isRestSwagger() {
+        return restSwagger;
+    }
+
+    public void setRestSwagger(boolean restSwagger) {
+        this.restSwagger = restSwagger;
     }
 }
