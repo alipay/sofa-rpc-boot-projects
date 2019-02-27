@@ -176,10 +176,10 @@ public abstract class RpcBindingConverter implements BindingConverter<RpcBinding
         if (CollectionUtils.isEmpty(parameterElements)) {
             return;
         }
-        Map<String, String> parameters = new LinkedHashMap<>(parameterElements.size());
+        Map<String, String> parameters = new LinkedHashMap<String, String>(parameterElements.size());
         for (Element element : parameterElements) {
             if (element.getNodeType() == Node.ELEMENT_NODE &&
-                    element.getLocalName().equals(RpcBindingXmlConstants.TAG_PARAMETER)) {
+                element.getLocalName().equals(RpcBindingXmlConstants.TAG_PARAMETER)) {
                 String key = element.getAttribute(RpcBindingXmlConstants.TAG_PARAMETER_KEY);
                 String value = element.getAttribute(RpcBindingXmlConstants.TAG_PARAMETER_VALUE);
                 parameters.put(key, value);
@@ -516,7 +516,7 @@ public abstract class RpcBindingConverter implements BindingConverter<RpcBinding
     }
 
     private Map<String, String> parseSofaParameters(SofaParameter[] parameterAnnos) {
-        Map<String, String> parameters = new LinkedHashMap<>();
+        Map<String, String> parameters = new LinkedHashMap<String, String>();
         for (SofaParameter parameter : parameterAnnos) {
             parameters.put(parameter.key(), parameter.value());
         }

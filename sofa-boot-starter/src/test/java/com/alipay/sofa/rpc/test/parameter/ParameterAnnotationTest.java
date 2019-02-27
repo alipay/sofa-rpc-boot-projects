@@ -62,7 +62,7 @@ public class ParameterAnnotationTest {
     private HelloSyncService helloSyncService;
 
     @Autowired
-    private ParameterFilter parameterFilter;
+    private ParameterFilter  parameterFilter;
 
     @Test
     public void testParameter() {
