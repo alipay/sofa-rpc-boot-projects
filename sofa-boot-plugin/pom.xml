@@ -19,6 +19,7 @@
         <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
         <maven-java-formatter-plugin.version>0.4</maven-java-formatter-plugin.version>
         <license-maven-plugin.version>3.0</license-maven-plugin.version>
+        <sofa.ark.version>0.6.0</sofa.ark.version>
     </properties>
 
     <dependencies>
@@ -26,18 +27,6 @@
             <groupId>com.alipay.sofa</groupId>
             <artifactId>rpc-sofa-boot-starter</artifactId>
             <version>${project.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.alipay.sofa</groupId>
-                    <artifactId>sofa-rpc-all</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>com.alipay.sofa</groupId>
-            <artifactId>healthcheck-sofa-boot-starter</artifactId>
-            <optional>true</optional>
         </dependency>
 
         <dependency>
@@ -45,13 +34,6 @@
             <artifactId>sofa-ark-spi</artifactId>
             <version>${sofa.ark.version}</version>
             <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>com.alipay.sofa</groupId>
-            <artifactId>sofa-rpc-all</artifactId>
-            <version>${rpc.all.version}</version>
-            <optional>true</optional>
         </dependency>
     </dependencies>
 
@@ -138,6 +120,7 @@
             <plugin>
                 <groupId>com.alipay.sofa</groupId>
                 <artifactId>sofa-ark-plugin-maven-plugin</artifactId>
+                <version>${sofa.ark.version}</version>
                 <executions>
                     <execution>
                         <id>default-cli</id>
@@ -200,10 +183,6 @@
                             <excludes>
                                 <exclude>com.alipay.sofa:healthcheck-sofa-boot-starter</exclude>
                             </excludes>
-
-                            <shades>
-                                <shade>com.alipay.sofa:rpc-sofa-boot-starter</shade>
-                            </shades>
                         </configuration>
                     </execution>
 
