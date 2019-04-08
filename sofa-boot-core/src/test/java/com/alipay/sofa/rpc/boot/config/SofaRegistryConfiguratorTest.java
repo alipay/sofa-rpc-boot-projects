@@ -30,14 +30,14 @@ public class SofaRegistryConfiguratorTest {
 
     @Test
     public void buildFromAddress() {
-        String address = "sofa://127.0.0.1:9600?cluster=test";
+        String address = "sofa://127.0.0.1:9603?cluster=test";
 
         SofaRegistryConfigurator sofaRegistryConfigurator = new SofaRegistryConfigurator();
         RegistryConfig registryConfig = sofaRegistryConfigurator.buildFromAddress(address);
 
         assertNotNull(registryConfig);
         assertEquals("sofa", registryConfig.getProtocol());
-        assertEquals("127.0.0.1:9600", registryConfig.getAddress());
+        assertEquals("127.0.0.1:9603", registryConfig.getAddress());
         assertNotNull(registryConfig.getParameters());
         assertEquals("test", registryConfig.getParameter("cluster"));
     }
