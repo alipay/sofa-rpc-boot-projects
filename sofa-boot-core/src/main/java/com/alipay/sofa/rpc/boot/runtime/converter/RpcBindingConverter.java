@@ -462,7 +462,6 @@ public abstract class RpcBindingConverter implements BindingConverter<RpcBinding
     protected void convertReferenceAnnotation(RpcBindingParam bindingParam,
                                               SofaReferenceBinding sofaReferenceBindingAnnotation,
                                               BindingConverterContext bindingConverterContext) {
-        //TODO need a magic number
         if (sofaReferenceBindingAnnotation.addressWaitTime() != 0) {
             bindingParam.setAddressWaitTime(sofaReferenceBindingAnnotation.addressWaitTime());
         }
