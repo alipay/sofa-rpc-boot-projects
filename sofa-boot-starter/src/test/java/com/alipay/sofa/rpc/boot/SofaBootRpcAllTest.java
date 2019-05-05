@@ -19,6 +19,7 @@ package com.alipay.sofa.rpc.boot;
 import com.alipay.hessian.generic.model.GenericObject;
 import com.alipay.sofa.rpc.api.GenericService;
 import com.alipay.sofa.rpc.api.future.SofaResponseFuture;
+import com.alipay.sofa.rpc.boot.base.BaseZkTest;
 import com.alipay.sofa.rpc.boot.direct.DirectService;
 import com.alipay.sofa.rpc.boot.dubbo.DubboService;
 import com.alipay.sofa.rpc.boot.filter.FilterService;
@@ -45,7 +46,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 @RunWith(SpringRunner.class)
 @ImportResource("classpath*:spring/test_all.xml")
-public class SofaBootRpcAllTest {
+public class SofaBootRpcAllTest extends BaseZkTest {
 
     @Autowired
     private HelloSyncService     helloSyncService;
