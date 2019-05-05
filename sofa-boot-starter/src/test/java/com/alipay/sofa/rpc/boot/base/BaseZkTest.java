@@ -18,6 +18,7 @@ package com.alipay.sofa.rpc.boot.base;
 
 import java.io.IOException;
 
+import com.alipay.sofa.rpc.context.RpcRunningState;
 import com.alipay.sofa.rpc.log.Logger;
 import com.alipay.sofa.rpc.log.LoggerFactory;
 import org.apache.curator.test.TestingServer;
@@ -29,13 +30,14 @@ import org.junit.BeforeClass;
  */
 public abstract class BaseZkTest {
 
-    protected final static Logger  LOGGER = LoggerFactory.getLogger(BaseZkTest.class);
+    protected final static Logger LOGGER = LoggerFactory.getLogger(BaseZkTest.class);
 
     protected static TestingServer server = null;
 
     @BeforeClass
     public static void adBeforeClass() {
         try {
+            RpcRunningState.setUnitTestMode(true);
             server = new TestingServer(2181, true);
             server.start();
         } catch (Exception e) {
