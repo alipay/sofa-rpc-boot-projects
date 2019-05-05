@@ -16,6 +16,7 @@
  */
 package com.alipay.sofa.rpc.boot.config;
 
+import com.alipay.sofa.rpc.boot.base.BaseZkTest;
 import com.alipay.sofa.rpc.boot.log.SofaBootRpcLoggerFactory;
 import com.alipay.sofa.rpc.log.Logger;
 import com.alipay.sofa.rpc.log.LoggerFactory;
@@ -33,7 +34,7 @@ import org.springframework.test.context.junit4.SpringRunner;
                               "logging.level.com.alipay.sofa.rpc=DEBUG",
                               "logging.level.com.alipay.sofa.rpc.boot=ERROR",
                               "logging.level.com.user.app=WARN" })
-public class SofaRpcLoggerLevelConfigTest {
+public class SofaRpcLoggerLevelConfigTest extends BaseZkTest {
 
     @Test
     public void testRpcLoggerLevel() {

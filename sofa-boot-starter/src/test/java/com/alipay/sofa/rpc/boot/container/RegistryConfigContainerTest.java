@@ -16,6 +16,7 @@
  */
 package com.alipay.sofa.rpc.boot.container;
 
+import com.alipay.sofa.rpc.boot.base.BaseZkTest;
 import com.alipay.sofa.rpc.boot.common.SofaBootRpcRuntimeException;
 import com.alipay.sofa.rpc.boot.config.LocalFileConfigurator;
 import com.alipay.sofa.rpc.boot.config.RegistryConfigureProcessor;
@@ -40,7 +41,7 @@ import java.util.Map;
  */
 @SpringBootTest
 @RunWith(SpringRunner.class)
-public class RegistryConfigContainerTest {
+public class RegistryConfigContainerTest extends BaseZkTest {
     @Rule
     public ExpectedException           thrown                = ExpectedException.none();
 

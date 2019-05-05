@@ -16,6 +16,7 @@
  */
 package com.alipay.sofa.rpc.boot.config;
 
+import com.alipay.sofa.rpc.boot.base.BaseZkTest;
 import com.alipay.sofa.rpc.boot.container.ConsumerConfigContainer;
 import com.alipay.sofa.rpc.config.ConsumerConfig;
 import com.alipay.sofa.rpc.test.bean.SampleFacade;
@@ -42,7 +43,7 @@ import java.util.Map;
                               SofaBootRpcProperties.PREFIX + ".consumer.repeated.reference.limit=10",
                               SofaBootRpcProperties.PREFIX + ".rest.allowed.origins=a.com"
 })
-public class SofaBootRpcPropertiesTest {
+public class SofaBootRpcPropertiesTest extends BaseZkTest {
     @Autowired
     private SofaBootRpcProperties   sofaBootRpcProperties;
 
