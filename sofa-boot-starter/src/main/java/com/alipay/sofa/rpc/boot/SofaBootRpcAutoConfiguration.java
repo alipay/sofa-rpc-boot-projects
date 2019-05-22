@@ -126,6 +126,11 @@ public class SofaBootRpcAutoConfiguration {
     }
 
     @Bean
+    public RegistryConfigureProcessor consulConfigurator() {
+        return new ConsulConfigurator();
+    }
+
+    @Bean
     public ConsumerConfigContainer consumerConfigContainer() {
         return new ConsumerConfigContainer();
     }
