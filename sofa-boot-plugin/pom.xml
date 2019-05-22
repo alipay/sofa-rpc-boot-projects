@@ -38,14 +38,12 @@
                 </exclusion>
             </exclusions>
         </dependency>
-
         <dependency>
             <groupId>com.alipay.sofa</groupId>
             <artifactId>sofa-ark-spi</artifactId>
             <version>${sofa.ark.version}</version>
             <scope>provided</scope>
         </dependency>
-
         <dependency>
             <groupId>com.alipay.sofa</groupId>
             <artifactId>sofa-rpc-all</artifactId>
