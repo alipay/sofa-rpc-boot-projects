@@ -24,6 +24,7 @@ import com.alipay.sofa.rpc.boot.config.SofaBootRpcProperties;
 import com.alipay.sofa.rpc.boot.log.SofaBootRpcLoggerFactory;
 import com.alipay.sofa.rpc.common.RpcConstants;
 import com.alipay.sofa.rpc.config.ServerConfig;
+import com.alipay.sofa.rpc.server.ServerFactory;
 import com.alipay.sofa.rpc.server.bolt.BoltServer;
 import org.slf4j.Logger;
 import org.springframework.util.StringUtils;
@@ -421,7 +422,7 @@ public class ServerConfigContainer {
      */
     public void closeAllServer() {
         if (boltServerConfig != null) {
-            boltServerConfig.destroy();
+//            boltServerConfig.destroy();
             boltServerConfig = null;
         }
 
