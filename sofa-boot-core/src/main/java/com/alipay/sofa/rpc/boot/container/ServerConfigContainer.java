@@ -442,7 +442,7 @@ public class ServerConfigContainer {
     private void destroyServerConfig(ServerConfig serverConfig) {
         if (serverConfig != null) {
             Server server = serverConfig.getServer();
-            if (server != null && !server.hasNoEntry()) {
+            if (server != null && server.hasNoEntry()) {
                 serverConfig.destroy();
             }
         }
